@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-22",
+  "first": "out/mobility-backend-2026-11-22/checked",
+  "second": "out/mobility-backend-2026-11-22/complete",
+  "identical_spatial_predictions_coefficients_and_bootstrap": true,
+  "identical_width_inventory": true,
+  "identical_equipment_results": true,
+  "identical_mass_controls": true,
+  "state_ids": {
+    "before": "7bdbabbad2996c898b1b12aa1571919168a1bcdc0b987bffe85a0f6135014996",
+    "after_clean": "10bb8223d639c56a5de9125554f553a292e0ee0221244f6505cd880ede64738f",
+    "after_dry_wind": "67eea977adb4316b13dff459b132f70ec4ab4f977936a322e4e9c4ccd98a7485"
+  },
+  "ui_unchanged_files": 17,
+  "source_hashes_match": true,
+  "source_sha256": {
+    "facade_inference.py": "d6f4709b8c9723786427ecefa8e1293387f76d5adb528e3ed2bf614ca1d58a6a",
+    "equipment_access.py": "f4b71010accf865bc9a95f0e9c5433c29f1095d4232f86192f77e2576b74bb1f",
+    "mobility_api.py": "77aaa839a7ad78a0142e6173ca5876cadcac6d5137204bb2dfc3b2a03a7b88ad",
+    "reproduce_mobility_backend.py": "b2846d108aebbe0d3e8c10fe9fd1c47ff38095eb3d0f069761dce11aff173c28",
+    "tests/test_mobility_backend.py": "fc4be7ed6a698e5b43d8d17402d187bc92cdebac72b86924af66fb268f1c82ee",
+    "api.py": "2afc762282da700999f3385705307925cec7679fd6ef05c057ca1c73a13ee3c0",
+    "geodata.py": "e90127ac878a1f7ec94a36b1b493f334a00ba05dcff0f9c6b0ece1354ae57ea3",
+    "snow_state.py": "469ef03544a687846995ed5e0b78d6c13c18bfb6529d4aaae5c31d3a5995ba56",
+    "snow_domain.py": "d3c66e0875f55d835edb11ce348958f1107dfc6ee12ccb25d8d594fbb6bddbc4"
+  },
+  "verifier_sha256": "9009d730f81360f00951b1847ceaf4b986c00424a25079fa3978a9030e9fb3c3",
+  "tests": {
+    "city_sim": 70,
+    "snowops": 9,
+    "status": "passed",
+    "city_log": "/private/tmp/kam-mobility-complete-tests.log",
+    "core_log": "/private/tmp/kam-mobility-core-tests.log"
+  },
+  "sources": {
+    "Danil_main": "75bc8ecfdc04d72c0a0eb0ea4a25398940125eaa",
+    "Danil_checked_on": "2026-11-22",
+    "Danil_url": "https://github.com/NDaVS/kamcha-snow-sim/tree/75bc8ecfdc04d72c0a0eb0ea4a25398940125eaa",
+    "OSM_width": "https://wiki.openstreetmap.org/wiki/Key:width",
+    "OSM_physical_width": "https://wiki.openstreetmap.org/wiki/Key:maxwidth:physical",
+    "OSM_grade": "https://wiki.openstreetmap.org/wiki/Key:incline"
+  },
+  "evidence_sha256": {
+    "results.json": "e078b7236d090766473827046decb34ea57968527e7a52521a601c0d8e9408d8",
+    "facade-validation.json": "0577fdc0beb06d9396c45c1f82803d9da92670b07113710cda5955771f31f4f8",
+    "width-inventory.json": "45e14220b7264b49b52746fe2b08b552bf2d5aa6788c108d0f3c1e8cd22040f3"
+  }
+}

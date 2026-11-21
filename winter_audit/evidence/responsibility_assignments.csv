@@ -1,0 +1,7 @@
+assignment_id,territory_id,organization_id,role,operation,effective_from,effective_to,recorded_at,source_document_id,verification_status,geometry_status
+mish_customer,territory_mishennaya,city_roads,customer,winter_maintenance,2025-01-01T00:00:00+12:00,2025-04-01T00:00:00+12:00,2026-11-20,court_mishennaya,corroborated,street_named_extent_unverified
+mish_executor,territory_mishennaya,sdrs,executor,winter_maintenance,2025-01-01T00:00:00+12:00,2025-04-01T00:00:00+12:00,2026-11-20,court_mishennaya,corroborated,street_named_extent_unverified
+a401_customer,territory_a401,federal_dsd,customer,road_maintenance,,,2026-11-20,court_a401,corroborated,chainage_named_geometry_unverified
+a401_executor,territory_a401,uir,executor,road_maintenance,,,2026-11-20,court_a401,corroborated,chainage_named_geometry_unverified
+c0951_customer,territory_0951,city_roads,customer,road_maintenance,2026-01-03T00:00:00+12:00,2028-12-01T00:00:00+12:00,2026-11-20,court_0951,corroborated,annex_missing_status_unverified
+c0951_executor,territory_0951,teplovodhoz,executor,road_maintenance,2026-01-03T00:00:00+12:00,2028-12-01T00:00:00+12:00,2026-11-20,index_0951,reported,annex_missing_status_unverified

@@ -2,12 +2,19 @@
 
 Интерактивная карта Петропавловска-Камчатского для исследования ветра и переноса снега. MapLibre рисует рельеф, здания, дороги и инфраструктуру. Three.js отрисовывает расчётные поля, когда доступен аэродинамический решатель. FastAPI хранит сохранённые сценарии и записи внешнего решателя в SQLite. Результаты городского расчёта снега сохраняются в файлах серверного тома.
 
+Динамическое состояние снега, ветровой перенос старого запаса и события уборки
+реализованы отдельной версией рядом со старым движком:
+[API и воспроизведение](docs/DYNAMIC_SNOW_API.md),
+[сквозные результаты и покрытие](research/dynamic-backend-2026-11-22/REPORT.md).
+Начальное состояние и воздействия требуют явного источника и маркировки сценария;
+подтверждение GPS-прохода не подменяет подтверждение уборки.
+
 ## Запуск с нуля
 
 Понадобятся Git, запущенный Docker с Compose v2 и интернет для первой сборки. На macOS и Windows подойдёт Docker Desktop.
 
 ```sh
-git clone --branch Neverrie/city-sim --single-branch https://github.com/Neverrie/algorithms-kamchatka.git algorithms-kamchatka-city
+git clone --branch main --single-branch https://github.com/SHKZhenya/algorithms-kamchatka.git algorithms-kamchatka-city
 cd algorithms-kamchatka-city
 docker compose -f compose.city-sim.yml up --build --detach --wait
 docker compose -f compose.city-sim.yml ps
@@ -16,6 +23,10 @@ docker compose -f compose.city-sim.yml ps
 Откройте [карту](http://127.0.0.1:8008) и [справку API](http://127.0.0.1:8008/docs). В выводе `ps` оба сервиса должны иметь статус `healthy`. Образ API автоматически загружает закреплённую модель Данила и проверяет SHA-256 её файлов. Рельеф и исторические серии входят в репозиторий, база создаётся при первом старте.
 
 Для первого прогона выберите «Выбранный район» и «Исторический циклон», затем нажмите «Рассчитать снег за всю серию». После расчёта перетащите шкалу времени внизу карты и нажмите на точку, чтобы увидеть расчётную глубину снега. Для этого сценария достаточно данных из репозитория, ключ OpenWeather не нужен.
+
+Объектный backend (дороги по всей геометрии, входы и подходы, погода сценария,
+раздельные воздействие/значимость/качество) описан в [контракте API](docs/OBJECT_BACKEND_API.md).
+Он работает независимо от интерфейса. [Отчёт о пилоте и покрытии города](research/object-backend-2026-11-22/REPORT.md).
 
 В Compose `city-web` обслуживает статику в Nginx и проксирует `/api/`, `/docs` и `/openapi.json` в `city-api`. Веб-порт доступен на компьютере, где запущен Docker. Сценарии и результаты хранятся в томе `city_sim_state`. Для остановки с сохранением данных выполните `docker compose -f compose.city-sim.yml stop`.
 
@@ -38,7 +49,7 @@ python -m city_sim
 
 ```sh
 git init city_sim/.state/danil
-git -C city_sim/.state/danil fetch --depth=1 https://github.com/NDaVS/kamcha-snow-sim.git 367282af2b5e728f6cdd94c148065c4cec892cfd
+git -C city_sim/.state/danil fetch --depth=1 https://github.com/NDaVS/kamcha-snow-sim.git 087118ff9119eaa211fa19e89251b73f232406da
 git -C city_sim/.state/danil checkout --detach FETCH_HEAD
 ```
 

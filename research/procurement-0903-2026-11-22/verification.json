@@ -1,0 +1,17 @@
+{
+  "city_revision": "3e6d95d534996e23ce5e",
+  "verified_existing_node_legs": 887,
+  "route_variants": 55,
+  "mass_tolerance_kg": 1e-05,
+  "ui_unchanged_files": 17,
+  "source_sha256": {
+    "procurement.py": "7a1555e3547378822b9ad9cd2d6eee08423635d9d77a17d6f05963e19525e4a6",
+    "reproduce_procurement.py": "6f7af528e34a97036c6b2132d2cbcdd5dbef7a59017dc4a08a49315497e5d6e7",
+    "verify_procurement.py": "31022b0a66233eac67b213c5a2b843127d7be8575f2edbcb87a33da00ff3485e",
+    "tests/test_procurement.py": "ad761e2a3951975b54388009e7b3d92ff80171430a70037f0bab22fbf6387fa1",
+    "api.py": "0499d93e817d86b7284ef2155b4b68ec9f1004f3bc00ecf49ce8a5aed3691a1f",
+    "snow_state.py": "469ef03544a687846995ed5e0b78d6c13c18bfb6529d4aaae5c31d3a5995ba56",
+    "equipment_access.py": "f4b71010accf865bc9a95f0e9c5433c29f1095d4232f86192f77e2576b74bb1f"
+  },
+  "checks": "passed"
+}

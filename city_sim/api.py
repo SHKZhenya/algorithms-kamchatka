@@ -199,10 +199,25 @@ def make_app(db_path=None, building_path=None, graph_path=None, solver=None, wea
             raise HTTPException(422, "Ожидаются west,south,east,north и размер до 0.08°.") from error
         return region.west, region.south, region.east, region.north
 
+    def parse_inventory_bbox(bbox):
+        import math
+        try:
+            w, s, e, n = map(float, bbox.split(','))
+            if not all(map(math.isfinite, (w, s, e, n))) or not BOUNDS[0] <= w < e <= BOUNDS[2] or not BOUNDS[1] <= s < n <= BOUNDS[3]:
+                raise ValueError('Outside available city extent')
+            return w, s, e, n
+        except ValueError as error:
+            raise HTTPException(422, 'Expected a finite bbox within the available city extent') from error
+
     @api.get("/api/v1/city/base")
-    def base():
+    def base(bbox: str | None = None):
         city.data_revision
-        return city.osm_layers[1]
+        data = city.osm_layers[1]
+        if bbox is None:
+            return data
+        from shapely.geometry import box, shape
+        extent = box(*parse_bbox(bbox))
+        return {**data, "features": [f for f in data["features"] if shape(f["geometry"]).intersects(extent)]}
 
     @api.get("/api/v1/city/buildings")
     def buildings(bbox: str = Query(PILOT_QUERY)):
@@ -219,6 +234,60 @@ def make_app(db_path=None, building_path=None, graph_path=None, solver=None, wea
     @api.get("/api/v1/city/infrastructure")
     def infrastructure(bbox: str = Query(PILOT_QUERY)):
         return city.infrastructure(parse_bbox(bbox))
+
+    def access_catalog():
+        city.data_revision
+        return city.access_catalog
+
+    from .object_api import register_object_api
+    object_registry = register_object_api(api, city, city_snow, parse_inventory_bbox)
+    from .dynamic_api import register_dynamic_api
+    register_dynamic_api(api, city, store.path, parse_inventory_bbox, object_registry)
+    from .mobility_api import register_mobility_api
+    register_mobility_api(api, object_registry, parse_inventory_bbox)
+    from .procurement import register_procurement_api
+    register_procurement_api(api, object_registry)
+
+    @api.get("/api/v1/city/access-roads", tags=["Access"])
+    def access_roads(bbox: str = Query(PILOT_QUERY), mode: Literal["all", "vehicle", "pedestrian"] = "all"):
+        """Real OSM lines; vehicle_candidate is not an equipment admission."""
+        catalog = access_catalog()
+        rows = catalog.roads.query(parse_bbox(bbox))
+        if mode != "all":
+            rows = [f for f in rows if f["properties"]["mode"] == mode]
+        return {"type": "FeatureCollection", "features": rows,
+                "metadata": {"revision": catalog.revision, "source": "OpenStreetMap", "synthetic_links": False}}
+
+    @api.get("/api/v1/city/objects", tags=["Access"])
+    def access_objects(bbox: str = Query(PILOT_QUERY), kind: Literal["all", "entrance", "bus_stop", "medical"] = "all"):
+        """Mapped entrances, stops and medical facilities. Missing entrances are not inferred."""
+        catalog = access_catalog()
+        rows = catalog.objects.query(parse_bbox(bbox))
+        if kind != "all":
+            rows = [f for f in rows if f["properties"]["kind"] == kind]
+        return {"type": "FeatureCollection", "features": rows, "metadata": {"revision": catalog.revision}}
+
+    @api.get("/api/v1/city/access-quality", tags=["Access"])
+    def access_quality():
+        """Snapshot coverage, shared-node components and missing links; no field validation."""
+        return access_catalog().audit
+
+    @api.get("/api/v1/operations/city/runs/{run_id}/objects", tags=["Access"])
+    def ranked_objects(run_id: str, bbox: str = Query(PILOT_QUERY),
+                       frame: int | None = Query(default=None, ge=0, le=64),
+                       threshold_cm: float = Query(default=20, gt=0, le=1000, allow_inf_nan=False),
+                       kind: Literal["all", "entrance", "bus_stop", "medical"] = "all",
+                       limit: int = Query(default=100, ge=1, le=1000), offset: int = Query(default=0, ge=0)):
+        """Rank by modeled fresh snow for this run/frame. Administrative priority is separate."""
+        bounds = parse_bbox(bbox)
+        try:
+            return access_catalog().ranking(city_snow, run_id, bounds, frame, threshold_cm, kind, limit, offset)
+        except (LookupError, FileNotFoundError) as error:
+            raise HTTPException(404, str(error)) from error
+        except ValueError as error:
+            raise HTTPException(422, str(error)) from error
+        except RuntimeError as error:
+            raise HTTPException(409, str(error)) from error
 
     @api.get("/api/v1/city/height-audit")
     def height_audit():

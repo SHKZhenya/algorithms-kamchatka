@@ -1,0 +1,10 @@
+requirement_id,source_id,source_locator,operation,object_class,event,deadline_h,threshold_or_condition,verification_status
+gost_road_snow,gost_50597,§8.1 / табл. 8.1,clear_snow,road_surface,end_of_snowfall_or_blizzard,,Подставить срок только после установления категории дороги или группы улицы,requires_classification
+gost_road_ice,gost_50597,§8.1 / табл. 8.1,remove_ice,road_surface,registered_detection,,Подставить срок после установления группы улицы и дефекта,requires_classification
+gost_ped,gost_50597,§8.5 / табл. 8.4,clear_snow,pedestrian_facilities,end_of_snowfall,,Разные объекты и категории пешеходного потока,requires_classification
+gost_layby,gost_text,§8.4 / табл. 8.3,clear_snow,bus_bay_or_boarding_on_road,end_of_snowfall,6,Таблица для автомобильных дорог категорий IА–V; пороги по строкам отличаются,published_copy
+pkgo_p7,rules_170,ст. 25 ч. 7,start_spreading,road_surface,start_of_snowfall,0,Начало операции; по предупреждению опасные участки заранее,edition_2025
+pkgo_p15,rules_170,ст. 25 ч. 15,clear_snow_ice,paved_areas,,,Удаление снега и льда; при стекловидном льде обработка,edition_2025
+pp290_p24,housing_290,п. 24,clear_snow_ice,verified_mkd_common_property,,,Требуются границы придомовой территории и применимость конкретной операции,check_current_edition
+pkgo_p6,rules_170,ст. 25 ч. 6,haul_snow,city_arterials_and_listed_public_sites,end_of_snowfall,72,Вывоз с указанных объектов; проверить категорию и редакцию,edition_2025
+pkgo_p11,rules_170,ст. 25 ч. 11,clear_snow_ice,business_entrances_and_adjacent_sidewalks,end_of_snowfall_and_local_clock,3,Дополнительно действует ограничение до 08:00 местного времени,edition_2025

@@ -1,0 +1,6 @@
+case,model_hour_local,ifs_speed_ms,ifs_wind_from_deg,station_wind_ms_same_term,station_wind_from_deg_same_term,station_source_url,station_to_quarter_m,quarter_cfd_wind_ground_truth
+dec-snow,2025-12-09T09:00:00+12:00,7.91,88,7,130,https://ogimet.com/cgi-bin/getsynop?block=32583&begin=202512070000&end=202512152359&header=yes,7082,
+dec-west-dry,2025-12-10T12:00:00+12:00,4.37,240,5,240,https://ogimet.com/cgi-bin/getsynop?block=32583&begin=202512070000&end=202512152359&header=yes,7082,
+jan-snow,2026-01-15T17:00:00+12:00,4.68,132,,,,7082,
+jan-calm,2026-01-16T23:00:00+12:00,1.03,47,,,,7082,
+mar-strong,2025-03-24T04:00:00+12:00,13.4,85,,,,7082,

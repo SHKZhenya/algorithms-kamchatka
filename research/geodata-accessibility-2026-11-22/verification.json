@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-22",
+  "identical_spatial_predictions": true,
+  "identical_coefficients": true,
+  "identical_bootstrap": true,
+  "identical_source_import": true,
+  "production_facade_model_unchanged": true,
+  "ui_unchanged_files": 17,
+  "canonical_graph_modified": false,
+  "source_sha256": {
+    "city_sim/facade_access_experiment.py": "c1bfc6b8639cecc3f97841809de588a5d4625fdb597bb1c02b3b6de457e01e8f",
+    "city_sim/road_evidence.py": "be8f3fcc637cb76b294bb167d3adcd2807320209352967aa8484a1d88e444d0f",
+    "city_sim/import_road_sources.py": "715e2c606c358004abfeb7d07cb838ae95a84ceeb868e4ea3b9c6d174603530f",
+    "city_sim/download_road_sources.py": "c75e6887d944179be3a6d1b93b1979d49780fd70a1bce427b3bdd44557c8f321",
+    "city_sim/mobility_api.py": "8d5d3b2c30caf25f10d2f22675a6ad30feae653e674d78a46e38c05a06037bb1",
+    "city_sim/tests/test_road_sources.py": "9af7ae88168c9fff0b2372791a602d7c8a82a7ffc01fc3dc85c3e85264018664"
+  },
+  "external_layer_sha256": "c237983194adbc522455dcdacd152c8b6643205580bc2c3fb67936823b6ff74b",
+  "tests": {
+    "city_sim": 77,
+    "core": 9,
+    "status": "passed"
+  },
+  "data_rights": "SKDF raw and API layer remain local; no public publication or deployment performed",
+  "real_data_api_smoke": {
+    "status": 200,
+    "way_id": "osm:way:125944344",
+    "features": 3,
+    "contexts": 0,
+    "sha256": "c237983194adbc522455dcdacd152c8b6643205580bc2c3fb67936823b6ff74b",
+    "canonical_graph_modified": false
+  }
+}

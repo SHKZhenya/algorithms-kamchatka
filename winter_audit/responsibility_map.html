@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ответственность за дороги · Петропавловск-Камчатский</title>
+<style>
+  :root { font: 16px system-ui, sans-serif; color: #172b38; background: #f7f8f6; }
+  body { max-width: 1350px; margin: auto; padding: 1.5rem clamp(1rem, 3vw, 3rem); }
+  h1 { margin: .25rem 0; font-size: clamp(1.5rem, 4vw, 2.4rem); }
+  p { line-height: 1.45; }
+  .sub, footer { color: #475764; font-size: .9rem; }
+  .legend { display: flex; gap: .5rem 1.5rem; flex-wrap: wrap; list-style: none; padding: 0; }
+  .legend li { display: flex; align-items: center; gap: .5rem; font-size: .88rem; }
+  .swatch { width: 1.6rem; border-top: 3px solid var(--swatch); }
+  .swatch.preliminary { border-top-style: dashed; }
+  .swatch.confirmed { width: .65rem; height: .65rem; border: 0; background: var(--swatch); border-radius: 50%; }
+  main { display: grid; grid-template-columns: minmax(0, 2fr) minmax(17rem, 1fr); gap: 1rem; }
+  .map { background: #edf0eb; border: 1px solid #cbd3ca; border-radius: .75rem; overflow: hidden; position: relative; }
+  svg { display: block; width: 100%; height: min(68vh, 640px); min-height: 340px; }
+  path { fill: none; stroke: var(--mark); vector-effect: non-scaling-stroke; }
+  .unknown path { stroke-opacity: .56; stroke-width: 1.25; }
+  .preliminary path { stroke-width: 2.6; stroke-dasharray: 4 3; }
+  .hit { stroke: transparent; stroke-width: 11px !important; stroke-opacity: 1 !important; stroke-dasharray: none !important; cursor: pointer; }
+  .hit:hover, .hit.selected { stroke: var(--mark); stroke-width: 4px !important; }
+  circle { fill: var(--mark); stroke: white; stroke-width: 2; vector-effect: non-scaling-stroke; cursor: pointer; }
+  .controls { position: absolute; top: .75rem; left: .75rem; right: .75rem; display: flex; gap: .4rem; flex-wrap: wrap; }
+  button { font: inherit; font-size: .82rem; color: inherit; background: white; border: 1px solid #b4c0c4; border-radius: .4rem; padding: .38rem .58rem; cursor: pointer; }
+  aside { background: white; border: 1px solid #d2dad5; border-radius: .75rem; padding: 1rem; overflow-wrap: anywhere; }
+  aside h2 { margin: .5rem 0 .75rem; font-size: 1.2rem; }
+  strong { color: var(--mark, #172b38); font-size: .84rem; }
+  dl { margin: 0; font-size: .88rem; }
+  dt { margin-top: .65rem; font-weight: 650; }
+  dd { margin: .15rem 0 0; }
+  a { color: #224f73; }
+  @media (max-width: 780px) { main { grid-template-columns: 1fr; } }
+</style>
+<header>
+  <h1>Ответственность за дороги</h1>
+  <p class="sub">Петропавловск-Камчатский · границы пилотного графа · срез на 20 ноября 2026 года</p>
+  <ul class="legend" aria-label="Легенда"></ul>
+</header>
+<main>
+  <div class="map">
+    <svg aria-label="Дороги пилота и надземный переход"></svg>
+    <div class="controls">
+      <button id="reset">Весь пилот</button>
+      <button id="overpass">Переход 49/1</button>
+      <button id="candidate">Ключевская</button>
+    </div>
+  </div>
+  <aside aria-live="polite">
+    <h2>Выберите участок</h2>
+    <p>Нажмите на дорогу или маркер. Для перехода подтверждено оперативное управление по опубликованной записи. Подтверждённых участков зимних работ по контракту № 0831 в слое пока нет.</p>
+  </aside>
+</main>
+<footer><p><a id="attribution">© OpenStreetMap contributors</a></p></footer>
+<script type="application/json" id="data">__RESPONSIBILITY_DATA__</script>
+<script>
+  const data = JSON.parse(document.querySelector("#data").textContent);
+  const svg = document.querySelector("svg");
+  const panel = document.querySelector("aside");
+  const initialPanel = [...panel.childNodes];
+  const legend = document.querySelector(".legend");
+  const ns = "http://www.w3.org/2000/svg";
+  const project = ([lon, lat]) => [(lon - 158) * 67000, (54 - lat) * 111000];
+  const coordinates = feature => feature.geometry.type === "Point" ?
+    [feature.geometry.coordinates] : feature.geometry.coordinates;
+  const element = (tag, text) => {
+    const node = document.createElement(tag);
+    node.textContent = text;
+    return node;
+  };
+  const svgElement = (tag, attributes) => {
+    const node = document.createElementNS(ns, tag);
+    for (const [key, value] of Object.entries(attributes)) node.setAttribute(key, value);
+    return node;
+  };
+  for (const [state, {label, color}] of Object.entries(data.responsibility_states)) {
+    const item = document.createElement("li");
+    const swatch = document.createElement("span");
+    swatch.className = "swatch " + state;
+    swatch.style.setProperty("--swatch", color);
+    item.append(swatch, label);
+    legend.append(item);
+  }
+  function show(feature) {
+    const props = feature.properties;
+    const badge = element("strong", props.responsibility_status_label);
+    badge.style.setProperty("--mark", data.responsibility_states[props.responsibility_status].color);
+    const details = document.createElement("dl");
+    for (const {field, label} of data.popup_fields) {
+      if (["name", "responsibility_status_label"].includes(field)) continue;
+      const value = props[field] ?? (["responsible_organization", "contractor"].includes(field) ? "Не установлено" : null);
+      if (value == null) continue;
+      const desc = document.createElement("dd");
+      if (field.endsWith("_url") && typeof value === "string" && value.startsWith("https://")) {
+        const link = element("a", "Открыть документ");
+        Object.assign(link, {href: value, target: "_blank", rel: "noopener noreferrer"});
+        desc.append(link);
+      } else desc.textContent = value;
+      details.append(element("dt", label), desc);
+    }
+    panel.replaceChildren(badge, element("h2", props.name), details);
+    svg.querySelector(".selected")?.classList.remove("selected");
+    marks.get(feature.id)?.classList.add("selected");
+  }
+  function frame(features, padding) {
+    const points = features.flatMap(feature => coordinates(feature).map(project));
+    const xs = points.map(point => point[0]), ys = points.map(point => point[1]);
+    const left = Math.min(...xs) - padding, top = Math.min(...ys) - padding;
+    svg.setAttribute("viewBox", [left, top, Math.max(...xs) - left + padding,
+      Math.max(...ys) - top + padding].join(" "));
+  }
+  const marks = new Map();
+  for (const state of ["unknown", "preliminary", "confirmed"]) {
+    const group = svgElement("g", {class: state});
+    group.style.setProperty("--mark", data.responsibility_states[state].color);
+    svg.append(group);
+    for (const feature of data.features.filter(f => f.properties.responsibility_status === state)) {
+      const points = coordinates(feature).map(project);
+      let mark;
+      if (feature.geometry.type === "Point") {
+        const [x, y] = points[0];
+        mark = svgElement("circle", {cx: x, cy: y, r: 90});
+      } else {
+        const d = "M" + points.map(point => point.join(",")).join("L");
+        group.append(svgElement("path", {d, "pointer-events": "none"}));
+        mark = svgElement("path", {d, class: "hit"});
+      }
+      mark.addEventListener("click", () => show(feature));
+      marks.set(feature.id, mark);
+      group.append(mark);
+    }
+  }
+  document.querySelector("#reset").addEventListener("click", () => {
+    frame(data.features, 160);
+    svg.querySelector(".selected")?.classList.remove("selected");
+    panel.replaceChildren(...initialPanel);
+  });
+  const bridge = data.features.filter(f => f.id === "asset:41:01:0010122:655");
+  const road = data.features.filter(f => f.properties.object_id === "0831:2");
+  for (const [id, features, padding] of [["overpass", bridge, 650], ["candidate", road, 300]]) {
+    const button = document.getElementById(id);
+    button.hidden = features.length === 0;
+    button.addEventListener("click", () => {
+      frame(features, padding);
+      show(features[Math.floor(features.length / 2)]);
+    });
+  }
+  document.querySelector("#attribution").href = data.license_url;
+  frame(data.features, 160);
+</script>
+</html>

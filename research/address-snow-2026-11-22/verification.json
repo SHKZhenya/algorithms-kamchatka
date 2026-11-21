@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "common_mask_samples": 1083,
+  "summary_rows": 209,
+  "max_abs_difference_cm": {
+    "calm": 0.0,
+    "no_buildings": 0.0,
+    "archive": 0.002002807617174085
+  },
+  "photo_sector": [
+    {
+      "time": "2026-01-15T11:00:00+12:00",
+      "row": "492",
+      "col": "489",
+      "model_cm": 137.468,
+      "archive_cm": 137.467,
+      "background_cm": 67.41
+    },
+    {
+      "time": "2026-01-15T23:00:00+12:00",
+      "row": "492",
+      "col": "489",
+      "model_cm": 169.157,
+      "archive_cm": 169.157,
+      "background_cm": 85.75
+    }
+  ]
+}

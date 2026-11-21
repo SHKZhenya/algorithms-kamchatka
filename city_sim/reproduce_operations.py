@@ -47,15 +47,20 @@ def validate_field(observed, weather, snow):
     matches = [(obj, signals[key]) for obj, key in zip(truth, keys) if key in signals]
     validation = {}
     for name, key in (("regional", "status"), ("city", "baseline_status")):
-        counter = Counter()
+        counter = Counter({field: 0 for field in ("tp", "fp", "tn", "fn", "abstained")})
         for obj, row in matches:
             status = row[key]
-            if status == "missing":
+            if status in {"missing", "abstain", "abstained"}:
                 counter["abstained"] += 1
+                continue
             predicted = status == "inspect"
             counter[("t" if predicted == obj.inspection_needed else "f") + ("p" if predicted else "n")] += 1
         tp, fp, fn = (counter[field] for field in ("tp", "fp", "fn"))
-        validation[name] = {**counter, "precision": tp/(tp+fp) if tp+fp else None,
+        evaluated = len(matches) - counter["abstained"]
+        validation[name] = {**counter, "evaluated": evaluated,
+                            "unmatched": len(truth) - len(matches),
+                            "coverage": evaluated/len(truth) if truth else None,
+                            "precision": tp/(tp+fp) if tp+fp else None,
                             "recall": tp/(tp+fn) if tp+fn else None}
     results = {r["run_id"]: r for r in snow}
     comparisons = []

@@ -1,0 +1,3913 @@
+[
+  {
+    "object_id": "0903:intraquarter:01",
+    "description": "От центральной дороги Ларина до ж. д. Савченко, 19 поворот и до ж. д. Ларина, 24 выезд у ж. д. Ларина 22/1",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:6005676129",
+            "node": "n6005676129",
+            "point": [
+              158.6474488,
+              53.0787369
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4052179799",
+            "node": "n4052179799",
+            "point": [
+              158.6474098,
+              53.0788265
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:5941919677",
+            "node": "n5941919677",
+            "point": [
+              158.6472225,
+              53.0792575
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:11916389037",
+            "node": "n11916389037",
+            "point": [
+              158.6477332,
+              53.0780488
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Савченко",
+          "house": "19"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795302",
+            "node": "n11916389033",
+            "point": [
+              158.64886060512424,
+              53.07860172834824
+            ],
+            "snap_distance_m": 38.67670366510759,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795302",
+            "node": "n5941919678",
+            "point": [
+              158.64886060512424,
+              53.07860172834824
+            ],
+            "snap_distance_m": 53.03338582519814,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "24"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795439",
+            "node": "n6005676122",
+            "point": [
+              158.64964843524407,
+              53.0755535466217
+            ],
+            "snap_distance_m": 15.908004282529173,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795222",
+            "node": "n6005676115",
+            "point": [
+              158.65015768101338,
+              53.07552306726145
+            ],
+            "snap_distance_m": 20.70414478310364,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795222",
+            "node": "n6005676114",
+            "point": [
+              158.65015768101338,
+              53.07552306726145
+            ],
+            "snap_distance_m": 23.00719323070394,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795439",
+            "node": "n6005676115",
+            "point": [
+              158.64964843524407,
+              53.0755535466217
+            ],
+            "snap_distance_m": 26.96935593497508,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "22/1"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:246443268",
+            "node": "n7662954053",
+            "point": [
+              158.65106479999997,
+              53.07486395
+            ],
+            "snap_distance_m": 21.51796337602698,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:246443268",
+            "node": "n7662954054",
+            "point": [
+              158.65106479999997,
+              53.07486395
+            ],
+            "snap_distance_m": 27.906756129758435,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:02",
+    "description": "От городской дороги Ларина между Ларина, 33 и 31 мимо ж. д. Дальневосточная, 12 до ж. д. Дальневосточная, 10",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:5941919677",
+            "node": "n5941919677",
+            "point": [
+              158.6472225,
+              53.0792575
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:13001962443",
+            "node": "n13001962443",
+            "point": [
+              158.646945,
+              53.0798961
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4052179799",
+            "node": "n4052179799",
+            "point": [
+              158.6474098,
+              53.0788265
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1186352771",
+            "node": "n1186352771",
+            "point": [
+              158.6468683,
+              53.0800727
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "between_addresses",
+          "addresses": [
+            {
+              "kind": "address",
+              "street": "Ларина",
+              "house": "33"
+            },
+            {
+              "kind": "address",
+              "street": "Ларина",
+              "house": "31"
+            }
+          ]
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:5941919662",
+            "node": "n5941919662",
+            "point": [
+              158.646242,
+              53.0792774
+            ],
+            "snap_distance_m": 35.2129263652096,
+            "match": "between_address_midpoint_hypothesis"
+          },
+          {
+            "osm_id": "osm:node:4052179798",
+            "node": "n4052179798",
+            "point": [
+              158.6465392,
+              53.0786838
+            ],
+            "snap_distance_m": 36.69297151880554,
+            "match": "between_address_midpoint_hypothesis"
+          },
+          {
+            "osm_id": "osm:node:5941919661",
+            "node": "n5941919661",
+            "point": [
+              158.6458956,
+              53.0792338
+            ],
+            "snap_distance_m": 49.19978932014587,
+            "match": "between_address_midpoint_hypothesis"
+          },
+          {
+            "osm_id": "osm:node:5941919677",
+            "node": "n5941919677",
+            "point": [
+              158.6472225,
+              53.0792575
+            ],
+            "snap_distance_m": 53.59186542404483,
+            "match": "between_address_midpoint_hypothesis"
+          }
+        ],
+        "status": "candidate",
+        "endpoint_evidence": [
+          {
+            "anchor": {
+              "kind": "address",
+              "street": "Ларина",
+              "house": "33"
+            },
+            "candidates": [
+              {
+                "osm_id": "osm:way:106795379",
+                "node": "n5941919662",
+                "point": [
+                  158.6462177303959,
+                  53.07941953525484
+                ],
+                "snap_distance_m": 15.895057676479462,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795537",
+                "node": "n5941919662",
+                "point": [
+                  158.64647835,
+                  53.079334800000005
+                ],
+                "snap_distance_m": 17.071718197183685,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795379",
+                "node": "n5941919660",
+                "point": [
+                  158.6462177303959,
+                  53.07941953525484
+                ],
+                "snap_distance_m": 22.133906983641193,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795537",
+                "node": "n5941919659",
+                "point": [
+                  158.64647835,
+                  53.079334800000005
+                ],
+                "snap_distance_m": 29.195408998873695,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795303",
+                "node": "n5941919677",
+                "point": [
+                  158.6468012947973,
+                  53.079049571656135
+                ],
+                "snap_distance_m": 36.485055472728384,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795303",
+                "node": "n13001962422",
+                "point": [
+                  158.6468012947973,
+                  53.079049571656135
+                ],
+                "snap_distance_m": 42.40021101390558,
+                "match": "exact_osm_address"
+              }
+            ],
+            "status": "candidate",
+            "snap_is_connection": false
+          },
+          {
+            "anchor": {
+              "kind": "address",
+              "street": "Ларина",
+              "house": "31"
+            },
+            "candidates": [
+              {
+                "osm_id": "osm:way:106795388",
+                "node": "n4052179798",
+                "point": [
+                  158.64684739999998,
+                  53.07860769999999
+                ],
+                "snap_distance_m": 22.314188263396296,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795388",
+                "node": "n4052179796",
+                "point": [
+                  158.64684739999998,
+                  53.07860769999999
+                ],
+                "snap_distance_m": 23.096460496201953,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795546",
+                "node": "n4052179795",
+                "point": [
+                  158.64722859999998,
+                  53.07818979999998
+                ],
+                "snap_distance_m": 32.27909775602052,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795546",
+                "node": "n11916389032",
+                "point": [
+                  158.64722859999998,
+                  53.07818979999998
+                ],
+                "snap_distance_m": 32.697119719112365,
+                "match": "exact_osm_address"
+              }
+            ],
+            "status": "candidate",
+            "snap_is_connection": false
+          }
+        ],
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Дальневосточная",
+          "house": "12"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795345",
+            "node": "n4052180295",
+            "point": [
+              158.64392930105296,
+              53.07907157856134
+            ],
+            "snap_distance_m": 23.26165697716205,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795413",
+            "node": "n4052180294",
+            "point": [
+              158.64418995000003,
+              53.07898685000001
+            ],
+            "snap_distance_m": 27.352876175455595,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795345",
+            "node": "n4052180294",
+            "point": [
+              158.64392930105296,
+              53.07907157856134
+            ],
+            "snap_distance_m": 28.009041097249508,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795413",
+            "node": "n4052181010",
+            "point": [
+              158.64418995000003,
+              53.07898685000001
+            ],
+            "snap_distance_m": 29.355545448141473,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795476",
+            "node": "n4052180292",
+            "point": [
+              158.6445129,
+              53.078701599999995
+            ],
+            "snap_distance_m": 39.38373588974333,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795476",
+            "node": "n4052181010",
+            "point": [
+              158.6445129,
+              53.078701599999995
+            ],
+            "snap_distance_m": 39.790641523109905,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Дальневосточная",
+          "house": "10"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795502",
+            "node": "n4052180292",
+            "point": [
+              158.64377565,
+              53.0785154
+            ],
+            "snap_distance_m": 14.17302344399189,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:node:4425988850",
+            "node": "n4052180292",
+            "point": [
+              158.6437753,
+              53.0786597
+            ],
+            "snap_distance_m": 16.973481594812313,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:node:4425988850",
+            "node": "n4052180294",
+            "point": [
+              158.6437753,
+              53.0786597
+            ],
+            "snap_distance_m": 19.48021066484126,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795502",
+            "node": "n4052179790",
+            "point": [
+              158.64377565,
+              53.0785154
+            ],
+            "snap_distance_m": 32.8372654781801,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:03",
+    "description": "От городской дороги Ларина до ж. д. Ларина, 16",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:9962863227",
+            "node": "n9962863227",
+            "point": [
+              158.6525011,
+              53.0747931
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:2616052154",
+            "node": "n2616052154",
+            "point": [
+              158.6521517,
+              53.0747301
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:7662954055",
+            "node": "n7662954055",
+            "point": [
+              158.6513815,
+              53.0746015
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6005676118",
+            "node": "n6005676118",
+            "point": [
+              158.6507256,
+              53.0744919
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "16"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795313",
+            "node": "n2616052150",
+            "point": [
+              158.65257212542366,
+              53.075518623947616
+            ],
+            "snap_distance_m": 36.12481855492463,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795313",
+            "node": "n13001962458",
+            "point": [
+              158.65257212542366,
+              53.075518623947616
+            ],
+            "snap_distance_m": 39.52940926144507,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:04",
+    "description": "От ж. д. Таранца, 7 спуск к д/с № 43",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Таранца",
+          "house": "7"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:198768258",
+            "node": "n1319105948",
+            "point": [
+              158.64498834689755,
+              53.074799196118164
+            ],
+            "snap_distance_m": 29.006581518290954,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:198768258",
+            "node": "n1319105525",
+            "point": [
+              158.64498834689755,
+              53.074799196118164
+            ],
+            "snap_distance_m": 32.80346718758699,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "43"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:130453114",
+            "node": "n1319105948",
+            "point": [
+              158.64371667741668,
+              53.07501679038432
+            ],
+            "snap_distance_m": 60.415195288563005,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:way:130453114",
+            "node": "n1319105742",
+            "point": [
+              158.64371667741668,
+              53.07501679038432
+            ],
+            "snap_distance_m": 64.60229030859065,
+            "match": "name_candidate"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 1,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:05",
+    "description": "Тротуар от ж. д. Ларина 38 до перекрестка пр. Таранца-Фролова",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "38"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795462",
+            "node": "n13001962446",
+            "point": [
+              158.6477146,
+              53.07913549999998
+            ],
+            "snap_distance_m": 13.678583206831014,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795462",
+            "node": "n5941919680",
+            "point": [
+              158.6477146,
+              53.07913549999998
+            ],
+            "snap_distance_m": 15.753255842341181,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795232",
+            "node": "n11916389033",
+            "point": [
+              158.64832481920138,
+              53.07904827867759
+            ],
+            "snap_distance_m": 23.447826547467717,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795232",
+            "node": "n5941919680",
+            "point": [
+              158.64832481920138,
+              53.07904827867759
+            ],
+            "snap_distance_m": 27.82102882595011,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "intersection",
+          "streets": [
+            "Таранца",
+            "Фролова"
+          ]
+        },
+        "candidates": [],
+        "status": "unresolved",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 0,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:06",
+    "description": "От дороги Дальневосточной до ж. д. Дальневосточная, 18",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Дальневосточная"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:7662954047",
+            "node": "n7662954047",
+            "point": [
+              158.6457947,
+              53.0798978
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:13001962426",
+            "node": "n13001962426",
+            "point": [
+              158.6464248,
+              53.0800005
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4052181015",
+            "node": "n4052181015",
+            "point": [
+              158.6451315,
+              53.0797897
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1186352771",
+            "node": "n1186352771",
+            "point": [
+              158.6468683,
+              53.0800727
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Дальневосточная",
+          "house": "18"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795300",
+            "node": "n5941919662",
+            "point": [
+              158.64612979999998,
+              53.07911574999999
+            ],
+            "snap_distance_m": 19.490118457110544,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795300",
+            "node": "n5941919661",
+            "point": [
+              158.64612979999998,
+              53.07911574999999
+            ],
+            "snap_distance_m": 20.459487527049635,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:07",
+    "description": "От дороги Таранца до ж. д. Ларина, 27/1",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Таранца"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105645",
+            "node": "n1319105645",
+            "point": [
+              158.6484723,
+              53.0741428
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:2934988962",
+            "node": "n2934988962",
+            "point": [
+              158.6489666,
+              53.0742206
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:9694356036",
+            "node": "n9694356036",
+            "point": [
+              158.6483909,
+              53.0741301
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1186353241",
+            "node": "n1186353241",
+            "point": [
+              158.6493135,
+              53.0742751
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "27/1"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795378",
+            "node": "n1319105890",
+            "point": [
+              158.64807935,
+              53.07614989999999
+            ],
+            "snap_distance_m": 19.28026159658474,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795378",
+            "node": "n6005676124",
+            "point": [
+              158.64807935,
+              53.07614989999999
+            ],
+            "snap_distance_m": 34.32051821365381,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:08",
+    "description": "От дороги пр-кт Таранца А.И. к СОШ № 42",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Таранца"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1186353187",
+            "node": "n1186353187",
+            "point": [
+              158.6402107,
+              53.0728556
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1186353241",
+            "node": "n1186353241",
+            "point": [
+              158.6493135,
+              53.0742751
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105516",
+            "node": "n1319105516",
+            "point": [
+              158.6459302,
+              53.0737491
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105645",
+            "node": "n1319105645",
+            "point": [
+              158.6484723,
+              53.0741428
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "42"
+        },
+        "candidates": [],
+        "status": "unresolved",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 0,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:09",
+    "description": "От дороги Таранца между ж.д. Вольского, 22 и Таранца, 5 к воротам Д/С № 43",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Таранца"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105923",
+            "node": "n1319105923",
+            "point": [
+              158.644073,
+              53.0734615
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:2934988961",
+            "node": "n2934988961",
+            "point": [
+              158.6432709,
+              53.0733342
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105516",
+            "node": "n1319105516",
+            "point": [
+              158.6459302,
+              53.0737491
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105750",
+            "node": "n1319105750",
+            "point": [
+              158.6420832,
+              53.0731503
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "between_addresses",
+          "addresses": [
+            {
+              "kind": "address",
+              "street": "Вольского",
+              "house": "22"
+            },
+            {
+              "kind": "address",
+              "street": "Таранца",
+              "house": "5"
+            }
+          ]
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105605",
+            "node": "n1319105605",
+            "point": [
+              158.643674,
+              53.0743551
+            ],
+            "snap_distance_m": 17.94234880377167,
+            "match": "between_address_midpoint_hypothesis"
+          },
+          {
+            "osm_id": "osm:node:6277751998",
+            "node": "n6277751998",
+            "point": [
+              158.6438525,
+              53.0739552
+            ],
+            "snap_distance_m": 40.03958463225966,
+            "match": "between_address_midpoint_hypothesis"
+          },
+          {
+            "osm_id": "osm:node:1319105880",
+            "node": "n1319105880",
+            "point": [
+              158.6431284,
+              53.0742895
+            ],
+            "snap_distance_m": 53.898083094919066,
+            "match": "between_address_midpoint_hypothesis"
+          },
+          {
+            "osm_id": "osm:node:1319105525",
+            "node": "n1319105525",
+            "point": [
+              158.6447957,
+              53.0745281
+            ],
+            "snap_distance_m": 62.65972394826731,
+            "match": "between_address_midpoint_hypothesis"
+          }
+        ],
+        "status": "candidate",
+        "endpoint_evidence": [
+          {
+            "anchor": {
+              "kind": "address",
+              "street": "Вольского",
+              "house": "22"
+            },
+            "candidates": [
+              {
+                "osm_id": "osm:way:106795401",
+                "node": "n1319105880",
+                "point": [
+                  158.64337658388698,
+                  53.074229446440825
+                ],
+                "snap_distance_m": 17.919134681174256,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795493",
+                "node": "n1319105640",
+                "point": [
+                  158.64225231353106,
+                  53.0746486127545
+                ],
+                "snap_distance_m": 21.19055370900269,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795493",
+                "node": "n1319105794",
+                "point": [
+                  158.64225231353106,
+                  53.0746486127545
+                ],
+                "snap_distance_m": 23.429953868599398,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795401",
+                "node": "n1319105605",
+                "point": [
+                  158.64337658388698,
+                  53.074229446440825
+                ],
+                "snap_distance_m": 24.33964247760657,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795264",
+                "node": "n1319105640",
+                "point": [
+                  158.64270838819837,
+                  53.074347788327515
+                ],
+                "snap_distance_m": 24.768532835452117,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795264",
+                "node": "n1319105880",
+                "point": [
+                  158.64270838819837,
+                  53.074347788327515
+                ],
+                "snap_distance_m": 28.876357507220547,
+                "match": "exact_osm_address"
+              }
+            ],
+            "status": "candidate",
+            "snap_is_connection": false
+          },
+          {
+            "anchor": {
+              "kind": "address",
+              "street": "Таранца",
+              "house": "5"
+            },
+            "candidates": [
+              {
+                "osm_id": "osm:way:106795292",
+                "node": "n1319105525",
+                "point": [
+                  158.64448749828563,
+                  53.07439439922895
+                ],
+                "snap_distance_m": 25.447218620497793,
+                "match": "exact_osm_address"
+              },
+              {
+                "osm_id": "osm:way:106795292",
+                "node": "n6277751997",
+                "point": [
+                  158.64448749828563,
+                  53.07439439922895
+                ],
+                "snap_distance_m": 50.82506997779352,
+                "match": "exact_osm_address"
+              }
+            ],
+            "status": "candidate",
+            "snap_is_connection": false
+          }
+        ],
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "43"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:130453114",
+            "node": "n1319105948",
+            "point": [
+              158.64371667741668,
+              53.07501679038432
+            ],
+            "snap_distance_m": 60.415195288563005,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:way:130453114",
+            "node": "n1319105742",
+            "point": [
+              158.64371667741668,
+              53.07501679038432
+            ],
+            "snap_distance_m": 64.60229030859065,
+            "match": "name_candidate"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:10",
+    "description": "От дороги Савченко мимо ж. д. Вольского, 24 по дороге Вольского выезд на дорогу пр. Таранца",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Савченко"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105560",
+            "node": "n1319105560",
+            "point": [
+              158.6431963,
+              53.0770402
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4425988866",
+            "node": "n4425988866",
+            "point": [
+              158.6427212,
+              53.0771209
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105919",
+            "node": "n1319105919",
+            "point": [
+              158.6433912,
+              53.0770473
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:12198027167",
+            "node": "n12198027167",
+            "point": [
+              158.6426493,
+              53.0771414
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Вольского",
+          "house": "24"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795395",
+            "node": "n1319105841",
+            "point": [
+              158.64206894999998,
+              53.07505494999999
+            ],
+            "snap_distance_m": 19.678898239650522,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795491",
+            "node": "n7660605447",
+            "point": [
+              158.64300689934845,
+              53.07593436145457
+            ],
+            "snap_distance_m": 25.21977233581829,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795491",
+            "node": "n1319105886",
+            "point": [
+              158.64300689934845,
+              53.07593436145457
+            ],
+            "snap_distance_m": 29.246233732703292,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795395",
+            "node": "n1319105855",
+            "point": [
+              158.64206894999998,
+              53.07505494999999
+            ],
+            "snap_distance_m": 29.898250968638134,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795263",
+            "node": "n1319105561",
+            "point": [
+              158.64231925799436,
+              53.075554040730204
+            ],
+            "snap_distance_m": 32.532927138339566,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795263",
+            "node": "n1319105754",
+            "point": [
+              158.64231925799436,
+              53.075554040730204
+            ],
+            "snap_distance_m": 42.26635796743704,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Вольского"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105750",
+            "node": "n1319105750",
+            "point": [
+              158.6420832,
+              53.0731503
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4425987808",
+            "node": "n4425987808",
+            "point": [
+              158.6422055,
+              53.0728779
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4428784189",
+            "node": "n4428784189",
+            "point": [
+              158.6423083,
+              53.0726355
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:2257839923",
+            "node": "n2257839923",
+            "point": [
+              158.6427026,
+              53.071714
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Таранца"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105750",
+            "node": "n1319105750",
+            "point": [
+              158.6420832,
+              53.0731503
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6277752021",
+            "node": "n6277752021",
+            "point": [
+              158.6415638,
+              53.0730678
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6277752015",
+            "node": "n6277752015",
+            "point": [
+              158.6411414,
+              53.0730032
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:2934988961",
+            "node": "n2934988961",
+            "point": [
+              158.6432709,
+              53.0733342
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:11",
+    "description": "От дороги Савченко до ж. д. Савченко, 9",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Савченко"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105861",
+            "node": "n1319105861",
+            "point": [
+              158.6446927,
+              53.077206
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105919",
+            "node": "n1319105919",
+            "point": [
+              158.6433912,
+              53.0770473
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6005612760",
+            "node": "n6005612760",
+            "point": [
+              158.6456309,
+              53.0773692
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105560",
+            "node": "n1319105560",
+            "point": [
+              158.6431963,
+              53.0770402
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Савченко",
+          "house": "9"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795436",
+            "node": "n4052180289",
+            "point": [
+              158.64405125000002,
+              53.07784079999999
+            ],
+            "snap_distance_m": 13.161870843439214,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795436",
+            "node": "n4052180290",
+            "point": [
+              158.64405125000002,
+              53.07784079999999
+            ],
+            "snap_distance_m": 31.11437318706015,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:12",
+    "description": "От дороги Ларина до ж. д. Ларина, 28",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:12329990085",
+            "node": "n12329990085",
+            "point": [
+              158.6486538,
+              53.0759394
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:9962817281",
+            "node": "n9962817281",
+            "point": [
+              158.6486404,
+              53.0759741
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6005676124",
+            "node": "n6005676124",
+            "point": [
+              158.6485875,
+              53.0761107
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:12865741366",
+            "node": "n12865741366",
+            "point": [
+              158.6489605,
+              53.0751472
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "28"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795544",
+            "node": "n6005676116",
+            "point": [
+              158.64971595,
+              53.076115149999985
+            ],
+            "snap_distance_m": 15.73302304340397,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795385",
+            "node": "n6005676116",
+            "point": [
+              158.65011179175528,
+              53.07597107107819
+            ],
+            "snap_distance_m": 17.679482440813374,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795385",
+            "node": "n6005676113",
+            "point": [
+              158.65011179175528,
+              53.07597107107819
+            ],
+            "snap_distance_m": 24.98390717213239,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795544",
+            "node": "n6005676117",
+            "point": [
+              158.64971595,
+              53.076115149999985
+            ],
+            "snap_distance_m": 28.898366426580946,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:13",
+    "description": "От дороги Ларина к ж. д. Ларина, 29",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:9115661921",
+            "node": "n9115661921",
+            "point": [
+              158.6481364,
+              53.077147
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6005676128",
+            "node": "n6005676128",
+            "point": [
+              158.6479843,
+              53.0774985
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6005676125",
+            "node": "n6005676125",
+            "point": [
+              158.6479195,
+              53.0776228
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105724",
+            "node": "n1319105724",
+            "point": [
+              158.6478872,
+              53.0777233
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "29"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795249",
+            "node": "n1319105601",
+            "point": [
+              158.6477198,
+              53.07702255000002
+            ],
+            "snap_distance_m": 24.123328742577375,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795249",
+            "node": "n9115661921",
+            "point": [
+              158.6477198,
+              53.07702255000002
+            ],
+            "snap_distance_m": 31.153686762106894,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:14",
+    "description": "От дороги Кручины до ж. д. Кручины, 8/7 мимо ж. д. Кручины, 8/8, 8/9 подъём и выезд на дорогу Кручины",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Кручины"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105818",
+            "node": "n1319105818",
+            "point": [
+              158.6473471,
+              53.0691068
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105728",
+            "node": "n1319105728",
+            "point": [
+              158.6470098,
+              53.0689526
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105528",
+            "node": "n1319105528",
+            "point": [
+              158.646831,
+              53.0688824
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105687",
+            "node": "n1319105687",
+            "point": [
+              158.6465458,
+              53.0687643
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "8/7"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146642",
+            "node": "n12198040206",
+            "point": [
+              158.64866830000003,
+              53.0681041
+            ],
+            "snap_distance_m": 16.234354335668144,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146642",
+            "node": "n4780182271",
+            "point": [
+              158.64866830000003,
+              53.0681041
+            ],
+            "snap_distance_m": 26.725263182686685,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "8/8"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146413",
+            "node": "n12198040205",
+            "point": [
+              158.64913130000002,
+              53.06833950000001
+            ],
+            "snap_distance_m": 18.44849883822305,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146413",
+            "node": "n12198040204",
+            "point": [
+              158.64913130000002,
+              53.06833950000001
+            ],
+            "snap_distance_m": 26.41617517107449,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "8/9"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146444",
+            "node": "n12198040203",
+            "point": [
+              158.6496480188049,
+              53.06859768001171
+            ],
+            "snap_distance_m": 24.447929685251715,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146444",
+            "node": "n12198040202",
+            "point": [
+              158.6496480188049,
+              53.06859768001171
+            ],
+            "snap_distance_m": 29.066270332452525,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Кручины"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105867",
+            "node": "n1319105867",
+            "point": [
+              158.6485513,
+              53.069716
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105818",
+            "node": "n1319105818",
+            "point": [
+              158.6473471,
+              53.0691068
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105728",
+            "node": "n1319105728",
+            "point": [
+              158.6470098,
+              53.0689526
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105631",
+            "node": "n1319105631",
+            "point": [
+              158.6490646,
+              53.0699863
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:15",
+    "description": "От светофора мимо м-на «Белочка» до ж. д. Кручины, 15 ",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "traffic_signal"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1186353241",
+            "node": "n1186353241",
+            "point": [
+              158.6493135,
+              53.07427509999999
+            ],
+            "snap_distance_m": 0.0,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:1319105516",
+            "node": "n1319105516",
+            "point": [
+              158.6459302,
+              53.07374910000001
+            ],
+            "snap_distance_m": 0.0,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:1319105516",
+            "node": "n12329990071",
+            "point": [
+              158.6459302,
+              53.07374910000001
+            ],
+            "snap_distance_m": 14.237808235595448,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:1186353241",
+            "node": "n9962817279",
+            "point": [
+              158.6493135,
+              53.07427509999999
+            ],
+            "snap_distance_m": 18.17668630982641,
+            "match": "name_candidate"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "Белочка"
+        },
+        "candidates": [],
+        "status": "unresolved",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "15"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146449",
+            "node": "n5517264311",
+            "point": [
+              158.64906189556226,
+              53.070272123008735
+            ],
+            "snap_distance_m": 27.462377629200105,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146449",
+            "node": "n1319105756",
+            "point": [
+              158.64906189556226,
+              53.070272123008735
+            ],
+            "snap_distance_m": 27.958363307529314,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 0,
+    "last_attempt_gaps": [
+      {
+        "from_anchor": 0,
+        "to_anchor": 2,
+        "reason": "unresolved_intermediate_anchor"
+      }
+    ],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:16",
+    "description": "От дороги Вольского мимо «Сванского двора» по дороге Кручины выезд на ул. Ларина (конечная остановка)",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Вольского"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:12865754751",
+            "node": "n12865754751",
+            "point": [
+              158.6428001,
+              53.0691711
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105520",
+            "node": "n1319105520",
+            "point": [
+              158.6432944,
+              53.0698258
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105558",
+            "node": "n1319105558",
+            "point": [
+              158.6431412,
+              53.0706729
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105592",
+            "node": "n1319105592",
+            "point": [
+              158.642924,
+              53.0693129
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "Сванский"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:246448849",
+            "node": "n6277751484",
+            "point": [
+              158.64376574632274,
+              53.06925967014811
+            ],
+            "snap_distance_m": 21.174385756449517,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:way:246448849",
+            "node": "n7660595059",
+            "point": [
+              158.64376574632274,
+              53.06925967014811
+            ],
+            "snap_distance_m": 21.571446509666213,
+            "match": "name_candidate"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Кручины"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:6277751985",
+            "node": "n6277751985",
+            "point": [
+              158.6438524,
+              53.0690135
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:7660595059",
+            "node": "n7660595059",
+            "point": [
+              158.6435175,
+              53.0691362
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:2534851332",
+            "node": "n2534851332",
+            "point": [
+              158.6443465,
+              53.0688325
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105568",
+            "node": "n1319105568",
+            "point": [
+              158.6433243,
+              53.069207
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:9967468205",
+            "node": "n9967468205",
+            "point": [
+              158.6510782,
+              53.0701099
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:9967468211",
+            "node": "n9967468211",
+            "point": [
+              158.6510479,
+              53.0701823
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1186352944",
+            "node": "n1186352944",
+            "point": [
+              158.6511612,
+              53.0699031
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105668",
+            "node": "n1319105668",
+            "point": [
+              158.6509754,
+              53.0703553
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:102718137",
+            "node": "n9115661921",
+            "point": [
+              158.64810895707598,
+              53.07718147777847
+            ],
+            "snap_distance_m": 4.25328928436561,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:way:1087368217",
+            "node": "n6005676118",
+            "point": [
+              158.650908533641,
+              53.0745265462941
+            ],
+            "snap_distance_m": 12.847431956988562,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:11289118610",
+            "node": "n9967468205",
+            "point": [
+              158.6508653,
+              53.07007749999999
+            ],
+            "snap_distance_m": 14.713051881144215,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:11289118609",
+            "node": "n1319105645",
+            "point": [
+              158.6486699,
+              53.074070500000005
+            ],
+            "snap_distance_m": 15.490111848014193,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:11289118610",
+            "node": "n9967468211",
+            "point": [
+              158.6508653,
+              53.07007749999999
+            ],
+            "snap_distance_m": 16.899760295884537,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:way:1218322115",
+            "node": "n5980470076",
+            "point": [
+              158.65022640122257,
+              53.072084490467304
+            ],
+            "snap_distance_m": 19.697176772303226,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:11289118609",
+            "node": "n9694356036",
+            "point": [
+              158.6486699,
+              53.074070500000005
+            ],
+            "snap_distance_m": 19.832899790936107,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:way:1087368217",
+            "node": "n7662942492",
+            "point": [
+              158.650908533641,
+              53.0745265462941
+            ],
+            "snap_distance_m": 21.397690233542647,
+            "match": "name_candidate"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [
+      {
+        "from_anchor": 1,
+        "to_anchor": 2,
+        "reason": "no_connected_osm_path"
+      }
+    ],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:17",
+    "description": "От дороги Ларина мимо ж. д. Ларина 1, 3, 7 до ж. д. Ларина, 11",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:5517266232",
+            "node": "n5517266232",
+            "point": [
+              158.6503597,
+              53.0717254
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:5980470076",
+            "node": "n5980470076",
+            "point": [
+              158.650142,
+              53.0722541
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:12865741345",
+            "node": "n12865741345",
+            "point": [
+              158.6498885,
+              53.0728892
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:12865741348",
+            "node": "n12865741348",
+            "point": [
+              158.6497503,
+              53.0732162
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "1"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146578",
+            "node": "n5517266230",
+            "point": [
+              158.64918034345374,
+              53.07157351204957
+            ],
+            "snap_distance_m": 57.61348628036811,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146578",
+            "node": "n5517264315",
+            "point": [
+              158.64918034345374,
+              53.07157351204957
+            ],
+            "snap_distance_m": 68.14139145362094,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "3"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146431",
+            "node": "n5517264315",
+            "point": [
+              158.64880046915727,
+              53.0720792026083
+            ],
+            "snap_distance_m": 23.295228287683326,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146648",
+            "node": "n5517264315",
+            "point": [
+              158.6493950301136,
+              53.072059021696894
+            ],
+            "snap_distance_m": 24.108119355655564,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146690",
+            "node": "n5517264315",
+            "point": [
+              158.6485318801197,
+              53.072145056909896
+            ],
+            "snap_distance_m": 38.39819138249839,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146690",
+            "node": "n13146800107",
+            "point": [
+              158.6485318801197,
+              53.072145056909896
+            ],
+            "snap_distance_m": 38.42854290631947,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146648",
+            "node": "n5517264314",
+            "point": [
+              158.6493950301136,
+              53.072059021696894
+            ],
+            "snap_distance_m": 40.26591849888707,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146431",
+            "node": "n13146800107",
+            "point": [
+              158.64880046915727,
+              53.0720792026083
+            ],
+            "snap_distance_m": 45.30130542601988,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "7"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146577",
+            "node": "n5517266221",
+            "point": [
+              158.64779975276738,
+              53.07289282530614
+            ],
+            "snap_distance_m": 19.031165813629944,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146741",
+            "node": "n5517264319",
+            "point": [
+              158.6490491454884,
+              53.072757372993344
+            ],
+            "snap_distance_m": 20.99035789260271,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146577",
+            "node": "n5517264320",
+            "point": [
+              158.64779975276738,
+              53.07289282530614
+            ],
+            "snap_distance_m": 24.539707419408963,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146516",
+            "node": "n5517264319",
+            "point": [
+              158.64846343798564,
+              53.072778046318604
+            ],
+            "snap_distance_m": 25.956756154288126,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146779",
+            "node": "n5517264320",
+            "point": [
+              158.6481868995397,
+              53.07284312210192
+            ],
+            "snap_distance_m": 31.910110909385455,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146779",
+            "node": "n5517264316",
+            "point": [
+              158.6481868995397,
+              53.07284312210192
+            ],
+            "snap_distance_m": 40.09399355930512,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146516",
+            "node": "n5517264316",
+            "point": [
+              158.64846343798564,
+              53.072778046318604
+            ],
+            "snap_distance_m": 40.78972653263529,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146741",
+            "node": "n5517264318",
+            "point": [
+              158.6490491454884,
+              53.072757372993344
+            ],
+            "snap_distance_m": 42.154960764370834,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "11"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146639",
+            "node": "n5517266227",
+            "point": [
+              158.64787968550854,
+              53.073524121348164
+            ],
+            "snap_distance_m": 18.558334322181924,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146874",
+            "node": "n5722675630",
+            "point": [
+              158.64815364999998,
+              53.073455900000006
+            ],
+            "snap_distance_m": 20.933808218594205,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146429",
+            "node": "n5517266228",
+            "point": [
+              158.6475029655758,
+              53.07357502752755
+            ],
+            "snap_distance_m": 21.420494409943363,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146608",
+            "node": "n5517266226",
+            "point": [
+              158.6487446701396,
+              53.0734382284462
+            ],
+            "snap_distance_m": 21.510009413737713,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146639",
+            "node": "n5722675630",
+            "point": [
+              158.64787968550854,
+              53.073524121348164
+            ],
+            "snap_distance_m": 25.800426595862888,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146874",
+            "node": "n5517266227",
+            "point": [
+              158.64815364999998,
+              53.073455900000006
+            ],
+            "snap_distance_m": 27.46761275842807,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146429",
+            "node": "n5517266227",
+            "point": [
+              158.6475029655758,
+              53.07357502752755
+            ],
+            "snap_distance_m": 34.017316693339836,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146608",
+            "node": "n5517266225",
+            "point": [
+              158.6487446701396,
+              53.0734382284462
+            ],
+            "snap_distance_m": 36.93347079112368,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [
+      {
+        "from_anchor": 1,
+        "to_anchor": 2,
+        "reason": "no_connected_osm_path"
+      }
+    ],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:18",
+    "description": "От дороги Кручины мимо ж. д. Кручины, 4, 6 до ж. д. Кручины, 6/4",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Кручины"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:1319105767",
+            "node": "n1319105767",
+            "point": [
+              158.644456,
+              53.0687969
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:2534851332",
+            "node": "n2534851332",
+            "point": [
+              158.6443465,
+              53.0688325
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6277751985",
+            "node": "n6277751985",
+            "point": [
+              158.6438524,
+              53.0690135
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105925",
+            "node": "n1319105925",
+            "point": [
+              158.6450714,
+              53.0686405
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "4"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146513",
+            "node": "n4780182280",
+            "point": [
+              158.64458124472932,
+              53.068476526321746
+            ],
+            "snap_distance_m": 29.22558693559498,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146614",
+            "node": "n1319105925",
+            "point": [
+              158.64484954038988,
+              53.06840287010583
+            ],
+            "snap_distance_m": 30.328002584782492,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146412",
+            "node": "n2534851348",
+            "point": [
+              158.64510698171512,
+              53.06832838528766
+            ],
+            "snap_distance_m": 31.71338201630197,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146513",
+            "node": "n1221125768",
+            "point": [
+              158.64458124472932,
+              53.068476526321746
+            ],
+            "snap_distance_m": 34.153494209250816,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146824",
+            "node": "n1319105950",
+            "point": [
+              158.64623194136553,
+              53.06838659782052
+            ],
+            "snap_distance_m": 34.73479945859547,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146412",
+            "node": "n1319105925",
+            "point": [
+              158.64510698171512,
+              53.06832838528766
+            ],
+            "snap_distance_m": 34.80258996718752,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146824",
+            "node": "n4780182279",
+            "point": [
+              158.64623194136553,
+              53.06838659782052
+            ],
+            "snap_distance_m": 36.66319841654925,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146614",
+            "node": "n1221125807",
+            "point": [
+              158.64484954038988,
+              53.06840287010583
+            ],
+            "snap_distance_m": 45.30696944297013,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "6"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146675",
+            "node": "n4780190388",
+            "point": [
+              158.64689681111355,
+              53.06781040943899
+            ],
+            "snap_distance_m": 20.38996298594754,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146461",
+            "node": "n1221125791",
+            "point": [
+              158.64517886581325,
+              53.06787657762878
+            ],
+            "snap_distance_m": 22.172386341242913,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146461",
+            "node": "n2534851348",
+            "point": [
+              158.64517886581325,
+              53.06787657762878
+            ],
+            "snap_distance_m": 23.681247204782835,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146783",
+            "node": "n4780182278",
+            "point": [
+              158.64566995,
+              53.06772589999999
+            ],
+            "snap_distance_m": 23.906133849538257,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146759",
+            "node": "n1221125772",
+            "point": [
+              158.64542215000003,
+              53.06780095
+            ],
+            "snap_distance_m": 26.816794932315677,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146783",
+            "node": "n2534851347",
+            "point": [
+              158.64566995,
+              53.06772589999999
+            ],
+            "snap_distance_m": 27.781358276627977,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146759",
+            "node": "n1221125791",
+            "point": [
+              158.64542215000003,
+              53.06780095
+            ],
+            "snap_distance_m": 28.705536190320935,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146675",
+            "node": "n13146292151",
+            "point": [
+              158.64689681111355,
+              53.06781040943899
+            ],
+            "snap_distance_m": 28.861846795509976,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "6/4"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146368",
+            "node": "n2534851342",
+            "point": [
+              158.64778918047818,
+              53.067276626434584
+            ],
+            "snap_distance_m": 12.814731197045214,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146622",
+            "node": "n13146288987",
+            "point": [
+              158.64605857847656,
+              53.06733219641367
+            ],
+            "snap_distance_m": 13.887609103186447,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146368",
+            "node": "n4780182272",
+            "point": [
+              158.64778918047818,
+              53.067276626434584
+            ],
+            "snap_distance_m": 16.067758672138876,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146478",
+            "node": "n1221125803",
+            "point": [
+              158.64632479418995,
+              53.0672488102735
+            ],
+            "snap_distance_m": 17.76609067443156,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146692",
+            "node": "n7660595062",
+            "point": [
+              158.64658521094944,
+              53.067171359496626
+            ],
+            "snap_distance_m": 19.607282498000128,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146692",
+            "node": "n2534851340",
+            "point": [
+              158.64658521094944,
+              53.067171359496626
+            ],
+            "snap_distance_m": 20.396912090196434,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146622",
+            "node": "n2534851339",
+            "point": [
+              158.64605857847656,
+              53.06733219641367
+            ],
+            "snap_distance_m": 21.637228747771207,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146478",
+            "node": "n13146288986",
+            "point": [
+              158.64632479418995,
+              53.0672488102735
+            ],
+            "snap_distance_m": 24.596861981284306,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:19",
+    "description": "От ж. д. Кручины, 7 мимо котельной выезд у ж. д. Кручины, 3",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "7"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146851",
+            "node": "n14330986751",
+            "point": [
+              158.64694241386323,
+              53.06943273226829
+            ],
+            "snap_distance_m": 11.444013864194373,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146851",
+            "node": "n14330986752",
+            "point": [
+              158.64694241386323,
+              53.06943273226829
+            ],
+            "snap_distance_m": 21.26160433260826,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "котельная"
+        },
+        "candidates": [],
+        "status": "unresolved",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "3"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146817",
+            "node": "n1319105931",
+            "point": [
+              158.64471000280693,
+              53.069294720476776
+            ],
+            "snap_distance_m": 38.69863687660745,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146817",
+            "node": "n1319105854",
+            "point": [
+              158.64471000280693,
+              53.069294720476776
+            ],
+            "snap_distance_m": 52.5320634536263,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 0,
+    "last_attempt_gaps": [
+      {
+        "from_anchor": 0,
+        "to_anchor": 2,
+        "reason": "unresolved_intermediate_anchor"
+      }
+    ],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:20",
+    "description": "От ж. д. Кручины, 3 до ж. д. Вольского, 4",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Кручины",
+          "house": "3"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146817",
+            "node": "n1319105931",
+            "point": [
+              158.64471000280693,
+              53.069294720476776
+            ],
+            "snap_distance_m": 38.69863687660745,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146817",
+            "node": "n1319105854",
+            "point": [
+              158.64471000280693,
+              53.069294720476776
+            ],
+            "snap_distance_m": 52.5320634536263,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Вольского",
+          "house": "4"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106146364",
+            "node": "n1319105681",
+            "point": [
+              158.64493773450047,
+              53.0702174843696
+            ],
+            "snap_distance_m": 29.73854505009564,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106146364",
+            "node": "n7660595038",
+            "point": [
+              158.64493773450047,
+              53.0702174843696
+            ],
+            "snap_distance_m": 30.997667157361047,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:21",
+    "description": "От дороги Вольского к СОШ № 40",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Вольского"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:12865754751",
+            "node": "n12865754751",
+            "point": [
+              158.6428001,
+              53.0691711
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105520",
+            "node": "n1319105520",
+            "point": [
+              158.6432944,
+              53.0698258
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105558",
+            "node": "n1319105558",
+            "point": [
+              158.6431412,
+              53.0706729
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105592",
+            "node": "n1319105592",
+            "point": [
+              158.642924,
+              53.0693129
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "40"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:1430125708",
+            "node": "n10110924343",
+            "point": [
+              158.6464343069924,
+              53.071784067132874
+            ],
+            "snap_distance_m": 58.181018828620694,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:13109505801",
+            "node": "n10110924343",
+            "point": [
+              158.6464717,
+              53.0718004
+            ],
+            "snap_distance_m": 61.257668295029994,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:way:1430125708",
+            "node": "n7660595013",
+            "point": [
+              158.6464343069924,
+              53.071784067132874
+            ],
+            "snap_distance_m": 63.82903121327372,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:13109505801",
+            "node": "n7660595013",
+            "point": [
+              158.6464717,
+              53.0718004
+            ],
+            "snap_distance_m": 65.76406225003086,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:2257839937",
+            "node": "n1319105500",
+            "point": [
+              158.6460108,
+              53.07068679999998
+            ],
+            "snap_distance_m": 73.12275197962406,
+            "match": "name_candidate"
+          },
+          {
+            "osm_id": "osm:node:2257839937",
+            "node": "n1319105825",
+            "point": [
+              158.6460108,
+              53.07068679999998
+            ],
+            "snap_distance_m": 82.21448256687356,
+            "match": "name_candidate"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:22",
+    "description": "проезд д/с № 25 по улице Ларина, д. 44",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Ларина",
+          "house": "44"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:605418451",
+            "node": "n6592211952",
+            "point": [
+              158.64789169683525,
+              53.081509648864056
+            ],
+            "snap_distance_m": 48.7647339302106,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:605418451",
+            "node": "n6592211950",
+            "point": [
+              158.64789169683525,
+              53.081509648864056
+            ],
+            "snap_distance_m": 52.04138198589675,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "poi",
+          "name": "25"
+        },
+        "candidates": [],
+        "status": "unresolved",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 0,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:23",
+    "description": "От городской дороги Ларина вдоль ж. д. Савченко, 15, 11, 7 (за домами), выезд на городскую дорогу Дальневосточная",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Ларина"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:11916389037",
+            "node": "n11916389037",
+            "point": [
+              158.6477332,
+              53.0780488
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1319105724",
+            "node": "n1319105724",
+            "point": [
+              158.6478872,
+              53.0777233
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6005676125",
+            "node": "n6005676125",
+            "point": [
+              158.6479195,
+              53.0776228
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6005676128",
+            "node": "n6005676128",
+            "point": [
+              158.6479843,
+              53.0774985
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Савченко",
+          "house": "15"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795262",
+            "node": "n4052179795",
+            "point": [
+              158.64669019999997,
+              53.077768899999995
+            ],
+            "snap_distance_m": 28.27374131852515,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795262",
+            "node": "n11916389032",
+            "point": [
+              158.64669019999997,
+              53.077768899999995
+            ],
+            "snap_distance_m": 32.534568105656824,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Савченко",
+          "house": "11"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795335",
+            "node": "n6005612760",
+            "point": [
+              158.64540316493733,
+              53.07756990049282
+            ],
+            "snap_distance_m": 27.041296639357693,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795335",
+            "node": "n11916389030",
+            "point": [
+              158.64540316493733,
+              53.07756990049282
+            ],
+            "snap_distance_m": 44.21030932992949,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Савченко",
+          "house": "7"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:106795227",
+            "node": "n4052179792",
+            "point": [
+              158.64399530000003,
+              53.07734489999998
+            ],
+            "snap_distance_m": 27.694411582190632,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:106795227",
+            "node": "n4052179793",
+            "point": [
+              158.64399530000003,
+              53.07734489999998
+            ],
+            "snap_distance_m": 38.645887871816875,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Дальневосточная"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:4052178725",
+            "node": "n4052178725",
+            "point": [
+              158.6427647,
+              53.0794224
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:13377753282",
+            "node": "n13377753282",
+            "point": [
+              158.6427132,
+              53.0794152
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4052180296",
+            "node": "n4052180296",
+            "point": [
+              158.6432955,
+              53.0795028
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4440013906",
+            "node": "n4440013906",
+            "point": [
+              158.6434219,
+              53.0795213
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:24",
+    "description": "От дороги Вольского к музыкальной школе (Фролова, 2/3)",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Вольского"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:2257839923",
+            "node": "n2257839923",
+            "point": [
+              158.6427026,
+              53.071714
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:6554186356",
+            "node": "n6554186356",
+            "point": [
+              158.6428797,
+              53.0712936
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4428784189",
+            "node": "n4428784189",
+            "point": [
+              158.6423083,
+              53.0726355
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:4425987808",
+            "node": "n4425987808",
+            "point": [
+              158.6422055,
+              53.0728779
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Фролова",
+          "house": "2/3"
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:way:130453111",
+            "node": "n4428774224",
+            "point": [
+              158.64455958674384,
+              53.072022804237534
+            ],
+            "snap_distance_m": 25.616329926723836,
+            "match": "exact_osm_address"
+          },
+          {
+            "osm_id": "osm:way:130453111",
+            "node": "n4428774227",
+            "point": [
+              158.64455958674384,
+              53.072022804237534
+            ],
+            "snap_distance_m": 26.676941721404805,
+            "match": "exact_osm_address"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 3,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  },
+  {
+    "object_id": "0903:intraquarter:25",
+    "description": "Проезд, ведущий к ГБУЗ КК «Петропавловск-Камчатская городская станция скорой медицинской помощи» по ул. Академика Королева, 61/1",
+    "anchors": [
+      {
+        "anchor": {
+          "kind": "street",
+          "name": "Королева",
+          "inferred_start": true
+        },
+        "candidates": [
+          {
+            "osm_id": "osm:node:10301972271",
+            "node": "n10301972271",
+            "point": [
+              158.6528927,
+              53.0620353
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1161942008",
+            "node": "n1161942008",
+            "point": [
+              158.6622796,
+              53.0467208
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1182389721",
+            "node": "n1182389721",
+            "point": [
+              158.6568389,
+              53.0523229
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          },
+          {
+            "osm_id": "osm:node:1182389746",
+            "node": "n1182389746",
+            "point": [
+              158.6571688,
+              53.0539126
+            ],
+            "snap_distance_m": 0.0,
+            "match": "named_street_node"
+          }
+        ],
+        "status": "candidate",
+        "snap_is_connection": false
+      },
+      {
+        "anchor": {
+          "kind": "address",
+          "street": "Королева",
+          "house": "61/1"
+        },
+        "candidates": [],
+        "status": "unresolved",
+        "snap_is_connection": false
+      }
+    ],
+    "interpretation_notes": [
+      "Address order is analyst interpretation; between/along/behind/turn/exit constraints need review",
+      "Snaps use centroids or POIs, not known entrances",
+      "Shortest paths are candidates and may use streets outside the described service scope",
+      "Behind buildings, gate coordinates, slope direction, traffic lights and terminal bus stop require independent review; named POI is not a gate"
+    ],
+    "alternatives": 0,
+    "last_attempt_gaps": [],
+    "service_boundary_confirmed": false
+  }
+]

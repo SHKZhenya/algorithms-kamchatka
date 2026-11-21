@@ -1,0 +1,146 @@
+[
+  {
+    "event": "march",
+    "model": "ecmwf_ifs",
+    "field": "temperature_2m",
+    "paired_hours": 90,
+    "station": "32540",
+    "distance_km": 2.8,
+    "mean_abs_error": 1.006
+  },
+  {
+    "event": "march",
+    "model": "ecmwf_ifs",
+    "field": "wind_speed_10m",
+    "paired_hours": 90,
+    "station": "32540",
+    "distance_km": 2.8,
+    "mean_abs_error": 1.544
+  },
+  {
+    "event": "march",
+    "model": "ecmwf_ifs",
+    "field": "wind_direction_10m",
+    "paired_hours": 48,
+    "station": "32540",
+    "distance_km": 2.8,
+    "mean_abs_error": 26.083
+  },
+  {
+    "event": "march",
+    "model": "ecmwf_ifs",
+    "field": "wind_gusts_10m",
+    "paired_hours": 21,
+    "station": "32540",
+    "distance_km": 2.8,
+    "mean_abs_error": 7.352
+  },
+  {
+    "event": "march",
+    "model": "era5_seamless",
+    "field": "temperature_2m",
+    "paired_hours": 90,
+    "station": "32540",
+    "distance_km": 3.5,
+    "mean_abs_error": 1.543
+  },
+  {
+    "event": "march",
+    "model": "era5_seamless",
+    "field": "wind_speed_10m",
+    "paired_hours": 90,
+    "station": "32540",
+    "distance_km": 3.5,
+    "mean_abs_error": 1.435
+  },
+  {
+    "event": "march",
+    "model": "era5_seamless",
+    "field": "wind_direction_10m",
+    "paired_hours": 48,
+    "station": "32540",
+    "distance_km": 3.5,
+    "mean_abs_error": 29.417
+  },
+  {
+    "event": "march",
+    "model": "era5_seamless",
+    "field": "wind_gusts_10m",
+    "paired_hours": 21,
+    "station": "32540",
+    "distance_km": 3.5,
+    "mean_abs_error": 4.595
+  },
+  {
+    "event": "december",
+    "model": "ecmwf_ifs",
+    "field": "temperature_2m",
+    "paired_hours": 215,
+    "station": "32540",
+    "distance_km": 2.8,
+    "mean_abs_error": 1.628
+  },
+  {
+    "event": "december",
+    "model": "ecmwf_ifs",
+    "field": "wind_speed_10m",
+    "paired_hours": 215,
+    "station": "32540",
+    "distance_km": 2.8,
+    "mean_abs_error": 1.857
+  },
+  {
+    "event": "december",
+    "model": "ecmwf_ifs",
+    "field": "wind_direction_10m",
+    "paired_hours": 101,
+    "station": "32540",
+    "distance_km": 2.8,
+    "mean_abs_error": 45.03
+  },
+  {
+    "event": "december",
+    "model": "ecmwf_ifs",
+    "field": "wind_gusts_10m",
+    "paired_hours": 47,
+    "station": "32540",
+    "distance_km": 2.8,
+    "mean_abs_error": 6.194
+  },
+  {
+    "event": "december",
+    "model": "era5_seamless",
+    "field": "temperature_2m",
+    "paired_hours": 215,
+    "station": "32540",
+    "distance_km": 3.5,
+    "mean_abs_error": 2.319
+  },
+  {
+    "event": "december",
+    "model": "era5_seamless",
+    "field": "wind_speed_10m",
+    "paired_hours": 215,
+    "station": "32540",
+    "distance_km": 3.5,
+    "mean_abs_error": 1.781
+  },
+  {
+    "event": "december",
+    "model": "era5_seamless",
+    "field": "wind_direction_10m",
+    "paired_hours": 101,
+    "station": "32540",
+    "distance_km": 3.5,
+    "mean_abs_error": 51.881
+  },
+  {
+    "event": "december",
+    "model": "era5_seamless",
+    "field": "wind_gusts_10m",
+    "paired_hours": 47,
+    "station": "32540",
+    "distance_km": 3.5,
+    "mean_abs_error": 5.59
+  }
+]

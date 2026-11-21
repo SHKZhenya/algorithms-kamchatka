@@ -1,0 +1,181 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              158.6273277,
+              53.0620383
+            ],
+            [
+              158.627353,
+              53.0612957
+            ],
+            [
+              158.627143,
+              53.0612932
+            ],
+            [
+              158.6271177,
+              53.0620357
+            ],
+            [
+              158.6273277,
+              53.0620383
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "case_id": "SNOW-001",
+        "address": "Бохняка, 3",
+        "osm_way": "102609577",
+        "url": "https://www.openstreetmap.org/way/102609577",
+        "tags": {
+          "addr:city": "Петропавловск-Камчатский",
+          "addr:country": "RU",
+          "addr:housenumber": "3",
+          "addr:street": "улица Бохняка",
+          "building": "yes",
+          "building:levels": "5"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              158.6440257,
+              53.0527719
+            ],
+            [
+              158.6439541,
+              53.0527335
+            ],
+            [
+              158.6438805,
+              53.052694
+            ],
+            [
+              158.6432932,
+              53.0530901
+            ],
+            [
+              158.6434384,
+              53.0531679
+            ],
+            [
+              158.6440257,
+              53.0527719
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "case_id": "SNOW-002",
+        "address": "50 лет Октября, 4/2",
+        "osm_way": "106049027",
+        "url": "https://www.openstreetmap.org/way/106049027",
+        "tags": {
+          "addr:housenumber": "4/2",
+          "addr:street": "проспект 50 лет Октября",
+          "building": "yes"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              158.6443878,
+              53.0526017
+            ],
+            [
+              158.6442539,
+              53.0525286
+            ],
+            [
+              158.6439541,
+              53.0527335
+            ],
+            [
+              158.6440257,
+              53.0527719
+            ],
+            [
+              158.6440946,
+              53.0528066
+            ],
+            [
+              158.6443878,
+              53.0526017
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "case_id": "SNOW-002",
+        "address": "50 лет Октября, 4/2",
+        "osm_way": "106049024",
+        "url": "https://www.openstreetmap.org/way/106049024",
+        "tags": {
+          "addr:city": "Петропавловск-Камчатский",
+          "addr:housenumber": "4/2",
+          "addr:street": "проспект 50 лет Октября",
+          "building": "yes"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              158.64175,
+              53.0598038
+            ],
+            [
+              158.641596,
+              53.0598554
+            ],
+            [
+              158.6422512,
+              53.0605621
+            ],
+            [
+              158.6424052,
+              53.0605105
+            ],
+            [
+              158.64175,
+              53.0598038
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "case_id": "SNOW-003",
+        "address": "Рыбаков, 13/2",
+        "osm_way": "106795218",
+        "url": "https://www.openstreetmap.org/way/106795218",
+        "tags": {
+          "addr:housenumber": "13/2",
+          "addr:street": "проспект Рыбаков",
+          "building": "yes"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "base_commit": "55e5c227b72bcc3a493de8e4cc7d86fa708f0f9c",
+  "checks": [
+    {
+      "path": "city_sim/web/api.js",
+      "expected": "2b79ba0f36e836c64a1cb6e632089b959d64adf8",
+      "actual": "2b79ba0f36e836c64a1cb6e632089b959d64adf8",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/app.css",
+      "expected": "37fab84e908bff3352c01febff924ebc5a00a549",
+      "actual": "37fab84e908bff3352c01febff924ebc5a00a549",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/app.js",
+      "expected": "d7c484cc85bff30e6aaf8f673e522bf130cd8f94",
+      "actual": "d7c484cc85bff30e6aaf8f673e522bf130cd8f94",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/field.js",
+      "expected": "037a614f8ef0e8d0736434aabb4115d98675923a",
+      "actual": "037a614f8ef0e8d0736434aabb4115d98675923a",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/index.html",
+      "expected": "c462486e25c99169a5b17119c37d194978c6c4f2",
+      "actual": "c462486e25c99169a5b17119c37d194978c6c4f2",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/map.js",
+      "expected": "0aac4cb54b81ee4c544477ce1b71bb5b3dbc9560",
+      "actual": "0aac4cb54b81ee4c544477ce1b71bb5b3dbc9560",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/operations.js",
+      "expected": "c4cb9b53601d672256e66b4a8bccab04ba27ee89",
+      "actual": "c4cb9b53601d672256e66b4a8bccab04ba27ee89",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/raster_motion.js",
+      "expected": "92d3508214de363dc7a1b76f115aa2d7c7e37235",
+      "actual": "92d3508214de363dc7a1b76f115aa2d7c7e37235",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/scenarios.js",
+      "expected": "b73a78c86bee44621de83133b2f6a11782e81760",
+      "actual": "b73a78c86bee44621de83133b2f6a11782e81760",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/snow_volume.js",
+      "expected": "ceb0e5dfe3683e155b83178f670a1ab1203fba24",
+      "actual": "ceb0e5dfe3683e155b83178f670a1ab1203fba24",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/vendor/maplibre-LICENSE.txt",
+      "expected": "1e8acbb54fa7baddc844377507cc5a79353174fb",
+      "actual": "1e8acbb54fa7baddc844377507cc5a79353174fb",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/vendor/maplibre-gl.css",
+      "expected": "3f867477d52e734e9f9c3b93826e629b5ebbb744",
+      "actual": "3f867477d52e734e9f9c3b93826e629b5ebbb744",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/vendor/maplibre-gl.js",
+      "expected": "462833a36cd0c6c5dfad2511f8883f4407f99ece",
+      "actual": "462833a36cd0c6c5dfad2511f8883f4407f99ece",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/vendor/three-LICENSE.txt",
+      "expected": "cf781430404b0ae0ba7d8dea3457a3515dd7c9b9",
+      "actual": "cf781430404b0ae0ba7d8dea3457a3515dd7c9b9",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/vendor/three.core.min.js",
+      "expected": "817982e9e6c075f171e387327c17e165da89db1d",
+      "actual": "817982e9e6c075f171e387327c17e165da89db1d",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/vendor/three.module.min.js",
+      "expected": "8c8fb206263dd21f4c95920ef403be50935a69e2",
+      "actual": "8c8fb206263dd21f4c95920ef403be50935a69e2",
+      "matches": true
+    },
+    {
+      "path": "city_sim/web/weather_layers.js",
+      "expected": "3ac030f5c780d0bf5b069274cdbe6afca317f8dd",
+      "actual": "3ac030f5c780d0bf5b069274cdbe6afca317f8dd",
+      "matches": true
+    }
+  ]
+}

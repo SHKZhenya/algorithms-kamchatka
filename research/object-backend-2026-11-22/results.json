@@ -1,0 +1,1511 @@
+{
+  "city": {
+    "buildings": {
+      "assessments": 13914,
+      "covered_measure": 7201691.098871094,
+      "fully_covered": 4261,
+      "mean_differs_from_midpoint": 7951,
+      "metadata": {
+        "actual_accessibility": "unknown",
+        "field_validation": "not_testable_without_matched_observations",
+        "frame": null,
+        "limit": 1000,
+        "offset": 0,
+        "order": "physical",
+        "policy_status": "experimental_not_normative",
+        "revision": "c8b9eb30f71528124970",
+        "run_id": "34686252cb9b915cedc47d7097908062f050e0b7b708cd71dafb313b8444616c",
+        "threshold_cm": 20,
+        "tie_break": "coverage_desc_then_stable_id",
+        "total": 13914,
+        "unknown": 3235
+      },
+      "p90_differs_from_midpoint": 7330,
+      "top10": [
+        {
+          "coverage": 1.0,
+          "id": "osm:way:394519301",
+          "p90_cm": 4.0960001945495605
+        },
+        {
+          "coverage": 0.9555954185688983,
+          "id": "osm:way:394519313",
+          "p90_cm": 4.0960001945495605
+        },
+        {
+          "coverage": 0.7190747462746381,
+          "id": "osm:way:210935691",
+          "p90_cm": 4.0960001945495605
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:522799654",
+          "p90_cm": 4.0879998207092285
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:781191568",
+          "p90_cm": 4.080999851226807
+        },
+        {
+          "coverage": 0.9999999881002128,
+          "id": "osm:way:781191569",
+          "p90_cm": 4.080999851226807
+        },
+        {
+          "coverage": 0.7216178823393578,
+          "id": "osm:way:1134143536",
+          "p90_cm": 4.080999851226807
+        },
+        {
+          "coverage": 0.6732387611205932,
+          "id": "osm:way:767823304",
+          "p90_cm": 4.072000026702881
+        },
+        {
+          "coverage": 0.650546867338354,
+          "id": "osm:way:767502614",
+          "p90_cm": 4.072000026702881
+        },
+        {
+          "coverage": 0.6436605674647267,
+          "id": "osm:way:125944357",
+          "p90_cm": 4.072000026702881
+        }
+      ],
+      "total_measure": 11648241.63384469,
+      "unknown": 3235
+    },
+    "entrances": {
+      "assessments": 1331,
+      "covered_measure": 29429.377393395516,
+      "fully_covered": 750,
+      "mean_differs_from_midpoint": 230,
+      "metadata": {
+        "actual_accessibility": "unknown",
+        "field_validation": "not_testable_without_matched_observations",
+        "frame": null,
+        "limit": 1000,
+        "offset": 0,
+        "order": "physical",
+        "policy_status": "experimental_not_normative",
+        "revision": "c8b9eb30f71528124970",
+        "run_id": "34686252cb9b915cedc47d7097908062f050e0b7b708cd71dafb313b8444616c",
+        "threshold_cm": 20,
+        "tie_break": "coverage_desc_then_stable_id",
+        "total": 1331,
+        "unknown": 183
+      },
+      "p90_differs_from_midpoint": 297,
+      "top10": [
+        {
+          "coverage": 1.0,
+          "id": "osm:node:7247252704",
+          "p90_cm": 4.072000026702881
+        },
+        {
+          "coverage": 0.35226213130601475,
+          "id": "osm:node:7162384939",
+          "p90_cm": 3.947999954223633
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:node:7235939337",
+          "p90_cm": 3.9079999923706055
+        },
+        {
+          "coverage": 0.9999999281285157,
+          "id": "osm:node:7235939335",
+          "p90_cm": 3.9079999923706055
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:node:7262497358",
+          "p90_cm": 3.8980000019073486
+        },
+        {
+          "coverage": 0.4380903403250536,
+          "id": "osm:node:7170774806",
+          "p90_cm": 3.8910000324249268
+        },
+        {
+          "coverage": 0.9999999449728276,
+          "id": "osm:node:7308781230",
+          "p90_cm": 3.8889999389648438
+        },
+        {
+          "coverage": 0.9999998793761706,
+          "id": "osm:node:7221535655",
+          "p90_cm": 3.8889999389648438
+        },
+        {
+          "coverage": 0.9133745401040448,
+          "id": "osm:node:7236167821",
+          "p90_cm": 3.8489999771118164
+        },
+        {
+          "coverage": 0.09977996805503642,
+          "id": "osm:node:7236167822",
+          "p90_cm": 3.8489999771118164
+        }
+      ],
+      "total_measure": 40236.96274144717,
+      "unknown": 183
+    },
+    "roads": {
+      "assessments": 5914,
+      "covered_measure": 823088.1953616991,
+      "fully_covered": 3659,
+      "mean_differs_from_midpoint": 3851,
+      "metadata": {
+        "actual_accessibility": "unknown",
+        "field_validation": "not_testable_without_matched_observations",
+        "frame": null,
+        "limit": 1000,
+        "offset": 0,
+        "order": "physical",
+        "policy_status": "experimental_not_normative",
+        "revision": "c8b9eb30f71528124970",
+        "run_id": "34686252cb9b915cedc47d7097908062f050e0b7b708cd71dafb313b8444616c",
+        "threshold_cm": 20,
+        "tie_break": "coverage_desc_then_stable_id",
+        "total": 5914,
+        "unknown": 98
+      },
+      "p90_differs_from_midpoint": 3634,
+      "top10": [
+        {
+          "coverage": 1.0,
+          "id": "osm:way:581651092",
+          "p90_cm": 4.0879998207092285
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:236345036",
+          "p90_cm": 4.080999851226807
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:386429803",
+          "p90_cm": 4.080999851226807
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:780800295",
+          "p90_cm": 4.080999851226807
+        },
+        {
+          "coverage": 0.5824132345020572,
+          "id": "osm:way:386429800",
+          "p90_cm": 4.080999851226807
+        },
+        {
+          "coverage": 0.6968311222853152,
+          "id": "osm:way:125944355",
+          "p90_cm": 4.072000026702881
+        },
+        {
+          "coverage": 0.9695852932266985,
+          "id": "osm:way:574872044",
+          "p90_cm": 4.052999973297119
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:694163869",
+          "p90_cm": 4.041999816894531
+        },
+        {
+          "coverage": 0.14753258037766276,
+          "id": "osm:way:693121409",
+          "p90_cm": 4.041999816894531
+        },
+        {
+          "coverage": 0.4704042733236,
+          "id": "osm:way:1486419387",
+          "p90_cm": 3.986999988555908
+        }
+      ],
+      "total_measure": 922344.0814955062,
+      "unknown": 98
+    },
+    "run_id": "34686252cb9b915cedc47d7097908062f050e0b7b708cd71dafb313b8444616c"
+  },
+  "city_revision": "c8b9eb30f71528124970",
+  "coverage": {
+    "buildings": 13914,
+    "buildings_with_mapped_entrance": 483,
+    "buildings_without_mapped_entrance": 13431,
+    "by_mode": {
+      "pedestrian": 1579,
+      "vehicle": 4335
+    },
+    "city_census_complete": false,
+    "components": 86,
+    "components_without_street": 81,
+    "csv": {
+      "imported": 0,
+      "invalid": 0,
+      "matched_osm_id": 144
+    },
+    "csv_import": {},
+    "entrance_csv_sha256": null,
+    "entrances_without_building": 64,
+    "fabricated_connections": 0,
+    "incomplete_ways": 0,
+    "limitations": [
+      "Нет полевой проверки проходов и допуска спецтехники",
+      "Ближайшая линия не доказывает доступ",
+      "Отсутствующие входы и связи не синтезируются",
+      "Дата актуальности пользовательского CSV неизвестна"
+    ],
+    "objects": {
+      "bus_stop": 257,
+      "entrance": 1331,
+      "medical": 68
+    },
+    "registry_objects": {
+      "bus_stop": 257,
+      "entrance": 1331,
+      "facility": 72,
+      "medical": 68
+    },
+    "revision": "c8b9eb30f71528124970",
+    "roads": 5914,
+    "source": "OSM local snapshots + user CSV"
+  },
+  "date": "2026-11-22",
+  "engine": {
+    "commit": "087118ff9119eaa211fa19e89251b73f232406da",
+    "sha256": {
+      "kernels/h15-a0.json": "9ec9e77ea813e16902d1289e5df01afd49b7a01665dc28f2f917840232354160",
+      "kernels/h15-a30.json": "9e4b7e62195f4d2fa26bc5f15c4fffe2e0d1eb32ded06c7aaae76358c17275eb",
+      "kernels/h15-a60.json": "9d992883d227c9235855fea32e36509d3a347972f1fc75b2cf7d407e298c414b",
+      "kernels/h15-a90.json": "a770daf66ba125a4bf1a12bd30b2f1355beb47df6c7d71e365ac60e8fc1f0ac3",
+      "kernels/h30-a0.json": "5bf25f49b7f75b395f23e69484e6757eb0148b9dc6c6e80ecad2ccf6365069d6",
+      "kernels/h30-a30.json": "7b5b02acf673f359c0955eeb66766bec8b840c8b2d67108a14f64cdaf2ea6a39",
+      "kernels/h30-a60.json": "b64a5e6da5ac55b537990f80f3c31c198223ec4cf9723bce025d5c32541a738f",
+      "kernels/h30-a90.json": "b6fdb937814510e41a032e52f3ffea81be9e4e8fe4add0b54828ff7e24a1d692",
+      "kernels/h6-a0.json": "55c9d8cc9c413d5f4f0dde33b94ea0a2eb40fd681a86f910c519c6193ff2a5cd",
+      "kernels/h6-a30.json": "d00e6f98fce1d8c7975ace19a637a6f063c5b9ff69a3bdc515650f5ad26f68d1",
+      "kernels/h6-a60.json": "eb7b16afe8cbf6de73551df3a2e8c1f6ba4370eee6b1d75af6b568ff3435cbd1",
+      "kernels/h6-a90.json": "dde26c3f53c7095a99048ce2df90efd171e11c174ea092b794116ef74404f0bd",
+      "snowmap/api.py": "e1fd37022507dfb69b908efee054c6030821a39bbd695a2b616536792e5bb7dd",
+      "snowmap/city_cache.py": "210111e2aa3e20bcd268e387b2e53923b7ec2409803a82a75f2cda17fba4cc3b",
+      "snowmap/foam.py": "1b6ea230939a1b3795299bc89c8d171cd90addfccd46379e170ea533a1f118b2",
+      "snowmap/model.py": "792dec4570e630c654a81948ddca48e2283dbe528e1cd2b648ebc3bbd8137acd",
+      "snowmap/sources.py": "603122c2df6c7eeb6842e5622a4e8edae5cf6f149949dac9ba197f587ccf0e8f",
+      "snowmap/tile_foam.py": "801b1431416c0bff626bbf0d4eb292e2392195866cb181d105f6e2e174ffbc71"
+    }
+  },
+  "physical_diagnostics": {
+    "calm_uniform_6cm": true,
+    "directional_control": {
+      "no_new_snow_zero": true,
+      "passes": true,
+      "sides": [
+        {
+          "east_cm": 9.347,
+          "west_cm": 6.237,
+          "wind_from_deg": 270
+        },
+        {
+          "east_cm": 6.237,
+          "west_cm": 9.347,
+          "wind_from_deg": 90
+        }
+      ]
+    },
+    "double_snow_linearity_max_error_cm": 0.0010000000000012221,
+    "dry_zero": true,
+    "existing_snow_transport_supported": false,
+    "field_error_model_and_baseline": "not_testable_without_observations",
+    "height_minus25percent_mae_cm": 0.059970963995354246,
+    "mass_balance_status": "not_applicable_empirical_deposition_no_mass_or_boundary_flux_state",
+    "mass_conservation_claimed": false,
+    "model_open_cell_mean_cm": 6.157312427409988,
+    "open_cell_depth_sum_ratio_to_uniform": 1.0262187379016647,
+    "repeat_identical": true,
+    "resolution_mean_cm": {
+      "128": 6.151966837857666,
+      "40": 6.1518002958579885,
+      "64": 6.157312427409988,
+      "96": 6.153399320083682
+    },
+    "reverse_mae_cm": 0.29839721254355395,
+    "speed_8_to_12_mae_cm": 0.11841579558652728,
+    "uniform_baseline_cm": 6.0
+  },
+  "pilot": {
+    "assessment_repeat_identical": true,
+    "bounds": [
+      158.64,
+      53.031,
+      158.647,
+      53.036
+    ],
+    "objects": {
+      "features": [
+        {
+          "geometry": {
+            "coordinates": [
+              [
+                158.643906,
+                53.0332685
+              ],
+              [
+                158.6441386,
+                53.0329359
+              ]
+            ],
+            "type": "LineString"
+          },
+          "id": "osm:way:729764901",
+          "properties": {
+            "access": null,
+            "approaches": [],
+            "component_id": "n10060225467",
+            "connected_to_street": true,
+            "foot": null,
+            "highway": "steps",
+            "length_m": 40.2,
+            "mode": "pedestrian",
+            "motor_vehicle": null,
+            "name": null,
+            "physical": {
+              "above_fraction_covered": 0.0,
+              "above_fraction_total": 0.0,
+              "above_threshold": 0.0,
+              "actual_accessibility": "unknown",
+              "assessment_geometry": {
+                "coordinates": [
+                  [
+                    158.643906,
+                    53.0332685
+                  ],
+                  [
+                    158.6441386,
+                    53.0329359
+                  ]
+                ],
+                "type": "LineString"
+              },
+              "cell_height_m": 4.343554687502222,
+              "cell_width_m": 3.6568166436226845,
+              "coverage_fraction": 0.7840019029993766,
+              "covered": 31.479994355634187,
+              "existing_snow_transport_supported": false,
+              "field_validated": false,
+              "geometry_policy": {
+                "building_exterior_band_m": 8,
+                "entrance_half_width_m": 2,
+                "entrance_outward_m": [
+                  1,
+                  8
+                ],
+                "point_buffer_radius_m": 5,
+                "status": "experimental"
+              },
+              "max_cm": 3.944999933242798,
+              "mean_cm": 3.769845460180558,
+              "mean_difference_from_uniform_cm": 1.7698454601805582,
+              "measure": "length_m",
+              "method": "cell_intersections_metric_weighted",
+              "midpoint_baseline_cm": 3.933000087738037,
+              "missing": 8.672962206333775,
+              "nearby_buildings_effect": "already_in_model_not_added_as_a_risk_weight",
+              "old_cover_cm": null,
+              "p90_cm": 3.944999933242798,
+              "problem_fragments": [],
+              "quantity": "modeled_new_snow_accumulation",
+              "threshold_cm": 20,
+              "threshold_status": "experimental_not_normative",
+              "total": 40.15295656196796,
+              "uniform_weather_baseline": {
+                "above_fraction_covered": 0.0,
+                "above_fraction_total": 0.0,
+                "above_threshold": 0.0,
+                "cell_height_m": 4.343554687502222,
+                "cell_width_m": 3.6568166436226845,
+                "coverage_fraction": 0.7840019029993766,
+                "covered": 31.479994355634187,
+                "field_validated": false,
+                "max_cm": 2.0,
+                "mean_cm": 2.0,
+                "measure": "length_m",
+                "method": "cell_intersections_metric_weighted",
+                "midpoint_baseline_cm": 2.0,
+                "missing": 8.672962206333775,
+                "p90_cm": 2.0,
+                "problem_fragments": [],
+                "threshold_cm": 20,
+                "threshold_status": "experimental_not_normative",
+                "total": 40.15295656196796
+              },
+              "wind_context": {
+                "contexts": [
+                  {
+                    "distance_reference": "simulation_tile_center",
+                    "distance_to_source_m": null,
+                    "extrapolated": null,
+                    "hours": [
+                      {
+                        "snowfall_cm": 2,
+                        "wind_from_deg": 270,
+                        "wind_speed_ms": 8
+                      }
+                    ],
+                    "object_representative_point_distance_m": null,
+                    "retrieved_at": [
+                      null
+                    ],
+                    "source_coordinates": null,
+                    "tile": [
+                      0,
+                      0
+                    ],
+                    "units": {
+                      "gust_mps": "m/s",
+                      "gust_ms": "m/s",
+                      "precipitation_mm": "mm water equivalent per input step",
+                      "snow_mm_3h": "mm water equivalent / 3h",
+                      "snowfall_cm": "cm fresh snow per input step",
+                      "temperature_c": "degree Celsius",
+                      "wind_from_deg": "degree meteorological from north",
+                      "wind_speed_ms": "m/s"
+                    },
+                    "valid_at": [
+                      null
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Raster cell size is not weather resolution",
+                  "Missing timestamps/resolution remain unknown",
+                  "Nearest weather input is selected per simulation tile, not per object"
+                ],
+                "missing": false,
+                "resolution_status": "unknown",
+                "retrieved_at": null,
+                "source": {
+                  "input": {
+                    "district_id": null,
+                    "event_id": null,
+                    "hours": 1,
+                    "snow_to_liquid_ratio": 10.0,
+                    "snowfall_cm_h": 2.0,
+                    "source": "manual",
+                    "valid_at": null,
+                    "weather_revision": null,
+                    "wind_from_deg": 270.0,
+                    "wind_speed_ms": 8.0,
+                    "zone": [
+                      [
+                        158.64,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.036
+                      ],
+                      [
+                        158.64,
+                        53.036
+                      ]
+                    ]
+                  },
+                  "kind": "manual"
+                },
+                "source_resolution_m": null,
+                "street_resolution_verified": false
+              }
+            },
+            "quality": {
+              "accessibility_known": false,
+              "coordinate_source": "OpenStreetMap",
+              "coverage_fraction": 0.7840019029993766,
+              "entrance_status": null,
+              "field_validated": false,
+              "pedestrian_link_status": null,
+              "status": "partial"
+            },
+            "reasons": [
+              "Weighted P90 of modeled new snow: 3.944999933242798 cm",
+              "Coverage: 78.4%",
+              "Category: other (independent of snow)",
+              "Missing cells require verification; missing does not mean zero snow"
+            ],
+            "service": null,
+            "significance": {
+              "category": "other",
+              "consequence": "potential_access_disruption_not_observed",
+              "declared_priority": "standard",
+              "verified": false
+            },
+            "source": "OpenStreetMap",
+            "source_url": "https://www.openstreetmap.org/way/729764901",
+            "special_equipment_verified": false,
+            "surface": null,
+            "vehicle_candidate": false,
+            "width": null
+          },
+          "type": "Feature"
+        },
+        {
+          "geometry": {
+            "coordinates": [
+              [
+                158.6441657,
+                53.0328989
+              ],
+              [
+                158.6446883,
+                53.0330358
+              ]
+            ],
+            "type": "LineString"
+          },
+          "id": "osm:way:729764902",
+          "properties": {
+            "access": null,
+            "approaches": [],
+            "component_id": "n10060225467",
+            "connected_to_street": true,
+            "foot": null,
+            "highway": "footway",
+            "length_m": 38.2,
+            "mode": "pedestrian",
+            "motor_vehicle": null,
+            "name": null,
+            "physical": {
+              "above_fraction_covered": 0.0,
+              "above_fraction_total": 0.0,
+              "above_threshold": 0.0,
+              "actual_accessibility": "unknown",
+              "assessment_geometry": {
+                "coordinates": [
+                  [
+                    158.6441657,
+                    53.0328989
+                  ],
+                  [
+                    158.6446883,
+                    53.0330358
+                  ]
+                ],
+                "type": "LineString"
+              },
+              "cell_height_m": 4.343554687502222,
+              "cell_width_m": 3.6568280786930307,
+              "coverage_fraction": 1.0,
+              "covered": 38.21136648373464,
+              "existing_snow_transport_supported": false,
+              "field_validated": false,
+              "geometry_policy": {
+                "building_exterior_band_m": 8,
+                "entrance_half_width_m": 2,
+                "entrance_outward_m": [
+                  1,
+                  8
+                ],
+                "point_buffer_radius_m": 5,
+                "status": "experimental"
+              },
+              "max_cm": 3.871999979019165,
+              "mean_cm": 3.651552608000504,
+              "mean_difference_from_uniform_cm": 1.6515526080005039,
+              "measure": "length_m",
+              "method": "cell_intersections_metric_weighted",
+              "midpoint_baseline_cm": 3.7820000648498535,
+              "missing": 0.0,
+              "nearby_buildings_effect": "already_in_model_not_added_as_a_risk_weight",
+              "old_cover_cm": null,
+              "p90_cm": 3.871999979019165,
+              "problem_fragments": [],
+              "quantity": "modeled_new_snow_accumulation",
+              "threshold_cm": 20,
+              "threshold_status": "experimental_not_normative",
+              "total": 38.211366483622065,
+              "uniform_weather_baseline": {
+                "above_fraction_covered": 0.0,
+                "above_fraction_total": 0.0,
+                "above_threshold": 0.0,
+                "cell_height_m": 4.343554687502222,
+                "cell_width_m": 3.6568280786930307,
+                "coverage_fraction": 1.0,
+                "covered": 38.21136648373464,
+                "field_validated": false,
+                "max_cm": 2.0,
+                "mean_cm": 2.0,
+                "measure": "length_m",
+                "method": "cell_intersections_metric_weighted",
+                "midpoint_baseline_cm": 2.0,
+                "missing": 0.0,
+                "p90_cm": 2.0,
+                "problem_fragments": [],
+                "threshold_cm": 20,
+                "threshold_status": "experimental_not_normative",
+                "total": 38.211366483622065
+              },
+              "wind_context": {
+                "contexts": [
+                  {
+                    "distance_reference": "simulation_tile_center",
+                    "distance_to_source_m": null,
+                    "extrapolated": null,
+                    "hours": [
+                      {
+                        "snowfall_cm": 2,
+                        "wind_from_deg": 270,
+                        "wind_speed_ms": 8
+                      }
+                    ],
+                    "object_representative_point_distance_m": null,
+                    "retrieved_at": [
+                      null
+                    ],
+                    "source_coordinates": null,
+                    "tile": [
+                      0,
+                      0
+                    ],
+                    "units": {
+                      "gust_mps": "m/s",
+                      "gust_ms": "m/s",
+                      "precipitation_mm": "mm water equivalent per input step",
+                      "snow_mm_3h": "mm water equivalent / 3h",
+                      "snowfall_cm": "cm fresh snow per input step",
+                      "temperature_c": "degree Celsius",
+                      "wind_from_deg": "degree meteorological from north",
+                      "wind_speed_ms": "m/s"
+                    },
+                    "valid_at": [
+                      null
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Raster cell size is not weather resolution",
+                  "Missing timestamps/resolution remain unknown",
+                  "Nearest weather input is selected per simulation tile, not per object"
+                ],
+                "missing": false,
+                "resolution_status": "unknown",
+                "retrieved_at": null,
+                "source": {
+                  "input": {
+                    "district_id": null,
+                    "event_id": null,
+                    "hours": 1,
+                    "snow_to_liquid_ratio": 10.0,
+                    "snowfall_cm_h": 2.0,
+                    "source": "manual",
+                    "valid_at": null,
+                    "weather_revision": null,
+                    "wind_from_deg": 270.0,
+                    "wind_speed_ms": 8.0,
+                    "zone": [
+                      [
+                        158.64,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.036
+                      ],
+                      [
+                        158.64,
+                        53.036
+                      ]
+                    ]
+                  },
+                  "kind": "manual"
+                },
+                "source_resolution_m": null,
+                "street_resolution_verified": false
+              }
+            },
+            "quality": {
+              "accessibility_known": false,
+              "coordinate_source": "OpenStreetMap",
+              "coverage_fraction": 1.0,
+              "entrance_status": null,
+              "field_validated": false,
+              "pedestrian_link_status": null,
+              "status": "covered_unvalidated"
+            },
+            "reasons": [
+              "Weighted P90 of modeled new snow: 3.871999979019165 cm",
+              "Coverage: 100.0%",
+              "Category: other (independent of snow)"
+            ],
+            "service": null,
+            "significance": {
+              "category": "other",
+              "consequence": "potential_access_disruption_not_observed",
+              "declared_priority": "standard",
+              "verified": false
+            },
+            "source": "OpenStreetMap",
+            "source_url": "https://www.openstreetmap.org/way/729764902",
+            "special_equipment_verified": false,
+            "surface": null,
+            "vehicle_candidate": false,
+            "width": null
+          },
+          "type": "Feature"
+        },
+        {
+          "geometry": {
+            "coordinates": [
+              [
+                158.6446883,
+                53.0330358
+              ],
+              [
+                158.6447277,
+                53.032982
+              ]
+            ],
+            "type": "LineString"
+          },
+          "id": "osm:way:729764906",
+          "properties": {
+            "access": null,
+            "approaches": [],
+            "component_id": "n10060225467",
+            "connected_to_street": true,
+            "foot": null,
+            "highway": "steps",
+            "length_m": 6.5,
+            "mode": "pedestrian",
+            "motor_vehicle": null,
+            "name": null,
+            "physical": {
+              "above_fraction_covered": 0.0,
+              "above_fraction_total": 0.0,
+              "above_threshold": 0.0,
+              "actual_accessibility": "unknown",
+              "assessment_geometry": {
+                "coordinates": [
+                  [
+                    158.6446883,
+                    53.0330358
+                  ],
+                  [
+                    158.6447277,
+                    53.032982
+                  ]
+                ],
+                "type": "LineString"
+              },
+              "cell_height_m": 4.343554687502222,
+              "cell_width_m": 3.6568245553197887,
+              "coverage_fraction": 1.0,
+              "covered": 6.542152852951531,
+              "existing_snow_transport_supported": false,
+              "field_validated": false,
+              "geometry_policy": {
+                "building_exterior_band_m": 8,
+                "entrance_half_width_m": 2,
+                "entrance_outward_m": [
+                  1,
+                  8
+                ],
+                "point_buffer_radius_m": 5,
+                "status": "experimental"
+              },
+              "max_cm": 3.861999988555908,
+              "mean_cm": 3.8498899028726328,
+              "mean_difference_from_uniform_cm": 1.8498899028726328,
+              "measure": "length_m",
+              "method": "cell_intersections_metric_weighted",
+              "midpoint_baseline_cm": 3.8480000495910645,
+              "missing": 0.0,
+              "nearby_buildings_effect": "already_in_model_not_added_as_a_risk_weight",
+              "old_cover_cm": null,
+              "p90_cm": 3.861999988555908,
+              "problem_fragments": [],
+              "quantity": "modeled_new_snow_accumulation",
+              "threshold_cm": 20,
+              "threshold_status": "experimental_not_normative",
+              "total": 6.542152852951282,
+              "uniform_weather_baseline": {
+                "above_fraction_covered": 0.0,
+                "above_fraction_total": 0.0,
+                "above_threshold": 0.0,
+                "cell_height_m": 4.343554687502222,
+                "cell_width_m": 3.6568245553197887,
+                "coverage_fraction": 1.0,
+                "covered": 6.542152852951531,
+                "field_validated": false,
+                "max_cm": 2.0,
+                "mean_cm": 2.0,
+                "measure": "length_m",
+                "method": "cell_intersections_metric_weighted",
+                "midpoint_baseline_cm": 2.0,
+                "missing": 0.0,
+                "p90_cm": 2.0,
+                "problem_fragments": [],
+                "threshold_cm": 20,
+                "threshold_status": "experimental_not_normative",
+                "total": 6.542152852951282
+              },
+              "wind_context": {
+                "contexts": [
+                  {
+                    "distance_reference": "simulation_tile_center",
+                    "distance_to_source_m": null,
+                    "extrapolated": null,
+                    "hours": [
+                      {
+                        "snowfall_cm": 2,
+                        "wind_from_deg": 270,
+                        "wind_speed_ms": 8
+                      }
+                    ],
+                    "object_representative_point_distance_m": null,
+                    "retrieved_at": [
+                      null
+                    ],
+                    "source_coordinates": null,
+                    "tile": [
+                      0,
+                      0
+                    ],
+                    "units": {
+                      "gust_mps": "m/s",
+                      "gust_ms": "m/s",
+                      "precipitation_mm": "mm water equivalent per input step",
+                      "snow_mm_3h": "mm water equivalent / 3h",
+                      "snowfall_cm": "cm fresh snow per input step",
+                      "temperature_c": "degree Celsius",
+                      "wind_from_deg": "degree meteorological from north",
+                      "wind_speed_ms": "m/s"
+                    },
+                    "valid_at": [
+                      null
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Raster cell size is not weather resolution",
+                  "Missing timestamps/resolution remain unknown",
+                  "Nearest weather input is selected per simulation tile, not per object"
+                ],
+                "missing": false,
+                "resolution_status": "unknown",
+                "retrieved_at": null,
+                "source": {
+                  "input": {
+                    "district_id": null,
+                    "event_id": null,
+                    "hours": 1,
+                    "snow_to_liquid_ratio": 10.0,
+                    "snowfall_cm_h": 2.0,
+                    "source": "manual",
+                    "valid_at": null,
+                    "weather_revision": null,
+                    "wind_from_deg": 270.0,
+                    "wind_speed_ms": 8.0,
+                    "zone": [
+                      [
+                        158.64,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.036
+                      ],
+                      [
+                        158.64,
+                        53.036
+                      ]
+                    ]
+                  },
+                  "kind": "manual"
+                },
+                "source_resolution_m": null,
+                "street_resolution_verified": false
+              }
+            },
+            "quality": {
+              "accessibility_known": false,
+              "coordinate_source": "OpenStreetMap",
+              "coverage_fraction": 1.0,
+              "entrance_status": null,
+              "field_validated": false,
+              "pedestrian_link_status": null,
+              "status": "covered_unvalidated"
+            },
+            "reasons": [
+              "Weighted P90 of modeled new snow: 3.861999988555908 cm",
+              "Coverage: 100.0%",
+              "Category: other (independent of snow)"
+            ],
+            "service": null,
+            "significance": {
+              "category": "other",
+              "consequence": "potential_access_disruption_not_observed",
+              "declared_priority": "standard",
+              "verified": false
+            },
+            "source": "OpenStreetMap",
+            "source_url": "https://www.openstreetmap.org/way/729764906",
+            "special_equipment_verified": false,
+            "surface": null,
+            "vehicle_candidate": false,
+            "width": null
+          },
+          "type": "Feature"
+        },
+        {
+          "geometry": {
+            "coordinates": [
+              [
+                158.6443216,
+                53.0335667
+              ],
+              [
+                158.6445657,
+                53.0332133
+              ],
+              [
+                158.6446883,
+                53.0330358
+              ]
+            ],
+            "type": "LineString"
+          },
+          "id": "osm:way:729764904",
+          "properties": {
+            "access": null,
+            "approaches": [],
+            "component_id": "n10060225467",
+            "connected_to_street": true,
+            "foot": null,
+            "highway": "steps",
+            "length_m": 64.0,
+            "mode": "pedestrian",
+            "motor_vehicle": null,
+            "name": null,
+            "physical": {
+              "above_fraction_covered": 0.0,
+              "above_fraction_total": 0.0,
+              "above_threshold": 0.0,
+              "actual_accessibility": "unknown",
+              "assessment_geometry": {
+                "coordinates": [
+                  [
+                    158.6443216,
+                    53.0335667
+                  ],
+                  [
+                    158.6445657,
+                    53.0332133
+                  ],
+                  [
+                    158.6446883,
+                    53.0330358
+                  ]
+                ],
+                "type": "LineString"
+              },
+              "cell_height_m": 4.343554687502222,
+              "cell_width_m": 3.6567997644040813,
+              "coverage_fraction": 0.8267013930521933,
+              "covered": 52.887329150822175,
+              "existing_snow_transport_supported": false,
+              "field_validated": false,
+              "geometry_policy": {
+                "building_exterior_band_m": 8,
+                "entrance_half_width_m": 2,
+                "entrance_outward_m": [
+                  1,
+                  8
+                ],
+                "point_buffer_radius_m": 5,
+                "status": "experimental"
+              },
+              "max_cm": 3.8510000705718994,
+              "mean_cm": 2.9001905200243887,
+              "mean_difference_from_uniform_cm": 0.9001905200243887,
+              "measure": "length_m",
+              "method": "cell_intersections_metric_weighted",
+              "midpoint_baseline_cm": 2.552999973297119,
+              "missing": 11.086591294093743,
+              "nearby_buildings_effect": "already_in_model_not_added_as_a_risk_weight",
+              "old_cover_cm": null,
+              "p90_cm": 3.8389999866485596,
+              "problem_fragments": [],
+              "quantity": "modeled_new_snow_accumulation",
+              "threshold_cm": 20,
+              "threshold_status": "experimental_not_normative",
+              "total": 63.97392044491592,
+              "uniform_weather_baseline": {
+                "above_fraction_covered": 0.0,
+                "above_fraction_total": 0.0,
+                "above_threshold": 0.0,
+                "cell_height_m": 4.343554687502222,
+                "cell_width_m": 3.6567997644040813,
+                "coverage_fraction": 0.8267013930521933,
+                "covered": 52.887329150822175,
+                "field_validated": false,
+                "max_cm": 2.0,
+                "mean_cm": 2.0,
+                "measure": "length_m",
+                "method": "cell_intersections_metric_weighted",
+                "midpoint_baseline_cm": 2.0,
+                "missing": 11.086591294093743,
+                "p90_cm": 2.0,
+                "problem_fragments": [],
+                "threshold_cm": 20,
+                "threshold_status": "experimental_not_normative",
+                "total": 63.97392044491592
+              },
+              "wind_context": {
+                "contexts": [
+                  {
+                    "distance_reference": "simulation_tile_center",
+                    "distance_to_source_m": null,
+                    "extrapolated": null,
+                    "hours": [
+                      {
+                        "snowfall_cm": 2,
+                        "wind_from_deg": 270,
+                        "wind_speed_ms": 8
+                      }
+                    ],
+                    "object_representative_point_distance_m": null,
+                    "retrieved_at": [
+                      null
+                    ],
+                    "source_coordinates": null,
+                    "tile": [
+                      0,
+                      0
+                    ],
+                    "units": {
+                      "gust_mps": "m/s",
+                      "gust_ms": "m/s",
+                      "precipitation_mm": "mm water equivalent per input step",
+                      "snow_mm_3h": "mm water equivalent / 3h",
+                      "snowfall_cm": "cm fresh snow per input step",
+                      "temperature_c": "degree Celsius",
+                      "wind_from_deg": "degree meteorological from north",
+                      "wind_speed_ms": "m/s"
+                    },
+                    "valid_at": [
+                      null
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Raster cell size is not weather resolution",
+                  "Missing timestamps/resolution remain unknown",
+                  "Nearest weather input is selected per simulation tile, not per object"
+                ],
+                "missing": false,
+                "resolution_status": "unknown",
+                "retrieved_at": null,
+                "source": {
+                  "input": {
+                    "district_id": null,
+                    "event_id": null,
+                    "hours": 1,
+                    "snow_to_liquid_ratio": 10.0,
+                    "snowfall_cm_h": 2.0,
+                    "source": "manual",
+                    "valid_at": null,
+                    "weather_revision": null,
+                    "wind_from_deg": 270.0,
+                    "wind_speed_ms": 8.0,
+                    "zone": [
+                      [
+                        158.64,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.036
+                      ],
+                      [
+                        158.64,
+                        53.036
+                      ]
+                    ]
+                  },
+                  "kind": "manual"
+                },
+                "source_resolution_m": null,
+                "street_resolution_verified": false
+              }
+            },
+            "quality": {
+              "accessibility_known": false,
+              "coordinate_source": "OpenStreetMap",
+              "coverage_fraction": 0.8267013930521933,
+              "entrance_status": null,
+              "field_validated": false,
+              "pedestrian_link_status": null,
+              "status": "partial"
+            },
+            "reasons": [
+              "Weighted P90 of modeled new snow: 3.8389999866485596 cm",
+              "Coverage: 82.7%",
+              "Category: other (independent of snow)",
+              "Missing cells require verification; missing does not mean zero snow"
+            ],
+            "service": null,
+            "significance": {
+              "category": "other",
+              "consequence": "potential_access_disruption_not_observed",
+              "declared_priority": "standard",
+              "verified": false
+            },
+            "source": "OpenStreetMap",
+            "source_url": "https://www.openstreetmap.org/way/729764904",
+            "special_equipment_verified": false,
+            "surface": null,
+            "vehicle_candidate": false,
+            "width": null
+          },
+          "type": "Feature"
+        },
+        {
+          "geometry": {
+            "coordinates": [
+              [
+                158.6441968,
+                53.0327074
+              ],
+              [
+                158.6441258,
+                53.0325893
+              ],
+              [
+                158.6437851,
+                53.0323135
+              ],
+              [
+                158.6435169,
+                53.0322312
+              ]
+            ],
+            "type": "LineString"
+          },
+          "id": "osm:way:515010905",
+          "properties": {
+            "access": null,
+            "approaches": [],
+            "component_id": "n10060225467",
+            "connected_to_street": true,
+            "foot": null,
+            "highway": "service",
+            "length_m": 72.4,
+            "mode": "vehicle",
+            "motor_vehicle": null,
+            "name": null,
+            "physical": {
+              "above_fraction_covered": 0.0,
+              "above_fraction_total": 0.0,
+              "above_threshold": 0.0,
+              "actual_accessibility": "unknown",
+              "assessment_geometry": {
+                "coordinates": [
+                  [
+                    158.6441968,
+                    53.0327074
+                  ],
+                  [
+                    158.6441258,
+                    53.0325893
+                  ],
+                  [
+                    158.6437851,
+                    53.0323135
+                  ],
+                  [
+                    158.6435169,
+                    53.0322312
+                  ]
+                ],
+                "type": "LineString"
+              },
+              "cell_height_m": 4.343554687502222,
+              "cell_width_m": 3.6568756382521066,
+              "coverage_fraction": 0.9861917321403575,
+              "covered": 71.40935292382667,
+              "existing_snow_transport_supported": false,
+              "field_validated": false,
+              "geometry_policy": {
+                "building_exterior_band_m": 8,
+                "entrance_half_width_m": 2,
+                "entrance_outward_m": [
+                  1,
+                  8
+                ],
+                "point_buffer_radius_m": 5,
+                "status": "experimental"
+              },
+              "max_cm": 3.8259999752044678,
+              "mean_cm": 3.4492444256090904,
+              "mean_difference_from_uniform_cm": 1.4492444256090904,
+              "measure": "length_m",
+              "method": "cell_intersections_metric_weighted",
+              "midpoint_baseline_cm": 3.819999933242798,
+              "missing": 0.9998456088411132,
+              "nearby_buildings_effect": "already_in_model_not_added_as_a_risk_weight",
+              "old_cover_cm": null,
+              "p90_cm": 3.819999933242798,
+              "problem_fragments": [],
+              "quantity": "modeled_new_snow_accumulation",
+              "threshold_cm": 20,
+              "threshold_status": "experimental_not_normative",
+              "total": 72.40919853266779,
+              "uniform_weather_baseline": {
+                "above_fraction_covered": 0.0,
+                "above_fraction_total": 0.0,
+                "above_threshold": 0.0,
+                "cell_height_m": 4.343554687502222,
+                "cell_width_m": 3.6568756382521066,
+                "coverage_fraction": 0.9861917321403575,
+                "covered": 71.40935292382667,
+                "field_validated": false,
+                "max_cm": 2.0,
+                "mean_cm": 2.0,
+                "measure": "length_m",
+                "method": "cell_intersections_metric_weighted",
+                "midpoint_baseline_cm": 2.0,
+                "missing": 0.9998456088411132,
+                "p90_cm": 2.0,
+                "problem_fragments": [],
+                "threshold_cm": 20,
+                "threshold_status": "experimental_not_normative",
+                "total": 72.40919853266779
+              },
+              "wind_context": {
+                "contexts": [
+                  {
+                    "distance_reference": "simulation_tile_center",
+                    "distance_to_source_m": null,
+                    "extrapolated": null,
+                    "hours": [
+                      {
+                        "snowfall_cm": 2,
+                        "wind_from_deg": 270,
+                        "wind_speed_ms": 8
+                      }
+                    ],
+                    "object_representative_point_distance_m": null,
+                    "retrieved_at": [
+                      null
+                    ],
+                    "source_coordinates": null,
+                    "tile": [
+                      0,
+                      0
+                    ],
+                    "units": {
+                      "gust_mps": "m/s",
+                      "gust_ms": "m/s",
+                      "precipitation_mm": "mm water equivalent per input step",
+                      "snow_mm_3h": "mm water equivalent / 3h",
+                      "snowfall_cm": "cm fresh snow per input step",
+                      "temperature_c": "degree Celsius",
+                      "wind_from_deg": "degree meteorological from north",
+                      "wind_speed_ms": "m/s"
+                    },
+                    "valid_at": [
+                      null
+                    ]
+                  }
+                ],
+                "limitations": [
+                  "Raster cell size is not weather resolution",
+                  "Missing timestamps/resolution remain unknown",
+                  "Nearest weather input is selected per simulation tile, not per object"
+                ],
+                "missing": false,
+                "resolution_status": "unknown",
+                "retrieved_at": null,
+                "source": {
+                  "input": {
+                    "district_id": null,
+                    "event_id": null,
+                    "hours": 1,
+                    "snow_to_liquid_ratio": 10.0,
+                    "snowfall_cm_h": 2.0,
+                    "source": "manual",
+                    "valid_at": null,
+                    "weather_revision": null,
+                    "wind_from_deg": 270.0,
+                    "wind_speed_ms": 8.0,
+                    "zone": [
+                      [
+                        158.64,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.031
+                      ],
+                      [
+                        158.647,
+                        53.036
+                      ],
+                      [
+                        158.64,
+                        53.036
+                      ]
+                    ]
+                  },
+                  "kind": "manual"
+                },
+                "source_resolution_m": null,
+                "street_resolution_verified": false
+              }
+            },
+            "quality": {
+              "accessibility_known": false,
+              "coordinate_source": "OpenStreetMap",
+              "coverage_fraction": 0.9861917321403575,
+              "entrance_status": null,
+              "field_validated": false,
+              "pedestrian_link_status": null,
+              "status": "partial"
+            },
+            "reasons": [
+              "Weighted P90 of modeled new snow: 3.819999933242798 cm",
+              "Coverage: 98.6%",
+              "Category: other (independent of snow)",
+              "Missing cells require verification; missing does not mean zero snow"
+            ],
+            "service": "driveway",
+            "significance": {
+              "category": "other",
+              "consequence": "potential_access_disruption_not_observed",
+              "declared_priority": "standard",
+              "verified": false
+            },
+            "source": "OpenStreetMap",
+            "source_url": "https://www.openstreetmap.org/way/515010905",
+            "special_equipment_verified": false,
+            "surface": "asphalt",
+            "vehicle_candidate": true,
+            "width": null
+          },
+          "type": "Feature"
+        }
+      ],
+      "metadata": {
+        "actual_accessibility": "unknown",
+        "field_validation": "not_testable_without_matched_observations",
+        "frame": null,
+        "limit": 5,
+        "offset": 0,
+        "order": "physical",
+        "policy_status": "experimental_not_normative",
+        "revision": "c8b9eb30f71528124970",
+        "run_id": "77a4e588ad68a8138eb810f02cd5ecc6447f9d5e417a55fa47ab21e2d234f67c",
+        "threshold_cm": 20,
+        "tie_break": "coverage_desc_then_stable_id",
+        "total": 159,
+        "unknown": 0
+      },
+      "type": "FeatureCollection"
+    },
+    "roads": {
+      "assessments": 71,
+      "covered_measure": 6386.91408986755,
+      "fully_covered": 38,
+      "mean_differs_from_midpoint": 54,
+      "metadata": {
+        "actual_accessibility": "unknown",
+        "field_validation": "not_testable_without_matched_observations",
+        "frame": null,
+        "limit": 1000,
+        "offset": 0,
+        "order": "physical",
+        "policy_status": "experimental_not_normative",
+        "revision": "c8b9eb30f71528124970",
+        "run_id": "77a4e588ad68a8138eb810f02cd5ecc6447f9d5e417a55fa47ab21e2d234f67c",
+        "threshold_cm": 20,
+        "tie_break": "coverage_desc_then_stable_id",
+        "total": 71,
+        "unknown": 0
+      },
+      "p90_differs_from_midpoint": 60,
+      "top10": [
+        {
+          "coverage": 0.7840019029993766,
+          "id": "osm:way:729764901",
+          "p90_cm": 3.944999933242798
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:729764902",
+          "p90_cm": 3.871999979019165
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:729764906",
+          "p90_cm": 3.861999988555908
+        },
+        {
+          "coverage": 0.8267013930521933,
+          "id": "osm:way:729764904",
+          "p90_cm": 3.8389999866485596
+        },
+        {
+          "coverage": 0.9861917321403575,
+          "id": "osm:way:515010905",
+          "p90_cm": 3.819999933242798
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:729764900",
+          "p90_cm": 3.7939999103546143
+        },
+        {
+          "coverage": 1.0,
+          "id": "osm:way:729764881",
+          "p90_cm": 3.76200008392334
+        },
+        {
+          "coverage": 0.9856567385684651,
+          "id": "osm:way:641444239",
+          "p90_cm": 3.7320001125335693
+        },
+        {
+          "coverage": 0.14432104053915082,
+          "id": "osm:way:189442552",
+          "p90_cm": 3.7079999446868896
+        },
+        {
+          "coverage": 0.9500089380641179,
+          "id": "osm:way:729764907",
+          "p90_cm": 3.693000078201294
+        }
+      ],
+      "total_measure": 12186.94395776997,
+      "unknown": 0
+    },
+    "run_id": "77a4e588ad68a8138eb810f02cd5ecc6447f9d5e417a55fa47ab21e2d234f67c"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "checked_on": "2026-11-22",
+  "sources": [
+    {
+      "source": "ФГИС СКДФ",
+      "url": "https://skdf.ru/",
+      "api": "https://xn--d1aluo.xn--p1ai/api/v3/portal/",
+      "status": "public_data_downloaded",
+      "selected_records": 223,
+      "municipal_owner_records": 199,
+      "other_region_or_federal_records": 24,
+      "rights": "Public access confirmed; an open redistribution/persistent commercial reuse grant was not verified",
+      "raw": "out/geodata-accessibility-2026-11-22/sources/skdf-city-records.json",
+      "new_local_width_ways": 238,
+      "sha256": "5b0aa4bf44db1473f21b181727f1698e4849b332dab9a2c3f594be0c0b9a32b2"
+    },
+    {
+      "source": "ПКГО КСОДД",
+      "url": "https://pkgo.ru/upload/medialibrary/d1a/d1a47f280e3871b728a1a70a7508f5b5.pdf",
+      "status": "downloaded_250_pages",
+      "rights": "Official municipal publication; local factual extraction, no blanket license asserted",
+      "local_width_gain": 0,
+      "source_class": "historical_inventory_and_planning",
+      "raw": "out/geodata-accessibility-2026-11-22/sources/ksodd.pdf",
+      "sha256": "5ce284d67d9ffa02c00a129c6b5a24cf093eca5cd803892c653c01656d96df15"
+    },
+    {
+      "source": "ПКГО project Spartak",
+      "url": "https://pkgo.ru/upload/iblock/9ab/9ab0e61a48338f078117c489da699dd2.pdf",
+      "status": "downloaded_154_pages",
+      "width_m": 7,
+      "lanes": 2,
+      "sidewalk_m": 2,
+      "source_pdf_page": 11,
+      "source_class": "design",
+      "as_built_verified": false,
+      "horizontal_crs": "МСК-41; exact transformation not verified",
+      "vertical_datum": "Baltic 1977; not EGM2008",
+      "local_width_gain": 0,
+      "rights": "Official published project; reuse grant not asserted",
+      "raw": "out/geodata-accessibility-2026-11-22/sources/pkgo-spartak-plan.pdf",
+      "sha256": "14f4cbdc4a781fc4a7418b4d4aca9baee8e5920bf753c6ef58a2abac241b4c62"
+    },
+    {
+      "source": "ПКГО gazette 633",
+      "url": "https://pkgo.ru/upload/iblock/5d1/5d1bfe39f741c0639bf9376d8ef4e722.pdf",
+      "status": "downloaded_96_pages",
+      "publication_date": "2018-01-19",
+      "source_pdf_page": 51,
+      "source_class": "investment_project_design_characteristics",
+      "design_widths": [
+        {
+          "street": "улица Чубарова",
+          "width_range_m": [
+            7,
+            7
+          ],
+          "lanes": 2
+        },
+        {
+          "street": "улица Вулканная",
+          "width_range_m": [
+            15,
+            18.5
+          ],
+          "lanes_range": [
+            4,
+            5
+          ]
+        }
+      ],
+      "local_width_gain": 0,
+      "rights": "Official municipal publication; no current/as-built inference",
+      "raw": "out/geodata-accessibility-2026-11-22/sources/pkgo-gazette-633.pdf",
+      "sha256": "c2fdff7a3dbb2f96e56f50ff926f95e99a0365a4bde65a36a01b3d0a0f25ea04"
+    },
+    {
+      "source": "Overture Maps transportation",
+      "url": "https://docs.overturemaps.org/guides/transportation/",
+      "release": "2026-11-18.0",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors, Overture Maps Foundation",
+      "status": "city_polygon_intersection_downloaded",
+      "segments": 7668,
+      "width_nonempty": 49,
+      "new_local_width_ways": 0,
+      "source_class": "cartographic; not independent field survey",
+      "raw": "out/geodata-accessibility-2026-11-22/sources/overture-city-segments.geojson",
+      "sha256": "808ea2549259ca8cc1d86eacc6df24fa31c5d47209d9a3ff479fb57da29eaf0b"
+    },
+    {
+      "source": "Региональный геопортал",
+      "urls": [
+        "https://map.kamgov.ru/",
+        "http://map.kamgov.ru/",
+        "https://agate.kamgov.ru/"
+      ],
+      "status": "503_or_TLS_error",
+      "records_obtained": 0,
+      "city_coverage": null,
+      "new_confirmed_attributes": 0,
+      "rights": "No dataset license obtained; not an absence claim"
+    },
+    {
+      "source": "Mapillary",
+      "url": "https://www.mapillary.com/developer/api-documentation",
+      "license": "Imagery CC-BY-SA with author attribution; API terms/token separate",
+      "status": "no_token_API_error_190",
+      "records_obtained": 0,
+      "city_coverage": null,
+      "new_confirmed_attributes": 0,
+      "raw": "out/geodata-accessibility-2026-11-22/sources/mapillary-no-token.txt",
+      "sha256": "6684a6fa2678700b558fa07c403ca54d65f7a899afa6f976a4439642b6b84ab1"
+    },
+    {
+      "source": "KartaView",
+      "url": "https://github.com/kartaview/mcp-karta-view/blob/main/src/mcp_karta_view/karta_view_client.py",
+      "status": "official_client_endpoint_TLS_hostname_mismatch",
+      "records_obtained": 0,
+      "city_coverage": null,
+      "new_confirmed_attributes": 0,
+      "raw": "out/geodata-accessibility-2026-11-22/sources/kartaview-fetch.json",
+      "sha256": "ae30f0986b9f3a7a2acd415e259222aecec7c4b7a5d361d19c6162001e92c769"
+    },
+    {
+      "source": "2GIS Places database_entrances",
+      "url": "https://docs.2gis.com/api/search/places/reference/3.0/items/byid",
+      "terms": "https://law.2gis.ru/webapi-offer",
+      "status": "no_key; additional field permission and separate storage/reuse rights required",
+      "response_meta_code": 400,
+      "records_obtained": 0,
+      "entrance_city_coverage": null,
+      "new_confirmed_entrances": 0,
+      "rights": "Default offer 3.1 disallows extraction/storage/use outside contract; caching not provided",
+      "raw": "out/geodata-accessibility-2026-11-22/sources/2gis-no-key.txt",
+      "sha256": "e8e4c0a0e48b94b1210b4a8168c59770a90a74ccc0c253b5c8bd91049ece6cc0"
+    },
+    {
+      "source": "Yandex Maps",
+      "url": "https://yandex.ru/dev/commercial/doc/ru/",
+      "terms": "https://yandex.ru/legal/maps_api/ru",
+      "status": "no_key_or_extended_storage_license_supplied",
+      "records_obtained": 0,
+      "city_coverage": null,
+      "new_confirmed_attributes": 0,
+      "rights": "Free API conditions do not grant persistent geocoder-result database use; extended rights must be checked"
+    }
+  ]
+}

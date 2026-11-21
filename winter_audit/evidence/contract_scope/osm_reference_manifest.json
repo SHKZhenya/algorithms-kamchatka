@@ -1,0 +1,41 @@
+[
+  {
+    "source_id": "osm_contract_south",
+    "file": "south.osm.gz",
+    "bbox": [
+      158.623,
+      52.981,
+      158.686,
+      53.025
+    ],
+    "url": "https://api.openstreetmap.org/api/0.6/map?bbox=158.623,52.981,158.686,53.025",
+    "retrieved_at_utc": "2026-11-19T22:27:27+00:00",
+    "raw_sha256": "9826d236949311b468c655c5161828916d4c6586bddfdc04027f4ec03fab1174"
+  },
+  {
+    "source_id": "osm_contract_southeast",
+    "file": "southeast.osm.gz",
+    "bbox": [
+      158.684,
+      52.972,
+      158.752,
+      53.028
+    ],
+    "url": "https://api.openstreetmap.org/api/0.6/map?bbox=158.684,52.972,158.752,53.028",
+    "retrieved_at_utc": "2026-11-19T22:27:34+00:00",
+    "raw_sha256": "fcd7ef795c3d9ae141f28120d523bfc2ac7f5f0c2d52f7dbb283e701e540c607"
+  },
+  {
+    "source_id": "osm_contract_industry",
+    "file": "industry.osm.gz",
+    "bbox": [
+      158.675,
+      52.94,
+      158.746,
+      52.978
+    ],
+    "url": "https://api.openstreetmap.org/api/0.6/map?bbox=158.675,52.94,158.746,52.978",
+    "retrieved_at_utc": "2026-11-19T22:28:43+00:00",
+    "raw_sha256": "55cca7f25554c57ba4894860b7b851957d97c5c79442c4cf4ae03c17fc289219"
+  }
+]

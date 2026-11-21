@@ -1,6 +1,6 @@
 ARG CITY_SIM_MODEL_SOURCE=remote-model
 FROM python:3.12-slim AS remote-model
-ADD https://github.com/NDaVS/kamcha-snow-sim.git#367282af2b5e728f6cdd94c148065c4cec892cfd /model
+ADD https://github.com/NDaVS/kamcha-snow-sim.git#087118ff9119eaa211fa19e89251b73f232406da /model
 
 FROM python:3.12-slim AS local-model
 COPY city_sim/.state/danil/snowmap/*.py /model/snowmap/

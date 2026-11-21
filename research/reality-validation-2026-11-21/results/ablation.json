@@ -1,0 +1,240 @@
+{
+  "model_commit": "a6a3f9c058d4545ecd23f847df3df5de2fba4017",
+  "audit_sha256": "8331786c98fc5312939ec18ab1cd2a28ec25ca32900b892e6a0ff97bc3cdc5a8",
+  "windows": [
+    {
+      "event": "january-2026",
+      "previous_run_id": "1c49fd9523125e8290948015c37b7417c6aa77cbced65c64457dea8d1039f605",
+      "previous_replay_sha256": "59764e460b6a61a483b8689c28a726108a953999276c2a1a1f8e627350736ca3",
+      "bundle": "january-2026-ablation.npz",
+      "bundle_sha256": "ff8d8b673b72bd8dfa598964c9be302388ca33531fb1f048573076b73076f169",
+      "coverage_cells": 417068,
+      "window_hours": [
+        "2026-01-15T00:00:00+12:00",
+        "2026-01-15T01:00:00+12:00",
+        "2026-01-15T02:00:00+12:00",
+        "2026-01-15T03:00:00+12:00",
+        "2026-01-15T04:00:00+12:00",
+        "2026-01-15T05:00:00+12:00",
+        "2026-01-15T06:00:00+12:00",
+        "2026-01-15T07:00:00+12:00",
+        "2026-01-15T08:00:00+12:00",
+        "2026-01-15T09:00:00+12:00",
+        "2026-01-15T10:00:00+12:00",
+        "2026-01-15T11:00:00+12:00",
+        "2026-01-15T12:00:00+12:00",
+        "2026-01-15T13:00:00+12:00",
+        "2026-01-15T14:00:00+12:00",
+        "2026-01-15T15:00:00+12:00",
+        "2026-01-15T16:00:00+12:00",
+        "2026-01-15T17:00:00+12:00",
+        "2026-01-15T18:00:00+12:00",
+        "2026-01-15T19:00:00+12:00",
+        "2026-01-15T20:00:00+12:00",
+        "2026-01-15T21:00:00+12:00",
+        "2026-01-15T22:00:00+12:00",
+        "2026-01-15T23:00:00+12:00"
+      ],
+      "model_provenance": {
+        "engine_commit": "367282af2b5e728f6cdd94c148065c4cec892cfd",
+        "engine_sha256": {
+          "kernels/h15-a0.json": "9ec9e77ea813e16902d1289e5df01afd49b7a01665dc28f2f917840232354160",
+          "kernels/h15-a30.json": "9e4b7e62195f4d2fa26bc5f15c4fffe2e0d1eb32ded06c7aaae76358c17275eb",
+          "kernels/h15-a60.json": "9d992883d227c9235855fea32e36509d3a347972f1fc75b2cf7d407e298c414b",
+          "kernels/h15-a90.json": "a770daf66ba125a4bf1a12bd30b2f1355beb47df6c7d71e365ac60e8fc1f0ac3",
+          "kernels/h30-a0.json": "5bf25f49b7f75b395f23e69484e6757eb0148b9dc6c6e80ecad2ccf6365069d6",
+          "kernels/h30-a30.json": "7b5b02acf673f359c0955eeb66766bec8b840c8b2d67108a14f64cdaf2ea6a39",
+          "kernels/h30-a60.json": "b64a5e6da5ac55b537990f80f3c31c198223ec4cf9723bce025d5c32541a738f",
+          "kernels/h30-a90.json": "b6fdb937814510e41a032e52f3ffea81be9e4e8fe4add0b54828ff7e24a1d692",
+          "kernels/h6-a0.json": "55c9d8cc9c413d5f4f0dde33b94ea0a2eb40fd681a86f910c519c6193ff2a5cd",
+          "kernels/h6-a30.json": "d00e6f98fce1d8c7975ace19a637a6f063c5b9ff69a3bdc515650f5ad26f68d1",
+          "kernels/h6-a60.json": "eb7b16afe8cbf6de73551df3a2e8c1f6ba4370eee6b1d75af6b568ff3435cbd1",
+          "kernels/h6-a90.json": "dde26c3f53c7095a99048ce2df90efd171e11c174ea092b794116ef74404f0bd",
+          "snowmap/api.py": "b9508ed4e895b823c3b7c731fb2175ca787ff84bc774a925a9b6a2fd001072a7",
+          "snowmap/city_cache.py": "210111e2aa3e20bcd268e387b2e53923b7ec2409803a82a75f2cda17fba4cc3b",
+          "snowmap/foam.py": "2277e821e4c532ffafb81c9816f797def28c07539ca40eaa5ec3b1cbb8c58b7e",
+          "snowmap/model.py": "620749471db73e4c349fb83d0b2f7a8b8f5f84543b4df83b27fae6dcd01feb9f",
+          "snowmap/sources.py": "603122c2df6c7eeb6842e5622a4e8edae5cf6f149949dac9ba197f587ccf0e8f"
+        },
+        "city_revision": "d7e9c9fd8f4b754f56b5",
+        "boundary_sha256": "f157a0bea01282664497b8a462387ca78348f51e23d6fa90d00144193963fad4",
+        "graph_version": "osm-789cbd0efcdf1614-city-v2",
+        "algorithm": "city-snow-6"
+      },
+      "bounds": [
+        158.48,
+        52.91,
+        158.8,
+        53.16
+      ],
+      "rows": 1152,
+      "cols": 960,
+      "background_range_cm": [
+        22.540000915527344,
+        33.040000915527344
+      ],
+      "model_range_cm": [
+        13.435999870300293,
+        76.76100158691406
+      ],
+      "sensitivity": {
+        "b2_cm": {
+          "baseline": "b0_cm",
+          "mean_abs_difference": 1.1091803312301636,
+          "p95_abs_difference": 8.915000915527344,
+          "changed_over_0_01_fraction": 0.14903325117247068
+        },
+        "height_9m_cm": {
+          "baseline": "b2_cm",
+          "mean_abs_difference": 0.46126610040664673,
+          "p95_abs_difference": 3.0400009155273438,
+          "changed_over_0_01_fraction": 0.14692328349333922
+        },
+        "reverse_wind_cm": {
+          "baseline": "b2_cm",
+          "mean_abs_difference": 1.1261411905288696,
+          "p95_abs_difference": 9.3360013961792,
+          "changed_over_0_01_fraction": 0.17273681989507705
+        },
+        "half_wind_cm": {
+          "baseline": "b2_cm",
+          "mean_abs_difference": 0.6638612151145935,
+          "p95_abs_difference": 5.308000564575195,
+          "changed_over_0_01_fraction": 0.14670029827270373
+        },
+        "no_buildings_cm": {
+          "baseline": "b0_cm",
+          "mean_abs_difference": 0.0,
+          "p95_abs_difference": 0.0,
+          "changed_over_0_01_fraction": 0.0
+        },
+        "calm_cm": {
+          "baseline": "b0_cm",
+          "mean_abs_difference": 0.0,
+          "p95_abs_difference": 0.0,
+          "changed_over_0_01_fraction": 0.0
+        },
+        "no_relief_index": {
+          "baseline": "b2_index",
+          "mean_abs_difference": 0.029498720541596413,
+          "p95_abs_difference": 0.1512182354927063,
+          "changed_over_0_01_fraction": 0.41462063740205435
+        },
+        "b1_index": {
+          "baseline": "b2_index",
+          "mean_abs_difference": 0.021005868911743164,
+          "p95_abs_difference": 0.17460115253925323,
+          "changed_over_0_01_fraction": 0.10577651605973126
+        }
+      }
+    },
+    {
+      "event": "december-2025",
+      "previous_run_id": "2a53a565aa099de5e4bddef8a0a4fa914cb9aea60a61ee80973d00056bc3158e",
+      "previous_replay_sha256": "38038debf0b105afe0280720465ba3c45cd4328ebeacc70c789f346f7f9343af",
+      "bundle": "december-2025-ablation.npz",
+      "bundle_sha256": "afc43a349731ca97f94bdbc8900bba1aff921b790b558ddff0159f674c326167",
+      "coverage_cells": 417068,
+      "window_hours": [
+        "2025-12-09T06:00:00+12:00",
+        "2025-12-09T07:00:00+12:00",
+        "2025-12-09T08:00:00+12:00",
+        "2025-12-09T09:00:00+12:00",
+        "2025-12-09T10:00:00+12:00",
+        "2025-12-09T11:00:00+12:00"
+      ],
+      "model_provenance": {
+        "engine_commit": "367282af2b5e728f6cdd94c148065c4cec892cfd",
+        "engine_sha256": {
+          "kernels/h15-a0.json": "9ec9e77ea813e16902d1289e5df01afd49b7a01665dc28f2f917840232354160",
+          "kernels/h15-a30.json": "9e4b7e62195f4d2fa26bc5f15c4fffe2e0d1eb32ded06c7aaae76358c17275eb",
+          "kernels/h15-a60.json": "9d992883d227c9235855fea32e36509d3a347972f1fc75b2cf7d407e298c414b",
+          "kernels/h15-a90.json": "a770daf66ba125a4bf1a12bd30b2f1355beb47df6c7d71e365ac60e8fc1f0ac3",
+          "kernels/h30-a0.json": "5bf25f49b7f75b395f23e69484e6757eb0148b9dc6c6e80ecad2ccf6365069d6",
+          "kernels/h30-a30.json": "7b5b02acf673f359c0955eeb66766bec8b840c8b2d67108a14f64cdaf2ea6a39",
+          "kernels/h30-a60.json": "b64a5e6da5ac55b537990f80f3c31c198223ec4cf9723bce025d5c32541a738f",
+          "kernels/h30-a90.json": "b6fdb937814510e41a032e52f3ffea81be9e4e8fe4add0b54828ff7e24a1d692",
+          "kernels/h6-a0.json": "55c9d8cc9c413d5f4f0dde33b94ea0a2eb40fd681a86f910c519c6193ff2a5cd",
+          "kernels/h6-a30.json": "d00e6f98fce1d8c7975ace19a637a6f063c5b9ff69a3bdc515650f5ad26f68d1",
+          "kernels/h6-a60.json": "eb7b16afe8cbf6de73551df3a2e8c1f6ba4370eee6b1d75af6b568ff3435cbd1",
+          "kernels/h6-a90.json": "dde26c3f53c7095a99048ce2df90efd171e11c174ea092b794116ef74404f0bd",
+          "snowmap/api.py": "b9508ed4e895b823c3b7c731fb2175ca787ff84bc774a925a9b6a2fd001072a7",
+          "snowmap/city_cache.py": "210111e2aa3e20bcd268e387b2e53923b7ec2409803a82a75f2cda17fba4cc3b",
+          "snowmap/foam.py": "2277e821e4c532ffafb81c9816f797def28c07539ca40eaa5ec3b1cbb8c58b7e",
+          "snowmap/model.py": "620749471db73e4c349fb83d0b2f7a8b8f5f84543b4df83b27fae6dcd01feb9f",
+          "snowmap/sources.py": "603122c2df6c7eeb6842e5622a4e8edae5cf6f149949dac9ba197f587ccf0e8f"
+        },
+        "city_revision": "d7e9c9fd8f4b754f56b5",
+        "boundary_sha256": "f157a0bea01282664497b8a462387ca78348f51e23d6fa90d00144193963fad4",
+        "graph_version": "osm-789cbd0efcdf1614-city-v2",
+        "algorithm": "city-snow-6"
+      },
+      "bounds": [
+        158.48,
+        52.91,
+        158.8,
+        53.16
+      ],
+      "rows": 1152,
+      "cols": 960,
+      "background_range_cm": [
+        13.4399995803833,
+        16.3799991607666
+      ],
+      "model_range_cm": [
+        9.967000007629395,
+        30.27899932861328
+      ],
+      "sensitivity": {
+        "b2_cm": {
+          "baseline": "b0_cm",
+          "mean_abs_difference": 0.42634594440460205,
+          "p95_abs_difference": 3.427000045776367,
+          "changed_over_0_01_fraction": 0.13727018136131278
+        },
+        "height_9m_cm": {
+          "baseline": "b2_cm",
+          "mean_abs_difference": 0.18097539246082306,
+          "p95_abs_difference": 1.180999755859375,
+          "changed_over_0_01_fraction": 0.1354359480947951
+        },
+        "reverse_wind_cm": {
+          "baseline": "b2_cm",
+          "mean_abs_difference": 0.44122159481048584,
+          "p95_abs_difference": 3.746650218963623,
+          "changed_over_0_01_fraction": 0.1615635819578582
+        },
+        "half_wind_cm": {
+          "baseline": "b2_cm",
+          "mean_abs_difference": 0.2883071005344391,
+          "p95_abs_difference": 2.3226494789123535,
+          "changed_over_0_01_fraction": 0.13462552869076505
+        },
+        "no_buildings_cm": {
+          "baseline": "b0_cm",
+          "mean_abs_difference": 0.0,
+          "p95_abs_difference": 0.0,
+          "changed_over_0_01_fraction": 0.0
+        },
+        "calm_cm": {
+          "baseline": "b0_cm",
+          "mean_abs_difference": 0.0,
+          "p95_abs_difference": 0.0,
+          "changed_over_0_01_fraction": 0.0
+        },
+        "no_relief_index": {
+          "baseline": "b2_index",
+          "mean_abs_difference": 0.029498720541596413,
+          "p95_abs_difference": 0.1512182354927063,
+          "changed_over_0_01_fraction": 0.41462063740205435
+        },
+        "b1_index": {
+          "baseline": "b2_index",
+          "mean_abs_difference": 0.014555782079696655,
+          "p95_abs_difference": 0.11967883259057999,
+          "changed_over_0_01_fraction": 0.09654540746353113
+        }
+      }
+    }
+  ]
+}

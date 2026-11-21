@@ -4,6 +4,7 @@ from functools import cached_property
 from hashlib import file_digest, sha256
 import gzip
 import json
+import os
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
@@ -88,6 +89,9 @@ class CityData:
         self.buildings_path = Path(buildings_path)
         self.graph_path = Path(graph_path)
         self.supplements = tuple(supplements)
+        access_extra = DATA / 'access-supplement.osm.gz'
+        if building_evidence and access_extra.exists() and os.getenv('CITY_SIM_ACCESS_SUPPLEMENT', '1') != '0':
+            self.supplements += (access_extra,)
         self.terrain = terrain
         self.use_building_evidence = building_evidence
         self.grade_path = DATA / "road-grades.json.gz"
@@ -95,7 +99,7 @@ class CityData:
 
     @property
     def data_revision(self):
-        paths = [self.buildings_path, self.graph_path, *self.supplements, self.grade_path]
+        paths = [self.buildings_path, self.graph_path, *self.supplements, self.grade_path, DATA / "pkc_bus_stops.csv"]
         if self.use_building_evidence:
             paths.extend(BuildingEvidence.paths)
         if self.terrain:
@@ -103,7 +107,7 @@ class CityData:
         signature = tuple((p.stat().st_size, p.stat().st_mtime_ns) if p.is_file() else None for p in paths)
         if self._revision_cache is None or self._revision_cache[0] != signature:
             if self._revision_cache:
-                for key in ("osm_layers", "graph_layers", "extended_graph_layers", "building_evidence_metadata", "building_candidate_layer"):
+                for key in ("osm_elements", "access_catalog", "osm_layers", "graph_layers", "extended_graph_layers", "building_evidence_metadata", "building_candidate_layer"):
                     self.__dict__.pop(key, None)
                 if self.terrain:
                     self.terrain.tiles.cache_clear()
@@ -121,13 +125,23 @@ class CityData:
         return self._revision_cache[1]
 
     @cached_property
-    def osm_layers(self):
-        paths = [p for p in (self.buildings_path, *self.supplements) if p.exists()]
+    def osm_elements(self):
+        paths = list(dict.fromkeys(p for p in (self.buildings_path, self.graph_path, *self.supplements) if p.exists()))
         elements = read_osm([p for p in paths if p.suffix == ".gz"])
         for path in paths:
             if path.suffix != ".gz":
                 elements.update({e.tag[0] + e.get("id"): e for e in ET.parse(path).getroot()
                                  if e.tag in {"node", "way", "relation"}})
+        return elements
+
+    @cached_property
+    def access_catalog(self):
+        from .access import AccessCatalog
+        return AccessCatalog(self)
+
+    @cached_property
+    def osm_layers(self):
+        elements = self.osm_elements
         nodes = {key: (float(elem.get("lon")), float(elem.get("lat")))
                  for key, elem in elements.items() if key.startswith("n")}
         lines = {}

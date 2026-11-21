@@ -1,0 +1,959 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "D09-01",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "D09-01",
+        "event_id": "december-2025",
+        "time_start": "2025-12-09T00:00+12:00",
+        "time_end": "2025-12-09T09:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Ленинская улица",
+        "side_of_building": "unknown",
+        "observed_type": "slush",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kam24.ru/news/main/20251209/123506.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "Имя улицы в публикации",
+        "uncertainty_notes": "Сообщение очевидца, участок и час неизвестны"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "D09-02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.6524654,
+          53.0468673
+        ]
+      },
+      "properties": {
+        "evidence_id": "D09-02",
+        "event_id": "december-2025",
+        "time_start": "2025-12-09T00:00+12:00",
+        "time_end": "2025-12-09T09:59+12:00",
+        "accuracy_m": 450,
+        "asset_or_road": "4-й километр",
+        "side_of_building": "unknown",
+        "observed_type": "bus_stuck",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kam24.ru/news/main/20251209/123506.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "OSM node 3861784858",
+        "uncertainty_notes": "Радиус поиска по району, место происшествия неизвестно"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "D09-03",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.6618301,
+          52.9948629
+        ]
+      },
+      "properties": {
+        "evidence_id": "D09-03",
+        "event_id": "december-2025",
+        "time_start": "2025-12-09T00:00+12:00",
+        "time_end": "2025-12-09T09:59+12:00",
+        "accuracy_m": 400,
+        "asset_or_road": "Сапун-гора",
+        "side_of_building": "unknown",
+        "observed_type": "bus_stuck",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kam24.ru/news/main/20251209/123506.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "OSM node 1425986609",
+        "uncertainty_notes": "Радиус поиска вокруг остановки, подъём и сторона неизвестны. В статье есть встроенный ролик."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "D09-04",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "D09-04",
+        "event_id": "december-2025",
+        "time_start": "2025-12-09T00:00+12:00",
+        "time_end": "2025-12-09T11:12+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Ленинградская у новой гостиницы",
+        "side_of_building": "unknown",
+        "observed_type": "congestion",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kamchatka.aif.ru/society/centr-petropavlovska-kamchatskogo-skovali-probki-iz-za-ciklona",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "Имя улицы в публикации",
+        "uncertainty_notes": "Гостиница и место столкновения не подтверждены"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "D09-05",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "D09-05",
+        "event_id": "december-2025",
+        "time_start": "2025-12-09T00:00+12:00",
+        "time_end": "2025-12-09T11:12+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Ленинский район",
+        "side_of_building": "unknown",
+        "observed_type": "transport_disruption",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kamchatka.aif.ru/society/centr-petropavlovska-kamchatskogo-skovali-probki-iz-za-ciklona",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Районное сообщение, затор и расписание не измеряют накопление"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "D09-06",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "D09-06",
+        "event_id": "december-2025",
+        "time_start": "2025-12-09T00:00+12:00",
+        "time_end": "2025-12-09T11:12+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Центр города",
+        "side_of_building": "unknown",
+        "observed_type": "congestion_photo",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kamchatka.aif.ru/society/centr-petropavlovska-kamchatskogo-skovali-probki-iz-za-ciklona",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Фотография в репортаже, точка и время съёмки не установлены"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "D09-07",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "D09-07",
+        "event_id": "december-2025",
+        "time_start": "2025-12-09T00:00+12:00",
+        "time_end": "2025-12-09T09:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Сапун-гора или другой участок",
+        "side_of_building": "unknown",
+        "observed_type": "bus_stuck_video",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://vkvideo.ru/video-63591687_456241345",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Встроенный источник Кам 24, точка и время съёмки не верифицированы"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "D10-01",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "D10-01",
+        "event_id": "december-2025",
+        "time_start": "2025-12-09",
+        "time_end": "2025-12-10",
+        "accuracy_m": null,
+        "asset_or_road": "Городские магистрали",
+        "side_of_building": "unknown",
+        "observed_type": "operation_report",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://nia-kamchatka.ru/news/authority/8065.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Приоритеты и уборка, без GPS и замеров"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J13-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.6552,
+          52.9897
+        ]
+      },
+      "properties": {
+        "evidence_id": "J13-01",
+        "event_id": "january-2026",
+        "time_start": "2026-01-13",
+        "time_end": "2026-01-16",
+        "accuracy_m": 100,
+        "asset_or_road": "МГ-1, Рябиковская, 64Б, WMO 32583",
+        "side_of_building": "unknown",
+        "observed_type": "total_precipitation_mm",
+        "observed_value": 131.6,
+        "unit": "mm",
+        "after_plow": "unknown",
+        "evidence_url": "https://kammeteo.ru/kamsneg2012.pdf",
+        "evidence_grade": "A",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "weather_context",
+        "location_basis": "Паспорт станции 32583 (Погода и климат), адрес МГ-1 сверён с Камчатским УГМС",
+        "uncertainty_notes": "131,6 мм всех фаз за период. Границы измерительного окна по часам не опубликованы."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J16-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.6552,
+          52.9897
+        ]
+      },
+      "properties": {
+        "evidence_id": "J16-01",
+        "event_id": "january-2026",
+        "time_start": "2026-01-13",
+        "time_end": "2026-01-16",
+        "accuracy_m": 100,
+        "asset_or_road": "МГ-1, Рябиковская, 64Б, WMO 32583",
+        "side_of_building": "unknown",
+        "observed_type": "total_snow_cm",
+        "observed_value": 170,
+        "unit": "cm",
+        "after_plow": "unknown",
+        "evidence_url": "https://kammeteo.ru/kamsneg2012.pdf",
+        "evidence_grade": "A",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "incompatible_quantity",
+        "location_basis": "Паспорт станции 32583 (Погода и климат), адрес МГ-1 сверён с Камчатским УГМС",
+        "uncertainty_notes": "Площадка станции. Точный срок рейки и протокол замера отсутствуют в сводке."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J16-02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.6552,
+          52.9897
+        ]
+      },
+      "properties": {
+        "evidence_id": "J16-02",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15",
+        "time_end": "2026-01-18",
+        "accuracy_m": 100,
+        "asset_or_road": "МГ-1, Рябиковская, 64Б, WMO 32583",
+        "side_of_building": "unknown",
+        "observed_type": "total_snow_cm",
+        "observed_value": 171,
+        "unit": "cm",
+        "after_plow": "unknown",
+        "evidence_url": "https://www.pogodaiklimat.ru/news/25913/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "possible_duplicate",
+        "location_basis": "Паспорт станции 32583 (Погода и климат), адрес МГ-1 сверён с Камчатским УГМС",
+        "uncertainty_notes": "Публикация сообщает 171 см к концу недели. Возможно, та же станция и тот же эпизод, срок и первичная телеграмма неизвестны."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J16-03",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "J16-03",
+        "event_id": "january-2026",
+        "time_start": "2026-01-16",
+        "time_end": "2026-01-16",
+        "accuracy_m": null,
+        "asset_or_road": "Метеостанция Начики, вне города",
+        "side_of_building": "unknown",
+        "observed_type": "total_snow_cm",
+        "observed_value": 223,
+        "unit": "cm",
+        "after_plow": "unknown",
+        "evidence_url": "https://www.pogodaiklimat.ru/news/25913/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "outside_domain",
+        "location_basis": "",
+        "uncertainty_notes": "Станционный замер в пересказе, без срока UTC."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J16-04",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "J16-04",
+        "event_id": "january-2026",
+        "time_start": "2026-01-16",
+        "time_end": "2026-01-19",
+        "accuracy_m": null,
+        "asset_or_road": "Метеостанция Сосновка, вне города",
+        "side_of_building": "unknown",
+        "observed_type": "total_snow_cm",
+        "observed_value": 204,
+        "unit": "cm",
+        "after_plow": "unknown",
+        "evidence_url": "https://www.pogodaiklimat.ru/news/25913/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "outside_domain",
+        "location_basis": "",
+        "uncertainty_notes": "Станционный замер в пересказе, точный срок неизвестен."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J16-05",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "J16-05",
+        "event_id": "january-2026",
+        "time_start": "2026-01-16",
+        "time_end": "2026-01-19",
+        "accuracy_m": null,
+        "asset_or_road": "Метеостанция Пущино, вне города",
+        "side_of_building": "unknown",
+        "observed_type": "total_snow_cm",
+        "observed_value": 194,
+        "unit": "cm",
+        "after_plow": "unknown",
+        "evidence_url": "https://www.pogodaiklimat.ru/news/25913/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "outside_domain",
+        "location_basis": "",
+        "uncertainty_notes": "Станционный замер в пересказе, точный срок неизвестен."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J19-01",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "J19-01",
+        "event_id": "january-2026",
+        "time_start": "2026-01-13",
+        "time_end": "2026-01-16",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "unverified_snow_cm",
+        "observed_value": 133,
+        "unit": "cm",
+        "after_plow": "unknown",
+        "evidence_url": "https://kamchatkamedia.ru/news/2368112/",
+        "evidence_grade": "D",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Редакция указывает до 133 см, без точки, инструкции измерения и определения слоя."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "M06-01",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "M06-01",
+        "event_id": "march-2026-followup",
+        "time_start": "2025-12-01",
+        "time_end": "2026-03-06",
+        "accuracy_m": null,
+        "asset_or_road": "Горные склоны Петропавловска",
+        "side_of_building": "unknown",
+        "observed_type": "snow_layer_cm",
+        "observed_value": 100,
+        "unit": "cm",
+        "after_plow": "unknown",
+        "evidence_url": "https://kammeteo.ru/060326.pdf",
+        "evidence_grade": "C",
+        "weather_source": "",
+        "match_status": "incompatible_quantity",
+        "location_basis": "",
+        "uncertainty_notes": "Около метра смёрзшегося слоя декабря, описанного в марте. Отдельная точка и дата отбора неизвестны."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "M16-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.65116,
+          53.04946
+        ]
+      },
+      "properties": {
+        "evidence_id": "M16-01",
+        "event_id": "march-2026-followup",
+        "time_start": "2026-03-16",
+        "time_end": "2026-03-16",
+        "accuracy_m": 40,
+        "asset_or_road": "Зеркальная, 58",
+        "side_of_building": "unknown",
+        "observed_type": "snowbank_cm",
+        "observed_value": 200,
+        "unit": "cm",
+        "after_plow": "yes",
+        "evidence_url": "https://kamchatka.aif.ru/society/zhitel-petropavlovska-slomal-ryobra-upav-s-2-metrovoy-gory-snega-v-podezd",
+        "evidence_grade": "C",
+        "weather_source": "",
+        "match_status": "outside_replay",
+        "location_basis": "OSM way 99383153",
+        "uncertainty_notes": "Оценка высоты в публикации, снег с дороги и крыш. Съёмка и измерение см не подтверждены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "M24-01",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "M24-01",
+        "event_id": "march-2025",
+        "time_start": "2025-03-23",
+        "time_end": "2025-03-24",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "total_precipitation_mm",
+        "observed_value": 63,
+        "unit": "mm",
+        "after_plow": "unknown",
+        "evidence_url": "https://kam24.ru/news/main/20250324/115258.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "weather_context",
+        "location_basis": "",
+        "uncertainty_notes": "63 мм за 24 часа к утру 24 марта, час и площадка не указаны."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J15-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.64384,
+          53.05285
+        ]
+      },
+      "properties": {
+        "evidence_id": "J15-01",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": 80,
+        "asset_or_road": "Проспект 50 лет Октября, 4/2",
+        "side_of_building": "unknown",
+        "observed_type": "buried_car_photo",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://www.rbc.ru/life/news/696a09209a794762f3e75d3e",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "spatial_context",
+        "location_basis": "OSM ways 106049024 и 106049027, адресный кандидат",
+        "uncertainty_notes": "Фото Пирагиса от 15 января. Адрес из ТЗ подтверждён как существующий, исходный кадр с часом, точкой машины и стороной фасада не привязан."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J21-01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.65307,
+          53.04839
+        ]
+      },
+      "properties": {
+        "evidence_id": "J21-01",
+        "event_id": "january-2026",
+        "time_start": "2026-01-21",
+        "time_end": "2026-01-21",
+        "accuracy_m": 55,
+        "asset_or_road": "Зеркальная, 52",
+        "side_of_building": "unknown",
+        "observed_type": "unremoved_snow",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kam24.ru/news/main/20260121/124684.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "outside_replay",
+        "location_basis": "OSM way 99383117 / 611979148",
+        "uncertainty_notes": "Описание группы домов одним источником. Снег с декабря, неодинаковая уборка, фасад не локализован."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J21-02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.65244,
+          53.04884
+        ]
+      },
+      "properties": {
+        "evidence_id": "J21-02",
+        "event_id": "january-2026",
+        "time_start": "2026-01-21",
+        "time_end": "2026-01-21",
+        "accuracy_m": 40,
+        "asset_or_road": "Зеркальная, 54",
+        "side_of_building": "unknown",
+        "observed_type": "unremoved_snow",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kam24.ru/news/main/20260121/124684.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "outside_replay",
+        "location_basis": "OSM way 99383104",
+        "uncertainty_notes": "Описание группы домов одним источником. Снег с декабря, неодинаковая уборка, фасад не локализован."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J21-03",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.65181,
+          53.04915
+        ]
+      },
+      "properties": {
+        "evidence_id": "J21-03",
+        "event_id": "january-2026",
+        "time_start": "2026-01-21",
+        "time_end": "2026-01-21",
+        "accuracy_m": 40,
+        "asset_or_road": "Зеркальная, 56",
+        "side_of_building": "unknown",
+        "observed_type": "unremoved_snow",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kam24.ru/news/main/20260121/124684.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "outside_replay",
+        "location_basis": "OSM way 99383130",
+        "uncertainty_notes": "Описание группы домов одним источником. Снег с декабря, неодинаковая уборка, фасад не локализован."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "J21-04",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          158.65116,
+          53.04946
+        ]
+      },
+      "properties": {
+        "evidence_id": "J21-04",
+        "event_id": "january-2026",
+        "time_start": "2026-01-21",
+        "time_end": "2026-01-21",
+        "accuracy_m": 40,
+        "asset_or_road": "Зеркальная, 58",
+        "side_of_building": "unknown",
+        "observed_type": "unremoved_snow",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kam24.ru/news/main/20260121/124684.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "outside_replay",
+        "location_basis": "OSM way 99383153",
+        "uncertainty_notes": "Описание группы домов одним источником. Снег с декабря, неодинаковая уборка, фасад не локализован."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086843",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086843",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://riamediabank.ru/media/9086843.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Занесённые машины. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086833",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086833",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "yes",
+        "evidence_url": "https://riamediabank.ru/media/9086833.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Уборка снега. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086832",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086832",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://riamediabank.ru/media/9086832.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Снегопад. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086827",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086827",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "yes",
+        "evidence_url": "https://riamediabank.ru/media/9086827.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Снегоуборочная машина. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086824",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086824",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://riamediabank.ru/media/9086824.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Снегопад. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086823",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086823",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://riamediabank.ru/media/9086823.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Заваленные подъезды. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086822",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086822",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://riamediabank.ru/media/9086822.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Пешеходы во время снегопада. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086821",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086821",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "yes",
+        "evidence_url": "https://riamediabank.ru/media/9086821.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Откапывают автомобиль. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "RIA-9086820",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "RIA-9086820",
+        "event_id": "january-2026",
+        "time_start": "2026-01-15T00:00+12:00",
+        "time_end": "2026-01-15T23:59+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Петропавловск-Камчатский",
+        "side_of_building": "unknown",
+        "observed_type": "visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://riamediabank.ru/media/9086820.html",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "",
+        "uncertainty_notes": "Снегопад. Карточка в медиабанке от 15 января. Улица, час и масштаб не установлены."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KM-01",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "KM-01",
+        "event_id": "january-2026",
+        "time_start": "2026-01-13T00:00+12:00",
+        "time_end": "2026-01-19T20:08+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Краевой театр драмы и комедии",
+        "side_of_building": "unknown",
+        "observed_type": "snow_scene",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kamchatkamedia.ru/news/2368112/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "Подпись автора фоторепортажа",
+        "uncertainty_notes": "Узнаваемый объект. Нужен точный срок, положение и оценка уборки."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KM-02",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "KM-02",
+        "event_id": "january-2026",
+        "time_start": "2026-01-13T00:00+12:00",
+        "time_end": "2026-01-19T20:08+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Центральная площадь, памятник Ленину",
+        "side_of_building": "unknown",
+        "observed_type": "snow_scene",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kamchatkamedia.ru/news/2368112/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "Подпись автора фоторепортажа",
+        "uncertainty_notes": "Узнаваемый объект. Точный час неизвестен."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KM-03",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "KM-03",
+        "event_id": "january-2026",
+        "time_start": "2026-01-13T00:00+12:00",
+        "time_end": "2026-01-19T20:08+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Городская проезжая часть",
+        "side_of_building": "unknown",
+        "observed_type": "passage_visible",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kamchatkamedia.ru/news/2368112/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "Подпись автора фоторепортажа",
+        "uncertainty_notes": "На фото выгрузка хлеба с дороги. Уборка и точный адрес неизвестны."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "KM-04",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "KM-04",
+        "event_id": "january-2026",
+        "time_start": "2026-01-13T00:00+12:00",
+        "time_end": "2026-01-19T20:08+12:00",
+        "accuracy_m": null,
+        "asset_or_road": "Городской двор",
+        "side_of_building": "unknown",
+        "observed_type": "snow_scene",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "unknown",
+        "evidence_url": "https://kamchatkamedia.ru/news/2368112/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "unknown",
+        "location_basis": "Подпись автора фоторепортажа",
+        "uncertainty_notes": "Двор после пурги. Адрес и время не указаны."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TJ-01",
+      "geometry": null,
+      "properties": {
+        "evidence_id": "TJ-01",
+        "event_id": "january-2026",
+        "time_start": "2026-01-27",
+        "time_end": "2026-01-27",
+        "accuracy_m": null,
+        "asset_or_road": "Городская очищенная дорога",
+        "side_of_building": "unknown",
+        "observed_type": "cleared_visual_candidate",
+        "observed_value": "",
+        "unit": "",
+        "after_plow": "yes",
+        "evidence_url": "https://t-j.ru/kamchatka-v-snegu/",
+        "evidence_grade": "C",
+        "weather_source": "ECMWF IFS / Open-Meteo",
+        "match_status": "outside_replay",
+        "location_basis": "",
+        "uncertainty_notes": "Проезд и парковочные карманы после расчистки. Для контроля до уборки не годится."
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "weather": {
+    "gust_ms": 15.7,
+    "precipitation_mm": 4.5,
+    "snowfall_cm": 3.15,
+    "temperature_c": 1.4,
+    "valid_at": "2025-12-09T09:00:00+12:00",
+    "wind_from_deg": 88,
+    "wind_speed_ms": 7.91,
+    "episode": "december-2025",
+    "source_cell": [
+      158.56332,
+      53.110718
+    ],
+    "weather_sha256": "37fe6038a84adff1fc49fb786b4c80cfa4b5ee2331f33257c7a7e532895c57bc",
+    "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2025-12-07&end_date=2025-12-15",
+    "distance_to_source_m": 8380
+  },
+  "mode": "narrow",
+  "iterations": 360,
+  "grid": [
+    75,
+    76,
+    28
+  ],
+  "cells": 155453,
+  "solid_cells": 4147,
+  "cell_xy_m": [
+    7.959594712054013,
+    7.962931326537542
+  ],
+  "padding_m": 108,
+  "building_footprints_with_horizontal_samples": 80,
+  "core_footprints_with_horizontal_samples": 30,
+  "solver_s": 106.578,
+  "final_initial_residual_by_field": {
+    "Ux": 2.3403313e-05,
+    "Uy": 8.9060286e-06,
+    "Uz": 2.7905516e-05,
+    "p": 0.00062666315,
+    "epsilon": 6.06649e-05,
+    "k": 4.0432579e-05
+  },
+  "continuity_global_last": -2.1955887e-08,
+  "near_ground_vector_change_p95_ms": 6.274685140711727e-05,
+  "near_ground_vector_change_mean_ms": 1.780287617475009e-05,
+  "quarter_ground_cells": 1957
+}

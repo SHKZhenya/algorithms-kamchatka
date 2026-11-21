@@ -1,0 +1,37 @@
+source_id,source_url,document_title,document_date,retrieved_at,source_locator,extraction_method,valid_from,valid_to,verification_status
+osm_mosaic,https://www.openstreetmap.org/copyright,Три замороженных OSM-снимка,2026-11-19,2026-11-19,data/pkc/scale-manifest.json и way/node/relation ID,XML,,,mapped_unverified
+glo30,https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N53_00_E158_00_DEM/Copernicus_DSM_COG_10_N53_00_E158_00_DEM.tif,Copernicus DEM GLO-30 N53 E158,,2026-11-20,GeoTIFF PixelIsPoint и SHA-256 в audit_metrics.json,bilinear,,,derived
+dem_docs,https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM,Copernicus DEM data collection,,2026-11-20,Data description and Licence,manual,,,confirmed_primary
+municipal_1300,https://www.pkgo.ru/upload/iblock/52b/52bfea4921aa08c69c2d591cd5f09474.pdf,Постановление ПКГО № 1300,2013-05-13,2026-11-20,Град Петра и Павла № 18 (374),PDF text,,,historical
+municipal_447,https://www.kamchatka-gov.ru/doc/32040,Постановление администрации ПКГО № 447 исходная редакция,2019-03-15,2026-11-20,Приложение строки 1–33,HTML table,,,published_copy
+traffic_scheme,https://pkgo.ru/upload/medialibrary/d1a/d1a47f280e3871b728a1a70a7508f5b5.pdf,Комплексная схема организации дорожного движения ПКГО,,2026-11-20,§ 2.4.1 и рисунок 2.4.1.1,PDF text,,,confirmed_primary
+regional_2024,https://avtodor41.ru/files/roads,Перечень дорог и схемы Камчатуправтодора,2024-01-01,2026-11-20,Перечень по состоянию на 01.01.2024,official publication,,,confirmed_primary
+regional_faq,https://avtodor41.ru/faqs,Камчатуправтодор Вопрос–ответ,,2026-11-20,Оперативное управление и ограничения осевых нагрузок,official FAQ,,,confirmed_primary
+regional_373,https://base.garant.ru/25979373/f7ee959fd36b5699076b35abf4f52c5c/,Постановление Правительства Камчатского края № 373-П,2009-10-09,2026-11-20,Приложение 2,legal mirror,,,published_copy
+federal_666,https://www.consultant.ru/document/cons_doc_LAW_107089/e45c1ada525c0422217ffeb3dc136fa1605526f0/,Перечень федеральных дорог ПП РФ № 928 в редакции с А-401,2010-11-17,2026-11-20,Строка А-401,legal mirror,,,published_copy
+rules_170,https://www.pkgo.ru/upload/medialibrary/a37/sm1cs86gmv4q2fo7n0isrps8hbsk8dh6.pdf,Правила благоустройства ПКГО № 170-нд редакция 27.06.2025,2025-06-27,2026-11-20,Ст. 25 части 3–19,official PDF copy,,,confirmed_primary
+gost_50597,https://protect.gost.ru/gost/details/d8205ba2-78c2-4ef5-b4d5-2380fb74dce0,ГОСТ Р 50597-2017,2017-09-26,2026-11-20,Карточка Росстандарта и §8,official catalogue,2018-09-01,,confirmed_primary
+gost_explanation,https://rosdornii.ru/forms/faq/,Разъяснение разработчика ГОСТ Р 50597-2017,,2026-11-20,Вопрос о п. 8.1 и сроках снегоочистки,official FAQ,,,confirmed_primary
+gost_text,https://www.admk26.ru/UserFiles/banner/kontrol/2020/GOST%2050597-2017%20tr.pdf,Текст ГОСТ Р 50597-2017,,2026-11-20,Таблицы 8.1–8.4,official-hosted copy,,,published_copy
+road_257,https://mintrans.gov.ru/storage/app/media/epd/0811201.pdf,257-ФЗ об автомобильных дорогах,2007-11-08,2026-11-20,Ст. 5 6 13 15 17 30,official-hosted legal copy,,,published_copy
+housing_188,https://ivo.garant.ru/document/redirect/12138291/10000,Жилищный кодекс РФ,2004-12-29,2026-11-20,Ст. 36 161 162,legal mirror,,,published_copy
+housing_491,https://www.consultant.ru/document/cons_doc_LAW_62293/,Правила содержания общего имущества ПП РФ № 491,2006-08-13,2026-11-20,П. 2 и 11,legal mirror,,,published_copy
+housing_290,https://www.consultant.ru/document/cons_doc_LAW_144804/,Минимальный перечень работ ПП РФ № 290,2013-04-03,2026-11-20,П. 24,legal mirror,,,published_copy
+emergency_5,https://pkgo.ru/upload/iblock/dac/28b72vcxrekecwjle5bo65j9k2gvw69b.pdf,Изменение постановления ПКГО от 15.01.2026 № 5 о ЧС,,2026-11-20,Пункт 1,official PDF,,,confirmed_primary
+court_mishennaya,https://sudact.ru/regular/doc/YqJLOy1XCWm6/,Апелляционное определение по делу 33-787/2026,2026-04-22,2026-11-20,Контракт от 19.12.2024 и пункт 2.5 ТЗ,judgment mirror,,,corroborated
+court_a401,https://www.zakonrf.info/gorsud/doc-3c978f62-f620-5cdd-aeba-e2ae736f5ac4/,Решение по делу 2-2024/2023,2023-05-16,2026-11-20,2018 № 0322100024518000052-80758 раздел 8,judgment mirror,,,corroborated
+kam24_549,https://kam24.ru/news/main/20261116/134230.html,Публикация о 549 проездах,2026-11-16,2026-11-20,Новость,media,,,reported
+aif_549,https://kamchatka.aif.ru/society/v-petropavlovske-obsudili-podgotovku-goroda-k-zime-s-uchetom-novshestv,Коммунальная планёрка и придомовые проезды,2026-11-16,2026-11-20,Новость,media,,,reported
+tv_549,https://kamchatkatv.ru/novosti/obshchestvo/6-obshchestvo/13746-uborku-snega-vo-dvorakh-petropavlovska-perelozhili-na-zhitelej,Сюжет и контакт службы для получения списка,2026-11-16,2026-11-20,Абзац о получении списка,media,,,reported
+eis_0902,https://zakupki.gov.ru/epz/order/notice/ea20/view/common-info.html?regNumber=0138300000426000902,ЕИС извещение о содержании магистралей,2026-11-05,2026-11-20,Карточка ЕИС ограничена в доступе,URL only,,,unknown
+notice_0902,https://www.b2b-center.ru/search/number/l0138300000426000902-1/,Извещение 0138300000426000902,2026-11-05,2026-11-20,Заголовок и срок заявок,notice index,,,reported
+notice_0903,https://zakupki.kontur.ru/0138300000426000903,Извещение 0138300000426000903,2026-11-05,2026-11-20,Район Северо-Восток,notice index,,,reported
+notice_0911,https://zakupki.kontur.ru/0138300000426000911,Извещение 0138300000426000911,2026-11-06,2026-11-20,Заголовок и срок заявок,notice index,,,reported
+notice_0917,https://zakupki.kontur.ru/0138300000426000917,Извещение 0138300000426000917,2026-11-10,2026-11-20,Районы Центр-ДОФ-Садовая и СРВ-ЖБФ-Завойко,notice index,,,reported
+notice_0856,https://zakupki.kontur.ru/0138300000426000856,Извещение 0138300000426000856,2026-10-21,2026-11-20,Описание территории магистралей,notice index,,,reported
+project_tz,,Техническое задание реконструкции зимней модели,2026-11-20,2026-11-20,Раздел 7 и часть V,user input,,,assumed
+scenario,,Воспроизводимая постановка snowops/pilot.py,2026-11-20,2026-11-20,Сценарий W и постановки G0–G3,generated,,,assumed
+court_0951,https://reputation.su/sudrf/400646668,Решение по делу 12-276/2026,2026-06-09,2026-11-20,Контракт 0138300000425000951 и п. 5.1.10 / прил. 15,judgment mirror,,,corroborated
+index_0951,https://www.tenderguru.ru/contract_na_zakupku/97671411,Индекс подписанного контракта к закупке 0138300000425000951,2026-09-07,2026-11-20,Подрядчик и позиции зимнего содержания,contract index,,,reported
+city_procurement_2025,https://pkgo.ru/upload/iblock/8b5/p6u1hj67jq0l3gmnzgfcf3d49mu4qd9f.pdf,Отчёт Управления организации муниципальных закупок за 2025 год,,2026-11-20,С. 19 агрегат по магистральным дорогам,official PDF,,,confirmed_primary
+court_0951_primary_url,https://p-kamchatsky.kam.sudrf.ru/modules.php?case_id=167493923&case_uid=7506f9ca-c6de-4784-a5ea-2104eddad09b&delo_id=1502001&name=sud_delo&name_op=case&srv_num=1,Карточка дела № 12-276/2026 на сайте суда,,2026-11-20,Ссылка из копии дела; обращение завершилось тайм-аутом,URL only,,,unknown

@@ -1,0 +1,9 @@
+organization_id,name,inn,type,public_contact,activity_scope,source_id,verification_status
+city,Администрация Петропавловск-Камчатского городского округа,,municipal,https://pkgo.ru/,Городской округ,municipal_447,confirmed_primary
+city_duma,Городская Дума Петропавловск-Камчатского городского округа,,municipal_legislative,https://pkgo.ru/,Правила благоустройства,rules_170,confirmed_primary
+city_roads,МКУ «Служба автомобильных дорог Петропавловск-Камчатского городского округа»,4101143436,municipal_institution,+7 (4152) 25-18-00 (по сообщению ГТРК),Муниципальное содержание; подтверждение контракта по объекту отдельно,notice_0917,corroborated
+region_roads,КГКУ «Управление автомобильных дорог Камчатского края»,,regional_institution,priemnaya_avtodor41@mtd.kamgov.ru,Региональные и межмуниципальные дороги оперативного управления,regional_faq,confirmed_primary
+federal_dsd,ФКУ ДСД «Дальний Восток»,,federal_institution,,А-401 в материалах дела за 2018–2023 годы,court_a401,corroborated
+sdrs,МУП «Спецдорремстрой»,,contractor,,Исторический подряд на магистралях ПКГО,court_mishennaya,corroborated
+uir,ООО «УИР»,,contractor,,Историческое содержание А-401,court_a401,corroborated
+teplovodhoz,ООО «Тепловодхоз»,,contractor,,Индекс контракта 0138300000425000951,index_0951,reported

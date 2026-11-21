@@ -1,0 +1,94 @@
+{
+  "registry": {
+    "source": "OSM local snapshots + user CSV",
+    "revision": "3e6d95d534996e23ce5e",
+    "roads": 5914,
+    "by_mode": {
+      "vehicle": 4335,
+      "pedestrian": 1579
+    },
+    "components": 86,
+    "components_without_street": 81,
+    "incomplete_ways": 0,
+    "objects": {
+      "bus_stop": 257,
+      "medical": 68,
+      "entrance": 1349
+    },
+    "buildings": 13914,
+    "buildings_with_mapped_entrance": 497,
+    "entrances_without_building": 63,
+    "csv": {
+      "imported": 0,
+      "matched_osm_id": 144,
+      "invalid": 0
+    },
+    "limitations": [
+      "Нет полевой проверки проходов и допуска спецтехники",
+      "Ближайшая линия не доказывает доступ",
+      "Отсутствующие входы и связи не синтезируются",
+      "Дата актуальности пользовательского CSV неизвестна"
+    ],
+    "registry_objects": {
+      "bus_stop": 257,
+      "medical": 68,
+      "entrance": 1349,
+      "facility": 72
+    },
+    "buildings_without_mapped_entrance": 13417,
+    "csv_import": {},
+    "entrance_csv_sha256": null,
+    "fabricated_connections": 0,
+    "city_census_complete": false,
+    "entrance_enrichment": {
+      "relinked_real_entrances": 1
+    },
+    "candidate_entrances": 1423,
+    "candidate_method": "pedestrian_endpoints_preferred_then_service_driveway_endpoints",
+    "candidates_counted_as_real": false
+  },
+  "widths": {
+    "revision": "3e6d95d534996e23ce5e",
+    "ways": 5914,
+    "width_counts": {
+      "estimated": 509,
+      "unknown": 5364,
+      "mapped_not_surveyed": 41
+    },
+    "length_m_by_width_status": {
+      "estimated": 111074.44993652451,
+      "unknown": 806921.9667633784,
+      "mapped_not_surveyed": 4347.664795603632
+    },
+    "constraint_tag_counts": {
+      "lanes": 510,
+      "width": 42,
+      "incline": 276,
+      "maxheight": 4
+    },
+    "surveyed_widths": 0,
+    "limitations": [
+      "Lane estimates and building gaps cannot certify passage",
+      "No imagery width inferred without licensed calibrated segmentation"
+    ]
+  },
+  "facades": 13910,
+  "labelled_buildings": 480,
+  "metrics": {
+    "model": {
+      "top1_hit": 0.5270833333333333,
+      "top2_recall": 0.785625,
+      "top2_wall_fraction": 0.675045234875743
+    },
+    "nearest_footway": {
+      "top1_hit": 0.4479166666666667,
+      "top2_recall": 0.5775600961538461,
+      "top2_wall_fraction": 0.4654602418561634
+    },
+    "longest_facade": {
+      "top1_hit": 0.4895833333333333,
+      "top2_recall": 0.7965625000000001,
+      "top2_wall_fraction": 0.6764824296505341
+    }
+  }
+}

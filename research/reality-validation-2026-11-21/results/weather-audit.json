@@ -1,0 +1,507 @@
+{
+  "inventory": [
+    {
+      "event": "march",
+      "model": "ecmwf_ifs",
+      "response_count": 6,
+      "hours": 96,
+      "reported_cells_lat_lon": [
+        [
+          53.04042,
+          158.77359
+        ],
+        [
+          53.110718,
+          158.56332
+        ],
+        [
+          53.110718,
+          158.73346
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 576,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    },
+    {
+      "event": "march",
+      "model": "era5_seamless",
+      "response_count": 6,
+      "hours": 96,
+      "reported_cells_lat_lon": [
+        [
+          53.0,
+          158.80002
+        ],
+        [
+          53.100006,
+          158.6
+        ],
+        [
+          53.100006,
+          158.70001
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 0,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    },
+    {
+      "event": "december",
+      "model": "ecmwf_ifs",
+      "response_count": 6,
+      "hours": 216,
+      "reported_cells_lat_lon": [
+        [
+          53.04042,
+          158.77359
+        ],
+        [
+          53.110718,
+          158.56332
+        ],
+        [
+          53.110718,
+          158.73346
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 0,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    },
+    {
+      "event": "december",
+      "model": "era5_seamless",
+      "response_count": 6,
+      "hours": 216,
+      "reported_cells_lat_lon": [
+        [
+          53.0,
+          158.80002
+        ],
+        [
+          53.100006,
+          158.6
+        ],
+        [
+          53.100006,
+          158.70001
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 0,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    },
+    {
+      "event": "january",
+      "model": "ecmwf_ifs",
+      "response_count": 6,
+      "hours": 144,
+      "reported_cells_lat_lon": [
+        [
+          53.04042,
+          158.77359
+        ],
+        [
+          53.110718,
+          158.56332
+        ],
+        [
+          53.110718,
+          158.73346
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 0,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    },
+    {
+      "event": "january",
+      "model": "era5_seamless",
+      "response_count": 6,
+      "hours": 144,
+      "reported_cells_lat_lon": [
+        [
+          53.0,
+          158.80002
+        ],
+        [
+          53.100006,
+          158.6
+        ],
+        [
+          53.100006,
+          158.70001
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 0,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    },
+    {
+      "event": "january",
+      "model": "era5",
+      "response_count": 1,
+      "hours": 144,
+      "reported_cells_lat_lon": [
+        [
+          53.0,
+          158.75
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 144,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    },
+    {
+      "event": "january",
+      "model": "era5_land",
+      "response_count": 6,
+      "hours": 144,
+      "reported_cells_lat_lon": [
+        [
+          53.0,
+          158.80002
+        ],
+        [
+          53.100006,
+          158.6
+        ],
+        [
+          53.100006,
+          158.70001
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 0,
+        "snowfall": 864,
+        "precipitation": 864,
+        "temperature_2m": 0,
+        "wind_speed_10m": 864,
+        "wind_direction_10m": 864,
+        "wind_gusts_10m": 864
+      }
+    },
+    {
+      "event": "control",
+      "model": "ecmwf_ifs",
+      "response_count": 4,
+      "hours": 72,
+      "reported_cells_lat_lon": [
+        [
+          53.04042,
+          158.77359
+        ],
+        [
+          53.110718,
+          158.56332
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 0,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    },
+    {
+      "event": "control",
+      "model": "era5_seamless",
+      "response_count": 4,
+      "hours": 72,
+      "reported_cells_lat_lon": [
+        [
+          53.0,
+          158.80002
+        ],
+        [
+          53.100006,
+          158.6
+        ],
+        [
+          53.100006,
+          158.70001
+        ]
+      ],
+      "units": {
+        "time": "iso8601",
+        "snowfall": "cm",
+        "precipitation": "mm",
+        "snow_depth": "m",
+        "wind_speed_10m": "m/s",
+        "wind_direction_10m": "\u00b0",
+        "wind_gusts_10m": "m/s",
+        "temperature_2m": "\u00b0C"
+      },
+      "missing_request_hours": {
+        "snow_depth": 0,
+        "snowfall": 0,
+        "precipitation": 0,
+        "temperature_2m": 0,
+        "wind_speed_10m": 0,
+        "wind_direction_10m": 0,
+        "wind_gusts_10m": 0
+      }
+    }
+  ],
+  "january_origin_check": {
+    "snow_depth": {
+      "era5": {
+        "paired": 0,
+        "exact": 0
+      },
+      "era5_land": {
+        "paired": 864,
+        "exact": 864
+      },
+      "ecmwf_ifs": {
+        "paired": 864,
+        "exact": 0
+      }
+    },
+    "snowfall": {
+      "era5": {
+        "paired": 144,
+        "exact": 144
+      },
+      "era5_land": {
+        "paired": 0,
+        "exact": 0
+      },
+      "ecmwf_ifs": {
+        "paired": 864,
+        "exact": 204
+      }
+    },
+    "precipitation": {
+      "era5": {
+        "paired": 144,
+        "exact": 144
+      },
+      "era5_land": {
+        "paired": 0,
+        "exact": 0
+      },
+      "ecmwf_ifs": {
+        "paired": 864,
+        "exact": 200
+      }
+    },
+    "temperature_2m": {
+      "era5": {
+        "paired": 144,
+        "exact": 0
+      },
+      "era5_land": {
+        "paired": 864,
+        "exact": 864
+      },
+      "ecmwf_ifs": {
+        "paired": 864,
+        "exact": 20
+      }
+    },
+    "wind_speed_10m": {
+      "era5": {
+        "paired": 144,
+        "exact": 144
+      },
+      "era5_land": {
+        "paired": 0,
+        "exact": 0
+      },
+      "ecmwf_ifs": {
+        "paired": 864,
+        "exact": 2
+      }
+    },
+    "wind_direction_10m": {
+      "era5": {
+        "paired": 144,
+        "exact": 144
+      },
+      "era5_land": {
+        "paired": 0,
+        "exact": 0
+      },
+      "ecmwf_ifs": {
+        "paired": 864,
+        "exact": 31
+      }
+    },
+    "wind_gusts_10m": {
+      "era5": {
+        "paired": 144,
+        "exact": 144
+      },
+      "era5_land": {
+        "paired": 0,
+        "exact": 0
+      },
+      "ecmwf_ifs": {
+        "paired": 864,
+        "exact": 7
+      }
+    }
+  },
+  "quiet_control": [
+    {
+      "selection": "six hours lexicographic min max snowfall, precipitation, wind; joint paired requests",
+      "common_requests": [
+        2,
+        3
+      ],
+      "rank_tuple": [
+        0.0,
+        0.0,
+        2.63,
+        "2026-01-09T00:00",
+        "2026-01-09T05:00"
+      ]
+    }
+  ],
+  "ifs_raw_sha256": {
+    "january-ecmwf_ifs.json": "9eb8cc55887ce57d7c71be567ed4d7cc99c7d0e0a311f8b826bf0f28c827fd61",
+    "december-ecmwf_ifs.json": "37fe6038a84adff1fc49fb786b4c80cfa4b5ee2331f33257c7a7e532895c57bc",
+    "control-ecmwf_ifs-3.json": "4eb6561af7c8e22d84b5b9769ea45618de388be8c153c7c2b21c21e06923fa06",
+    "control-ecmwf_ifs-2.json": "01a34b802c1b577463365c961d3fbae80248441b952ea5e46a4f886710fc2664",
+    "control-ecmwf_ifs-5.json": "c6b46e08c6d85872df4fb89e983b281e089a0f3b980530ac644126519cf62dfe",
+    "march-ecmwf_ifs.json": "eb3316e31ff51802c017c8843da4da8a0172e1015c555e483c3a7a4db6e57c19",
+    "control-ecmwf_ifs-4.json": "907a5ef7188271a65131f4020a596a02f8b619b81567d8244a1f366aac15d6f7"
+  }
+}

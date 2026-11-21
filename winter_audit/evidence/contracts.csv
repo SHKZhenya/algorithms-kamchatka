@@ -1,0 +1,4 @@
+contract_key,procurement_id,contract_id,customer_id,executor_id,signed_on,effective_from,effective_to_inclusive,territory_id,subject,source_id,verification_status,status_at_2026_11_20,amount_rub
+hist_mishennaya,,,city_roads,sdrs,2024-12-19,2025-01-01,2025-03-31,territory_mishennaya,Зимнее содержание магистралей включая улицу Мишенную,court_mishennaya,corroborated,historical,
+hist_a401,0322100024518000052,0322100024518000052-80758,federal_dsd,uir,2018-06-25,,,territory_a401,Содержание А-401 на км 0–38,court_a401,corroborated,historical_reference,
+candidate_0951,0138300000425000951,0138300000425000951,city_roads,teplovodhoz,2026-01-03,2026-01-03,2028-11-30,territory_0951,Содержание магистральных автомобильных дорог и элементов ПКГО включая зимние операции,court_0951,corroborated,current_status_and_annex_unverified,1161786423.60

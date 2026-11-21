@@ -1,0 +1,1227 @@
+[
+  {
+    "path": "AGENTS.md",
+    "bytes": 1122,
+    "sha256": "1518dcfe7f248142976a88aad4c098601580ed8ef0d079f7ad558b2b6fded83f"
+  },
+  {
+    "path": "AGENT_HANDOFF.md",
+    "bytes": 5110,
+    "sha256": "65c442a4c08fa16e0b8744cead8a2a86cde1f59e6da30bec6fa2bdb26bb93d3d"
+  },
+  {
+    "path": "DATA_REQUIREMENTS.md",
+    "bytes": 8459,
+    "sha256": "5d4f39674a10e2b58a9c92a60d693b79eda7cc6c925f798f75535a974530499d"
+  },
+  {
+    "path": "Dockerfile.city-sim",
+    "bytes": 1601,
+    "sha256": "43b9d0a054d1b839e1e6c8abaee4425ec2df8e78deaa3f8ef7e2a302be7091b3"
+  },
+  {
+    "path": "EXPERIMENT_PROTOCOL.md",
+    "bytes": 9723,
+    "sha256": "0f7601d27f36c111c25ad75ccc10ad52aa8a1619162d33b6df57bb2c93a99fde"
+  },
+  {
+    "path": "GIT_INSTRUCTIONS.md",
+    "bytes": 2897,
+    "sha256": "6580efcffcdea646436911689a47e60974b6cf47176433634cb59192177ca609"
+  },
+  {
+    "path": "INTEGRATION_CONTRACT.md",
+    "bytes": 5884,
+    "sha256": "f03a3e296cfe6b7cc450eb0677ff4d6f28e6d1b942ee40544f7a68da9127fc3f"
+  },
+  {
+    "path": "MATHEMATICAL_MODEL.md",
+    "bytes": 11115,
+    "sha256": "f18a3e35b1053421d1206800b1e15d2c5705f248abc711747dcd5ba7bf42e64d"
+  },
+  {
+    "path": "README_CITY_SIM.md",
+    "bytes": 16601,
+    "sha256": "9fdf48f5740adc3c34fa18244fd5428eaf77de79d627c9eac35e4b096cbe4ac5"
+  },
+  {
+    "path": "RESEARCH_QUESTION.md",
+    "bytes": 4448,
+    "sha256": "77b9fee60a1dbfb15b7cb745aee9e5b70d16efcd3e424de2cbe1b78546a4cb48"
+  },
+  {
+    "path": "RESEARCH_REFERENCES.md",
+    "bytes": 4118,
+    "sha256": "2cc4967cf33e78b9c5e0561237b3883569af1416d4669b1effde4a9b604e9b9e"
+  },
+  {
+    "path": "SAFETY_AND_CAPACITY.md",
+    "bytes": 6768,
+    "sha256": "50cdfcc219573a330de3f6efa88ffe2f4f73eb82efa73e11748c4b0073eb9db9"
+  },
+  {
+    "path": "city_sim/access.py",
+    "bytes": 18480,
+    "sha256": "df6b638ecf47afd65ce71fe43f9b85cf945dfd7360de39e40d95a85cd53dfd6a"
+  },
+  {
+    "path": "city_sim/api.py",
+    "bytes": 20335,
+    "sha256": "0499d93e817d86b7284ef2155b4b68ec9f1004f3bc00ecf49ce8a5aed3691a1f"
+  },
+  {
+    "path": "city_sim/coverage_diagnostics.py",
+    "bytes": 4767,
+    "sha256": "79aa022da6a6c5728eb686b3f6b3f7ceeca8d23495b29a01ece2220c33477f45"
+  },
+  {
+    "path": "city_sim/data/access-supplement.osm.gz",
+    "bytes": 35845,
+    "sha256": "439ec09fae22c57b21741050e907345330fb8b95549d2f6eadc7559ceae34940"
+  },
+  {
+    "path": "city_sim/data/access-supplement.osm.source.json",
+    "bytes": 20092,
+    "sha256": "a972a9ff5ab8983d50ddf191540e711810b12a1692819f05b73339a93879caba"
+  },
+  {
+    "path": "city_sim/data/pkc_bus_stops.csv",
+    "bytes": 10069,
+    "sha256": "545f1b2374d7a9bc909eb96f518b7ea060daef22b2655fbaf4a871af6d1a8cbf"
+  },
+  {
+    "path": "city_sim/data/procurement-0903/appendices.json",
+    "bytes": 18448,
+    "sha256": "7aad8f2e013431f1ebcb1272fef7d9a0ee5f898b74293dfebdb2bd97b2477f44"
+  },
+  {
+    "path": "city_sim/data/procurement-0903/estimate-analysis.json",
+    "bytes": 6955,
+    "sha256": "63b88b7055dc478c70c9684e0d7e224ed8dac1ed6a2b5481de9a61eb47325c1a"
+  },
+  {
+    "path": "city_sim/data/procurement-0903/extraction-audit.json",
+    "bytes": 1808,
+    "sha256": "3717bfb4c262f431674460f50ce8441745ede0afd341e878ba26669aa554dc37"
+  },
+  {
+    "path": "city_sim/data/procurement-0903/objects.json",
+    "bytes": 273688,
+    "sha256": "91d870cad6a046764a6ec6f47f94df7e47c655263fb6c2527aa94a0814ca5224"
+  },
+  {
+    "path": "city_sim/data/procurement-0903/route-anchor-audit.json",
+    "bytes": 115120,
+    "sha256": "323a3218b64dac4c57eb2eb1a90d783d02e1051351ce6820933d5d297e2206f3"
+  },
+  {
+    "path": "city_sim/data/procurement-0903/route-hypotheses.geojson",
+    "bytes": 361584,
+    "sha256": "6313fa04d181e33c2b465fbf7c95ff2db8931f7468cae369abf0c6a1c8164455"
+  },
+  {
+    "path": "city_sim/data/procurement-0903/works.json",
+    "bytes": 1564438,
+    "sha256": "172ea64d9bb76b0dbc42fb4aa1924eaa3c6e614a80b2663772c1a4966fcb8b43"
+  },
+  {
+    "path": "city_sim/data/snow-engine-lock.json",
+    "bytes": 1782,
+    "sha256": "64f4aa015371633ea3ab4fbeeb7845846b19141892fa4609b4ec8db1846d2516"
+  },
+  {
+    "path": "city_sim/download_road_sources.py",
+    "bytes": 7845,
+    "sha256": "c75e6887d944179be3a6d1b93b1979d49780fd70a1bce427b3bdd44557c8f321"
+  },
+  {
+    "path": "city_sim/dynamic_api.py",
+    "bytes": 9408,
+    "sha256": "92c5c80ed2b2c4621ff51aaeb671d72ef3e5c11f1c7b46ca6efde6a1ff3737a2"
+  },
+  {
+    "path": "city_sim/dynamic_schema.py",
+    "bytes": 5783,
+    "sha256": "51696aaeccc7a3bce2bc0b3bd27edb9f69ab69e195bcd779f00d2a9f3414e09f"
+  },
+  {
+    "path": "city_sim/dynamic_store.py",
+    "bytes": 12694,
+    "sha256": "fbc5b27dcbba4d7930654aa2c35deee84cb661d1d16f14564e1f1de71ba8fb32"
+  },
+  {
+    "path": "city_sim/entrance_enrichment.py",
+    "bytes": 8401,
+    "sha256": "ee5e2a998389fca02588a4a20cb36b8c2c8ce71925f972da3ac5411cbdd5df0b"
+  },
+  {
+    "path": "city_sim/entrance_reviews.py",
+    "bytes": 2927,
+    "sha256": "8041e051a87d673605c5b1cd3fab30426f186f3dbd1cba4b53a6be2fa801bd3c"
+  },
+  {
+    "path": "city_sim/equipment_access.py",
+    "bytes": 24997,
+    "sha256": "f4b71010accf865bc9a95f0e9c5433c29f1095d4232f86192f77e2576b74bb1f"
+  },
+  {
+    "path": "city_sim/facade_access_experiment.py",
+    "bytes": 17921,
+    "sha256": "c1bfc6b8639cecc3f97841809de588a5d4625fdb597bb1c02b3b6de457e01e8f"
+  },
+  {
+    "path": "city_sim/facade_inference.py",
+    "bytes": 11886,
+    "sha256": "d6f4709b8c9723786427ecefa8e1293387f76d5adb528e3ed2bf614ca1d58a6a"
+  },
+  {
+    "path": "city_sim/geodata.py",
+    "bytes": 15353,
+    "sha256": "e90127ac878a1f7ec94a36b1b493f334a00ba05dcff0f9c6b0ece1354ae57ea3"
+  },
+  {
+    "path": "city_sim/import_road_sources.py",
+    "bytes": 6461,
+    "sha256": "715e2c606c358004abfeb7d07cb838ae95a84ceeb868e4ea3b9c6d174603530f"
+  },
+  {
+    "path": "city_sim/mobility_api.py",
+    "bytes": 4427,
+    "sha256": "8d5d3b2c30caf25f10d2f22675a6ad30feae653e674d78a46e38c05a06037bb1"
+  },
+  {
+    "path": "city_sim/object_api.py",
+    "bytes": 7636,
+    "sha256": "12a232e0652269d5dffd91eddb4575762d7483789a46b830b6668a4a3c4b6a0d"
+  },
+  {
+    "path": "city_sim/object_assessment.py",
+    "bytes": 12067,
+    "sha256": "a6fdd38455a278e425c330ac4a2b5d88ab08f51ab7f2518b8b9e1230207f5bb4"
+  },
+  {
+    "path": "city_sim/object_links.py",
+    "bytes": 1812,
+    "sha256": "25b0815a97550396371485ae9ecb6e9cdc709542bab005bf4a0628b84da91c35"
+  },
+  {
+    "path": "city_sim/object_registry.py",
+    "bytes": 15212,
+    "sha256": "8e50dd4cea6de07129a0f4455b084a33a5f0b480220336718366901a2c3469c7"
+  },
+  {
+    "path": "city_sim/prepare_access_sources.py",
+    "bytes": 3603,
+    "sha256": "25dd6bed46e55d06acc836dc178a3a65f2a7b6bbf4f6456828ed96fa7d2e0bf4"
+  },
+  {
+    "path": "city_sim/procurement.py",
+    "bytes": 16403,
+    "sha256": "7a1555e3547378822b9ad9cd2d6eee08423635d9d77a17d6f05963e19525e4a6"
+  },
+  {
+    "path": "city_sim/reproduce_dynamic_backend.py",
+    "bytes": 11834,
+    "sha256": "74512c5a304457c9a8c07d0bf48339c56997b4ffd7bad90227b36407a9f31702"
+  },
+  {
+    "path": "city_sim/reproduce_mobility_backend.py",
+    "bytes": 11173,
+    "sha256": "b2846d108aebbe0d3e8c10fe9fd1c47ff38095eb3d0f069761dce11aff173c28"
+  },
+  {
+    "path": "city_sim/reproduce_object_backend.py",
+    "bytes": 7081,
+    "sha256": "9f958ffaedaedb40d46d171a7f5b13f0237847d0f0fb05de0d8694ff08b331aa"
+  },
+  {
+    "path": "city_sim/reproduce_operations.py",
+    "bytes": 6666,
+    "sha256": "3f7437a0e6e1520bcc46ff2359458a90ed7f70603c882c461fef86bc3b5a6106"
+  },
+  {
+    "path": "city_sim/reproduce_procurement.py",
+    "bytes": 10275,
+    "sha256": "6f7af528e34a97036c6b2132d2cbcdd5dbef7a59017dc4a08a49315497e5d6e7"
+  },
+  {
+    "path": "city_sim/road_evidence.py",
+    "bytes": 23298,
+    "sha256": "be8f3fcc637cb76b294bb167d3adcd2807320209352967aa8484a1d88e444d0f"
+  },
+  {
+    "path": "city_sim/snow_domain.py",
+    "bytes": 4423,
+    "sha256": "d3c66e0875f55d835edb11ce348958f1107dfc6ee12ccb25d8d594fbb6bddbc4"
+  },
+  {
+    "path": "city_sim/snow_state.py",
+    "bytes": 12192,
+    "sha256": "469ef03544a687846995ed5e0b78d6c13c18bfb6529d4aaae5c31d3a5995ba56"
+  },
+  {
+    "path": "city_sim/spatial.py",
+    "bytes": 6255,
+    "sha256": "0dfc01d6ffb0c4c5550a92d570e951bd82e86bf841b771cc43c8062bbdf94353"
+  },
+  {
+    "path": "city_sim/tests/test_access.py",
+    "bytes": 5712,
+    "sha256": "c5c0dc221ee9c2f7b9aaef8031330abcac0f3430c0868ecd0b88019e137d6cc8"
+  },
+  {
+    "path": "city_sim/tests/test_dynamic_snow.py",
+    "bytes": 11334,
+    "sha256": "ec221338e5362fd5a91f95c977363ee37c270d414390adfc43d1db7d003ee73f"
+  },
+  {
+    "path": "city_sim/tests/test_mobility_backend.py",
+    "bytes": 12770,
+    "sha256": "fc4be7ed6a698e5b43d8d17402d187bc92cdebac72b86924af66fb268f1c82ee"
+  },
+  {
+    "path": "city_sim/tests/test_object_backend.py",
+    "bytes": 10139,
+    "sha256": "41aa90d3685c239b3640b020bb481b19e788263df030ca02247f689dbf10a683"
+  },
+  {
+    "path": "city_sim/tests/test_procurement.py",
+    "bytes": 2913,
+    "sha256": "ad761e2a3951975b54388009e7b3d92ff80171430a70037f0bab22fbf6387fa1"
+  },
+  {
+    "path": "city_sim/tests/test_road_sources.py",
+    "bytes": 8481,
+    "sha256": "9af7ae88168c9fff0b2372791a602d7c8a82a7ffc01fc3dc85c3e85264018664"
+  },
+  {
+    "path": "city_sim/verify_dynamic_backend.py",
+    "bytes": 7616,
+    "sha256": "422ddc29ab1d38ee02f8833d33e6baeca8aec8fb14b8359ed381b35773e4e6c6"
+  },
+  {
+    "path": "city_sim/verify_mobility_backend.py",
+    "bytes": 3579,
+    "sha256": "9009d730f81360f00951b1847ceaf4b986c00424a25079fa3978a9030e9fb3c3"
+  },
+  {
+    "path": "city_sim/verify_procurement.py",
+    "bytes": 2347,
+    "sha256": "31022b0a66233eac67b213c5a2b843127d7be8575f2edbcb87a33da00ff3485e"
+  },
+  {
+    "path": "docs/ADR-001-solver-choice.md",
+    "bytes": 2524,
+    "sha256": "66b032ac7697d2810f4b0d172b15f3a85fa4bc2375423d8577e0c8bec55db0b2"
+  },
+  {
+    "path": "docs/ARCHITECTURE.md",
+    "bytes": 3145,
+    "sha256": "d4faa3abb699525dd8a0536b58d5e5387b30c4e692eb7285cd1a69d7737fb1b0"
+  },
+  {
+    "path": "docs/ASSUMPTIONS.md",
+    "bytes": 2096,
+    "sha256": "6f0be3847879915edc67b0282d18347e01d6d74bb512f7075e64c87a0d9c1aa7"
+  },
+  {
+    "path": "docs/BACKEND_PLAN_2026-11-22.md",
+    "bytes": 2432,
+    "sha256": "8ce72065d7826c95c28043c82c8cebdf0bfb0e4391e2c405486ba51250fc493d"
+  },
+  {
+    "path": "docs/CITY_SIM_AGENT_TZ.md",
+    "bytes": 10709,
+    "sha256": "9c4f08f5003cfd83882502edc68473d65a8e8a912c6fec35fd8a37c645100687"
+  },
+  {
+    "path": "docs/CITY_SIM_OPERATIONS_VALIDATION.md",
+    "bytes": 12711,
+    "sha256": "6a0fb9cc36816c21d3d27e72ed3a2ca1168a7873d8dd60e4ae51d462bc9d45ee"
+  },
+  {
+    "path": "docs/DECISION_LOG.md",
+    "bytes": 1991,
+    "sha256": "11f29941f91f49f15afa9d51c1d60f4f8ac0d2009a2351676b012524c03923b1"
+  },
+  {
+    "path": "docs/DOMAIN_MODEL.md",
+    "bytes": 3614,
+    "sha256": "e09a4742bc7590e042ef70547d698806454967e4a958dbc07fdf616643d985b7"
+  },
+  {
+    "path": "docs/DYNAMIC_BACKEND_PLAN_2026-11-22.md",
+    "bytes": 3508,
+    "sha256": "3b672ff5f21fe80ba872fa9aeb0aef577f0509904c9a70b8ea6f60d735d0c809"
+  },
+  {
+    "path": "docs/DYNAMIC_SNOW_API.md",
+    "bytes": 17986,
+    "sha256": "b5223a6021c271c5ef8be2946521d3c16750a06fc9b8ed32fae0ebad980709c7"
+  },
+  {
+    "path": "docs/EXPERIMENT_REPORT.md",
+    "bytes": 5110,
+    "sha256": "8d2a4ee5094ae2aa9580265d128e9dde0a620bf3c499b6ef0231cc7ddbccdadd"
+  },
+  {
+    "path": "docs/KAMCHATKA_KNOWLEDGE_BASE.md",
+    "bytes": 169645,
+    "sha256": "8a75aef56cc93a932c5f1cfeade3d08ec1f16e24fc2908cc2a69a66722ec38c0"
+  },
+  {
+    "path": "docs/KAMCHATKA_REALITY_VALIDATION_PLAN_v3_2026-11-21.md",
+    "bytes": 54928,
+    "sha256": "e0a08897f4afa376bb9c15f6ad30e831fde1f5c96a0ba0389ff2cfff877f6c33"
+  },
+  {
+    "path": "docs/MOBILITY_BACKEND_API.md",
+    "bytes": 12581,
+    "sha256": "319d5f6d08e2a4c20218bad16f28d0c97c529f2b45eb619bd0f2ca1290660af5"
+  },
+  {
+    "path": "docs/OBJECT_BACKEND_API.md",
+    "bytes": 13176,
+    "sha256": "730ca97cf932adce4ec7c71bcb9911413a5509ae565398ce0b1c79eb8d65cfd3"
+  },
+  {
+    "path": "docs/PROCUREMENT_0903_API.md",
+    "bytes": 6222,
+    "sha256": "d31827c85121be3986602ed81877adaf43383b8330749c13c64143744cf37222"
+  },
+  {
+    "path": "docs/REMOTE_API_GUIDE.md",
+    "bytes": 14810,
+    "sha256": "d653f96dd9928d0888e19fa6a38c5bdabd8f8c29869a71515c60d3835e048dcb"
+  },
+  {
+    "path": "docs/ROAD_SOURCE_RESEARCH_API.md",
+    "bytes": 10247,
+    "sha256": "946fc4e999ace5da99936fcf7e06aa2add5c327bb7f969933a890d036f3fb97c"
+  },
+  {
+    "path": "docs/ROUTING_PILOT_NOTES.md",
+    "bytes": 4053,
+    "sha256": "d081ff11be294beb0a143511e025784cdc59d79091a4ee30ce5af1a4936754da"
+  },
+  {
+    "path": "docs/SCALE_AND_SLA_REPORT.md",
+    "bytes": 18319,
+    "sha256": "cbfc35bb2085cf61a226feb7b527f5065ea1a34eb8a7d92cd7781a2523289d63"
+  },
+  {
+    "path": "docs/SOLVER_BENCHMARK.md",
+    "bytes": 7352,
+    "sha256": "15bdc9a036dbe94bda3e5a9639cb7dacfa47cd1464ce11813c2e448c9ad9cb44"
+  },
+  {
+    "path": "docs/THIRD_PARTY_LICENSES.md",
+    "bytes": 1786,
+    "sha256": "a3db4577b1d8f62ed5b994a0fd990aa894caa0c924753aa9a61d5833196038eb"
+  },
+  {
+    "path": "docs/data_gap_register.csv",
+    "bytes": 901,
+    "sha256": "be88e1ff7c30417ac25d2f306c07633188518748258fba20a0debc52a9b94166"
+  },
+  {
+    "path": "docs/ui-rework/AUDIT.md",
+    "bytes": 4182,
+    "sha256": "c02f39f083b0fcb879cf3ffbfcc48d92de46a66333f10f48937ddfe6f0056af4"
+  },
+  {
+    "path": "prototype/README.md",
+    "bytes": 6510,
+    "sha256": "be03c6ff97727a0e0f1106f3ecf78df083d278a8a069ed666bb21cad69e0922a"
+  },
+  {
+    "path": "prototype/results/forecast_mae.csv",
+    "bytes": 11079,
+    "sha256": "e73ae5cdbd1d7e278b9368e134acce22eb51fd1c5f251e4d8ee6126efed17670"
+  },
+  {
+    "path": "prototype/results/metrics.csv",
+    "bytes": 8365,
+    "sha256": "18fe8a2a6d8e22e5d7f069396d0ab3ca68e0eb6fca365fc9da5d9c5f096d65de"
+  },
+  {
+    "path": "prototype/simulate.py",
+    "bytes": 12559,
+    "sha256": "39767b01bee380142c3113c8b4f022bfeae130f398fdda1eac11df81044c2d3e"
+  },
+  {
+    "path": "prototype/test_simulate.py",
+    "bytes": 1633,
+    "sha256": "bb05a76b7d2985e3293f9c617ebd781e45862f54726dd7907ab099fee60b4e4c"
+  },
+  {
+    "path": "requirements-city-sim.txt",
+    "bytes": 145,
+    "sha256": "0448a93350fb8793223c0eb49a26c30b7c3d2c9cbbd986091c0bbb244a9454bc"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/REPORT.md",
+    "bytes": 19431,
+    "sha256": "c1fa3e10e440d4e8f9c950cec55aef717bcc79dc48238b74e69f110dc696d5f1"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/buildings.geojson",
+    "bytes": 4082,
+    "sha256": "44b54e61904de1dbc7c1885fea496c9b5c3857efab8984a1e769468b7e069b87"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/check_addresses.py",
+    "bytes": 12817,
+    "sha256": "d8f64de20dc765edad51deb4309ce06807fca8f98f19443af5240ca1e494b0a1"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/comparison.csv",
+    "bytes": 28775,
+    "sha256": "2c264841de7eedd7eff02728ccdaf1226e3d66299147df7162f4780097b8d818"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/fetch_weather.py",
+    "bytes": 1231,
+    "sha256": "8963af13b6ba11648377adeaf477f949d76ffecdaa4c0f6c401ffa78b0c8d0c5"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/plot_results.py",
+    "bytes": 3099,
+    "sha256": "8a5ae959c4bf007781e595336fa6ab1b45c9fd31433eb5149cc7f96ca3cd85ae"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/run.json",
+    "bytes": 80612,
+    "sha256": "0bc5f4edd2098f4405bf70098457330779a9e1ceec86d351910662df816882ac"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/samples.csv",
+    "bytes": 123270,
+    "sha256": "566f908b02064137aace8ac7c00285ea842a11aca8a49b508309bdf9d295f762"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/verification.json",
+    "bytes": 577,
+    "sha256": "90d530ddb82106981899c2f0a8ca254a7fa0c50ed7f7d92b0b430ffce50a32ac"
+  },
+  {
+    "path": "research/address-snow-2026-11-22/verify_outputs.py",
+    "bytes": 3615,
+    "sha256": "e04b1fef7d7e5027fce431f8c9b1e6e80c86fc6937ad8e3eab60202a88d5bd91"
+  },
+  {
+    "path": "research/browser-geodata-2026-11-22/DOWNLOADS.md",
+    "bytes": 506,
+    "sha256": "b21d991e1f864b33127f1236d5e7f0736a75dfede1b8d129819101a6b70ddf4e"
+  },
+  {
+    "path": "research/browser-geodata-2026-11-22/OFFICIAL_REQUEST.md",
+    "bytes": 1681,
+    "sha256": "b706bc94ebc8792fc8dd06a0ce72eb56f7f9b237b2e65d0f3ad49dd9b1369b38"
+  },
+  {
+    "path": "research/browser-geodata-2026-11-22/REPORT.md",
+    "bytes": 12100,
+    "sha256": "a9042ed9ad760733bf72009f43eeb1c1116141bcdd5e3422d86747720180b5d4"
+  },
+  {
+    "path": "research/browser-geodata-2026-11-22/sources.csv",
+    "bytes": 3187,
+    "sha256": "7b544de0763169f599dba08bfeb591128e9d846c1030796519f27d90b8356835"
+  },
+  {
+    "path": "research/dynamic-backend-2026-11-22/REPORT.md",
+    "bytes": 27002,
+    "sha256": "b926035190f36f161dccefef919aa92cf68ab5ed978ca1e9b4c061b36ffe2720"
+  },
+  {
+    "path": "research/dynamic-backend-2026-11-22/manifest.json",
+    "bytes": 528,
+    "sha256": "c6abe2535002488356a5bdbad7c7a6a2814287645d005f1e91663ee9f30c2761"
+  },
+  {
+    "path": "research/dynamic-backend-2026-11-22/results.json",
+    "bytes": 131647,
+    "sha256": "c0e19a75573a5981fd2544e61a1d41af70ed8d00e6ffa36bc6c4ad787d71a35d"
+  },
+  {
+    "path": "research/dynamic-backend-2026-11-22/sources.json",
+    "bytes": 45458,
+    "sha256": "93882cc72f9298ecfd4351c5efc0d9aa650ff6efb67bf5380fcc9d2326e5c37e"
+  },
+  {
+    "path": "research/dynamic-backend-2026-11-22/tests.json",
+    "bytes": 258,
+    "sha256": "fd64b63621ab82867b61b887a2b3b4d77563b244074cfe65e042625ab929407b"
+  },
+  {
+    "path": "research/dynamic-backend-2026-11-22/verification.json",
+    "bytes": 4940,
+    "sha256": "52efdd83825aa2499ded35c05fb31389a0e1f285d2bf57115098e1871f44cd97"
+  },
+  {
+    "path": "research/geodata-accessibility-2026-11-22/FACADE_REPORT.md",
+    "bytes": 14146,
+    "sha256": "34b6c66a86f9e5ce8726609dc93a37f5e5edb98ec9831a081b0f6379414e54a1"
+  },
+  {
+    "path": "research/geodata-accessibility-2026-11-22/REPORT.md",
+    "bytes": 2358,
+    "sha256": "cd073b0f24b443b18b03e362844cb0cdf8f20c9062b1486ff5f746abd3d9ce18"
+  },
+  {
+    "path": "research/geodata-accessibility-2026-11-22/SOURCE_REPORT.md",
+    "bytes": 23345,
+    "sha256": "d5f406c37feb01c504e8368f981741d02dbd76e4281efab275d26fbf41d3ba50"
+  },
+  {
+    "path": "research/geodata-accessibility-2026-11-22/build_evidence.py",
+    "bytes": 7636,
+    "sha256": "11fdca69b37369c78001b673c37687010bbef0683a5c39623d2f8bff79084ec1"
+  },
+  {
+    "path": "research/geodata-accessibility-2026-11-22/source-ledger.json",
+    "bytes": 6110,
+    "sha256": "6ad3505bfca90f8972ca8965933a10e20048fa02bacbe51954a5a4d89af42c7d"
+  },
+  {
+    "path": "research/geodata-accessibility-2026-11-22/source-results.json",
+    "bytes": 10603,
+    "sha256": "7f43c35b0448d2657f79fb87d9fa34b3678c201374c9fe6b18f5931791de9bbc"
+  },
+  {
+    "path": "research/geodata-accessibility-2026-11-22/test-results.txt",
+    "bytes": 291,
+    "sha256": "5a394d2d89c893dc75f22128e4bcf73f60e4b6acdfa774262d2aaed3dda73455"
+  },
+  {
+    "path": "research/geodata-accessibility-2026-11-22/verification.json",
+    "bytes": 1460,
+    "sha256": "9e5b216f37a5a49964b597df382051c50c4ea014c598fa7b04142d310c185e9f"
+  },
+  {
+    "path": "research/mobility-backend-2026-11-22/REPORT.md",
+    "bytes": 19880,
+    "sha256": "08ce5f821061f3ca7d1149d842c009763879661b10ce88f9649598bfcde1027b"
+  },
+  {
+    "path": "research/mobility-backend-2026-11-22/facade-validation.json",
+    "bytes": 494450,
+    "sha256": "0577fdc0beb06d9396c45c1f82803d9da92670b07113710cda5955771f31f4f8"
+  },
+  {
+    "path": "research/mobility-backend-2026-11-22/inventory-summary.json",
+    "bytes": 2687,
+    "sha256": "da9ee07392f1894aff355a6ce89733f759d84c0cf4282463f87758f0638dc27c"
+  },
+  {
+    "path": "research/mobility-backend-2026-11-22/results.json",
+    "bytes": 510034,
+    "sha256": "e078b7236d090766473827046decb34ea57968527e7a52521a601c0d8e9408d8"
+  },
+  {
+    "path": "research/mobility-backend-2026-11-22/test-results.txt",
+    "bytes": 284,
+    "sha256": "21d061548dc78adc8fa6a5b18a5ea5ef7c4a0990890d07abb2638cee21d92643"
+  },
+  {
+    "path": "research/mobility-backend-2026-11-22/verification.json",
+    "bytes": 2566,
+    "sha256": "8fb9c16cb27d025c7bb2c24396cf91c2122233598a286d96c2b0fc102ea9e4f4"
+  },
+  {
+    "path": "research/object-backend-2026-11-22/REPORT.md",
+    "bytes": 14023,
+    "sha256": "cbebb7f6259e8b8e69ed7260bd8338cbebf2bb832e25f6a8fc05faff20a10679"
+  },
+  {
+    "path": "research/object-backend-2026-11-22/results.json",
+    "bytes": 53098,
+    "sha256": "82ec2d252700fbd898beb9d28425d0b7c2e423101aa8f45e411b5a5d3b695a6a"
+  },
+  {
+    "path": "research/object-backend-2026-11-22/ui-rollback-verification.json",
+    "bytes": 3536,
+    "sha256": "83ac32b5a1e697f07d6ef21a9b06c77fa4b7b722331cb0f1ce0db804e32b1f42"
+  },
+  {
+    "path": "research/object-backend-2026-11-22/verification.json",
+    "bytes": 1049,
+    "sha256": "dfed178e536189eb5c55d561aaaa276e2644e98041cb920eda422336b80b9ffb"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/REPORT.md",
+    "bytes": 28036,
+    "sha256": "8cace1e4746f260bbd32a9cd25655f6d7b5c14255534c8fc3c8371844c1cf3bf"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/analyze_estimates.py",
+    "bytes": 4256,
+    "sha256": "7042611578e6766a98ebbf2e9a22e4d74299d096615f5294b75f09342a8fede4"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/artifact-manifest.json",
+    "bytes": 894,
+    "sha256": "7cb322ea68bc318aad7e2ebf80381a321bb7432300f16bdb00f54bce92eaf37a"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/extract_archive.py",
+    "bytes": 6267,
+    "sha256": "4dd9b211263b7977aeb049fe06ab0b12183e6bae00b21000df3d9d2698c34e18"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/objects.csv",
+    "bytes": 42360,
+    "sha256": "52a5460e08f644f22e451a9b7022f74febecb0af52b9e0091c461b14f6223e4e"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/requirements.json",
+    "bytes": 95035,
+    "sha256": "6e0ae6c30e4b5e5045d54471d03a9f06b7fa34094a21d6b554115b5b33d68661"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/test-results.txt",
+    "bytes": 181,
+    "sha256": "79869d1ae6ae224e75fc14315b75b718946cd0c70b91ab86419afafa358fd618"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/verification.json",
+    "bytes": 866,
+    "sha256": "e06c9520957c74cfdcf9753f78418b4acb73ae9063fe851f12becdf28875592b"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/works.csv",
+    "bytes": 441712,
+    "sha256": "e320cfde0a016ca06b3359994f41a30dfd1c5369fb38c1339719659df6440ccd"
+  },
+  {
+    "path": "research/procurement-0903-2026-11-22/write_report.py",
+    "bytes": 25596,
+    "sha256": "9f58d9ddc5035d4f789a22e37c85e2d48d6efe588d6e7a0bcd5b3276c3bf1120"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/REPORT.md",
+    "bytes": 22142,
+    "sha256": "96690803c885f419c0b49c10b4be89bec3f776963d085f55313a5872a6d7f52a"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/compare_quarter.py",
+    "bytes": 11505,
+    "sha256": "67058bfc0b844fe0f0aa9774b3e5597506a97df025ed4d2509ff3b2e3c9e9f4b"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/compare_snow_station.py",
+    "bytes": 13213,
+    "sha256": "3514d354bf70c874f110a3554a73a967e7e760b2b02fa850684ae5f001f39b05"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/fetch_observations.py",
+    "bytes": 3575,
+    "sha256": "7d0ad4281430bdf99598aee4b7fb67183dae54e40b151330f85b4b0a59c1d9a6"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/manifest.json",
+    "bytes": 12142,
+    "sha256": "9d7078f5faacdc554d2f1244e106d21fc14237efd9f70ea6a2b9422a814e0735"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/plot_quarter.py",
+    "bytes": 4312,
+    "sha256": "8e0b088ecdeb2c77c31151f47cf3b88ae5238217a79db69f8c17c275bde5174f"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/prepare.py",
+    "bytes": 4817,
+    "sha256": "80bd6767460965c668c3f6e6df0961ed5ed149c3f892b15ea7883a929bb7227b"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/comparison.csv",
+    "bytes": 1105,
+    "sha256": "3fd84a7d2c05c2eddd7c1e11c432ee9716671c5745cd51d3664b734b5446f80a"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/comparison.json",
+    "bytes": 16924,
+    "sha256": "20913b40b9a2e82eff646213977ea18c69b300efd3c03fa57434f3d59255fe30"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/dec-snow-coarse/summary.json",
+    "bytes": 1565,
+    "sha256": "d67b43ac148172318006f0c952a92f9ac116aaecdcf709fae892d3c177877765"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/dec-snow-fine/summary.json",
+    "bytes": 1562,
+    "sha256": "9830b732ceea895e18ed91a72b84971b7e65318849959920d0c75790c64f9653"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/dec-snow-flat/summary.json",
+    "bytes": 1560,
+    "sha256": "92b2035314536a6514b88901b8329ac1cd309da918154e80d158a21760dd25ec"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/dec-snow-narrow/summary.json",
+    "bytes": 1583,
+    "sha256": "dcf61f9a52ea002f4aa96f1e4c7dc8fc614cf42fd1d446c8c375b53f2adb2465"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/dec-snow-no-buildings/summary.json",
+    "bytes": 1566,
+    "sha256": "ae2d5540f1ec5da61353b123ecdefada54c8bd13618e3c18f3c21e81fd156fc6"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/dec-west-dry-coarse/summary.json",
+    "bytes": 1561,
+    "sha256": "7c714053368ed34cc692b7425f552da19731b53f2cf365bef601540b792104a9"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/jan-calm-coarse/summary.json",
+    "bytes": 1562,
+    "sha256": "04b9d09a7d8596ecea71f78fc5727655ce1b0e40dec2cd108f38e081431f87bb"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/jan-snow-coarse/summary.json",
+    "bytes": 1564,
+    "sha256": "5f6c0f69f2ba523e47efed7fa8dc618a9ec06f5d57e0724da88deebe799c1a06"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/mar-strong-coarse/summary.json",
+    "bytes": 1561,
+    "sha256": "6c770aa1c26df24bec2ddaa48ceb2ca49598c3a1232b8c434151b28dc1635a79"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/photo-4-2-context.json",
+    "bytes": 1153,
+    "sha256": "8e6c5872fe0b91af704a0b0116b18f8629c640d38b1b63b91b9547fee4ca75f3"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/quarter-vs-station-wind.csv",
+    "bytes": 651,
+    "sha256": "20c23eaa22276e262a5e32c4915b40b65c648de8313a0316097378ec8d5c9367"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/station-snow-context.csv",
+    "bytes": 6395,
+    "sha256": "85c74af7530f75728cb0cdff199ae428ba2b646b33062e29e0e87dda51944335"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/station-synop-decoded.csv",
+    "bytes": 32510,
+    "sha256": "0446f46a8794f62e8c3c01f63cc07b338908e4e6a8fe608ccb1a03c6b2ec113a"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/results/station-weather-pairs.csv",
+    "bytes": 13495,
+    "sha256": "6f36e588829ec8c847b400c065aa7df1251b911fb1db2d182310e2d2a5f378ef"
+  },
+  {
+    "path": "research/quarter-cfd-2026-11-21/run_cfd.py",
+    "bytes": 10052,
+    "sha256": "4e4f5c941a67f058aec0d8de3347288f2b0d2f3c9d8df480837fb0de4c613b99"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/REPORT.md",
+    "bytes": 25489,
+    "sha256": "a6540317031c60e2a38c75e7fba00293e0efb065a717f361a420a5960ae3dfe2"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/collect_evidence.py",
+    "bytes": 12096,
+    "sha256": "fdab654901b71511e58dc3f73b31c3bd4c4c2d2876838617dbe16755974f0578"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/compare_station.py",
+    "bytes": 3357,
+    "sha256": "73d983cf38738b2b79eb1458323fdac00bed79a6e99d7e7b52368fc1fa1476de"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/fetch.py",
+    "bytes": 3489,
+    "sha256": "a596c3aad63c466a358b779d2476f29c83b86015b20ded6f27872130ff9f0a20"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/manifest.json",
+    "bytes": 6491,
+    "sha256": "162107ac714b79258fe2cf9b9869d4bcf8cb15d729d4470b6ebb5b7caa50dbef"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/match_replays.py",
+    "bytes": 8857,
+    "sha256": "d501c07c9944076e630c87b9192778b3f0893a9461a9478272c7532302937393"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/recover_sources.py",
+    "bytes": 2423,
+    "sha256": "3bc978b1f7cc03a1850fcc7f91ca2ce47946b8583e4651e9c993d4f317a0bca9"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/replay_audit.py",
+    "bytes": 9408,
+    "sha256": "8331786c98fc5312939ec18ab1cd2a28ec25ca32900b892e6a0ff97bc3cdc5a8"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/ablation.json",
+    "bytes": 10557,
+    "sha256": "87165b80911fc85d81772bd7dad8307e5a3bc88130bf236b31b77dfb37a20feb"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/annotation-template.csv",
+    "bytes": 395,
+    "sha256": "e55bd4aaad091fea3d01d2991374e1bb2e340f24d18f52a4abb95d300d0c83ee"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/archived-frames.csv",
+    "bytes": 6113,
+    "sha256": "d3c403016a655aedeabb1c99bf74c61c1ee17b7cd0a48905d8a81c111bae77f2"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/december-top20-screen.csv",
+    "bytes": 2375,
+    "sha256": "712a2e71b490a0566132f01362e22a67ccb5016c9be12cadf67bd4238554cff0"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/observation-matches.csv",
+    "bytes": 6668,
+    "sha256": "18ffaefb5c722f266d41b18d50228d3f60197415b5527d8cbbb5dfdf7376fa65"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/observations.csv",
+    "bytes": 14927,
+    "sha256": "883db10df648c0aa3ebee4a9213440a70cfa98c03859bbc8cae76af18aa079f6"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/observations.geojson",
+    "bytes": 36582,
+    "sha256": "3707fb98d9fd82655f8f11e1e207bd1db17a846f486c24ea35b64ce8ed97698f"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/station-32540-pairs.csv",
+    "bytes": 144949,
+    "sha256": "62c9b88b664f51e3a6b3f1f307aeefa0516198f7571da8b99eb5000b6e3e0fa5"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/station-32540-summary.json",
+    "bytes": 3091,
+    "sha256": "ce9846dfe01c86aa756f4ac999ea34d0d51dea29e1369ddc719168c5b205bc84"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/weather-audit.json",
+    "bytes": 11136,
+    "sha256": "a2a12d583d51c684343f1ec5d0feb4aafd50220d05b72c7f3b17e0e59d856a1f"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/weather-comparison.csv",
+    "bytes": 15978,
+    "sha256": "322a69b6bb556b01b371ee1a17f792ed118b5d83ec5c7bad93c01461ce65b2f7"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/results/weather-hourly.csv",
+    "bytes": 793274,
+    "sha256": "352b0a8e3811f593c6429ab94489f7489033a5958797c3f971b36fd79ef2afe7"
+  },
+  {
+    "path": "research/reality-validation-2026-11-21/weather_audit.py",
+    "bytes": 7099,
+    "sha256": "cc9a791667338db07f86d77a9c46fe169c9e3993fd00c81e151dfb91fbdcd394"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/REPORT.md",
+    "bytes": 16089,
+    "sha256": "223ecdc9fedf4ea337ad57fc49b5b8a8f50720c4b2ce6d0784af0908a87a7dbb"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/build_cards.py",
+    "bytes": 16108,
+    "sha256": "9e45884a773dca99071f73df3601585ed2e47b8989c1d436309b1422c067366c"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/cases.json",
+    "bytes": 15242,
+    "sha256": "c9bcbb962272b8afd06678333039ad6cd51e3fe29ef9e64cff9e66587babd834"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/focused/REPORT.md",
+    "bytes": 27162,
+    "sha256": "3fdf3ca02779dcd0a0af4d84b66349647dd4cc64a0fa0903cb0d5fd9ba34bba5"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/focused/check_cases.py",
+    "bytes": 13965,
+    "sha256": "5faa49f7ebd6d0b72333aec2ffe8b7dcff404ae9dce053fab8988dd1a8feaeff"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/focused/samples.json",
+    "bytes": 65911,
+    "sha256": "b8be0e5c6d024566f44150b693afd13783bc8ccb46833bb46c20f764216c33ef"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/model_samples.json",
+    "bytes": 20394,
+    "sha256": "9bc855ea13df01f0e9d0db2fc80456a938114e586928fe4a838847cda9b6680b"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/plot_facade.py",
+    "bytes": 2256,
+    "sha256": "4ba1b05672e1508b47270e1d8e27a3041413eb8a80dc952d5d3d573fc0bc44ea"
+  },
+  {
+    "path": "research/visual-snow-2026-11-21/sample_models.py",
+    "bytes": 7463,
+    "sha256": "f20646bc6ea2fd79c3899cf35e67763ac38c32138435c2d3a2a52235ecfffebc"
+  },
+  {
+    "path": "winter_audit/README.md",
+    "bytes": 2821,
+    "sha256": "f4341c0e61feaba1d17268c10877fb7aca85965e6adab143d6fec8d43e371777"
+  },
+  {
+    "path": "winter_audit/access.py",
+    "bytes": 11545,
+    "sha256": "164e732fea1c3ff79ad6959628f975c3d5e376ed12d6f42243f5405f6681027d"
+  },
+  {
+    "path": "winter_audit/build.py",
+    "bytes": 16892,
+    "sha256": "5e59fdfdf6fb0a61f886b9bf42d109e412e6cfd44c6390b87296ad8f619cffff"
+  },
+  {
+    "path": "winter_audit/contract_scope.py",
+    "bytes": 29758,
+    "sha256": "cbcfc4ff8fdad7ae41e80c99917397ae00188442d88ef2a7c976452e59972111"
+  },
+  {
+    "path": "winter_audit/docs/549_PASSAGES_REPORT.md",
+    "bytes": 2812,
+    "sha256": "5e9dc47549dc34d6f8e82d87d80aff7b3b60ee59456949cf2312ec7277f1fa34"
+  },
+  {
+    "path": "winter_audit/docs/CONTRACTS_AUDIT.md",
+    "bytes": 5125,
+    "sha256": "2b4a12c9863a6daa9a1e71d4ce677d2dc5fbc54a8cd8388cd461bc3d2ec960af"
+  },
+  {
+    "path": "winter_audit/docs/CONTRACT_SCOPE_0831_0902.md",
+    "bytes": 14985,
+    "sha256": "f1bf836fd1a858a5bbb25889870486f3bc41dcd0ab18bf744171cee0cec49394"
+  },
+  {
+    "path": "winter_audit/docs/DATA_ATTRIBUTION.md",
+    "bytes": 860,
+    "sha256": "e9391df4f029de419f428374bb472f38b2e551a3a694aee0ce580168590c017a"
+  },
+  {
+    "path": "winter_audit/docs/GRAPH_AUDIT.md",
+    "bytes": 9609,
+    "sha256": "14e175ac87415d43f38a2e8fcefcecc5dafdcdf5366092632ed236dea00d1b2e"
+  },
+  {
+    "path": "winter_audit/docs/INTEGRATION_GUIDE.md",
+    "bytes": 5205,
+    "sha256": "104e7d35124586b1cb9c82e5e723bc8593ebfdeb05fddacc9eef562551441330"
+  },
+  {
+    "path": "winter_audit/docs/KNOWN_LIMITATIONS.md",
+    "bytes": 2656,
+    "sha256": "2b8cf283c00de4182810fe0ff1f09851294e7f6559b75a628eecdfd73d201116"
+  },
+  {
+    "path": "winter_audit/docs/LEGAL_AND_NORMATIVE_RESEARCH.md",
+    "bytes": 4552,
+    "sha256": "5772ca2753f66be711b6bdc63e2c330361307788458c1114d66fca132fb10da6"
+  },
+  {
+    "path": "winter_audit/docs/RELIEF_AUDIT.md",
+    "bytes": 4310,
+    "sha256": "2ef42ad6e3b6d810cf1683df324d9ba3bef8dac432359e1279eee33a8d567659"
+  },
+  {
+    "path": "winter_audit/docs/REQUESTS_TO_AUTHORITIES.md",
+    "bytes": 4882,
+    "sha256": "448a9526ae11d1410682a362971701870622244da53cd5e4b1fb6e04dac70ac2"
+  },
+  {
+    "path": "winter_audit/docs/RESPONSIBILITY_REPORT.md",
+    "bytes": 4469,
+    "sha256": "d13495093501af169e61cdc8ebaed95d154726e305e6ec056835672dd6925300"
+  },
+  {
+    "path": "winter_audit/docs/ROAD_RESPONSIBILITY_EVIDENCE.md",
+    "bytes": 12087,
+    "sha256": "972f4bf38b9e203eb245821c652a8e2319623b61d5e181911671437ca74b2958"
+  },
+  {
+    "path": "winter_audit/docs/ROAD_RESTRICTIONS.md",
+    "bytes": 2647,
+    "sha256": "e85aaee16c32826ed7d30eebc8c88320abe13a1cf0d3f878a88bc2d1538b5a41"
+  },
+  {
+    "path": "winter_audit/docs/SOURCE_REGISTRY.md",
+    "bytes": 2673,
+    "sha256": "f49d2155b65b00e88489f9b4eed5bf796a39d999a53a6d62b25361fbd6447b87"
+  },
+  {
+    "path": "winter_audit/docs/VEHICLE_CAPABILITIES.md",
+    "bytes": 2086,
+    "sha256": "8ceb2b3e155e09898fd29ae915a95fb7816f5f473b2eef622efa390956ed9bfb"
+  },
+  {
+    "path": "winter_audit/docs/Документы для подтверждения объектов 0831.txt",
+    "bytes": 2645,
+    "sha256": "84873e9386f9162985ba7305a0bc21910bb327a3b64d6fc9cf505142cc988cd6"
+  },
+  {
+    "path": "winter_audit/docs/Критичные недостающие данные.txt",
+    "bytes": 3906,
+    "sha256": "3ba40292a4451b4f8aec6c7d1fb1786d0a27d83a3d16b0d8402ac647c53627a6"
+  },
+  {
+    "path": "winter_audit/evidence/contract_scope/catalog.json",
+    "bytes": 11080,
+    "sha256": "2278cfa03236b6455767f64e2a6244c556ca4cda59e60430d6ae15a8015bd720"
+  },
+  {
+    "path": "winter_audit/evidence/contract_scope/industry.osm.gz",
+    "bytes": 400420,
+    "sha256": "d396a7768feadb073319faedf3cf1c4879aeb246525abec1bd7909c0bf982717"
+  },
+  {
+    "path": "winter_audit/evidence/contract_scope/nonwinter_operations.json",
+    "bytes": 3501,
+    "sha256": "fc4bfc4bce0b6d2b5a4f0b2f124fdaaba725f7c3007bb8b65bf5ff74df571553"
+  },
+  {
+    "path": "winter_audit/evidence/contract_scope/osm_reference_manifest.json",
+    "bytes": 1164,
+    "sha256": "dd5ef1f4e8d7506f309dbbfdc941a4e8de322e0790b9004310ae0b1de62de11b"
+  },
+  {
+    "path": "winter_audit/evidence/contract_scope/south.osm.gz",
+    "bytes": 488028,
+    "sha256": "3ce4cdbe096f58bc157336e8abc159ddbc333bb8feb2da5ce512a98d852f3aec"
+  },
+  {
+    "path": "winter_audit/evidence/contract_scope/southeast.osm.gz",
+    "bytes": 451151,
+    "sha256": "11edb8d6901362cb2c015cd63ce27f104cca65d697b05bde96c7449a4937d25c"
+  },
+  {
+    "path": "winter_audit/evidence/contract_scope/winter_operations.json",
+    "bytes": 4311,
+    "sha256": "a1418e2a8544070abe3b9e782fe9fba2a5f4e1e59be39ade8d67efa0e187f47a"
+  },
+  {
+    "path": "winter_audit/evidence/contract_territories.csv",
+    "bytes": 506,
+    "sha256": "ea1ecab94aaf780fc37139ce7f0647b7d30f353d091055538403b4046d5d17e1"
+  },
+  {
+    "path": "winter_audit/evidence/contracts.csv",
+    "bytes": 978,
+    "sha256": "3e2fece173b6b1c7ff5b4b43fb6eb628d5ab3a7f4b189c4b6720c9ddb50fc414"
+  },
+  {
+    "path": "winter_audit/evidence/maintenance_obligations.csv",
+    "bytes": 756,
+    "sha256": "a96ea2d13e1230419ec75879ac585715f39097cc8588f3ce87bc168ff2f06355"
+  },
+  {
+    "path": "winter_audit/evidence/municipal_roads_447.csv",
+    "bytes": 3876,
+    "sha256": "8bc6f673015e5a164f107c52aa528702a021d56ff91f06a58fb584615f609fbb"
+  },
+  {
+    "path": "winter_audit/evidence/organization_roles.csv",
+    "bytes": 1664,
+    "sha256": "2856b34af443c03c2f1a9b7f31da00a566c838dde07926b585634eb24faac75f"
+  },
+  {
+    "path": "winter_audit/evidence/organizations.csv",
+    "bytes": 1835,
+    "sha256": "7aa337a71400f72a649739b3ff4d2206802e504b417532d98a6ea982f0d4b195"
+  },
+  {
+    "path": "winter_audit/evidence/passages_549_search.csv",
+    "bytes": 1006,
+    "sha256": "0cfee350a22fb2f72ad9fb939af6bf040b7b495c4c7ee91e967b117bca0fc22d"
+  },
+  {
+    "path": "winter_audit/evidence/procurement_leads.csv",
+    "bytes": 812,
+    "sha256": "6436c0e94ba0865fbd8cf9c36b5e7c7c990dbb002134f879d9488494621c834e"
+  },
+  {
+    "path": "winter_audit/evidence/regional_roads_2024.csv",
+    "bytes": 9194,
+    "sha256": "df9c914a8b74857c97ba0a66d5a5efa05d19441faf9ccb3bd2b3fdc1a8230452"
+  },
+  {
+    "path": "winter_audit/evidence/responsibility_assignments.csv",
+    "bytes": 1182,
+    "sha256": "6baf3e0e5e74fdf603738905129b86579f0eaa726acf8725cbbf422c21adbd6c"
+  },
+  {
+    "path": "winter_audit/evidence/service_requirements.csv",
+    "bytes": 2170,
+    "sha256": "f898dcc4c6ff84c6bcb7313d5bbf29e87fa04909d726f70edfbceee760255b44"
+  },
+  {
+    "path": "winter_audit/evidence/sources.csv",
+    "bytes": 8540,
+    "sha256": "ca3b2b1d5e96281f635ecd0203956c795e1d19fc9d62c6ce67c35d7c313fe9a1"
+  },
+  {
+    "path": "winter_audit/experiment.py",
+    "bytes": 6677,
+    "sha256": "571f4e57c3285bd48fb227bd09ea71d961cd8182a22198fe3ef4ec6c23a561a7"
+  },
+  {
+    "path": "winter_audit/field_experiment.py",
+    "bytes": 9067,
+    "sha256": "8fdf20f9da319d0bac83189e2f7c56330a7c493605b1f9de21f96b903b07149b"
+  },
+  {
+    "path": "winter_audit/maps.py",
+    "bytes": 4744,
+    "sha256": "13ee7e27f54a935247069a2601895ebf7b9b58c0f955250e9fa21ef6df27bf71"
+  },
+  {
+    "path": "winter_audit/network.py",
+    "bytes": 10384,
+    "sha256": "ec932427868af3ea513c8c19a10d429ad82ec8811aac4b5e2b676eadd5961069"
+  },
+  {
+    "path": "winter_audit/output/cases/README.md",
+    "bytes": 3590,
+    "sha256": "513e8de3a87bb8a8c4647465f914ab4d0b56ef102ccf5625a5923526c450ab72"
+  },
+  {
+    "path": "winter_audit/output/experiments/experiment_report.md",
+    "bytes": 3319,
+    "sha256": "3a967c767d7f9e8ad4cf04949f12996a4464782773b4772efd69259e3879a931"
+  },
+  {
+    "path": "winter_audit/requirements.txt",
+    "bytes": 34,
+    "sha256": "7cff145a959603fae1ac9b81fe13547cc7f6a12a9e4ea99a75a281cf6a90bd36"
+  },
+  {
+    "path": "winter_audit/responsibility_map.html",
+    "bytes": 8354,
+    "sha256": "33a5c1eb8b5dd1302f96da7825e0ab2d44d34d209da02305911c382d532d1ffe"
+  },
+  {
+    "path": "winter_audit/test_access.py",
+    "bytes": 3192,
+    "sha256": "31d007feae2c6c30afb0cc431aa9d4465ff29aaed0200321e85562f50ecbe76c"
+  },
+  {
+    "path": "winter_audit/test_contract_scope.py",
+    "bytes": 4465,
+    "sha256": "9b02c92bea5deaf834f766ecc43250e6d6de6c474a3ad3371b19c6e4fb06bd79"
+  },
+  {
+    "path": "winter_audit/verify.py",
+    "bytes": 4308,
+    "sha256": "05eb3aa4bed3c0a439892a5b3992082a4a4b3a8eaed6db35eac24ddd25eab630"
+  }
+]

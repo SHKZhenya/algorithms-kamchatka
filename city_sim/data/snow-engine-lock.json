@@ -1,5 +1,5 @@
 {
-  "commit": "367282af2b5e728f6cdd94c148065c4cec892cfd",
+  "commit": "087118ff9119eaa211fa19e89251b73f232406da",
   "sha256": {
     "kernels/h15-a0.json": "9ec9e77ea813e16902d1289e5df01afd49b7a01665dc28f2f917840232354160",
     "kernels/h15-a30.json": "9e4b7e62195f4d2fa26bc5f15c4fffe2e0d1eb32ded06c7aaae76358c17275eb",
@@ -13,10 +13,11 @@
     "kernels/h6-a30.json": "d00e6f98fce1d8c7975ace19a637a6f063c5b9ff69a3bdc515650f5ad26f68d1",
     "kernels/h6-a60.json": "eb7b16afe8cbf6de73551df3a2e8c1f6ba4370eee6b1d75af6b568ff3435cbd1",
     "kernels/h6-a90.json": "dde26c3f53c7095a99048ce2df90efd171e11c174ea092b794116ef74404f0bd",
-    "snowmap/api.py": "b9508ed4e895b823c3b7c731fb2175ca787ff84bc774a925a9b6a2fd001072a7",
+    "snowmap/api.py": "e1fd37022507dfb69b908efee054c6030821a39bbd695a2b616536792e5bb7dd",
     "snowmap/city_cache.py": "210111e2aa3e20bcd268e387b2e53923b7ec2409803a82a75f2cda17fba4cc3b",
-    "snowmap/foam.py": "2277e821e4c532ffafb81c9816f797def28c07539ca40eaa5ec3b1cbb8c58b7e",
-    "snowmap/model.py": "620749471db73e4c349fb83d0b2f7a8b8f5f84543b4df83b27fae6dcd01feb9f",
-    "snowmap/sources.py": "603122c2df6c7eeb6842e5622a4e8edae5cf6f149949dac9ba197f587ccf0e8f"
+    "snowmap/foam.py": "1b6ea230939a1b3795299bc89c8d171cd90addfccd46379e170ea533a1f118b2",
+    "snowmap/model.py": "792dec4570e630c654a81948ddca48e2283dbe528e1cd2b648ebc3bbd8137acd",
+    "snowmap/sources.py": "603122c2df6c7eeb6842e5622a4e8edae5cf6f149949dac9ba197f587ccf0e8f",
+    "snowmap/tile_foam.py": "801b1431416c0bff626bbf0d4eb292e2392195866cb181d105f6e2e174ffbc71"
   }
 }

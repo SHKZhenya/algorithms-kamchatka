@@ -1,0 +1,9 @@
+role_id,organization_id,office_or_unit,function,scope,source_id,status
+r1,city_duma,Городская Дума,adopt_municipal_rules,Городской округ,rules_170,confirmed_primary
+r2,city,Глава городского округа,approve_municipal_road_list,2019 редакция,municipal_447,published_copy
+r3,city,Заместитель главы / начальник экономического развития и имущественных отношений,monitor_act_execution,П. 5 постановления № 447 в исходной редакции,municipal_447,published_copy
+r4,city_roads,МКУ как муниципальный заказчик,contract_and_work_order,Извещение 0917 и исторический контракт на Мишенной,notice_0917,corroborated
+r5,region_roads,Отдел планирования бюджетного финансирования организации и сопровождения закупок,procurement_support,Дороги учреждения,regional_2024,confirmed_primary
+r6,region_roads,Отдел ремонта содержания и сохранности автомобильных дорог,maintenance_department,Дороги учреждения,regional_2024,confirmed_primary
+r7,region_roads,Диспетчерская,dispatcher_contact,Дороги учреждения,regional_2024,confirmed_primary
+r8,city,Полномочия по оперативной переброске техники между организациями,resource_transfer,Состав полномочий и замещения запрошен,project_tz,unknown

@@ -1,0 +1,323 @@
+{
+  "date": "2026-11-22",
+  "city_revision": "3e6d95d534996e23ce5e",
+  "canonical_osm_ways": 5914,
+  "city_intersecting_osm_ways": 5861,
+  "city_clipped_osm_length_m": 888129.7918931119,
+  "city_boundary": {
+    "osm_id": "relation/4139922",
+    "bounds": [
+      158.5219917,
+      52.8850294,
+      158.9875423,
+      53.1263189
+    ],
+    "status": "conditional_OSM_place_boundary_not_official_survey"
+  },
+  "overture": {
+    "downloaded_bbox_records": 8730,
+    "intersecting_city_records": 7668,
+    "road_segments": 7668,
+    "width_rules_nonempty": 49,
+    "surface_nonempty": 2111,
+    "restrictions_nonempty": 209,
+    "matched": {
+      "width_m": {
+        "source_records": 46,
+        "matched_osm_ways": 41,
+        "new_osm_ways": 0,
+        "baseline_osm_ways": 41,
+        "union_osm_ways": 41,
+        "covered_length_m": 4347.6647955935505,
+        "new_covered_length_m": 0.0,
+        "field_measured_ways": 0
+      },
+      "surface": {
+        "source_records": 2094,
+        "matched_osm_ways": 1730,
+        "new_osm_ways": 0,
+        "baseline_osm_ways": 1738,
+        "union_osm_ways": 1738,
+        "covered_length_m": 309468.6723202671,
+        "new_covered_length_m": 0.0,
+        "field_measured_ways": 0
+      },
+      "lanes": {
+        "source_records": 0,
+        "matched_osm_ways": 0,
+        "new_osm_ways": 0,
+        "baseline_osm_ways": 510,
+        "union_osm_ways": 510,
+        "covered_length_m": 0.0,
+        "new_covered_length_m": 0.0,
+        "field_measured_ways": 0
+      }
+    }
+  },
+  "skdf": {
+    "queried_records": 223,
+    "records_with_geometry": 223,
+    "records_with_matched_osm": 106,
+    "records_with_width_rows": 205,
+    "width_rows": 216,
+    "matched": {
+      "width_m": {
+        "source_records": 238,
+        "matched_osm_ways": 238,
+        "new_osm_ways": 238,
+        "baseline_osm_ways": 41,
+        "union_osm_ways": 279,
+        "covered_length_m": 63723.72375910715,
+        "new_covered_length_m": 63723.72375910715,
+        "field_measured_ways": 0
+      },
+      "surface": {
+        "source_records": 250,
+        "matched_osm_ways": 250,
+        "new_osm_ways": 39,
+        "baseline_osm_ways": 1738,
+        "union_osm_ways": 1777,
+        "covered_length_m": 64548.641431689364,
+        "new_covered_length_m": 15699.142642130826,
+        "field_measured_ways": 0
+      },
+      "lanes": {
+        "source_records": 212,
+        "matched_osm_ways": 212,
+        "new_osm_ways": 98,
+        "baseline_osm_ways": 510,
+        "union_osm_ways": 608,
+        "covered_length_m": 61191.581279394435,
+        "new_covered_length_m": 33519.94384341337,
+        "field_measured_ways": 0
+      }
+    },
+    "extra_blocks": {
+      "sidewalks": {
+        "records": 663,
+        "rows_with_explicit_width": 26
+      },
+      "barrier-fences": {
+        "records": 326,
+        "rows_with_explicit_width": null
+      },
+      "clearances": {
+        "records": 43,
+        "rows_with_explicit_width": null
+      },
+      "gabarit": {
+        "records": 5,
+        "rows_with_explicit_width": null
+      },
+      "median-separations": {
+        "records": 21,
+        "rows_with_explicit_width": null
+      }
+    },
+    "related_context_counts": {
+      "barrier_fence_inventory": 326,
+      "median_inventory_description": 21,
+      "clearance_width_m": 43,
+      "reported_weight_limit_t": 5,
+      "sidewalk_width_m": 26,
+      "clearance_height_m": 26
+    }
+  },
+  "combined": {
+    "width_m": {
+      "source_records": 284,
+      "matched_osm_ways": 279,
+      "new_osm_ways": 238,
+      "baseline_osm_ways": 41,
+      "union_osm_ways": 279,
+      "covered_length_m": 68071.38855470071,
+      "new_covered_length_m": 63723.72375910715,
+      "field_measured_ways": 0
+    },
+    "surface": {
+      "source_records": 2344,
+      "matched_osm_ways": 1769,
+      "new_osm_ways": 39,
+      "baseline_osm_ways": 1738,
+      "union_osm_ways": 1777,
+      "covered_length_m": 325170.8087326344,
+      "new_covered_length_m": 15699.142642130826,
+      "field_measured_ways": 0
+    },
+    "lanes": {
+      "source_records": 212,
+      "matched_osm_ways": 212,
+      "new_osm_ways": 98,
+      "baseline_osm_ways": 510,
+      "union_osm_ways": 608,
+      "covered_length_m": 61191.581279394435,
+      "new_covered_length_m": 33519.94384341337,
+      "field_measured_ways": 0
+    }
+  },
+  "municipal_context": [
+    {
+      "name": "проспект Победы",
+      "lanes": 4,
+      "surface": "asphalt_concrete",
+      "source": "КСОДД ПКГО, page 32",
+      "source_url": "https://pkgo.ru/upload/medialibrary/d1a/d1a47f280e3871b728a1a70a7508f5b5.pdf",
+      "kind": "official_inventory_historical_street_context",
+      "local_scope_verified": false,
+      "candidate_osm_ways": [
+        "osm:way:221299353",
+        "osm:way:548601181",
+        "osm:way:701124384"
+      ],
+      "width_m": null,
+      "limitation": "General street description; no chainage or proof of current lane configuration"
+    },
+    {
+      "name": "улица Тушканова",
+      "lanes": 4,
+      "surface": "asphalt_concrete",
+      "source": "КСОДД ПКГО, page 32",
+      "source_url": "https://pkgo.ru/upload/medialibrary/d1a/d1a47f280e3871b728a1a70a7508f5b5.pdf",
+      "kind": "official_inventory_historical_street_context",
+      "local_scope_verified": false,
+      "candidate_osm_ways": [
+        "osm:way:62151454",
+        "osm:way:128851138",
+        "osm:way:128851140",
+        "osm:way:131628471",
+        "osm:way:216413679",
+        "osm:way:339478974",
+        "osm:way:339675196",
+        "osm:way:392014444",
+        "osm:way:392524486",
+        "osm:way:462255684",
+        "osm:way:1218085888"
+      ],
+      "width_m": null,
+      "limitation": "General street description; no chainage or proof of current lane configuration"
+    },
+    {
+      "name": "улица Зеркальная",
+      "lanes": 4,
+      "surface": "asphalt_concrete",
+      "source": "КСОДД ПКГО, page 32",
+      "source_url": "https://pkgo.ru/upload/medialibrary/d1a/d1a47f280e3871b728a1a70a7508f5b5.pdf",
+      "kind": "official_inventory_historical_street_context",
+      "local_scope_verified": false,
+      "candidate_osm_ways": [
+        "osm:way:62150329",
+        "osm:way:209694130",
+        "osm:way:209694131",
+        "osm:way:209694134",
+        "osm:way:209694136",
+        "osm:way:209694137",
+        "osm:way:209694139",
+        "osm:way:209694140",
+        "osm:way:221300257"
+      ],
+      "width_m": null,
+      "limitation": "General street description; no chainage or proof of current lane configuration"
+    },
+    {
+      "name": "улица Владивостокская",
+      "lanes": 4,
+      "surface": "asphalt_concrete",
+      "source": "КСОДД ПКГО, page 32",
+      "source_url": "https://pkgo.ru/upload/medialibrary/d1a/d1a47f280e3871b728a1a70a7508f5b5.pdf",
+      "kind": "official_inventory_historical_street_context",
+      "local_scope_verified": false,
+      "candidate_osm_ways": [
+        "osm:way:94577828",
+        "osm:way:94577871",
+        "osm:way:128463539",
+        "osm:way:195222073",
+        "osm:way:195579347",
+        "osm:way:209694115",
+        "osm:way:209694122",
+        "osm:way:209694124",
+        "osm:way:1082248697",
+        "osm:way:1082248698",
+        "osm:way:1410357957",
+        "osm:way:209694126",
+        "osm:way:429987334"
+      ],
+      "width_m": null,
+      "limitation": "General street description; no chainage or proof of current lane configuration"
+    },
+    {
+      "name": "улица Ленинградская",
+      "lanes": 4,
+      "surface": "asphalt_concrete",
+      "source": "КСОДД ПКГО, page 32",
+      "source_url": "https://pkgo.ru/upload/medialibrary/d1a/d1a47f280e3871b728a1a70a7508f5b5.pdf",
+      "kind": "official_inventory_historical_street_context",
+      "local_scope_verified": false,
+      "candidate_osm_ways": [
+        "osm:way:38716421",
+        "osm:way:38723237",
+        "osm:way:62150330",
+        "osm:way:128464748",
+        "osm:way:128948112",
+        "osm:way:429868990",
+        "osm:way:429868991",
+        "osm:way:429868992",
+        "osm:way:436481288",
+        "osm:way:765277612",
+        "osm:way:106152351",
+        "osm:way:128848438",
+        "osm:way:128848439",
+        "osm:way:129724249",
+        "osm:way:129724250",
+        "osm:way:209694146",
+        "osm:way:209694147",
+        "osm:way:209694149",
+        "osm:way:233189164",
+        "osm:way:429987335",
+        "osm:way:429987336",
+        "osm:way:770080657",
+        "osm:way:1010351479"
+      ],
+      "width_m": null,
+      "limitation": "General street description; no chainage or proof of current lane configuration"
+    },
+    {
+      "name": "проспект 50 лет Октября",
+      "lanes": 4,
+      "surface": "asphalt_concrete",
+      "source": "КСОДД ПКГО, page 32",
+      "source_url": "https://pkgo.ru/upload/medialibrary/d1a/d1a47f280e3871b728a1a70a7508f5b5.pdf",
+      "kind": "official_inventory_historical_street_context",
+      "local_scope_verified": false,
+      "candidate_osm_ways": [
+        "osm:way:62151453",
+        "osm:way:112539129",
+        "osm:way:128463712",
+        "osm:way:192027806",
+        "osm:way:216410244",
+        "osm:way:221300293",
+        "osm:way:233183448",
+        "osm:way:233183449",
+        "osm:way:244246361",
+        "osm:way:392524684",
+        "osm:way:392525126",
+        "osm:way:400064062",
+        "osm:way:446762831"
+      ],
+      "width_m": null,
+      "limitation": "General street description; no chainage or proof of current lane configuration"
+    }
+  ],
+  "artifact": "out/geodata-accessibility-2026-11-22/import-delivery-verified/road-evidence.geojson",
+  "artifact_sha256": "c237983194adbc522455dcdacd152c8b6643205580bc2c3fb67936823b6ff74b",
+  "source_counts_by_kind": {
+    "cartographic": 2140,
+    "official_inventory": 712
+  },
+  "source_sha256": {
+    "out/geodata-accessibility-2026-11-22/sources/overture-city-segments.geojson": "808ea2549259ca8cc1d86eacc6df24fa31c5d47209d9a3ff479fb57da29eaf0b",
+    "out/geodata-accessibility-2026-11-22/sources/skdf-city-records.json": "5b0aa4bf44db1473f21b181727f1698e4849b332dab9a2c3f594be0c0b9a32b2",
+    "city_sim/road_evidence.py": "be8f3fcc637cb76b294bb167d3adcd2807320209352967aa8484a1d88e444d0f",
+    "/Users/konstantin/Documents/ChatGPT/камчатка/city_sim/import_road_sources.py": "715e2c606c358004abfeb7d07cb838ae95a84ceeb868e4ea3b9c6d174603530f"
+  },
+  "raw_audit_path": "out/geodata-accessibility-2026-11-22/import-delivery-verified/results.json"
+}

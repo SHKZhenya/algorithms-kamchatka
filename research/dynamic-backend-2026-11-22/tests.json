@@ -1,0 +1,17 @@
+{
+  "city_sim": {
+    "count": 56,
+    "seconds": 25.451,
+    "status": "passed"
+  },
+  "snowops": {
+    "count": 9,
+    "seconds": 2.492,
+    "status": "passed"
+  },
+  "repeated_targeted": {
+    "count": 29,
+    "seconds": 1.08,
+    "status": "passed"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-22",
+  "replays": [
+    {
+      "territory_id": "1c71ac77b7314c58ae16c89403613bee",
+      "state_id": "d804d270000ba4a5909f6a640bd15f8feb147f265ceea274870aef944d129869",
+      "replay_identical": true,
+      "balance": {
+        "actual_kg": 2326256.2488283296,
+        "expected_kg": 2326256.2488283236,
+        "error_kg": 6.05359673500061e-09,
+        "relative_error": 2.6022914449126807e-15,
+        "boundary_in_kg": 0.0,
+        "boundary_out_kg": 0.0,
+        "explicit_loss_kg": 0.0,
+        "exported_kg": 0.0,
+        "initial_kg": 1550837.4992188825,
+        "internal_cleaning_moved_kg": 8507.827286510956,
+        "precipitation_kg": 775418.7496094408
+      }
+    },
+    {
+      "territory_id": "930c2133c0544ca087ed66e1b95f46d6",
+      "state_id": "8a692f79231f7c1e501f0ac3bb06c970f1bed78939ac27a11fb7cc5614c1c027",
+      "replay_identical": true,
+      "balance": {
+        "actual_kg": 2326256.2488283296,
+        "expected_kg": 2326256.2488283236,
+        "error_kg": 6.05359673500061e-09,
+        "relative_error": 2.6022914449126807e-15,
+        "boundary_in_kg": 0.0,
+        "boundary_out_kg": 0.0,
+        "explicit_loss_kg": 0.0,
+        "exported_kg": 0.0,
+        "initial_kg": 1550837.4992188825,
+        "internal_cleaning_moved_kg": 8762.9778334317,
+        "precipitation_kg": 775418.7496094408
+      }
+    },
+    {
+      "territory_id": "a9a7f62cfe7249d993eb7eede6634f23",
+      "state_id": "88b5fc99c761be7bbabdc400bbc1fbb2b9972247c7cf24e64cf0bfe29feeb99c",
+      "replay_identical": true,
+      "balance": {
+        "actual_kg": 6977170907.515471,
+        "expected_kg": 6977170907.515473,
+        "error_kg": -1.9073486328125e-06,
+        "relative_error": 2.733699171333177e-16,
+        "boundary_in_kg": 0.0,
+        "boundary_out_kg": 0.0,
+        "explicit_loss_kg": 0.0,
+        "exported_kg": 0.0,
+        "initial_kg": 6156327271.337182,
+        "internal_cleaning_moved_kg": 0.0,
+        "precipitation_kg": 820843636.178291
+      }
+    },
+    {
+      "territory_id": "f825792f784b4b07a90155ae48c839db",
+      "state_id": "1da29efe7299a92be8cb734db2b8ef4a51bbfa1d0082d1e44ea1a55668a1de6e",
+      "replay_identical": true,
+      "balance": {
+        "actual_kg": 2326256.248828515,
+        "expected_kg": 2326256.248828509,
+        "error_kg": 6.05359673500061e-09,
+        "relative_error": 2.602291444912473e-15,
+        "boundary_in_kg": 0.0,
+        "boundary_out_kg": 0.0,
+        "explicit_loss_kg": 0.0,
+        "exported_kg": 0.0,
+        "initial_kg": 1550837.4992190057,
+        "internal_cleaning_moved_kg": 8762.97783346742,
+        "precipitation_kg": 775418.7496095033
+      }
+    }
+  ],
+  "ui_unchanged_files": 17,
+  "versions": {
+    "numpy": "2.4.4",
+    "shapely": "2.2.0",
+    "fastapi": "0.165.0",
+    "pydantic": "2.13.4"
+  },
+  "source_sha256": {
+    "city_sim/snow_state.py": "469ef03544a687846995ed5e0b78d6c13c18bfb6529d4aaae5c31d3a5995ba56",
+    "city_sim/snow_domain.py": "d3c66e0875f55d835edb11ce348958f1107dfc6ee12ccb25d8d594fbb6bddbc4",
+    "city_sim/dynamic_schema.py": "51696aaeccc7a3bce2bc0b3bd27edb9f69ab69e195bcd779f00d2a9f3414e09f",
+    "city_sim/dynamic_store.py": "fbc5b27dcbba4d7930654aa2c35deee84cb661d1d16f14564e1f1de71ba8fb32",
+    "city_sim/dynamic_api.py": "92c5c80ed2b2c4621ff51aaeb671d72ef3e5c11f1c7b46ca6efde6a1ff3737a2",
+    "city_sim/entrance_enrichment.py": "ee5e2a998389fca02588a4a20cb36b8c2c8ce71925f972da3ac5411cbdd5df0b",
+    "city_sim/entrance_reviews.py": "8041e051a87d673605c5b1cd3fab30426f186f3dbd1cba4b53a6be2fa801bd3c",
+    "city_sim/object_registry.py": "8e50dd4cea6de07129a0f4455b084a33a5f0b480220336718366901a2c3469c7",
+    "city_sim/object_api.py": "12a232e0652269d5dffd91eddb4575762d7483789a46b830b6668a4a3c4b6a0d",
+    "city_sim/object_links.py": "25b0815a97550396371485ae9ecb6e9cdc709542bab005bf4a0628b84da91c35",
+    "city_sim/coverage_diagnostics.py": "79aa022da6a6c5728eb686b3f6b3f7ceeca8d23495b29a01ece2220c33477f45",
+    "city_sim/geodata.py": "3cf826bce46f771640aca1ebd88ab0929ac47855f257e7306d29e7e96865c01e",
+    "city_sim/spatial.py": "0dfc01d6ffb0c4c5550a92d570e951bd82e86bf841b771cc43c8062bbdf94353",
+    "city_sim/api.py": "5c049618dabe1dedd7e8edcbb504d23d52e20e59fab31bec87f9293ba6f827fc",
+    "city_sim/reproduce_dynamic_backend.py": "74512c5a304457c9a8c07d0bf48339c56997b4ffd7bad90227b36407a9f31702",
+    "city_sim/verify_dynamic_backend.py": "422ddc29ab1d38ee02f8833d33e6baeca8aec8fb14b8359ed381b35773e4e6c6",
+    "city_sim/prepare_access_sources.py": "25dd6bed46e55d06acc836dc178a3a65f2a7b6bbf4f6456828ed96fa7d2e0bf4",
+    "city_sim/tests/test_dynamic_snow.py": "ec221338e5362fd5a91f95c977363ee37c270d414390adfc43d1db7d003ee73f"
+  },
+  "data_sha256": "439ec09fae22c57b21741050e907345330fb8b95549d2f6eadc7559ceae34940",
+  "missing_diagnostics_refreshed_after_replay": true,
+  "tests": {
+    "city_sim": 56,
+    "snowops": 9,
+    "failed": 0,
+    "additional_repeated_object_and_dynamic": 29
+  }
+}

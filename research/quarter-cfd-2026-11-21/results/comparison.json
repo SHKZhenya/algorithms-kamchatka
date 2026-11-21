@@ -1,0 +1,401 @@
+{
+  "runs": {
+    "dec-snow-coarse": {
+      "weather": {
+        "gust_ms": 15.7,
+        "precipitation_mm": 4.5,
+        "snowfall_cm": 3.15,
+        "temperature_c": 1.4,
+        "valid_at": "2025-12-09T09:00:00+12:00",
+        "wind_from_deg": 88,
+        "wind_speed_ms": 7.91,
+        "episode": "december-2025",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "37fe6038a84adff1fc49fb786b4c80cfa4b5ee2331f33257c7a7e532895c57bc",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2025-12-07&end_date=2025-12-15",
+        "distance_to_source_m": 8380
+      },
+      "mode": "coarse",
+      "bins_24m_common": 245,
+      "uniform_cm": 3.15,
+      "danil_mean_cm": 3.805070906638712,
+      "danil_p90_cm": 4.919208333333334,
+      "cfd_deposition_mean_cm": 2.821149931928652,
+      "cfd_deposition_p90_cm": 4.991258872579187,
+      "cfd_vs_danil_mean_abs_difference_cm": 1.8400372852033893,
+      "cfd_vs_uniform_mean_abs_difference_cm": 1.492958900312083,
+      "spearman_cfd_danil": -0.17498922981747456,
+      "parcel_budget_cm_m2": {
+        "incoming": 4922575.016845526,
+        "ground": 1082014.5603752942,
+        "buildings": 318290.3628284529,
+        "escaped": 3522270.093641777,
+        "unresolved": 0.0,
+        "step_seconds": 0.21412161403920835
+      },
+      "particle_sensitivity": {
+        "slow_fall": {
+          "fall_speed_ms": 0.7,
+          "top_seeds_per_cell": 9,
+          "side_vertical_samples": 56,
+          "ma_difference_24m_cm": 2.095257472157044,
+          "budget": {
+            "incoming": 6420680.184039648,
+            "ground": 1039847.8403013309,
+            "buildings": 357997.2942717118,
+            "escaped": 5022835.0494666025,
+            "unresolved": 0.0,
+            "step_seconds": 0.21412161403920835
+          }
+        },
+        "fast_fall": {
+          "fall_speed_ms": 1.3,
+          "top_seeds_per_cell": 9,
+          "side_vertical_samples": 56,
+          "ma_difference_24m_cm": 1.5574157772868666,
+          "budget": {
+            "incoming": 4115903.003740998,
+            "ground": 1123600.1301159114,
+            "buildings": 283555.0125100678,
+            "escaped": 2708747.861115017,
+            "unresolved": 0.0,
+            "step_seconds": 0.21412161403920835
+          }
+        },
+        "higher_seed_density": {
+          "fall_speed_ms": 1.0,
+          "top_seeds_per_cell": 16,
+          "side_vertical_samples": 84,
+          "ma_difference_24m_cm": 1.44584020136116,
+          "budget": {
+            "incoming": 4922575.016845524,
+            "ground": 1079248.655886718,
+            "buildings": 322606.25515009154,
+            "escaped": 3520720.1058087163,
+            "unresolved": 0.0,
+            "step_seconds": 0.21412161403920835
+          }
+        }
+      }
+    },
+    "dec-snow-fine": {
+      "weather": {
+        "gust_ms": 15.7,
+        "precipitation_mm": 4.5,
+        "snowfall_cm": 3.15,
+        "temperature_c": 1.4,
+        "valid_at": "2025-12-09T09:00:00+12:00",
+        "wind_from_deg": 88,
+        "wind_speed_ms": 7.91,
+        "episode": "december-2025",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "37fe6038a84adff1fc49fb786b4c80cfa4b5ee2331f33257c7a7e532895c57bc",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2025-12-07&end_date=2025-12-15",
+        "distance_to_source_m": 8380
+      },
+      "mode": "fine",
+      "bins_24m_common": 248,
+      "uniform_cm": 3.15,
+      "danil_mean_cm": 3.8199816272381297,
+      "danil_p90_cm": 4.9238583333333334,
+      "cfd_deposition_mean_cm": 2.8640279670257285,
+      "cfd_deposition_p90_cm": 3.971314099263897,
+      "cfd_vs_danil_mean_abs_difference_cm": 1.2666572510981127,
+      "cfd_vs_uniform_mean_abs_difference_cm": 0.8432980411516783,
+      "spearman_cfd_danil": -0.12675314497835027,
+      "parcel_budget_cm_m2": {
+        "incoming": 4924709.480258865,
+        "ground": 1116850.4273260362,
+        "buildings": 287306.23731925496,
+        "escaped": 3520552.8156135743,
+        "unresolved": 0.0,
+        "step_seconds": 0.15820761584033452
+      }
+    },
+    "dec-snow-flat": {
+      "weather": {
+        "gust_ms": 15.7,
+        "precipitation_mm": 4.5,
+        "snowfall_cm": 3.15,
+        "temperature_c": 1.4,
+        "valid_at": "2025-12-09T09:00:00+12:00",
+        "wind_from_deg": 88,
+        "wind_speed_ms": 7.91,
+        "episode": "december-2025",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "37fe6038a84adff1fc49fb786b4c80cfa4b5ee2331f33257c7a7e532895c57bc",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2025-12-07&end_date=2025-12-15",
+        "distance_to_source_m": 8380
+      },
+      "mode": "flat",
+      "bins_24m_common": 245,
+      "uniform_cm": 3.15,
+      "danil_mean_cm": 3.805070906638712,
+      "danil_p90_cm": 4.919208333333334,
+      "cfd_deposition_mean_cm": 2.9042823460507723,
+      "cfd_deposition_p90_cm": 4.6063954551454716,
+      "cfd_vs_danil_mean_abs_difference_cm": 1.6283913167856632,
+      "cfd_vs_uniform_mean_abs_difference_cm": 1.4024119549463936,
+      "spearman_cfd_danil": 0.03549377578793944,
+      "parcel_budget_cm_m2": {
+        "incoming": 5264778.434878183,
+        "ground": 1126329.9429255251,
+        "buildings": 291654.33634552546,
+        "escaped": 3846794.155607131,
+        "unresolved": 0.0,
+        "step_seconds": 0.256997516408754
+      }
+    },
+    "dec-snow-no-buildings": {
+      "weather": {
+        "gust_ms": 15.7,
+        "precipitation_mm": 4.5,
+        "snowfall_cm": 3.15,
+        "temperature_c": 1.4,
+        "valid_at": "2025-12-09T09:00:00+12:00",
+        "wind_from_deg": 88,
+        "wind_speed_ms": 7.91,
+        "episode": "december-2025",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "37fe6038a84adff1fc49fb786b4c80cfa4b5ee2331f33257c7a7e532895c57bc",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2025-12-07&end_date=2025-12-15",
+        "distance_to_source_m": 8380
+      },
+      "mode": "no-buildings",
+      "bins_24m_common": 245,
+      "uniform_cm": 3.15,
+      "danil_mean_cm": 3.805070906638712,
+      "danil_p90_cm": 4.919208333333334,
+      "cfd_deposition_mean_cm": 3.055117954701224,
+      "cfd_deposition_p90_cm": 4.120674774198764,
+      "cfd_vs_danil_mean_abs_difference_cm": 1.3955916621178825,
+      "cfd_vs_uniform_mean_abs_difference_cm": 1.1681459761104982,
+      "spearman_cfd_danil": -0.06039775971697439,
+      "parcel_budget_cm_m2": {
+        "incoming": 4922575.016845526,
+        "ground": 1409581.36605671,
+        "buildings": 0.0,
+        "escaped": 3512993.650788817,
+        "unresolved": 0.0,
+        "step_seconds": 0.22155695676307338
+      }
+    },
+    "dec-west-dry-coarse": {
+      "weather": {
+        "gust_ms": 6.2,
+        "precipitation_mm": 0.0,
+        "snowfall_cm": 0.0,
+        "temperature_c": -0.3,
+        "valid_at": "2025-12-10T12:00:00+12:00",
+        "wind_from_deg": 240,
+        "wind_speed_ms": 4.37,
+        "episode": "december-2025",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "37fe6038a84adff1fc49fb786b4c80cfa4b5ee2331f33257c7a7e532895c57bc",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2025-12-07&end_date=2025-12-15",
+        "distance_to_source_m": 8380
+      },
+      "mode": "coarse",
+      "bins_24m_common": 245,
+      "uniform_cm": 0.0,
+      "danil_mean_cm": 0.0,
+      "danil_p90_cm": 0.0,
+      "cfd_deposition_mean_cm": 0.0,
+      "cfd_deposition_p90_cm": 0.0,
+      "cfd_vs_danil_mean_abs_difference_cm": 0.0,
+      "cfd_vs_uniform_mean_abs_difference_cm": 0.0,
+      "spearman_cfd_danil": null,
+      "parcel_budget_cm_m2": {
+        "incoming": 0,
+        "ground": 0,
+        "buildings": 0,
+        "escaped": 0,
+        "unresolved": 0
+      }
+    },
+    "jan-calm-coarse": {
+      "weather": {
+        "gust_ms": 3.0,
+        "precipitation_mm": 0.0,
+        "snowfall_cm": 0.0,
+        "temperature_c": -4.4,
+        "valid_at": "2026-01-16T23:00:00+12:00",
+        "wind_from_deg": 47,
+        "wind_speed_ms": 1.03,
+        "episode": "january-2026",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "9eb8cc55887ce57d7c71be567ed4d7cc99c7d0e0a311f8b826bf0f28c827fd61",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2026-01-12&end_date=2026-01-17",
+        "distance_to_source_m": 8380
+      },
+      "mode": "coarse",
+      "bins_24m_common": 245,
+      "uniform_cm": 0.0,
+      "danil_mean_cm": 0.0,
+      "danil_p90_cm": 0.0,
+      "cfd_deposition_mean_cm": 0.0,
+      "cfd_deposition_p90_cm": 0.0,
+      "cfd_vs_danil_mean_abs_difference_cm": 0.0,
+      "cfd_vs_uniform_mean_abs_difference_cm": 0.0,
+      "spearman_cfd_danil": null,
+      "parcel_budget_cm_m2": {
+        "incoming": 0,
+        "ground": 0,
+        "buildings": 0,
+        "escaped": 0,
+        "unresolved": 0
+      }
+    },
+    "jan-snow-coarse": {
+      "weather": {
+        "gust_ms": 9.2,
+        "precipitation_mm": 4.2,
+        "snowfall_cm": 2.94,
+        "temperature_c": -0.4,
+        "valid_at": "2026-01-15T17:00:00+12:00",
+        "wind_from_deg": 132,
+        "wind_speed_ms": 4.68,
+        "episode": "january-2026",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "9eb8cc55887ce57d7c71be567ed4d7cc99c7d0e0a311f8b826bf0f28c827fd61",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2026-01-12&end_date=2026-01-17",
+        "distance_to_source_m": 8380
+      },
+      "mode": "coarse",
+      "bins_24m_common": 245,
+      "uniform_cm": 2.94,
+      "danil_mean_cm": 3.079670730256138,
+      "danil_p90_cm": 3.470125,
+      "cfd_deposition_mean_cm": 2.6291518236922085,
+      "cfd_deposition_p90_cm": 3.4786865778305174,
+      "cfd_vs_danil_mean_abs_difference_cm": 0.7022551474018984,
+      "cfd_vs_uniform_mean_abs_difference_cm": 0.6241817039811267,
+      "spearman_cfd_danil": -0.09942743094371823,
+      "parcel_budget_cm_m2": {
+        "incoming": 3602742.0375936795,
+        "ground": 1043079.5994345823,
+        "buildings": 281206.4406188976,
+        "escaped": 2278455.9975401964,
+        "unresolved": 0.0,
+        "step_seconds": 0.41443186520081565
+      }
+    },
+    "mar-strong-coarse": {
+      "weather": {
+        "gust_ms": 28.2,
+        "precipitation_mm": 3.6,
+        "snowfall_cm": 2.52,
+        "temperature_c": 1.3,
+        "valid_at": "2025-03-24T04:00:00+12:00",
+        "wind_from_deg": 85,
+        "wind_speed_ms": 13.4,
+        "episode": "march-2025",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "eb3316e31ff51802c017c8843da4da8a0172e1015c555e483c3a7a4db6e57c19",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2025-03-22&end_date=2025-03-25",
+        "distance_to_source_m": 8380
+      },
+      "mode": "coarse",
+      "bins_24m_common": 245,
+      "uniform_cm": 2.52,
+      "danil_mean_cm": 3.432650437181865,
+      "danil_p90_cm": 4.986210714285714,
+      "cfd_deposition_mean_cm": 1.9939657291869246,
+      "cfd_deposition_p90_cm": 5.331913982868615,
+      "cfd_vs_danil_mean_abs_difference_cm": 2.5127554537762515,
+      "cfd_vs_uniform_mean_abs_difference_cm": 1.8836368719174825,
+      "spearman_cfd_danil": -0.0412319518705171,
+      "parcel_budget_cm_m2": {
+        "incoming": 6064434.410394816,
+        "ground": 795892.8029655851,
+        "buildings": 324927.9837974773,
+        "escaped": 4943613.623631752,
+        "unresolved": 0.0,
+        "step_seconds": 0.12568411991441916
+      }
+    },
+    "dec-snow-narrow": {
+      "weather": {
+        "gust_ms": 15.7,
+        "precipitation_mm": 4.5,
+        "snowfall_cm": 3.15,
+        "temperature_c": 1.4,
+        "valid_at": "2025-12-09T09:00:00+12:00",
+        "wind_from_deg": 88,
+        "wind_speed_ms": 7.91,
+        "episode": "december-2025",
+        "source_cell": [
+          158.56332,
+          53.110718
+        ],
+        "weather_sha256": "37fe6038a84adff1fc49fb786b4c80cfa4b5ee2331f33257c7a7e532895c57bc",
+        "weather_url": "https://archive-api.open-meteo.com/v1/archive?latitude=53.110%2C53.076%2C53.034%2C52.958%2C52.982%2C53.045&longitude=158.639%2C158.663%2C158.644%2C158.677%2C158.658%2C158.617&hourly=snowfall%2Cprecipitation%2Csnow_depth%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ctemperature_2m&models=ecmwf_ifs&wind_speed_unit=ms&timezone=Asia%2FKamchatka&start_date=2025-12-07&end_date=2025-12-15",
+        "distance_to_source_m": 8380
+      },
+      "mode": "narrow",
+      "bins_24m_common": 246,
+      "uniform_cm": 3.15,
+      "danil_mean_cm": 3.8200898111994137,
+      "danil_p90_cm": 4.925541666666668,
+      "cfd_deposition_mean_cm": 2.856217932750017,
+      "cfd_deposition_p90_cm": 4.785113137851441,
+      "cfd_vs_danil_mean_abs_difference_cm": 1.6718108900294029,
+      "cfd_vs_uniform_mean_abs_difference_cm": 1.3098777514853701,
+      "spearman_cfd_danil": -0.13895020308303715,
+      "parcel_budget_cm_m2": {
+        "incoming": 4201726.976736781,
+        "ground": 873410.8019329712,
+        "buildings": 241451.70567789298,
+        "escaped": 3086864.4691259186,
+        "unresolved": 0.0,
+        "step_seconds": 0.21453664238074405
+      }
+    }
+  },
+  "ablation": {
+    "dec-snow-flat": {
+      "wind_24m_mean_abs_difference_ms": 1.7706930500566695,
+      "wind_24m_p95_abs_difference_ms": 3.2239563179081587,
+      "deposition_24m_mean_abs_difference_cm": 1.7570449846586074
+    },
+    "dec-snow-fine": {
+      "wind_24m_mean_abs_difference_ms": 0.48874625396198534,
+      "wind_24m_p95_abs_difference_ms": 1.3197154543664424,
+      "deposition_24m_mean_abs_difference_cm": 1.5112030201308966
+    },
+    "dec-snow-no-buildings": {
+      "wind_24m_mean_abs_difference_ms": 4.01441140625746,
+      "wind_24m_p95_abs_difference_ms": 8.256374001307822,
+      "deposition_24m_mean_abs_difference_cm": 1.6231857401192087
+    },
+    "dec-snow-narrow": {
+      "wind_24m_mean_abs_difference_ms": 0.5922064985545022,
+      "wind_24m_p95_abs_difference_ms": 1.838518508187723,
+      "deposition_24m_mean_abs_difference_cm": 1.3569629101722336
+    }
+  }
+}

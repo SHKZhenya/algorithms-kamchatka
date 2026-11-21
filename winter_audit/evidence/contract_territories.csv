@@ -1,0 +1,4 @@
+territory_id,contract_key,official_object_label,start_km,end_km,source_id,geometry_status,applies_to_current_plan
+territory_mishennaya,hist_mishennaya,Автомобильная дорога по улице Мишенной,,,court_mishennaya,street_named_extent_unverified,false
+territory_a401,hist_a401,А-401,0,38,court_a401,chainage_named_geometry_unverified,false
+territory_0951,candidate_0951,Магистральные дороги ПКГО,,,court_0951,municipal_arterial_scope_annex_missing,false

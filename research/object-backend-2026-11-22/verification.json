@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-22",
+  "pilot_reload_identical": true,
+  "city_road_building_entrance_reload_identical": true,
+  "tests": {
+    "city_sim": 44,
+    "snowops": 9,
+    "failed": 0
+  },
+  "versions": {
+    "numpy": "2.4.4",
+    "shapely": "2.2.0",
+    "fastapi": "0.165.0",
+    "pydantic": "2.13.4"
+  },
+  "source_sha256": {
+    "city_sim/spatial.py": "a509ad102510e96750a51a502adfb48d32c050db2131069560ee6288d9114bfd",
+    "city_sim/object_registry.py": "18945fe2bf2018bb242708861fb3f83bd384fba32d87cccf2fe1120f701cb3cd",
+    "city_sim/object_assessment.py": "a6fdd38455a278e425c330ac4a2b5d88ab08f51ab7f2518b8b9e1230207f5bb4",
+    "city_sim/object_api.py": "7207fb576b24fb037713197f5b14d341b1d661dbd22b3acbe12bfaa15bdf26c3",
+    "city_sim/reproduce_object_backend.py": "9f958ffaedaedb40d46d171a7f5b13f0237847d0f0fb05de0d8694ff08b331aa",
+    "city_sim/tests/test_object_backend.py": "41aa90d3685c239b3640b020bb481b19e788263df030ca02247f689dbf10a683",
+    "city_sim/api.py": "7b08be4cc1d6edf97a01c48c3c21aad14442d9cd914f6104bf95a3d0e11d1777"
+  }
+}

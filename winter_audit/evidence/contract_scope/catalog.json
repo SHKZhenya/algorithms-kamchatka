@@ -1,0 +1,300 @@
+{
+  "as_of": "2026-11-20",
+  "customer": "МКУ «Служба автомобильных дорог ПКГО»",
+  "notice_0831": "https://zakupki.kontur.ru/0138300000426000831",
+  "contract_0831": "https://gosanalitika.ru/zakupki/kontrakt-soderzhaniyu-3410114343626000068/",
+  "eis_0831": "https://zakupki.gov.ru/epz/contract/contractCard/common-info.html?reestrNumber=3410114343626000068",
+  "notice_0902": "https://zakupki.kontur.ru/0138300000426000902",
+  "revision_0902": "https://gosanalitika.ru/zakupki/raboty-soderzhaniyu-0138300000426000902/",
+  "overpass_property_register": "https://pkgo.ru/upload/medialibrary/008/0083a4f061e7568b6351a007c54dd0cd.pdf#page=32",
+  "objects": [
+    {
+      "item": 1,
+      "name": "Индустриальная — разворот «Бухта Бабия»",
+      "class": "carriageway_and_bus_turnaround",
+      "match_0902": 1,
+      "relation": "same_named_object",
+      "service_ways": [
+        62151756,
+        773916456,
+        773916459,
+        1218322117,
+        773916460,
+        705026370,
+        705026371
+      ],
+      "anchors": [
+        459043286,
+        9605074723,
+        11286817436
+      ],
+      "bounds_note": "Начало — примыкание к Петропавловскому шоссе, конец — кандидат в разворот по узлу остановки и связям OSM автобусного маршрута 1. Габариты уборки не определены."
+    },
+    {
+      "item": 2,
+      "name": "Ключевская улица",
+      "class": "carriageway",
+      "names": [
+        "Ключевская улица"
+      ],
+      "exclude_classes": [
+        "living_street"
+      ],
+      "match_0902": 2,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 3,
+      "name": "Красная Сопка — площадь Щедрина",
+      "class": "carriageway",
+      "names": [
+        "улица Красная Сопка",
+        "площадь Щедрина"
+      ],
+      "exclude_classes": [
+        "residential"
+      ],
+      "anchors": [
+        9385174261
+      ],
+      "match_0902": 3,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 4,
+      "name": "Ленинградская улица",
+      "class": "carriageway",
+      "names": [
+        "Ленинградская улица"
+      ],
+      "exclude_classes": [
+        "service",
+        "living_street",
+        "residential"
+      ],
+      "match_0902": 4,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 5,
+      "name": "Набережная улица",
+      "class": "carriageway",
+      "names": [
+        "Набережная улица"
+      ],
+      "exclude_classes": [
+        "service"
+      ],
+      "match_0902": 5,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 6,
+      "name": "Озерновская коса",
+      "class": "carriageway",
+      "names": [
+        "улица Озерновская Коса"
+      ],
+      "exclude_classes": [
+        "unclassified",
+        "service"
+      ],
+      "match_0902": 6,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 7,
+      "name": "Океанская улица",
+      "class": "carriageway",
+      "names": [
+        "Океанская улица"
+      ],
+      "exclude_classes": [
+        "living_street",
+        "service"
+      ],
+      "match_0902": 7,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 8,
+      "name": "Петропавловское шоссе",
+      "class": "carriageway",
+      "names": [
+        "Петропавловское шоссе"
+      ],
+      "exclude_classes": [
+        "living_street"
+      ],
+      "match_0902": 13,
+      "relation": "common_corridor_limits_differ",
+      "bounds_note": "В № 0902 дополнительно указаны площадь Труда и разворот «ДК СРВ». Общий коридор установлен по названию, общие конечные точки не установлены.",
+      "anchors": [
+        7203851933,
+        1323173734
+      ]
+    },
+    {
+      "item": 9,
+      "name": "Дорога и транспортный объект на площади Ленина",
+      "class": "carriageway",
+      "names": [
+        "площадь Ленина"
+      ],
+      "anchors": [
+        7155655314
+      ],
+      "relation": "no_listed_equivalent",
+      "bounds_note": "Название соответствует дорожным осям площади. Граница отдельного сооружения и площадных объектов не установлена."
+    },
+    {
+      "item": 10,
+      "name": "Рябиковская улица",
+      "class": "carriageway",
+      "names": [
+        "Рябиковская улица"
+      ],
+      "match_0902": 8,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 11,
+      "name": "Сапун-Гора",
+      "class": "carriageway",
+      "names": [
+        "улица Сапун-Гора"
+      ],
+      "match_0902": 9,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 12,
+      "name": "Советская улица",
+      "class": "carriageway",
+      "names": [
+        "Советская улица"
+      ],
+      "match_0902": 10,
+      "relation": "same_named_object"
+    },
+    {
+      "item": 13,
+      "name": "Ленинская — Вокзальная площадь — разворот у «Морвокзала»",
+      "class": "carriageway_and_bus_turnaround",
+      "names": [
+        "Вокзальная площадь"
+      ],
+      "anchors": [
+        7197529526,
+        7203667885
+      ],
+      "match_0902": 11,
+      "relation": "same_named_object",
+      "bounds_note": "Вокзальная площадь и остановка определены по OSM. Граница разворота и начало участка Ленинской не заданы. Ось Ленинской из позиции 15 к позиции 13 не приписана."
+    },
+    {
+      "item": 14,
+      "name": "Участок для хранения транспорта по Советской (БСР)",
+      "class": "vehicle_storage_site",
+      "relation": "possible_same_object",
+      "match_0902": "storage_1",
+      "bounds_note": "В № 0902 записано «БРС». Нет номера участка, координат или документов, подтверждающих совпадение. Ближайшие парковки по одному названию улицы не выбраны."
+    },
+    {
+      "item": 15,
+      "name": "Дорожное сооружение на Ленинской улице",
+      "class": "carriageway",
+      "names": [
+        "Ленинская улица"
+      ],
+      "match_0902": 12,
+      "relation": "same_named_object",
+      "bounds_note": "Ось Ленинской показана как кандидат на привязку. Контур сооружения не установлен. В № 0831 существует отдельная позиция 13 для Вокзальной площади."
+    },
+    {
+      "item": 16,
+      "name": "Стоянка на Озерновской косе напротив ПСРМЗ",
+      "class": "parking",
+      "anchors": [
+        2111959902,
+        2672401938
+      ],
+      "match_0902": 17,
+      "relation": "same_named_object",
+      "bounds_note": "В OSM есть несколько стоянок у подписанных остановок «ПСРМЗ». Показаны две альтернативы, юридический контур не установлен.",
+      "site_ways": [
+        1368213520,
+        770765393
+      ],
+      "anchor_access_ways": [
+        261634399,
+        770765394
+      ]
+    },
+    {
+      "item": 17,
+      "name": "Заезд с Озерновской косы напротив ПСРМЗ",
+      "class": "access_road",
+      "service_ways": [
+        261634399,
+        770765394
+      ],
+      "anchors": [
+        2111959902,
+        2672401938
+      ],
+      "match_0902": [
+        15,
+        16
+      ],
+      "relation": "nearby_distinct_or_unresolved",
+      "bounds_note": "Конечная точка не указана. Показаны два местных кандидата. № 0902 различает заезды к скейт-парку и стоянке, эквивалентность не установлена."
+    },
+    {
+      "item": 18,
+      "name": "Заезд с Озерновской косы к месту остановки транспорта напротив ПСРМЗ",
+      "class": "access_road",
+      "service_ways": [
+        261634399,
+        770765394
+      ],
+      "anchors": [
+        2111959902,
+        2672401938
+      ],
+      "match_0902": 16,
+      "relation": "possible_same_object",
+      "bounds_note": "В № 0831 описано место остановки транспорта, в № 0902 — стоянка. Показаны альтернативы, тождество этой пары и разделение с позицией 17 не доказаны."
+    }
+  ],
+  "other_0902": [
+    {
+      "item": 14,
+      "name": "Внутриквартальный проезд Ключевская — Ленинградская через механический завод",
+      "class": "access_road",
+      "relation": "only_0902",
+      "bounds_note": "Схема трассы, заезды к контейнерным площадкам и точные примыкания не установлены. Соседние именные магистрали не приравнены к проезду."
+    },
+    {
+      "item": 15,
+      "name": "Заезд от Озерновской косы к скейт-парку",
+      "class": "access_road",
+      "relation": "only_0902",
+      "bounds_note": "Показан OSM-контур скейт-площадки как ориентир назначения. Линия заезда до площадки требует схемы.",
+      "site_ways": [
+        1311958406
+      ]
+    },
+    {
+      "item": "overpass_1",
+      "name": "Надземный переход на Ленинградской, 49/1",
+      "class": "overpass",
+      "relation": "possible_class_overlap_only",
+      "bounds_note": "Для № 0902 адрес назван прямо. В № 0831 подтверждён класс работ по переходу, но его адрес в доступных позициях подписанного контракта отсутствует. Совпадение объекта остаётся открытым. OSM показывает крытый переход, связанный со зданием № 49; кадастровый контур не наложен.",
+      "service_ways": [
+        201238533,
+        201238534
+      ]
+    }
+  ]
+}

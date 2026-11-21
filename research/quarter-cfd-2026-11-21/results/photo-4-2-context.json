@@ -1,0 +1,39 @@
+{
+  "address": "Петропавловск-Камчатский, просп. 50 лет Октября, 4/2",
+  "address_sign_visible": true,
+  "date_local": "2026-01-15",
+  "capture_time": null,
+  "facade_bearing": null,
+  "asset_lon_lat": [
+    158.64384,
+    53.05285
+  ],
+  "vehicle_position_accuracy_m": null,
+  "observed_type": "covered_car_and_facade_snow",
+  "observed_value_cm": null,
+  "known_snow_depth_uncertainty_cm": null,
+  "plow_or_old_snow": "unknown",
+  "photo_url": "https://s0.rbk.ru/v6_top_pics/media/img/5/07/347685582741075.webp",
+  "publication_url": "https://www.rbc.ru/life/news/696a09209a794762f3e75d3e",
+  "photo_sha256": "fd551c3c38e5f2ce801ac3358638a732b5186e97fb9df0f0229cd5f9a5ab108e",
+  "test": "spatial context only",
+  "model_hour_local": "2026-01-15T17:00:00+12:00",
+  "near_bin_center_distance_m": 24,
+  "model_values": {
+    "cfd_cm": {
+      "bins": 15,
+      "min": 1.02204809250821,
+      "max": 2.93425737211465
+    },
+    "danil_cm": {
+      "bins": 15,
+      "min": 2.798416666666666,
+      "max": 3.502833333333333
+    },
+    "uniform_cm": {
+      "bins": 15,
+      "min": 2.94,
+      "max": 2.94
+    }
+  }
+}

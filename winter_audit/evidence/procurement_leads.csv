@@ -1,0 +1,6 @@
+procurement_id,customer_id,territory,application_deadline_msk,amount_rub,amount_type,source_id,as_of_status
+0138300000426000902,city_roads,Магистральные дороги,2026-11-30,803058281.85,notice_ceiling,notice_0902,application_open_reported
+0138300000426000903,city_roads,Северо-Восток,2026-11-23,588794149.69,notice_ceiling,notice_0903,application_open_reported
+0138300000426000911,city_roads,8–10 км; Авача–Моховая; АЗС–Силуэт и другие,2026-11-23,309766801.26,notice_ceiling,notice_0911,application_open_reported
+0138300000426000917,city_roads,Центр–ДОФ–Садовая; СРВ–ЖБФ–Завойко,,,,notice_0917,notice_only
+0138300000426000856,city_roads,Магистральные дороги,,,,notice_0856,cancelled_reported

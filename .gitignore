@@ -20,3 +20,11 @@ out/
 /city_sim/.state/
 
 /city_sim/data/building-location-checks.json.gz
+
+# Local evidence and reproducible experiment outputs (not publication inputs)
+/research/**/sources/
+/research/**/originals/
+/research/**/extracted/
+/research/**/raw/
+*.sqlite*
+*.npz

@@ -1,0 +1,161 @@
+{
+  "confirmed_contract_lines": [
+    [
+      28,
+      "deice_carriageway_mechanical",
+      "carriageway",
+      "Механизированное распределение противогололёдных или фрикционных материалов на проезжей части и элементах дороги"
+    ],
+    [
+      29,
+      "deice_sidewalk_mechanical",
+      "sidewalk",
+      "Механизированное распределение материалов на тротуарах и пешеходных дорожках"
+    ],
+    [
+      30,
+      "deice_sidewalk_manual",
+      "sidewalk",
+      "Ручная россыпь материалов на тротуарах"
+    ],
+    [
+      31,
+      "deice_stop_manual",
+      "bus_stop",
+      "Ручная россыпь материалов на автобусных остановках"
+    ],
+    [
+      32,
+      "overpass_wall_dedust",
+      "overpass",
+      "Влажное обеспыливание стен перехода"
+    ],
+    [
+      33,
+      "overpass_wall_door_wash",
+      "overpass",
+      "Мойка стен и дверей перехода"
+    ],
+    [
+      34,
+      "overpass_structure_wash",
+      "overpass",
+      "Мойка несущих металлоконструкций стен и кровли"
+    ],
+    [
+      35,
+      "overpass_floor_sweep",
+      "overpass",
+      "Влажное подметание пола"
+    ],
+    [
+      36,
+      "overpass_stair_sweep",
+      "overpass",
+      "Влажное подметание лестницы"
+    ],
+    [
+      37,
+      "overpass_floor_wash",
+      "overpass",
+      "Мойка пола"
+    ],
+    [
+      38,
+      "overpass_stair_wash",
+      "overpass",
+      "Мойка лестницы и протирка перил"
+    ],
+    [
+      39,
+      "overpass_bin_service",
+      "overpass",
+      "Опорожнение и периодическая мойка урны"
+    ],
+    [
+      40,
+      "overpass_load",
+      "overpass",
+      "Ручная погрузка материалов"
+    ],
+    [
+      41,
+      "overpass_haul",
+      "overpass",
+      "Перевозка материалов самосвалом"
+    ],
+    [
+      42,
+      "tko_service",
+      "waste",
+      "Обращение с ТКО"
+    ],
+    [
+      43,
+      "sand_waste_service",
+      "waste",
+      "Обращение с отходами песка"
+    ]
+  ],
+  "tender_0902": {
+    "same_class_examples": [
+      [
+        "deice_carriageway_mechanical",
+        "carriageway",
+        "Механизированная обработка проезжей части и площадок"
+      ],
+      [
+        "deice_sidewalk_mechanical",
+        "sidewalk",
+        "Механизированная обработка тротуаров и дорожек"
+      ],
+      [
+        "deice_sidewalk_manual",
+        "sidewalk",
+        "Ручная россыпь противогололёдного материала на тротуарах"
+      ],
+      [
+        "deice_stop_manual",
+        "bus_stop",
+        "Ручная россыпь противогололёдного материала на остановках"
+      ],
+      [
+        "overpass_wall_dedust",
+        "overpass",
+        "Влажное обеспыливание стен перехода"
+      ],
+      [
+        "overpass_floor_sweep",
+        "overpass",
+        "Влажное подметание пола перехода"
+      ],
+      [
+        "overpass_stair_sweep",
+        "overpass",
+        "Влажное подметание лестницы; в № 0902 с протиркой перил"
+      ]
+    ],
+    "additional_examples": [
+      [
+        "plow",
+        "carriageway",
+        "Плужная очистка снега"
+      ],
+      [
+        "grade_compacted_snow",
+        "carriageway",
+        "Удаление уплотнённого снега грейдером"
+      ],
+      [
+        "remove_snowbank",
+        "carriageway",
+        "Удаление снежного вала шнекоротором"
+      ],
+      [
+        "clear_sidewalk_snow_ice_manual",
+        "sidewalk",
+        "Ручная очистка снега и льда"
+      ]
+    ]
+  }
+}

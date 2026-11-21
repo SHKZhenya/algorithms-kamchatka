@@ -1,0 +1,76 @@
+{
+  "archive_sha256": "8ddab5c637db0be32254648cc5f13ec570f4f4df5b1bd73c6a071c2578bca071",
+  "documents": 3,
+  "objects": 128,
+  "works": 1042,
+  "work_unit_price_sum_rub": 7798428.16,
+  "sheets": {
+    "2026 год": 387,
+    "ЛСР 26 г.": 180,
+    "2027 год": 675,
+    "ЛСР 27 г.": 3749,
+    "2028 год": 674,
+    "ЛСР 28 г.": 3749,
+    "2029 год": 674,
+    "ЛСР 29 г. ": 3749,
+    "ПСК 26 г": 230,
+    "ПСК 27-29 гг": 402,
+    "КА": 20,
+    "Расчет ДФЛ ": 71
+  },
+  "pdf_pages": 92,
+  "spreadsheet_cached_errors": [],
+  "estimate_lines": 1847,
+  "object_table_comparisons": [
+    {
+      "description_block": 16,
+      "contract_block": 319,
+      "identical": true
+    },
+    {
+      "description_block": 18,
+      "contract_block": 321,
+      "identical": true
+    },
+    {
+      "description_block": 20,
+      "contract_block": 323,
+      "identical": true
+    },
+    {
+      "description_block": 22,
+      "contract_block": 325,
+      "identical": true
+    },
+    {
+      "description_block": 24,
+      "contract_block": 327,
+      "identical": true
+    },
+    {
+      "description_block": 26,
+      "contract_block": 329,
+      "identical": true
+    },
+    {
+      "description_block": 28,
+      "contract_block": 331,
+      "identical": true
+    },
+    {
+      "description_block": 30,
+      "contract_block": 333,
+      "identical": true
+    }
+  ],
+  "extracted_files": [
+    {
+      "path": "extracted/Сметный расчет/Сметный расчет.xlsx.sig",
+      "sha256": "83354f4c3c502fbe3a259248d66607c2df388c00ff782ec3b099d3622aaac8b7"
+    },
+    {
+      "path": "extracted/Сметный расчет/Сметный расчет.xlsx",
+      "sha256": "f1375a0ff7c4443499d424d340071dc77730e1e6776a707979c690c682111994"
+    }
+  ]
+}
