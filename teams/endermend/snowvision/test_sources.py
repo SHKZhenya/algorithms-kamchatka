@@ -60,3 +60,18 @@ class SourceTests(unittest.IsolatedAsyncioTestCase):
                 await asyncio.to_thread(server.shutdown)
                 server.server_close()
                 thread.join(timeout=2)
+
+    async def test_retry_bypasses_cache_preserves_query_and_publishes_valid_metadata(self):
+        encoded=cv2.imencode('.jpg',np.zeros((32,48,3),np.uint8))[1].tobytes()
+        requests=[]
+        def receive(request):
+            requests.append(request)
+            return httpx.Response(503) if len(requests)==1 else httpx.Response(200,content=encoded)
+        async with httpx.AsyncClient(transport=httpx.MockTransport(receive)) as client:
+            camera={'type':'jpeg','url':'https://example.org/frame.jpg?camera=7'}
+            await fetch_frame(camera,client)
+        self.assertEqual(len(requests),2)
+        self.assertNotEqual(requests[0].url.params['_sv'],requests[1].url.params['_sv'])
+        self.assertEqual(requests[1].url.params['camera'],'7')
+        self.assertIn('no-cache',requests[1].headers['Cache-Control'])
+        self.assertEqual(camera['download_attempts'],2)

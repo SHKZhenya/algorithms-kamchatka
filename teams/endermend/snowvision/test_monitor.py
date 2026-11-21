@@ -168,3 +168,16 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
             await monitor.attempt()
         self.assertIsNone(monitor.state['snow_probability'])
         self.assertEqual(monitor.state['analysis_reason'],'insufficient_distinct_frames')
+
+    async def test_repeated_frame_expires_even_when_download_succeeds(self):
+        import time
+        monitor=self.make()
+        with patch('monitor.fetch_frame',AsyncMock(return_value=demo(0))):
+            await monitor.attempt()
+            original=monitor.state['frame_timestamp']
+            monitor.changed_at=time.time()-300
+            monitor.state['next_attempt_at']=0
+            await monitor.attempt()
+        self.assertEqual(monitor.state['frame_timestamp'],original)
+        self.assertEqual(monitor.observation()['freshness_reason'],'unchanged_frame')
+        self.assertEqual(monitor.observation()['source_status'],'stale')

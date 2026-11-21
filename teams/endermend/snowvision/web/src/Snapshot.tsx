@@ -9,6 +9,7 @@ type SnapshotCamera = {
     frame_timestamp: number | null;
     source_status: string;
     is_fetching?: boolean;
+    freshness_reason?: string | null;
   };
 };
 let active = 0;
@@ -45,12 +46,19 @@ export async function loadSnapshot(
   await slot(signal);
   let objectUrl: string | undefined;
   try {
-    const response = await fetch(url, { signal });
+    const response = await fetch(url, { signal, cache: "no-store" });
     if (!response.ok) throw Error("Не удалось получить кадр");
-    objectUrl = URL.createObjectURL(await response.blob());
+    const blob = await response.blob();
+    if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+    objectUrl = URL.createObjectURL(blob);
     const image = new Image();
     image.src = objectUrl;
-    await image.decode();
+    await new Promise<void>((resolve, reject) => {
+      const abort = () => reject(new DOMException("Aborted", "AbortError"));
+      signal.addEventListener("abort", abort, {once:true});
+      image.decode().then(() => { signal.removeEventListener("abort", abort); resolve(); }, e => { signal.removeEventListener("abort", abort); reject(e); });
+      if (signal.aborted) abort();
+    });
     if (signal.aborted) throw new DOMException("Aborted", "AbortError");
     return objectUrl;
   } catch (error) {
@@ -85,6 +93,8 @@ export const Snapshot = memo(function Snapshot({
   const [error, setError] = useState(false);
   const owned = useRef(new Set<string>());
   const manualSeen = useRef(manual);
+  const failures = useRef(0);
+  const [retry, setRetry] = useState(0);
   const version = camera.observation?.frame_version;
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -105,6 +115,12 @@ export const Snapshot = memo(function Snapshot({
       return;
     manualSeen.current = manual;
     const controller = new AbortController();
+    let alive = true;
+    let retryTimer: ReturnType<typeof setTimeout> | undefined;
+    const timeout = setTimeout(() => {
+      if (alive) { setError(true); setLoading(false); controller.abort();
+        retryTimer = setTimeout(() => setRetry(v => v + 1), Math.min(30000, 1000 * 2 ** Math.min(failures.current++,5))); }
+    }, 12000);
     setLoading(true);
     setError(false);
     loadSnapshot(
@@ -116,6 +132,8 @@ export const Snapshot = memo(function Snapshot({
           URL.revokeObjectURL(url);
           return;
         }
+        clearTimeout(timeout);
+        failures.current = 0;
         owned.current.add(url);
         setPrevious(display?.url);
         setDisplay({
@@ -125,16 +143,21 @@ export const Snapshot = memo(function Snapshot({
         });
       })
       .catch((e) => {
-        if (e.name !== "AbortError") setError(true);
+        if (alive && e.name !== "AbortError") {
+          clearTimeout(timeout); setError(true);
+          retryTimer = setTimeout(() => setRetry(v => v + 1), Math.min(30000, 1000 * 2 ** Math.min(failures.current++,5)));
+        }
       })
       .finally(() => {
         if (!controller.signal.aborted) setLoading(false);
       });
     return () => {
+      alive = false;
+      clearTimeout(timeout); clearTimeout(retryTimer);
       controller.abort();
       setLoading(false);
     };
-  }, [camera.id, version, visible, auto, manual, display?.version]);
+  }, [camera.id, version, visible, auto, manual, display?.version, retry]);
   useEffect(() => {
     if (!previous) return;
     const timer = setTimeout(() => {
@@ -196,9 +219,10 @@ export const Snapshot = memo(function Snapshot({
       {(loading || camera.observation?.is_fetching) && display && (
         <span className="updating">Обновляется</span>
       )}
-      {display && (degraded || error) && (
+      {display && (degraded || error) && camera.observation?.freshness_reason !== "unchanged_frame" && (
         <span className="last-frame">Последний доступный кадр</span>
       )}
+      {display && camera.observation?.freshness_reason === "unchanged_frame" && <span className="last-frame">Источник долго возвращает одинаковый кадр</span>}
       <span className="frame-time">
         {display?.timestamp
           ? new Date(display.timestamp * 1000).toLocaleTimeString("ru-RU", {

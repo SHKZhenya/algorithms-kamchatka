@@ -16,11 +16,12 @@ from scene_model import analyze_scene
 def prepare(frame):
     if frame is None or frame.ndim != 3 or min(frame.shape[:2]) < 16:
         raise ValueError('Недопустимый размер изображения')
+    version = hashlib.sha256(frame.tobytes()).hexdigest()
     frame = cv2.resize(frame, (640, 360))
     ok, encoded = cv2.imencode('.jpg', frame)
     if not ok:
         raise ValueError('Ошибка кодирования JPEG')
-    return frame, encoded.tobytes(), hashlib.sha256(frame.tobytes()).hexdigest()
+    return frame, encoded.tobytes(), version
 
 
 class CameraMonitor:
@@ -57,6 +58,16 @@ class CameraMonitor:
             state.update(is_stale=True, snow_probability=None, confidence=0, status='unknown')
             if state['source_status'] == 'online':
                 state['source_status'] = 'stale'
+        state['unchanged_since'] = self.changed_at if state.get('frame_version') else None
+        state['frame_age_seconds'] = max(0, time.time()-self.changed_at) if state.get('frame_version') else None
+        reason = None
+        if state.get('is_stale'):
+            threshold = self.camera.get('stale_after_seconds',120)
+            if state.get('source_status') in ('offline','degraded'): reason = 'source_unavailable'
+            elif (state.get('last_success_at') or 0)-self.changed_at > threshold: reason = 'unchanged_frame'
+            elif state.get('source_timestamp') is not None and time.time()-state['source_timestamp'] > threshold: reason = 'old_source_timestamp'
+            else: reason = 'frame_expired'
+        state['freshness_reason'] = reason
         return state
 
     def restore(self):
@@ -121,7 +132,7 @@ class CameraMonitor:
                 # Publish the validated frame and its metadata together, before analysis.
                 self.image = encoded
                 self.state.update(revision=time.time_ns()//1000, last_success_at=now, has_cached_frame=True,
-                                  source_timestamp=source_time, consecutive_failures=0, features=quality,
+                                  source_timestamp=source_time, download_attempts=self.camera.get('download_attempts'), http_cache_age=self.camera.get('http_cache_age'), consecutive_failures=0, features=quality,
                                   is_stale=stale, source_status='stale' if stale else 'online', error=None)
                 if changed:
                     self.state.update(frame_version=version, frame_timestamp=now)

@@ -138,3 +138,26 @@ it("releases object URLs on unmount", async () => {
   view.unmount();
   expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:one");
 });
+
+it("retries a failed download without requiring a new frame version", async () => {
+  vi.useFakeTimers();
+  try {
+    vi.mocked(fetch).mockRejectedValueOnce(Error("temporary"));
+    render(<Snapshot camera={camera}/>); visible(true);
+    await act(async () => { await vi.advanceTimersByTimeAsync(1200); });
+    expect(screen.getByAltText("Кадр камеры «Камера»")).toBeDefined();
+    expect(fetch).toHaveBeenCalledTimes(2);
+  } finally {vi.useRealTimers();}
+});
+
+it("releases a stuck decoder and retries instead of exhausting the queue", async () => {
+  vi.useFakeTimers();
+  try {
+    let decodes=0;
+    vi.stubGlobal("Image",class {src="";decode(){decodes++; return decodes===1?new Promise<void>(()=>{}):Promise.resolve();}});
+    render(<Snapshot camera={camera}/>); visible(true);
+    await act(async () => {await vi.advanceTimersByTimeAsync(14000);});
+    expect(screen.getByAltText("Кадр камеры «Камера»")).toBeDefined();
+    expect(fetch).toHaveBeenCalledTimes(2);
+  } finally {vi.useRealTimers();}
+});

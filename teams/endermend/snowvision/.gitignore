@@ -9,3 +9,8 @@ source_checks.local.json
 web/coverage/
 
 /alerts-replay.local.json
+
+# Provider credentials and local freshness audits
+.env.*
+!.env.example
+camera-audit.local.json
