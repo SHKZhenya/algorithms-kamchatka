@@ -1,0 +1,29 @@
+services:
+  snowvision:
+    build: .
+    expose: ["8000"]
+    environment:
+      SCENE_MODEL_URL: ${SCENE_MODEL_URL:-}
+      ALERT_WEBHOOK_URL: ${ALERT_WEBHOOK_URL:-}
+      ALERT_WEBHOOK_TOKEN: ${ALERT_WEBHOOK_TOKEN:-}
+    volumes: ["history:/data"]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+  web:
+    build: ./web
+    ports: ["127.0.0.1:5173:80"]
+    depends_on:
+      snowvision:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+volumes:
+  history:

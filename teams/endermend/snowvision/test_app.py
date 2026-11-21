@@ -1,0 +1,58 @@
+import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
+from fastapi.testclient import TestClient
+from app import app, analyze, demo, cameras, monitors
+
+
+class PipelineTests(unittest.TestCase):
+    def setUp(self):
+        # Endpoint tests do not start camera workers or write the production cache.
+        self.client = TestClient(app)
+        self.addCleanup(self.client.close)
+
+    def test_insufficient(self):
+        self.assertIsNone(analyze([demo(0)])[0])
+
+    def test_scenes(self):
+        snow = analyze([demo(i) for i in range(16)])[0]
+        for kind in ('clear', 'car'):
+            value = analyze([demo(i, kind) for i in range(16)])[0]
+            self.assertLess(value, snow)
+        self.assertTrue(0 <= snow <= 1)
+
+    def test_api_and_failures(self):
+        self.assertEqual(self.client.get('/api/health').status_code, 200)
+        self.assertEqual(len(self.client.get('/api/cameras').json()), len(cameras))
+        self.assertEqual(self.client.get('/api/cameras/missing/status').status_code, 404)
+        self.assertEqual(self.client.get('/api/cameras/demo/status').status_code, 200)
+
+    def test_snapshot_etag_and_version(self):
+        cached = SimpleNamespace(image=b'jpeg', state={'frame_version': 'one'})
+        with patch.dict(monitors, {'demo': cached}):
+            response = self.client.get('/api/cameras/demo/snapshot?v=one')
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.headers['etag'], '"one"')
+            conditional = self.client.get('/api/cameras/demo/snapshot', headers={'If-None-Match': '"one"'})
+            self.assertEqual(conditional.status_code, 304)
+            self.assertEqual(self.client.get('/api/cameras/demo/snapshot?v=old').status_code, 409)
+
+    def test_onset_coverage_requires_usable_current_evidence(self):
+        config = dict(id='street', type='hls', interval_seconds=60)
+        observation = dict(source_status='online', snow_probability=.8, confidence=.1, frame_version='a')
+        monitor = SimpleNamespace(observation=lambda: observation)
+        with patch('app.cameras', [config]), patch.dict(monitors, {'street':monitor}, clear=True):
+            self.assertEqual(self.client.get('/api/monitoring').json()['onset_online'],0)
+            observation['confidence']=.7
+            self.assertEqual(self.client.get('/api/monitoring').json()['onset_online'],1)
+            observation['is_stale']=True
+            self.assertEqual(self.client.get('/api/monitoring').json()['onset_online'],0)
+        config.update(type='jpeg', motion_analysis=False, city_observation=True)
+        observation.update(snow_probability=None, is_stale=False, scene_frame_version='old',
+                           scene={'format_valid':True,'air_view':'good','falling_snow':'yes'})
+        with patch('app.cameras', [config]), patch.dict(monitors, {'street':monitor}, clear=True), patch.dict('os.environ', {'SCENE_MODEL_URL':'http://model.test'}):
+            coverage=self.client.get('/api/monitoring').json()
+            self.assertEqual(coverage['onset_capable'],1)
+            self.assertEqual(coverage['onset_online'],0)
+            observation['scene_frame_version']='a'
+            self.assertEqual(self.client.get('/api/monitoring').json()['onset_online'],1)

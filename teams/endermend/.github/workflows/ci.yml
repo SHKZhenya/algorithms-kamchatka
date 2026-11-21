@@ -1,0 +1,27 @@
+name: Endermend CI
+on:
+  push:
+    branches: [endermend]
+    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml']
+  pull_request:
+    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snowvision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: teams/endermend/snowvision
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - run: docker compose up --build -d --wait
+      - run: docker compose exec -T snowvision python -m unittest -v
+      - run: docker compose exec -T web nginx -t
+      - run: curl --fail http://localhost:5173/api/health
+      - if: always()
+        run: docker compose down
