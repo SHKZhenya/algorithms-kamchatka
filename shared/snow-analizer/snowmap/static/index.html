@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Снежные заносы</title>
+<style>
+:root{color-scheme:light;--ink:#10273d;--sub:#4a6074;--line:#dbe5ec;--accent:#08647b}
+*{box-sizing:border-box}
+body{margin:0;background:#edf3f6;color:var(--ink);font:16px/1.55 "Instrument Sans",system-ui,sans-serif}
+main{max-width:1230px;margin:auto;padding:38px 26px}
+h1{font-size:clamp(2rem,5vw,3.25rem);line-height:1.1;margin:0 0 12px;letter-spacing:-.055em}
+h2{font-size:1.05rem;margin:0 0 15px}
+p{margin:0;color:var(--sub)}
+.layout{display:grid;grid-template-columns:295px minmax(0,1fr);gap:18px;margin-top:25px;align-items:start}
+.card{background:white;border:1px solid var(--line);border-radius:16px;padding:19px}
+form{display:grid;gap:12px}
+label{display:grid;gap:5px;font-size:.88rem;font-weight:600}
+input,select,button{font:inherit}
+input[type=number],select{width:100%;min-width:0;padding:7px 9px;border:1px solid #aebfcd;border-radius:6px;background:white;color:var(--ink)}
+input[type=checkbox]{accent-color:var(--accent)}
+.check{display:flex;align-items:center;gap:6px}
+.triple{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:9px}
+[hidden]{display:none!important}
+button{border:0;border-radius:7px;padding:9px;background:var(--accent);color:white;font-weight:650;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.maphead{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.maphead h2{margin:0}
+small,#status{color:var(--sub);font-size:.84rem}
+.stage{position:relative;background:#eef4f7;border:1px solid var(--line);border-radius:9px;overflow:hidden;display:grid;min-height:100px;place-items:center}
+#streetMap{width:100%;height:clamp(360px,60vh,680px)}
+#map{display:block;width:100%;height:auto;max-height:64vh;object-fit:contain}
+#north{position:absolute;right:12px;top:8px;font-weight:700;background:#ffffffdf;padding:2px 7px;border-radius:4px;pointer-events:none}
+#wind{position:absolute;left:10px;top:8px;display:flex;align-items:center;gap:6px;background:#ffffffdf;padding:3px 8px;border-radius:4px;font-size:.84rem;pointer-events:none}
+#flow{display:inline-block;font-size:1.15rem;line-height:1}
+#readout{min-height:1.6em;margin-top:6px}
+legend{padding:0;font-weight:700}
+.gradient{height:10px;border-radius:10px;background:linear-gradient(90deg,#fff1c1,#ffba55,#ed672e,#9e2220);margin-top:12px}
+.ends{display:flex;justify-content:space-between;font-size:.84rem}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:13px 0}
+.stats>div{background:#f0f5f8;border-radius:8px;padding:8px 10px;font-size:.82rem}
+.stats strong{display:block;font-size:1rem}
+details{font-size:.88rem}
+table{width:100%;text-align:left;font-size:.78rem}
+a{color:var(--accent)}
+@media(max-width:730px){main{padding:22px 12px}.layout{grid-template-columns:1fr}.card{padding:13px}}
+/* The map fills the viewport while the controls occupy only their panels. */
+body.map-mode{overflow:hidden}
+.map-mode main{max-width:none;margin:0;padding:0}
+.map-mode main>header{display:none}
+.map-mode .layout{display:block;margin:0}
+.map-mode .map-card{padding:0;border:0}
+.map-mode .stage{position:fixed;inset:0;z-index:0;display:block;border:0;border-radius:0}
+.map-mode #streetMap{width:100%;height:100%}
+.map-mode .settings-card,.map-mode .map-legend{
+  position:fixed;left:16px;z-index:2;
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 5px 24px #10273d22;
+}
+.map-mode .settings-card{
+  top:16px;width:min(300px,calc(100vw - 80px));max-height:calc(100dvh - 155px);
+  overflow:auto;padding:14px;
+}
+.settings-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.map-mode .settings-head h2{margin:0}
+#settingsToggle{padding:5px 8px;background:#edf3f6;color:var(--ink);font-size:.875rem}
+.map-mode #form{margin-top:12px}
+#status:not(:empty){margin-top:8px;overflow-wrap:anywhere}
+.map-mode .map-legend{bottom:24px;width:min(300px,calc(100vw - 32px));padding:10px 14px}
+.map-mode .maphead{margin-bottom:0;gap:2px}
+.map-mode .map-legend .gradient{margin-top:7px}
+.map-mode #attribution:empty{display:none}
+@media(max-width:730px){
+  .map-mode .settings-card,.map-mode .map-legend{left:10px}
+  .map-mode .settings-card{top:10px}
+}
+</style>
+</head>
+<body>
+<main>
+  <header><h1>Снежные заносы</h1><p>Расчёт толщины свежего снега вокруг зданий по ветру и снегопаду.</p></header>
+  <div class="layout">
+    <section class="card settings-card" aria-labelledby="settingsTitle">
+      <div class="settings-head">
+        <h2 id="settingsTitle">Параметры расчёта</h2>
+        <button id="settingsToggle" type="button" aria-controls="form" aria-expanded="true" hidden>Свернуть</button>
+      </div>
+      <form id="form">
+        <label>Геометрия<select id="source"><option value="demo">Тестовая застройка</option><option value="map">Интерактивная карта</option><option value="osm">Тайл OpenStreetMap</option></select></label>
+        <div class="triple" id="tile" hidden>
+          <label>z<input id="z" type="number" min="15" max="20" value="17" required disabled></label>
+          <label>x<input id="x" type="number" min="0" value="123298" required disabled></label>
+          <label>y<input id="y" type="number" min="0" value="42669" required disabled></label>
+        </div>
+        <label id="forecastChoice" class="check" hidden><input id="forecast" type="checkbox" checked> Прогноз Open-Meteo</label>
+        <fieldset id="manual">
+          <label>Ветер откуда, ° от севера<input id="angle" type="number" min="0" max="359.9" step="0.1" value="270" required></label>
+          <label>Скорость на 10 м, м/с<input id="speed" type="number" min="0" max="70" step="0.1" value="8" required></label>
+          <label>Снегопад, см/ч<input id="snow" type="number" min="0" max="50" step="0.1" value="2" required></label>
+        </fieldset>
+        <label>Длительность, ч<input id="hours" type="number" min="1" max="24" value="3" required></label>
+        <label class="check"><input id="foam" type="checkbox" checked> Шаблоны OpenFOAM</label>
+        <label id="liveFoamChoice" class="check"><input id="liveFoam" type="checkbox"> Рассчитать поток в OpenFOAM</label>
+        <label id="snowChoice" class="check" hidden><input id="showSnow" type="checkbox" checked> Слой снега</label>
+        <label id="snowScaleChoice" hidden>Максимум шкалы, см
+          <input id="snowScale" type="number" min="0.1" step="any" value="30">
+        </label>
+        <button>Рассчитать</button>
+      </form>
+      <p id="status" role="status"></p>
+    </section>
+    <section class="card map-card">
+      <div class="stage">
+        <canvas id="map" width="600" height="500" aria-label="Карта толщины снега"></canvas>
+        <div id="streetMap" aria-label="Интерактивная карта" hidden></div>
+        <span id="north" title="Север">↑ N</span>
+        <span id="wind" title="Ветер первого расчётного часа" hidden><span id="flow" aria-hidden="true">↑</span><span id="windSpeed"></span></span>
+      </div>
+      <div class="map-legend">
+        <div class="maphead"><h2>Толщина свежего снега</h2><small id="method">Ожидание расчёта</small></div>
+        <div class="gradient"></div>
+        <div class="ends"><span>0 см</span><span id="maximum">—</span></div>
+        <small id="attribution"></small>
+      </div>
+      <p id="readout">Наведите курсор на карту для просмотра значения.</p>
+      <div id="stats" class="stats">
+        <div>Фоновый снегопад<strong id="background">—</strong></div>
+        <div>Зданий на карте<strong id="buildings">—</strong></div>
+        <div>Время расчёта<strong id="timing">—</strong></div>
+      </div>
+      <details id="forecastDetails"><summary>Почасовая погода</summary><table>
+        <thead><tr><th>Час</th><th>Откуда, °</th><th>м/с</th><th>Снег, см</th><th>Осадки, мм</th></tr></thead>
+        <tbody id="weather"></tbody>
+      </table></details>
+    </section>
+  </div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const number = id => $(id).valueAsNumber;
+const fmt = new Intl.NumberFormat('ru', {maximumFractionDigits: 2});
+const canvas = $('map');
+const ctx = canvas.getContext('2d');
+const colors = [[255,241,193],[255,186,85],[237,103,46],[158,34,32]];
+let result;
+let map, snowLayer, streetTiles, leafletPromise;
+let snowParams;
+let screenVersion = 0;
+let snowScale = number('snowScale');
+const snowTiles = new Map();
+const queued = [];
+let activeRequests = 0;
+function setSettingsExpanded(expanded) {
+  $('form').hidden = !expanded;
+  $('settingsToggle').setAttribute('aria-expanded', String(expanded));
+  $('settingsToggle').textContent = expanded ? 'Свернуть' : 'Настройки';
+}
+function updateFields() {
+  const mode = $('source').value;
+  const interactive = mode === 'map';
+  document.body.classList.toggle('map-mode', interactive);
+  $('settingsToggle').hidden = !interactive;
+  if (!interactive) setSettingsExpanded(true);
+  $('tile').hidden = mode !== 'osm';
+  $('forecastChoice').hidden = mode === 'demo';
+  $('tile').querySelectorAll('input').forEach(input => input.disabled = mode !== 'osm');
+  if (mode === 'osm' && $('liveFoam').checked) $('forecast').checked = false;
+  $('manual').hidden = $('manual').disabled = mode !== 'demo' && $('forecast').checked;
+  for (const id of ['map', 'north', 'stats', 'forecastDetails', 'readout']) $(id).hidden = interactive;
+  $('liveFoamChoice').hidden = interactive;
+  $('liveFoam').disabled = $('liveFoamChoice').hidden;
+  $('foam').disabled = !$('liveFoam').disabled && $('liveFoam').checked;
+  $('wind').hidden = true;
+  $('streetMap').hidden = $('snowChoice').hidden = $('snowScaleChoice').hidden = !interactive;
+  $('snowScale').disabled = !interactive;
+  if (!interactive && snowLayer) snowLayer.remove();
+  if (interactive) {
+    $('method').textContent = 'Снег на видимых тайлах';
+    updateSnowLegend();
+    $('attribution').textContent = $('forecast').checked ? 'Прогноз Open-Meteo' : '';
+  }
+}
+function updateSnowLegend() {
+  $('maximum').textContent = fmt.format(snowScale) + ' см и больше';
+}
+function color(value, max) {
+  const t = max > 0 ? Math.max(0, Math.min(3, 3*value/max)) : 0;
+  const i = Math.min(2, Math.floor(t));
+  return 'rgb(' + colors[i].map((c,j) => Math.round(c + (colors[i+1][j]-c)*(t-i))).join(',') + ')';
+}
+function draw(data) {
+  canvas.width = Math.max(1, Math.round(1000*data.width_m/Math.max(data.width_m,data.height_m)));
+  canvas.height = Math.max(1, Math.round(1000*data.height_m/Math.max(data.width_m,data.height_m)));
+  const cw = canvas.width/data.cols, ch = canvas.height/data.rows;
+  data.snow_depth_cm.forEach((row,j) => row.forEach((value,i) => {
+    ctx.fillStyle = value === null ? '#34485b' : color(value,data.max_snow_depth_cm);
+    ctx.fillRect(Math.floor(i*cw),Math.floor(j*ch),Math.floor((i+1)*cw)-Math.floor(i*cw),Math.floor((j+1)*ch)-Math.floor(j*ch));
+  }));
+  for (const building of data.footprints) {
+    ctx.beginPath();
+    for (const ring of building.geometry.coordinates) {
+      ring.forEach(([x,y],i) => ctx[i ? 'lineTo' : 'moveTo'](x/data.width_m*canvas.width,(1-y/data.height_m)*canvas.height));
+      ctx.closePath();
+    }
+    ctx.fillStyle = '#34485b';
+    ctx.strokeStyle = '#1a3043';
+    ctx.fill('evenodd');
+    ctx.stroke();
+  }
+  $('method').textContent = data.model === 'openfoam_tile' ?
+    'OpenFOAM · расчёт тайла' : data.model === 'analytic' ? 'Аналитическая оценка' :
+    'OpenFOAM + модель снега · ' + Math.round(100*data.cfd_coverage) + '% применений';
+  $('maximum').textContent = fmt.format(data.max_snow_depth_cm) + ' см';
+  $('background').textContent = fmt.format(data.forecast_snowfall_cm) + ' см';
+  $('buildings').textContent = data.building_count;
+  $('timing').textContent = fmt.format(data.compute_ms) + ' мс';
+  const first = data.weather[0];
+  $('wind').hidden = false;
+  $('flow').style.transform = 'rotate(' + (first.wind_from_deg+180) + 'deg)';
+  $('flow').hidden = first.wind_speed_ms === 0;
+  $('windSpeed').textContent = fmt.format(first.wind_speed_ms) + ' м/с';
+  $('weather').replaceChildren(...data.weather.map((hour,i) => {
+    const tr = document.createElement('tr');
+    const end = hour.end_utc ? new Date(hour.end_utc).toLocaleString('ru', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : i+1;
+    [end,hour.wind_from_deg,hour.wind_speed_ms,hour.snowfall_cm,hour.precipitation_mm].forEach(v => {
+      const cell = tr.insertCell();
+      cell.textContent = typeof v === 'number' ? fmt.format(v) : v ?? '—';
+    });
+    return tr;
+  }));
+  $('attribution').replaceChildren();
+  if (data.geometry_source === 'OpenStreetMap') {
+    const link = document.createElement('a');
+    link.href = 'https://www.openstreetmap.org/copyright';
+    link.textContent = '© OpenStreetMap contributors';
+    $('attribution').append(link);
+  }
+  if (data.weather_source === 'Open-Meteo') $('attribution').append(' · Прогноз Open-Meteo');
+}
+canvas.addEventListener('pointermove', event => {
+  if (!result) return;
+  const rectangle = canvas.getBoundingClientRect();
+  const scale = Math.min(rectangle.width/canvas.width, rectangle.height/canvas.height);
+  const width = canvas.width*scale, height = canvas.height*scale;
+  const i = Math.floor((event.clientX-rectangle.left-(rectangle.width-width)/2)/width*result.cols);
+  const j = Math.floor((event.clientY-rectangle.top-(rectangle.height-height)/2)/height*result.rows);
+  const value = result.snow_depth_cm[j]?.[i];
+  $('readout').textContent = value === undefined ? '' : value === null ? 'Здание' : fmt.format(value) + ' см свежего снега';
+});
+function parameters() {
+  const payload = {hours:number('hours'),use_foam:$('foam').checked};
+  if (!$('liveFoam').disabled && $('liveFoam').checked) payload.run_foam = true;
+  if (!$('manual').hidden) {
+    payload.manual_weather = {wind_from_deg:number('angle'),wind_speed_ms:number('speed'),snowfall_cm_h:number('snow')};
+  }
+  return payload;
+}
+
+async function requestSnow(payload, signal) {
+  const response = await fetch('/api/snow', {
+    method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload), signal
+  });
+  if (response.status === 204) return null;
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(typeof data.detail === 'string' ? data.detail : data.detail?.[0]?.msg ?? 'Ошибка расчёта');
+  }
+  return data;
+}
+
+function processQueue() {
+  while (activeRequests < 3 && queued.length) {
+    const job = queued.shift();
+    if (job.signal.aborted) continue;
+    activeRequests++;
+    job.run().finally(() => {
+      activeRequests--;
+      processQueue();
+    });
+  }
+}
+
+function paintSnowTile(tile, data, coords) {
+  const context = tile.getContext('2d');
+  context.clearRect(0, 0, tile.width, tile.height);
+  const [west, south, , north] = data.bbox_wgs84;
+  const rowEdges = Array.from({length: data.rows + 1}, (_, row) => {
+    const latitude = north - (north - south)*row/data.rows;
+    return Math.round(map.project([latitude, west], coords.z).y - coords.y*tile.height);
+  });
+  data.snow_depth_cm.forEach((row, y) => row.forEach((value, x) => {
+    if (value === null || value <= 0) return;
+    const left = Math.round(x*tile.width/data.cols);
+    const right = Math.round((x+1)*tile.width/data.cols);
+    context.globalAlpha = Math.min(0.75, 0.14 + value/18);
+    context.fillStyle = color(value, snowScale);
+    context.fillRect(left, rowEdges[y], right-left, rowEdges[y+1]-rowEdges[y]);
+  }));
+}
+
+function loadLeafletAssets(base, cssIntegrity) {
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = base + 'leaflet.css';
+  css.integrity = cssIntegrity;
+  css.crossOrigin = '';
+  const script = document.createElement('script');
+  script.src = base + 'leaflet.js';
+  script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+  script.crossOrigin = '';
+  return Promise.all([css, script].map(asset => new Promise((resolve, reject) => {
+    asset.onload = resolve;
+    asset.onerror = () => reject(new Error('Не удалось загрузить Leaflet'));
+    document.head.append(asset);
+  }))).catch(error => {
+    css.remove();
+    script.remove();
+    throw error;
+  });
+}
+
+function loadLeaflet() {
+  if (!leafletPromise) {
+    leafletPromise = loadLeafletAssets('/clearance/vendor/',
+      'sha256-M3v8pcq9A7OYFbJwD+vis7ft9VkhxZzUn4jssyghIwM=')
+      .catch(() => loadLeafletAssets('https://unpkg.com/leaflet@1.9.4/dist/',
+        'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY='))
+      .catch(error => {
+        leafletPromise = undefined;
+        throw error;
+      });
+  }
+  return leafletPromise;
+}
+
+function clearanceChanged() {
+  window.dispatchEvent(new Event('clearancechange'));
+}
+
+function createStreetMap() {
+  map = L.map('streetMap', {minZoom:15, maxZoom:20, zoomControl:false}).setView([53.045, 158.65], 16);
+  L.control.zoom({position:'topright'}).addTo(map);
+  streetTiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxNativeZoom:19, maxZoom:20, updateWhenIdle:true,
+    attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+  }).addTo(map);
+  streetTiles.on('tileerror', () => {
+    $('method').textContent = 'Подложка OpenStreetMap недоступна';
+  });
+  const SnowGrid = L.GridLayer.extend({
+    createTile(coords, done) {
+      const tile = document.createElement('canvas');
+      tile.width = tile.height = 256;
+      const controller = new AbortController();
+      tile.snowRequest = controller;
+      const {signal} = controller;
+      const payload = {...snowParams, resolution:64, city_cache_only:true, tile:{z:coords.z,x:coords.x,y:coords.y}};
+      queued.push({signal, run: async () => {
+        try {
+          const data = await requestSnow(payload, signal);
+          if (signal.aborted) return;
+          if (data) {
+            paintSnowTile(tile, data, coords);
+            snowTiles.set(tile, {data, coords});
+            clearanceChanged();
+          }
+          done(null, tile);
+        } catch (error) {
+          if (!signal.aborted) done(error, tile);
+        }
+      }});
+      processQueue();
+      return tile;
+    }
+  });
+  snowLayer = new SnowGrid({
+    minZoom:15, maxZoom:20, zIndex:2, keepBuffer:0, updateWhenIdle:true, updateWhenZooming:false
+  });
+  let lastError;
+  snowLayer.on('tileunload', ({tile}) => {
+    if (snowTiles.delete(tile)) clearanceChanged();
+    tile.snowRequest.abort();
+    processQueue();
+  });
+  snowLayer.on('loading', () => {
+    lastError = undefined;
+    $('status').textContent = 'Считаю снег для видимых тайлов…';
+  });
+  snowLayer.on('tileerror', ({error}) => { lastError = error.message; });
+  snowLayer.on('load', () => {
+    $('status').textContent = lastError ? 'Часть тайлов недоступна. ' + lastError : 'Слой снега обновлён.';
+  });
+}
+
+$('settingsToggle').addEventListener('click', () => {
+  setSettingsExpanded($('form').hidden);
+});
+$('source').addEventListener('change', () => {
+  updateFields();
+  if ($('liveFoam').checked && !$('liveFoam').disabled) {
+    $('status').textContent = 'Задайте параметры и нажмите «Рассчитать».';
+    return;
+  }
+  $('form').requestSubmit();
+});
+$('liveFoam').addEventListener('change', updateFields);
+$('forecast').addEventListener('change', () => {
+  if ($('source').value === 'osm' && $('forecast').checked) $('liveFoam').checked = false;
+  updateFields();
+  if ($('source').value === 'map') $('form').requestSubmit();
+});
+$('snowScale').addEventListener('input', () => {
+  const value = number('snowScale');
+  if (!Number.isFinite(value) || !$('snowScale').validity.valid) return;
+  snowScale = value;
+  updateSnowLegend();
+  for (const [tile, {data, coords}] of snowTiles) {
+    paintSnowTile(tile, data, coords);
+  }
+});
+$('snowScale').addEventListener('blur', () => {
+  $('snowScale').value = snowScale;
+});
+$('showSnow').addEventListener('change', () => {
+  snowLayer?.setOpacity($('showSnow').checked ? 1 : 0);
+});
+$('form').addEventListener('submit', async event => {
+  event.preventDefault();
+  const version = ++screenVersion;
+  const mode = $('source').value;
+  const payload = parameters();
+  $('status').textContent = payload.run_foam ?
+    'OpenFOAM рассчитывает поток для тайла…' : 'Выполняется расчёт…';
+  try {
+    if (mode === 'map') {
+      await loadLeaflet();
+      if (version !== screenVersion || $('source').value !== mode) return;
+      if (!map) createStreetMap();
+      map.invalidateSize({pan:false});
+      snowParams = payload;
+      $('attribution').textContent = $('forecast').checked ? 'Прогноз Open-Meteo' : '';
+      snowLayer.setOpacity($('showSnow').checked ? 1 : 0);
+      if (map.hasLayer(snowLayer)) {
+        snowLayer.redraw();
+      } else {
+        snowLayer.addTo(map);
+      }
+      clearanceChanged();
+      return;
+    }
+    if (mode === 'osm') payload.tile = {z:number('z'),x:number('x'),y:number('y')};
+    const data = await requestSnow(payload);
+    if (version !== screenVersion || $('source').value !== mode) return;
+    result = data;
+    draw(data);
+    $('status').textContent = data.kernels_available === 0 && payload.use_foam && !payload.run_foam ?
+      'Шаблоны OpenFOAM отсутствуют. Показана аналитическая оценка.' : 'Карта обновлена.';
+  } catch (error) {
+    if (version === screenVersion && $('source').value === mode) $('status').textContent = error.message;
+  }
+});
+updateFields();
+$('form').requestSubmit();
+</script>
+<script src="/clearance/map.js"></script>
+</body>
+</html>
