@@ -117,9 +117,13 @@ export const Snapshot = memo(function Snapshot({
     const controller = new AbortController();
     let alive = true;
     let retryTimer: ReturnType<typeof setTimeout> | undefined;
+    const scheduleRetry = () => {
+      const delay = Math.min(30000, 1000 * 2 ** Math.min(failures.current++, 5));
+      retryTimer = setTimeout(() => setRetry(value => value + 1), delay);
+    };
     const timeout = setTimeout(() => {
       if (alive) { setError(true); setLoading(false); controller.abort();
-        retryTimer = setTimeout(() => setRetry(v => v + 1), Math.min(30000, 1000 * 2 ** Math.min(failures.current++,5))); }
+        scheduleRetry(); }
     }, 12000);
     setLoading(true);
     setError(false);
@@ -145,7 +149,7 @@ export const Snapshot = memo(function Snapshot({
       .catch((e) => {
         if (alive && e.name !== "AbortError") {
           clearTimeout(timeout); setError(true);
-          retryTimer = setTimeout(() => setRetry(v => v + 1), Math.min(30000, 1000 * 2 ** Math.min(failures.current++,5)));
+          scheduleRetry();
         }
       })
       .finally(() => {

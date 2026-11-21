@@ -161,3 +161,22 @@ it("releases a stuck decoder and retries instead of exhausting the queue", async
     expect(fetch).toHaveBeenCalledTimes(2);
   } finally {vi.useRealTimers();}
 });
+
+it("cancels queued work without leaking slots and admits later requests", async () => {
+  const {loadSnapshot} = await import('./Snapshot');
+  const decoders:Array<()=>void>=[];
+  vi.stubGlobal("Image",class {src="";decode(){return new Promise<void>(resolve=>decoders.push(resolve));}});
+  const controllers=Array.from({length:5},()=>new AbortController());
+  const first=controllers.slice(0,4).map((c,i)=>loadSnapshot(`/frame/${i}`,c.signal));
+  await waitFor(()=>expect(decoders).toHaveLength(4));
+  const queued=loadSnapshot('/frame/queued',controllers[4].signal);
+  const rejected=expect(queued).rejects.toMatchObject({name:'AbortError'});
+  controllers[4].abort();await rejected;
+  expect(fetch).toHaveBeenCalledTimes(4);
+  decoders.splice(0).forEach(resolve=>resolve());
+  const urls=await Promise.all(first);urls.forEach(url=>URL.revokeObjectURL(url));
+  const last=loadSnapshot('/frame/last',new AbortController().signal);
+  await waitFor(()=>expect(decoders).toHaveLength(1));
+  decoders[0]();URL.revokeObjectURL(await last);
+  expect(fetch).toHaveBeenCalledTimes(5);
+});
