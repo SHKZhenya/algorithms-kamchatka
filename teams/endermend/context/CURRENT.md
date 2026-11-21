@@ -10,7 +10,9 @@ Upstream: SHKZhenya/algorithms-kamchatka. Форк: endermend/algorithms-kamchat
 Стек: FastAPI, SQLite, httpx, OpenCV, React/TS/Vite, nginx, Docker Compose.
 Порт: http://localhost:5173. Compose project production: snowvision.
 
-Последний проверенный код: 6b210c5, 49 backend / 14 frontend тестов, CI success.
+Последний проверенный код инфраструктуры: 61a42fc, CI success.
+Функциональный код 6b210c5: 49 backend / 14 frontend тестов; hooks: 2 теста.
+CI: https://github.com/endermend/algorithms-kamchatka/actions/runs/44960217655.
 Последние изменения: повторная загрузка текущей версии после ошибки,
 таймаут скачивания/декодирования, освобождение очереди, максимум 4 загрузки,
 обход промежуточного кеша JPEG, сохранение последнего корректного кадра.
@@ -40,8 +42,10 @@ JPEG каждые 30 с недостаточны для движения сне�
 recovered не изменять. Родительская папка содержит Git bundle, tar.gz исходников,
 копию SQLite 30 МБ и camera-audit.local.json. Детали: teams/endermend/RECOVERY.md.
 
-Текущая задача: журналирование, компактные checkpoints после успешных коммитов,
-явный цикл verify → reviewed staged diff → commit → post-commit capture.
+Журналирование и checkpoints НАСТРОЕНЫ и ПРОВЕРЕНЫ. Текущая задача —
+передать работу в новый чат. Незавершённой согласованной задачи разработки нет.
+Не начинать заново восстановление, настройку GitHub, интеграцию Яндекса или hooks.
+Точка входа для нового чата: START_HERE.md в этой папке.
 Инфраструктура контекста: tools/endermend-context/context.py, .githooks/post-commit.
 Локальная установка core.hooksPath=.githooks; текущий чат явно привязан
 в .context-local/session-path, его gzip обновляется после коммита.
