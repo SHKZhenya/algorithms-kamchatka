@@ -1,0 +1,205 @@
+[
+  {
+    "id": "leninskaya",
+    "name": "Петропавловск-Камчатский, улица Ленинская",
+    "kind": "hls",
+    "url": "https://cam-stream.pkgo.ru/live/cam3/playlist.m3u8",
+    "interval_seconds": 60
+  },
+  {
+    "id": "zavoyko",
+    "name": "Елизово, улица Завойко",
+    "kind": "hls",
+    "url": "https://streamer.camera.rt.ru/public/master.m3u8?sid=df33ed60-4399-43fe-8069-2e42652b6fa1",
+    "interval_seconds": 60
+  },
+  {
+    "id": "chekhova",
+    "name": "Петропавловск-Камчатский, улица Чехова",
+    "kind": "jpeg",
+    "url": "https://www.shors.ru/images/camera/image80.jpg",
+    "interval_seconds": 15
+  },
+  {
+    "id": "shors-volcanoes",
+    "name": "Вид на вулканы, студия ЩОРС",
+    "kind": "jpeg",
+    "url": "https://www.shors.ru/images/camera/image96.jpg",
+    "interval_seconds": 15
+  },
+  {
+    "id": "moroznaya",
+    "name": "Елизово, горнолыжная база «Гора Морозная»",
+    "kind": "hls",
+    "url": "https://streamer.camera.rt.ru/public/master.m3u8?sid=064f49d8-e198-42c6-b74a-16a903df4542",
+    "interval_seconds": 60
+  },
+  {
+    "id": "stela",
+    "name": "Стела «Город воинской славы»",
+    "kind": "embed",
+    "url": "https://rtsp.me/embed/RQWDPXmi/",
+    "interval_seconds": 60
+  },
+  {
+    "id": "ran-nlc-avh",
+    "name": "Авачинская сопка с мыса Налычево",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/NLC-AVH/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-sma",
+    "name": "Авачинская сопка со станции Сомма",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/SMA/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-avh",
+    "name": "Авачинская сопка с Авачинского перевала",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/AVH/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-avachinsky",
+    "name": "Авачинская сопка с Мишенной сопки",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Avachinsky/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-bezymianny",
+    "name": "Безымянный из Козыревска",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Bezymianny/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-bzg",
+    "name": "Безымянный, Камень и Ключевская сопка с Безымянной гривы",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/BZG/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-goreliy",
+    "name": "Горелый, Мутновский и Вилючинский из Петропавловска-Камчатского",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Goreliy/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-gorely-dvgb",
+    "name": "Горелый с Двугорбой сопки",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Gorely-dvgb/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-pepl",
+    "name": "Жупановский со станции Пепловая",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/PEPL/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-gpn",
+    "name": "Жупановский с мыса Налычево",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/GPN/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-kizimen",
+    "name": "Кизимен с базы Тумрок",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Kizimen/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-kly",
+    "name": "Ключевская сопка из посёлка Ключи",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/KLY/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-kirisheva",
+    "name": "Ключевской, Камень и Безымянный со станции Киришева",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Kirisheva/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-koryak2",
+    "name": "Корякская и Авачинская сопки с Петровской сопки",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Koryak2/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-gpn2",
+    "name": "Малый Семячик",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/GPN2/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-mutnovsky-vak",
+    "name": "Мутновский со станции Вакин",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Mutnovsky-vak/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-asa",
+    "name": "Мутновский со стороны Асачи",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/ASA/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-mutnovsky-kldg",
+    "name": "Мутновский с борта кальдеры Горелого",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Mutnovsky-kldg/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-mutnovsky-grl",
+    "name": "Мутновский с вулкана Горелый",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Mutnovsky-grl/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-tolbachik",
+    "name": "Толбачик из Козыревска",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Tolbachik/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-ptolbachik",
+    "name": "Толбачик с Высокой сопки",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/PTolbachik/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-shiveluch",
+    "name": "Шивелуч из посёлка Ключи",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/SHIVELUCH/img_1.jpg",
+    "interval_seconds": 1800
+  },
+  {
+    "id": "ran-ebeko",
+    "name": "Эбеко из Северо-Курильска",
+    "kind": "jpeg",
+    "url": "https://kam.emsd.ru/video/Ebeko/img_1.jpg",
+    "interval_seconds": 1800
+  }
+]

@@ -1,0 +1,260 @@
+[
+  {
+    "id": "demo",
+    "name": "Тестовая сцена со снегопадом",
+    "type": "demo",
+    "location": "Синтетический источник"
+  },
+  {
+    "id": "chekhova",
+    "name": "Чехова · уличная камера",
+    "location": "Петропавловск-Камчатский",
+    "type": "jpeg",
+    "url": "https://www.shors.ru/images/camera/image80.jpg",
+    "interval_seconds": 30,
+    "coordinates_lat_lon": [
+      53.0533533,
+      158.6449414
+    ],
+    "coordinates_note": "Приблизительная точка площадки Чехова, 1А из существующей интеграции; не граница поля зрения",
+    "coordinates_source": "https://www.shors.ru/kamery/kamera-shchors",
+    "city_observation": true,
+    "scene_role": "street"
+  },
+  {
+    "id": "panorama",
+    "name": "Вид на вулканы со ЩОРС",
+    "location": "Петропавловск-Камчатский · ЩОРС",
+    "type": "jpeg",
+    "url": "https://www.shors.ru/images/camera/image96.jpg",
+    "interval_seconds": 30,
+    "coordinates_lat_lon": [
+      53.0533533,
+      158.6449414
+    ],
+    "coordinates_note": "Приблизительная точка площадки Чехова, 1А из существующей интеграции; не граница поля зрения",
+    "coordinates_source": "https://www.shors.ru/kamery/kamera-shchors",
+    "city_observation": false,
+    "scene_role": "distant_panorama"
+  },
+  {
+    "id": "ran-sma",
+    "name": "Авачинская сопка со станции Сомма",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/SMA/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-avh",
+    "name": "Авачинская сопка с Авачинского перевала",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/AVH/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-avachinsky",
+    "name": "Авачинская сопка с Мишенной сопки",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Avachinsky/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-bezymianny",
+    "name": "Безымянный из Козыревска",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Bezymianny/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-bzg",
+    "name": "Безымянный, Камень и Ключевская сопка с Безымянной гривы",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/BZG/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-goreliy",
+    "name": "Горелый, Мутновский и Вилючинский из Петропавловска-Камчатского",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Goreliy/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-gorely-dvgb",
+    "name": "Горелый с Двугорбой сопки",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Gorely-dvgb/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-pepl",
+    "name": "Жупановский со станции Пепловая",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/PEPL/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-gpn",
+    "name": "Жупановский с мыса Налычево",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/GPN/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-kizimen",
+    "name": "Кизимен с базы Тумрок",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Kizimen/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-kly",
+    "name": "Ключевская сопка из посёлка Ключи",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/KLY/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-kirisheva",
+    "name": "Ключевской, Камень и Безымянный со станции Киришева",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Kirisheva/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-koryak2",
+    "name": "Корякская и Авачинская сопки с Петровской сопки",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Koryak2/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-gpn2",
+    "name": "Малый Семячик",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/GPN2/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-mutnovsky-vak",
+    "name": "Мутновский со станции Вакин",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Mutnovsky-vak/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-mutnovsky-kldg",
+    "name": "Мутновский с борта кальдеры Горелого",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Mutnovsky-kldg/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-tolbachik",
+    "name": "Толбачик из Козыревска",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Tolbachik/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-shiveluch",
+    "name": "Шивелуч из посёлка Ключи",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/SHIVELUCH/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-ebeko",
+    "name": "Эбеко из Северо-Курильска",
+    "location": "Северо-Курильск · Сахалинская область · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Ebeko/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-ptolbachik",
+    "name": "Толбачик с Высокой сопки",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/PTolbachik/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  }
+]

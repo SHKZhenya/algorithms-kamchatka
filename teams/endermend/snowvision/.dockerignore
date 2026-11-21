@@ -1,0 +1,16 @@
+.env
+__pycache__/
+.venv/
+*.db
+web/node_modules/
+web/dist/
+
+source_checks.local.json
+web/coverage/
+
+/alerts-replay.local.json
+
+# Provider credentials and local freshness audits
+.env.*
+!.env.example
+camera-audit.local.json
