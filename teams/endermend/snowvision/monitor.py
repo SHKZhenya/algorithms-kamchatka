@@ -8,8 +8,9 @@ import sqlite3
 import time
 from pathlib import Path
 import cv2
+import numpy as np
 from sources import fetch_frame, fetch_burst
-from vision import frame_quality
+from vision import SNAPSHOT_METHOD, analyze_snapshot, frame_quality
 from scene_model import analyze_scene
 
 
@@ -42,10 +43,15 @@ class CameraMonitor:
         self.image = None
         self.tick = 0
         self.changed_at = time.time()
+        motion = camera.get('motion_analysis', True)
+        self.snapshot_analysis = camera['type'] == 'jpeg' and (
+            not motion or camera.get('interval_seconds', 30) > 2
+        )
+        method = SNAPSHOT_METHOD if self.snapshot_analysis else 'opencv_motion' if motion else 'snapshot_only'
         self.state = dict(camera_id=camera['id'], snow_probability=None, confidence=0,
                           status='unknown', timestamp=None, frame_timestamp=None,
                           source_timestamp=None, source_status='offline',
-                          analysis_method=('frame_quality' if camera.get('interval_seconds', 0.35) > 2 and camera['type'] != 'hls' else 'opencv_motion') if camera.get('motion_analysis', True) else 'snapshot_only',
+                          analysis_method=method,
                           is_demo=camera['type'] == 'demo', error=None,
                           last_success_at=None, last_attempt_at=None, next_attempt_at=0,
                           frame_version=None, consecutive_failures=0, has_cached_frame=False,
@@ -85,6 +91,10 @@ class CameraMonitor:
             source_status = 'degraded' if self.state.get('error') else 'stale' if stale else 'online'
             self.state.update(source_status=source_status, is_fetching=False,
                               snow_probability=None, confidence=0, status='unknown', is_stale=stale)
+            if self.snapshot_analysis and source_status == 'online' and self.image:
+                frame = cv2.imdecode(np.frombuffer(self.image, dtype=np.uint8), cv2.IMREAD_COLOR)
+                if frame is not None:
+                    self.state.update(analyze_snapshot(frame), last_analysis_at=time.time())
 
     def persist(self):
         state = dict(self.state)
@@ -137,7 +147,7 @@ class CameraMonitor:
                 if changed:
                     self.state.update(frame_version=version, frame_timestamp=now)
                 score, confidence, status = None, 0, 'unknown'
-                if self.camera.get('motion_analysis', True) and not stale:
+                if not self.snapshot_analysis and self.camera.get('motion_analysis', True) and not stale:
                     cutoff = now-stale_after
                     self.frames = [(t, f) for t, f in self.frames if t >= cutoff]
                     if changed:
@@ -165,8 +175,13 @@ class CameraMonitor:
                         score = self.state['snow_probability']
                         confidence = self.state['confidence']
                         status = self.state['status']
-                self.state.update(snow_probability=score, confidence=confidence, status=status)
-                if changed and score is None and self.scene_url and self.camera.get('city_observation') and self.camera['type']!='demo':
+                outlook = dict(snow_probability=score, confidence=confidence, status=status)
+                if self.snapshot_analysis and not stale:
+                    async with self.processing:
+                        snapshot = await asyncio.to_thread(analyze_snapshot, frame, quality)
+                    outlook.update(snapshot, last_analysis_at=time.time())
+                self.state.update(outlook)
+                if changed and (score is None or self.snapshot_analysis) and self.scene_url and self.camera.get('city_observation') and self.camera['type']!='demo':
                     try:
                         scene = await analyze_scene(self.scene_client, self.scene_url, encoded)
                         self.state.update(scene=scene, scene_frame_version=version, scene_error=None)

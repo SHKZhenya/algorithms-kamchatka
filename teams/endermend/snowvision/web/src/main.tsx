@@ -201,10 +201,9 @@ function Detail({
           </div>
           <span className={`status ${s.tone}`}>{s.text}</span>
         </div>
-        {camera.motion_analysis === false && (
+        {o?.analysis_method === "opencv_snapshot" && (
           <p className="note">
-            Источник публикует редкие снимки. Оценка снегопада по движению для
-            этой камеры недоступна.
+            Оценка по одному JPEG-кадру. Блики и детали фона могут выглядеть как снег.
           </p>
         )}
         {o?.analysis_reason && (
@@ -263,7 +262,11 @@ function Detail({
           <dt>Последний анализ</dt>
           <dd>{time(o?.last_analysis_at)}</dd>
           <dt>Метод</dt>
-          <dd>{o?.analysis_method || "Ожидание анализа"}</dd>
+          <dd>
+            {o?.analysis_method === "opencv_snapshot"
+              ? "Признаки на одном кадре"
+              : o?.analysis_method || "Ожидание анализа"}
+          </dd>
         </dl>
         {camera.url && (
           <a href={camera.url} target="_blank" rel="noreferrer">
@@ -671,7 +674,7 @@ const CameraCard = memo(function CameraCard({
             </strong>
           </div>
           <div>
-            <small>Уверенность</small>
+            <small>{o?.analysis_method === "opencv_snapshot" ? "Уверенность по кадру" : "Уверенность"}</small>
             <strong>{percent(o?.confidence)}</strong>
           </div>
         </div>

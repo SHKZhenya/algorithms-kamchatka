@@ -25,11 +25,11 @@ it("shows unknown when city coverage and weather are unavailable", async () => {
   );
   render(<CityPanel />);
   await screen.findByText("Недостаточно независимых городских наблюдений");
-  expect(screen.getAllByText("—").length).toBe(2);
+  expect(screen.getByText("—")).toBeDefined();
   expect(screen.queryByText("0%")).toBeNull();
 });
 
-it("uses snow ensemble probability alongside the precipitation forecast", async () => {
+it("shows the Yandex forecast and keeps past warnings separate", async () => {
   vi.stubGlobal(
     "fetch",
     vi
@@ -45,27 +45,50 @@ it("uses snow ensemble probability alongside the precipitation forecast", async 
           },
           forecast: {
             status: "available",
-            ensemble: {
-              status: "available",
-              snow_probability: 0.25,
-              member_count: 40,
-              snowy_members: 10,
-            },
             hours: [
               {
                 timestamp: 2000000000,
                 precipitation_probability: 90,
-                snowfall_cm: 0.2,
+                precipitation: "sleet",
+                precipitation_mm: 0.2,
+                snowfall_cm: null,
                 temperature_c: -2,
-                snow_expected: true,
               },
+            ],
+          },
+          warnings: {
+            status: "available",
+            source: "Росгидромет",
+            source_url: "https://dfo.meteorf.gov.ru/ekstrennaya-informatsiya/",
+            items: [
+              { text: "Ожидается сильный ветер в городе.", city_mentioned: true, date_status: "today", last_date: "2026-11-22" },
+              { text: "20 ноября в крае был сильный снег.", city_mentioned: false, date_status: "past", last_date: "2026-11-20" },
             ],
           },
         }),
       }),
   );
   render(<CityPanel />);
-  await screen.findByText("25%");
-  expect(screen.getByText(/10 из 40 сценариев/)).toBeDefined();
-  expect(screen.getByText(/Осадки/).textContent).toContain("90%");
+  await screen.findByRole("link", { name: "Яндекс Погода" });
+  expect(screen.getByText(/Дождь со снегом/)).toBeDefined();
+  expect(screen.getByText("Вероятность осадков 90%")).toBeDefined();
+  expect(screen.getByText("Упомянут Петропавловск-Камчатский")).toBeDefined();
+  expect(screen.getByText(/20 ноября/).closest("details")?.open).toBe(false);
+});
+
+it("links to official warnings when the city API is unreachable", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("Сбой API")));
+  render(<CityPanel />);
+
+  await screen.findByText("Сбой API");
+  screen.getByText("Официальные штормовые предупреждения").click();
+  const destinations = screen
+    .getAllByRole("link")
+    .map((link) => link.getAttribute("href"));
+  expect(destinations).toEqual([
+    "https://kammeteo.ru/",
+    "https://dfo.meteorf.gov.ru/ekstrennaya-informatsiya/",
+    "https://meteoinfo.ru/hdmapsmeteoalarmdv",
+    "https://41.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya",
+  ]);
 });

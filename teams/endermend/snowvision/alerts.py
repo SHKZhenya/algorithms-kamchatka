@@ -8,10 +8,12 @@ import time
 import uuid
 from integrations.team_scene import event_signals
 from datetime import datetime, timezone
+from vision import SNAPSHOT_METHOD
 
 class AlertJournal:
-    def __init__(self, database):
+    def __init__(self, database, delivery_camera_ids=()):
         self.database = database
+        self.delivery_camera_ids = frozenset(delivery_camera_ids)
         with self.connect() as db:
             db.execute('CREATE TABLE IF NOT EXISTS onset_state (camera TEXT PRIMARY KEY, payload TEXT)')
             db.execute('CREATE TABLE IF NOT EXISTS onset_events (id TEXT PRIMARY KEY, camera TEXT, opened REAL, payload TEXT)')
@@ -35,7 +37,8 @@ class AlertJournal:
             scene_valid = (scene.get('format_valid') is True and scene.get('air_view') in ('good','limited')
                            and observation.get('scene_frame_version') == version
                            and scene.get('falling_snow') in ('yes','no'))
-            cv_valid = score is not None and observation.get('confidence',0) >= .25
+            cv_valid = (observation.get('analysis_method') != SNAPSHOT_METHOD
+                        and score is not None and observation.get('confidence',0) >= .25)
             valid = (bool(version) and observation.get('source_status') == 'online' and not observation.get('is_stale')
                      and (cv_valid or scene_valid))
             if not valid:
@@ -61,6 +64,8 @@ class AlertJournal:
                     stored = db.execute('SELECT payload FROM onset_events WHERE id=?',(state['event_id'],)).fetchone()
                     event = json.loads(stored[0]) if stored else None
                 previous_stage = event['stage'] if event else None
+                if event and event.get('confirmed_at') is not None:
+                    previous_stage = 'confirmed'
                 if positive:
                     if event is None:
                         event = dict(id=str(uuid.uuid4()), camera_id=camera['id'], name=camera['name'],
@@ -73,7 +78,8 @@ class AlertJournal:
                                  pipeline_delay_seconds=max(0,now-(observation.get('last_attempt_at') or observation.get('frame_timestamp') or now)),
                                  source_timestamp=observation.get('source_timestamp'),
                                  method='weather_vlm_v2' if scene_valid else observation.get('analysis_method'), confirmations=state['hits'])
-                    event['stage'] = 'early' if state['hits'] < 3 else event['stage']
+                    if event.get('confirmed_at') is not None:
+                        event['stage'] = 'confirmed'
                     scenes = [dict(observed_at=datetime.fromtimestamp(timestamp,timezone.utc),
                                    scene=dict(format_valid=True, view_quality='limited', falling_snow='yes',
                                               intensity='uncertain', visibility='uncertain'))
@@ -83,7 +89,8 @@ class AlertJournal:
                         event.setdefault('confirmed_at',now)
                     db.execute('INSERT OR REPLACE INTO onset_events VALUES (?,?,?,?)',
                                (event['id'],camera['id'],event['opened_at'],json.dumps(event)))
-                    if not event['is_demo'] and (previous_stage is None or event['stage'] == 'confirmed'):
+                    if (not event['is_demo'] and camera['id'] in self.delivery_camera_ids
+                            and (previous_stage is None or previous_stage != event['stage'])):
                         if event['stage'] == 'confirmed':
                             db.execute("UPDATE alert_outbox SET status='suppressed' WHERE event_id=? AND stage='early' AND status='pending'", (event['id'],))
                         delivery_id = event['id'] + ':' + event['stage']
@@ -107,6 +114,8 @@ class AlertJournal:
         for event in events:
             event['delivery'] = by_event.get(event['id'], [])
             event['evidence_stale'] = time.time()-event['last_seen'] > 120
+            if event['stage'] == 'early' and event.get('confirmed_at') is not None:
+                event['stage'] = 'confirmed'
         return events
 
     def acknowledge(self, id):
@@ -127,7 +136,8 @@ class AlertJournal:
             rows = db.execute("SELECT o.id,o.payload,o.created,e.payload FROM alert_outbox o JOIN onset_events e ON e.id=o.event_id WHERE o.status='pending' AND o.next_attempt<=? ORDER BY o.created", (now,)).fetchall()
             for id, payload, created, current in rows:
                 event = json.loads(current)
-                if now-created > 120 or event.get('ended_at') or event.get('acknowledged_at'):
+                if (event.get('is_demo') or event['camera_id'] not in self.delivery_camera_ids
+                        or now-created > 120 or event.get('ended_at') or event.get('acknowledged_at')):
                     db.execute("UPDATE alert_outbox SET status='suppressed' WHERE id=?", (id,))
                     continue
                 return dict(id=id, event=json.loads(payload))

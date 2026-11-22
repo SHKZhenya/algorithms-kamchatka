@@ -11,6 +11,13 @@ class AlertTests(unittest.TestCase):
     def sample(self,version,score=.8,source='online'):
         self.journal.observe(self.camera,dict(frame_version=version,snow_probability=score,
             confidence=.7,source_status=source,frame_timestamp=100,analysis_method='opencv_motion'))
+    def test_snapshot_score_is_not_an_onset_observation(self):
+        self.journal.observe(self.camera, dict(
+            frame_version='snapshot', snow_probability=.95, confidence=.8,
+            source_status='online', analysis_method='opencv_snapshot',
+        ))
+        self.assertEqual(self.journal.events(), [])
+
     def test_first_evidence_is_immediate_and_distinct_frames_confirm(self):
         self.sample('a')
         self.assertEqual(self.journal.events()[0]['stage'],'early')
@@ -50,6 +57,16 @@ class AlertTests(unittest.TestCase):
             self.journal.observe(self.camera,dict(frame_version=version,snow_probability=.3,confidence=.7,
                 source_status='online',features={'temporal_persistence':.8,'spatial_coverage':.8}))
         self.assertEqual(self.journal.events()[0]['stage'],'early')
+
+    def test_confirmation_survives_unknown_and_subsequent_weak_evidence(self):
+        for version in ('a', 'b', 'c'):
+            self.sample(version)
+        confirmed_at = self.journal.events()[0]['confirmed_at']
+        self.sample('offline', None, 'offline')
+        self.journal.observe(self.camera, dict(frame_version='weak', snow_probability=.3, confidence=.7,
+            source_status='online', features={'temporal_persistence':.8,'spatial_coverage':.8}))
+        event = self.journal.events()[0]
+        self.assertEqual((event['stage'], event['confirmed_at'], event['confirmations']), ('confirmed', confirmed_at, 0))
     def test_model_evidence_without_fabricated_probability(self):
         for version in ('a','b','c'):
             self.journal.observe(self.camera,dict(frame_version=version,snow_probability=None,confidence=0,

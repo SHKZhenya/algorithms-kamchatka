@@ -19,9 +19,9 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
     async def asyncTearDown(self):
         self.directory.cleanup()
 
-    def make(self, id='a', motion=True):
+    def make(self, id='a', motion=True, interval=30):
         return CameraMonitor(dict(id=id,type='jpeg',url='https://example.org/'+id,
-                                  interval_seconds=30,motion_analysis=motion),None,
+                                  interval_seconds=interval,motion_analysis=motion),None,
                              self.acquisition,self.processing,analyze,demo,self.database)
 
     async def test_slow_camera_does_not_block_fast(self):
@@ -56,7 +56,7 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(monitor.state['consecutive_failures'],1)
 
     async def test_identical_frame_and_rate_limit(self):
-        monitor=self.make()
+        monitor=self.make(interval=.5)
         with patch('monitor.fetch_frame',AsyncMock(return_value=demo(0))) as fetch:
             await monitor.attempt()
             version, timestamp = monitor.state['frame_version'],monitor.state['frame_timestamp']
@@ -68,14 +68,16 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(monitor.state['frame_timestamp'],timestamp)
         self.assertEqual(len(monitor.frames),1)
 
-    async def test_snapshot_only_skips_analysis(self):
+    async def test_snapshot_only_uses_a_single_frame(self):
         monitor=self.make(motion=False)
         monitor.analyze=Mock(side_effect=AssertionError('must not analyze'))
         with patch('monitor.fetch_frame',AsyncMock(return_value=demo(0))):
             await monitor.attempt()
         monitor.analyze.assert_not_called()
         self.assertEqual(monitor.frames,[])
-        self.assertEqual(monitor.state['analysis_method'],'snapshot_only')
+        self.assertEqual(monitor.state['analysis_method'],'opencv_snapshot')
+        self.assertIsNotNone(monitor.state['snow_probability'])
+        self.assertGreater(monitor.state['confidence'], .5)
 
     async def test_older_source_cannot_replace_newer_frame(self):
         monitor=self.make()
@@ -101,10 +103,11 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
         restored=self.make()
         restored.restore()
         self.assertEqual(restored.image,monitor.image)
-        self.assertEqual(restored.state['analysis_method'],'frame_quality')
+        self.assertEqual(restored.state['analysis_method'],'opencv_snapshot')
         self.assertGreater(restored.state['revision'],monitor.state['revision'])
         self.assertEqual(restored.state['frame_timestamp'],monitor.state['frame_timestamp'])
-        self.assertIsNone(restored.state['snow_probability'])
+        self.assertIsNotNone(restored.state['snow_probability'])
+        self.assertGreater(restored.state['confidence'], .5)
         self.assertEqual(restored.state['next_attempt_at'],monitor.state['next_attempt_at'])
         self.assertEqual(await restored.attempt(),'rate_limited')
 
@@ -144,7 +147,7 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_sparse_sequence_is_unknown(self):
         import time
-        monitor=self.make()
+        monitor=self.make(interval=.5)
         monitor.frames=[(time.time()-30,demo(0))]
         monitor.state.update(snow_probability=.9,status='snowing')
         with patch('monitor.fetch_frame',AsyncMock(return_value=demo(1))):

@@ -2,9 +2,28 @@ import unittest
 import cv2
 import numpy as np
 from app import demo
-from vision import analyze_frames
+from vision import analyze_frames, analyze_snapshot
 
 class VisionTests(unittest.TestCase):
+    def test_snapshot_scores_visible_flakes_and_clear_frame(self):
+        clear = demo(0, 'clear')
+        cv2.rectangle(clear, (0, 315), (639, 359), (220, 220, 220), -1)
+        snow = clear.copy()
+        for y in range(40, 305, 40):
+            for x in range(56, 580, 56):
+                cv2.circle(snow, (x, y), 2, (235, 235, 235), -1)
+        clear_result, snow_result = analyze_snapshot(clear), analyze_snapshot(snow)
+        self.assertEqual(clear_result['status'], 'clear')
+        self.assertGreater(clear_result['confidence'], .55)
+        self.assertEqual(snow_result['status'], 'snowing')
+        self.assertGreater(snow_result['confidence'], .60)
+
+    def test_snapshot_with_no_visibility_has_no_score(self):
+        result = analyze_snapshot(np.zeros((360, 640, 3), np.uint8))
+        self.assertIsNone(result['snow_probability'])
+        self.assertEqual(result['confidence'], 0)
+        self.assertEqual(result['analysis_reason'], 'poor_visibility')
+
     def test_static_snow_on_ground(self):
         frame=demo(0,'clear')
         cv2.rectangle(frame,(0,310),(639,359),(240,240,240),-1)
