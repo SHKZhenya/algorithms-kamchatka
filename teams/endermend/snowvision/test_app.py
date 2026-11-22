@@ -58,7 +58,8 @@ class PipelineTests(unittest.TestCase):
             observation['is_stale']=True
             self.assertEqual(self.client.get('/api/monitoring').json()['onset_online'],0)
         config.update(type='jpeg', motion_analysis=False, city_observation=True)
-        observation.update(snow_probability=None, is_stale=False, scene_frame_version='old',
+        observation.update(snow_probability=.95, analysis_method='opencv_snapshot',
+                           is_stale=False, scene_frame_version='old',
                            scene={'format_valid':True,'air_view':'good','falling_snow':'yes'})
         with patch('app.cameras', [config]), patch.dict(monitors, {'street':monitor}, clear=True), patch.dict('os.environ', {'SCENE_MODEL_URL':'http://model.test'}):
             coverage=self.client.get('/api/monitoring').json()

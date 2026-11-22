@@ -1,6 +1,7 @@
 """Spatially conservative aggregation of city camera observations."""
 import math
 import time
+from vision import SNAPSHOT_METHOD
 
 CITY = {'name': 'Петропавловск-Камчатский', 'latitude': 53.0533533, 'longitude': 158.6449414,
         'location_note': 'Опорная точка в районе Чехова, 1А; прогноз модельной ячейки, не всей городской территории'}
@@ -23,7 +24,7 @@ def aggregate(cameras, now=None):
         reason = None
         if camera['type'] == 'demo': reason = 'demo'
         elif not camera.get('city_observation') or not location: reason = 'outside_city_or_unverified_view'
-        elif not camera.get('motion_analysis', True): reason = 'snapshot_only'
+        elif not camera.get('motion_analysis', True) or o.get('analysis_method') == SNAPSHOT_METHOD: reason = 'snapshot_only'
         elif o.get('source_status') != 'online' or o.get('is_stale'): reason = 'unavailable_or_stale'
         elif o.get('snow_probability') is None or o.get('confidence', 0) < 0.25: reason = 'insufficient_evidence'
         elif now-(o.get('last_analysis_at') or 0) > 120: reason = 'expired_analysis'

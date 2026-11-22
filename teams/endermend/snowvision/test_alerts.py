@@ -11,6 +11,13 @@ class AlertTests(unittest.TestCase):
     def sample(self,version,score=.8,source='online'):
         self.journal.observe(self.camera,dict(frame_version=version,snow_probability=score,
             confidence=.7,source_status=source,frame_timestamp=100,analysis_method='opencv_motion'))
+    def test_snapshot_score_is_not_an_onset_observation(self):
+        self.journal.observe(self.camera, dict(
+            frame_version='snapshot', snow_probability=.95, confidence=.8,
+            source_status='online', analysis_method='opencv_snapshot',
+        ))
+        self.assertEqual(self.journal.events(), [])
+
     def test_first_evidence_is_immediate_and_distinct_frames_confirm(self):
         self.sample('a')
         self.assertEqual(self.journal.events()[0]['stage'],'early')

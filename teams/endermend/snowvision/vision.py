@@ -1,14 +1,54 @@
-"""Explainable motion score for sufficiently frequent camera sequences."""
+"""Snow cues from camera sequences and sparse JPEG snapshots."""
 import cv2
 import numpy as np
 
 cv2.setNumThreads(1)
+SNAPSHOT_METHOD = 'opencv_snapshot'
 
 
 def frame_quality(frame):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     return dict(brightness=float(np.mean(gray)), contrast=float(np.std(gray)),
                 sharpness=float(cv2.Laplacian(gray, cv2.CV_32F).var()))
+
+
+def analyze_snapshot(frame, quality=None):
+    features = dict(quality) if quality is not None else frame_quality(frame)
+    if features['brightness'] < 6 or features['contrast'] < 4:
+        return dict(snow_probability=None, confidence=0, status='unknown',
+                    analysis_reason='poor_visibility', features=features)
+
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    height, width = gray.shape
+    # Keep timestamps and logos near the edges out of the particle count.
+    gray = gray[height//16:height-height//16, width//16:width-width//16]
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9))
+    highlights = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, kernel)
+    cutoff = max(13, 1.8 * float(np.percentile(highlights, 90)))
+    mask = ((highlights >= cutoff) & (gray >= max(65, np.median(gray) + 8))).astype(np.uint8)
+    _, _, stats, centers = cv2.connectedComponentsWithStats(mask)
+    widths, heights, areas = stats[1:, 2:].T
+    flake_like = (
+        (areas >= 3) & (areas <= 42) & (widths <= 9) & (heights <= 12)
+        & (widths <= 3 * heights) & (heights <= 4 * widths)
+    )
+    particles = []
+    for (x, y, w, h, _), center in zip(stats[1:][flake_like], centers[1:][flake_like]):
+        neighborhood = gray[max(0, y-3):y+h+3, max(0, x-3):x+w+3]
+        border = np.concatenate((neighborhood[0], neighborhood[-1], neighborhood[1:-1, 0], neighborhood[1:-1, -1]))
+        peak = int(gray[y:y+h, x:x+w].max())
+        # Corners of larger bright surfaces also survive the top-hat filter.
+        if np.mean(border >= peak - 10) <= .2:
+            particles.append(center)
+    tiles = {(int(x * 4 / gray.shape[1]), int(y * 3 / gray.shape[0])) for x, y in particles}
+    coverage = len(tiles) / 12
+    density = len(particles) * (640 * 360) / gray.size
+    score = float(np.clip(density / 32 * (0.4 + 0.6 * coverage), 0, 1))
+    contrast = min(features['contrast'] / 38, 1)
+    confidence = .52 + .18 * contrast + .12 * abs(2 * score - 1)
+    features.update(particle_count=len(particles), spatial_coverage=coverage)
+    return dict(snow_probability=score, confidence=confidence,
+                status='snowing' if score >= .5 else 'clear', analysis_reason=None, features=features)
 
 
 def analyze_frames(frames):

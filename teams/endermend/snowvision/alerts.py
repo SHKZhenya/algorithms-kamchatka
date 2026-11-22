@@ -8,6 +8,7 @@ import time
 import uuid
 from integrations.team_scene import event_signals
 from datetime import datetime, timezone
+from vision import SNAPSHOT_METHOD
 
 class AlertJournal:
     def __init__(self, database, delivery_camera_ids=()):
@@ -36,7 +37,8 @@ class AlertJournal:
             scene_valid = (scene.get('format_valid') is True and scene.get('air_view') in ('good','limited')
                            and observation.get('scene_frame_version') == version
                            and scene.get('falling_snow') in ('yes','no'))
-            cv_valid = score is not None and observation.get('confidence',0) >= .25
+            cv_valid = (observation.get('analysis_method') != SNAPSHOT_METHOD
+                        and score is not None and observation.get('confidence',0) >= .25)
             valid = (bool(version) and observation.get('source_status') == 'online' and not observation.get('is_stale')
                      and (cv_valid or scene_valid))
             if not valid:

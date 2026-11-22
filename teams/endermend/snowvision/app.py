@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import httpx
 from monitor import CameraMonitor
-from vision import analyze, analyze_frames
+from vision import SNAPSHOT_METHOD, analyze, analyze_frames
 from city import aggregate, CITY, distance_km
 from alerts import AlertJournal
 from delivery import run_delivery
@@ -130,7 +130,8 @@ def monitoring():
         usable_model = (scene.get('format_valid') is True and scene.get('air_view') in ('good','limited')
                         and scene.get('falling_snow') in ('yes','no')
                         and observation.get('scene_frame_version') == observation.get('frame_version'))
-        usable_cv = observation.get('snow_probability') is not None and observation.get('confidence',0) >= .25
+        usable_cv = (observation.get('analysis_method') != SNAPSHOT_METHOD
+                     and observation.get('snow_probability') is not None and observation.get('confidence',0) >= .25)
         return bool(observation.get('frame_version')) and observation['source_status']=='online' and not observation.get('is_stale') and (usable_cv or usable_model)
     ready_ids = {c['id'] for c in capable if ready(c)}
     delivery_ids = delivery_camera_ids()
