@@ -61,6 +61,22 @@ it("does not roll back acknowledgement or resurrect ended events on delayed resp
   expect(screen.getByText(/Камера улицы · завершён/)).toBeDefined();
 });
 
+it("shows a rain discrepancy alongside a current camera alert", async () => {
+  const now = Date.now() / 1000;
+  const weather = {status:"available", precipitation:"rain", temperature_c:2, observed_at:now};
+  const event = {id:"street", camera_id:"street", name:"Чехова", is_demo:false,
+    stage:"early", opened_at:now, last_seen:now, score:.8, confidence:.7,
+    acknowledged_at:null, ended_at:null, evidence_stale:false, weather_context:weather};
+  vi.stubGlobal("fetch", vi.fn().mockImplementation((url:string) => Promise.resolve({ok:true,
+    json: async () => url === "/api/alerts" ? [event] : {
+      onset_online:1, onset_capable:1, real_cameras:22, yandex_weather:weather,
+    }})));
+  render(<AlertPanel/>);
+  expect(await screen.findByText(/Яндекс показывает: дождь.*Проверьте/)).toBeDefined();
+  expect(screen.getByText("Первые признаки · нужна проверка")).toBeDefined();
+  expect(await screen.findByRole("link", {name:"Яндекс Погода"})).toBeDefined();
+});
+
 it("notifies once for a new signal and its confirmation, and skips historical signals", async () => {
   const deliver = vi.fn(function (_title: string, _options?: NotificationOptions) {});
   vi.stubGlobal("Notification", Object.assign(deliver, {

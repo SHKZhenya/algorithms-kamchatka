@@ -10,7 +10,7 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.database = self.tmp.name + '/db.sqlite'
-        self.journal = AlertJournal(self.database)
+        self.journal = AlertJournal(self.database, {'street', 'real', 'another'})
         self.camera = dict(id='street', type='jpeg', name='Улица')
 
     def sample(self, version):
@@ -19,7 +19,7 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_durable_early_and_confirmation_delivery_are_distinct_and_idempotent(self):
         self.sample('a')
-        journal = AlertJournal(self.database)
+        journal = AlertJournal(self.database, {'street'})
         requests = []
         async def receive(request):
             requests.append(request)
@@ -64,3 +64,13 @@ class DeliveryTests(unittest.IsolatedAsyncioTestCase):
         job=self.journal.next_delivery()
         self.assertEqual(job['event']['stage'], 'confirmed')
         self.assertEqual(self.journal.events()[0]['delivery'][0]['status'], 'suppressed')
+
+    async def test_only_allowed_cameras_enqueue_and_removed_cameras_cannot_deliver(self):
+        self.sample('a')
+        self.camera['id'] = 'outside'
+        self.sample('b')
+        journal = AlertJournal(self.database, {'different-camera'})
+        self.assertIsNone(journal.next_delivery())
+        events = {event['camera_id']: event for event in journal.events()}
+        self.assertEqual(events['outside']['delivery'], [])
+        self.assertEqual(events['street']['delivery'][0]['status'], 'suppressed')

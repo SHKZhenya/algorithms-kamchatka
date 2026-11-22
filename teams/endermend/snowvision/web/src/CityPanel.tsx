@@ -2,9 +2,21 @@ import { useEffect, useState } from "react";
 type ForecastHour = {
   timestamp: number;
   precipitation_probability: number | null;
+  precipitation: keyof typeof precipitationNames | null;
+  precipitation_mm: number | null;
   snowfall_cm: number | null;
   temperature_c: number | null;
-  snow_expected: boolean | null;
+};
+type StormWarnings = {
+  status: "available" | "stale" | "unavailable";
+  source: string;
+  source_url: string;
+  items: {
+    text: string;
+    city_mentioned: boolean;
+    date_status: "past" | "today" | "upcoming" | "unknown";
+    last_date: string | null;
+  }[];
 };
 type CityOutlook = {
   observations: {
@@ -15,26 +27,107 @@ type CityOutlook = {
     status: string;
   };
   forecast: {
-    status: string;
+    status: "available" | "stale" | "unavailable" | "disabled";
     fetched_at?: number;
     hours: ForecastHour[];
-    error?: string;
-    note?: string;
-    ensemble?: {
-      status: string;
-      cached?: boolean;
-      fetched_at?: number;
-      snow_probability?: number;
-      member_count?: number;
-      snowy_members?: number;
-      model?: string;
-      period_start?: number;
-      period_end?: number;
-    };
   };
+  warnings?: StormWarnings;
+};
+const precipitationNames = {
+  none: "Без осадков",
+  rain: "Дождь",
+  sleet: "Дождь со снегом",
+  snow: "Снег",
+  hail: "Град",
 };
 const percent = (value: number | null) =>
   value === null ? "—" : `${Math.round(value * 100)}%`;
+
+function WarningBulletin({ warnings, connectionError }: {
+  warnings?: StormWarnings;
+  connectionError: boolean;
+}) {
+  const current = warnings?.items.filter((item) => item.date_status !== "past") ?? [];
+  const past = warnings?.items.filter((item) => item.date_status === "past") ?? [];
+  const stale = connectionError || warnings?.status === "stale";
+  const unavailable = !warnings || warnings.status === "unavailable";
+  return (
+    <section aria-label="Штормовые предупреждения Камчатского края">
+      <h3>Штормовые предупреждения Камчатского края</h3>
+      {unavailable ? (
+        <p>Получить бюллетень пока не удалось.</p>
+      ) : (
+        <>
+          {stale && <p role="status">Показан сохранённый бюллетень.</p>}
+          {!stale && !current.length && <p>В бюллетене нет сообщений на сегодня или позже.</p>}
+          {!!current.length && (
+            <ul>
+              {current.map((item) => (
+                <li key={item.text}>
+                  <strong>{item.city_mentioned ? "Упомянут Петропавловск-Камчатский" : "Камчатский край"}</strong>
+                  <p>{item.text}</p>
+                  <small>{item.last_date ? "Точное время смотрите в бюллетене." : "Срок по тексту не определён."}</small>
+                </li>
+              ))}
+            </ul>
+          )}
+          {!!past.length && (
+            <details>
+              <summary>Сообщения за прошедшие даты</summary>
+              <ul>{past.map((item) => <li key={item.text}>{item.text}</li>)}</ul>
+            </details>
+          )}
+        </>
+      )}
+      {warnings && <a href={warnings.source_url} target="_blank" rel="noreferrer">{warnings.source}</a>}
+    </section>
+  );
+}
+
+function WarningSources({ showBulletinLink = true }: { showBulletinLink?: boolean }) {
+  return (
+    <details className="note">
+      <summary>Официальные штормовые предупреждения</summary>
+      <ul>
+        <li>
+          <a href="https://kammeteo.ru/" target="_blank" rel="noreferrer">
+            Камчатское УГМС
+          </a>
+        </li>
+        {showBulletinLink && (
+          <li>
+            <a
+              href="https://dfo.meteorf.gov.ru/ekstrennaya-informatsiya/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Росгидромет · бюллетень по Дальнему Востоку
+            </a>
+          </li>
+        )}
+        <li>
+          <a
+            href="https://meteoinfo.ru/hdmapsmeteoalarmdv"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Гидрометцентр России · карта предупреждений
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://41.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya"
+            target="_blank"
+            rel="noreferrer"
+          >
+            МЧС Камчатки · экстренные предупреждения
+          </a>
+        </li>
+      </ul>
+    </details>
+  );
+}
+
 export function CityPanel() {
   const [data, setData] = useState<CityOutlook>();
   const [error, setError] = useState("");
@@ -69,9 +162,9 @@ export function CityPanel() {
       <section className="city-panel" aria-label="Оценка снега в городе">
         <h2>Снег в Петропавловске</h2>
         <p>{error || "Собираем прогноз и наблюдения…"}</p>
+        <WarningSources />
       </section>
     );
-  const fresh = data.forecast.status === "available" && !error;
   return (
     <section className="city-panel" aria-label="Оценка снега в городе">
       <div className="city-heading">
@@ -79,33 +172,6 @@ export function CityPanel() {
         <span>Три почасовых интервала · UTC+12</span>
       </div>
       <div className="city-assessment">
-        <div>
-          <small>Предварительная вероятность снега</small>
-          <strong>
-            {percent(
-              fresh && data.forecast.ensemble?.status === "available"
-                ? (data.forecast.ensemble.snow_probability ?? null)
-                : null,
-            )}
-          </strong>
-          <p>
-            {fresh
-              ? data.forecast.ensemble?.status === "available"
-                ? `${data.forecast.ensemble.snowy_members} из ${data.forecast.ensemble.member_count} сценариев ICON EPS · район Чехова`
-                : "Ансамблевая оценка временно недоступна"
-              : "Свежий метеопрогноз недоступен"}
-          </p>
-          {data.forecast.ensemble?.cached && (
-            <small>
-              Сохранённый ансамбль ·{" "}
-              {data.forecast.ensemble.fetched_at
-                ? new Date(
-                    data.forecast.ensemble.fetched_at * 1000,
-                  ).toLocaleTimeString("ru-RU", { timeZone: "Asia/Kamchatka" })
-                : "время в API"}
-            </small>
-          )}
-        </div>
         <div>
           <small>Наблюдения камер сейчас</small>
           <strong>{percent(data.observations.snow_score)}</strong>
@@ -119,6 +185,17 @@ export function CityPanel() {
             {data.observations.independent_zones}
           </small>
         </div>
+        <div>
+          <small>Почасовой прогноз · район Чехова</small>
+          <p>
+            <a href="https://yandex.ru/pogoda/" target="_blank" rel="noreferrer">Яндекс Погода</a>
+          </p>
+          {data.forecast.status === "disabled" && <p>Ключ API Яндекс Погоды не настроен.</p>}
+          {data.forecast.status === "unavailable" && <p>Почасовой прогноз пока недоступен.</p>}
+          {data.forecast.fetched_at && (
+            <small>Получен {new Date(data.forecast.fetched_at * 1000).toLocaleString("ru-RU", { timeZone: "Asia/Kamchatka" })}</small>
+          )}
+        </div>
       </div>
       <div className="forecast-hours">
         {data.forecast.hours.map((hour) => (
@@ -131,38 +208,32 @@ export function CityPanel() {
               })}
             </strong>
             <span>
-              {hour.temperature_c ?? "—"} °C · снег {hour.snowfall_cm ?? "—"} см
+              {hour.temperature_c ?? "—"} °C · {hour.precipitation ? precipitationNames[hour.precipitation] : "Тип осадков неизвестен"}
             </span>
             <span>
-              Осадки{" "}
-              {hour.precipitation_probability === null
-                ? "—"
-                : hour.precipitation_probability + "%"}
+              {hour.precipitation_mm != null && `Осадки ${hour.precipitation_mm} мм`}
+              {hour.snowfall_cm != null && ` · свежий снег ${hour.snowfall_cm} см`}
             </span>
+            {hour.precipitation_probability != null && (
+              <span>Вероятность осадков {hour.precipitation_probability}%</span>
+            )}
           </div>
         ))}
       </div>
       <p className="note">
-        Вероятность — доля сценариев ансамбля со снегом ≥0,1 см за час в
-        выбранных интервалах. Первый интервал включает текущий час. Оценка
-        требует локальной проверки. Процент осадков включает дождь и снег.
         Камеры одной площадки учитываются как одна зона. Панорамы вулканов и
         демонстрационные сцены исключены из городской оценки.
       </p>
       {(error || data.forecast.status === "stale") && (
         <p role="status">
           {error ||
-            "Показан сохранённый устаревший прогноз, общая оценка скрыта."}
+            (data.forecast.hours.length
+              ? "Показан сохранённый устаревший прогноз."
+              : "Срок сохранённого прогноза истёк.")}
         </p>
       )}
-      <small>
-        Прогноз{" "}
-        <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">
-          Open-Meteo
-        </a>
-        {data.forecast.fetched_at &&
-          ` · получен ${new Date(data.forecast.fetched_at * 1000).toLocaleString("ru-RU", { timeZone: "Asia/Kamchatka" })}`}
-      </small>
+      <WarningBulletin warnings={data.warnings} connectionError={Boolean(error)} />
+      <WarningSources showBulletinLink={!data.warnings} />
     </section>
   );
 }

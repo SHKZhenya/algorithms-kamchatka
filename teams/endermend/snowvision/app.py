@@ -6,9 +6,11 @@ import numpy as np
 import httpx
 from monitor import CameraMonitor
 from vision import analyze, analyze_frames
-from city import aggregate, WeatherOutlook
+from city import aggregate, CITY, distance_km
 from alerts import AlertJournal
 from delivery import run_delivery
+from yandex_weather import YandexWeather
+from storm_warnings import StormWarnings
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import Response, FileResponse, StreamingResponse
 
@@ -24,18 +26,24 @@ def demo(t,kind='snow'):
     return img
 
 monitors = {}
-weather = None
+yandex_weather = None
+storm_warnings = None
 journal = None
+
+def delivery_camera_ids():
+    return {c['id'] for c in cameras if c['type'] != 'demo'
+            and c.get('city_observation') is True and c.get('alert_delivery') is True}
 
 @asynccontextmanager
 async def lifespan(app):
-    global weather, journal
-    weather = WeatherOutlook()
+    global yandex_weather, storm_warnings, journal
+    yandex_weather = YandexWeather(os.getenv('X-Yandex-Weather-Key', '').strip())
+    storm_warnings = StormWarnings()
     Path('/data').mkdir(exist_ok=True)
     with sqlite3.connect('/data/history.db') as db:
         db.execute('CREATE TABLE IF NOT EXISTS observations (camera TEXT, ts REAL, payload TEXT)')
         db.execute('CREATE TABLE IF NOT EXISTS frame_cache (camera TEXT PRIMARY KEY, image BLOB, payload TEXT)')
-    journal = AlertJournal('/data/history.db')
+    journal = AlertJournal('/data/history.db', delivery_camera_ids())
     acquisition = asyncio.Semaphore(4)
     processing = asyncio.Semaphore(2)
     async with httpx.AsyncClient(timeout=15, follow_redirects=True, limits=httpx.Limits(max_connections=4)) as client, httpx.AsyncClient(timeout=20, limits=httpx.Limits(max_connections=1)) as scene_client, httpx.AsyncClient(timeout=10, limits=httpx.Limits(max_connections=1)) as delivery_client:
@@ -46,7 +54,9 @@ async def lifespan(app):
             await asyncio.to_thread(monitor.restore)
             monitors[config['id']] = monitor
         tasks = [asyncio.create_task(m.run()) for m in monitors.values()]
-        tasks.append(asyncio.create_task(weather.run()))
+        tasks.append(asyncio.create_task(storm_warnings.run()))
+        if yandex_weather.key:
+            tasks.append(asyncio.create_task(yandex_weather.run()))
         if os.getenv('ALERT_WEBHOOK_URL'):
             tasks.append(asyncio.create_task(run_delivery(journal, delivery_client, os.environ['ALERT_WEBHOOK_URL'], os.getenv('ALERT_WEBHOOK_TOKEN',''))))
         try:
@@ -102,7 +112,11 @@ def history(id:str):
 def summary(): return {'total':len(cameras),'online':sum(s['source_status']=='online' for s in (m.observation() for m in monitors.values())),'snowing_real':sum(s['status']=='snowing' and not s['is_demo'] for s in (m.observation() for m in monitors.values()))}
 @app.get('/api/city/outlook')
 def city_outlook():
-    return {'observations': aggregate(listing()), 'forecast': weather.observation() if weather else {'status':'unavailable','hours':[]}}
+    return {
+        'observations': aggregate(listing()),
+        'forecast': (yandex_weather or YandexWeather('')).forecast(),
+        'warnings': (storm_warnings or StormWarnings()).observation(),
+    }
 
 @app.get('/api/monitoring')
 def monitoring():
@@ -118,13 +132,28 @@ def monitoring():
                         and observation.get('scene_frame_version') == observation.get('frame_version'))
         usable_cv = observation.get('snow_probability') is not None and observation.get('confidence',0) >= .25
         return bool(observation.get('frame_version')) and observation['source_status']=='online' and not observation.get('is_stale') and (usable_cv or usable_model)
-    return {'real_cameras':len(real), 'onset_capable':len(capable), 'onset_online':sum(ready(c) for c in capable),
+    ready_ids = {c['id'] for c in capable if ready(c)}
+    delivery_ids = delivery_camera_ids()
+    return {'real_cameras':len(real), 'onset_capable':len(capable), 'onset_online':len(ready_ids),
             'stream_interval_seconds':1, 'webhook_configured':bool(os.getenv('ALERT_WEBHOOK_URL')),
+            'delivery_cameras':len(delivery_ids), 'delivery_cameras_ready':len(delivery_ids & ready_ids),
+            'yandex_weather':yandex_weather.observation() if yandex_weather else {'status':'disabled'},
             'limitation':'JPEG раз в 30 секунд ограничивают обнаружение первых снежинок. Для него требуется доступная видеосерия.'}
 
 @app.get('/api/alerts')
 def alerts():
-    return journal.events() if journal else []
+    events = journal.events() if journal else []
+    context = yandex_weather.observation() if yandex_weather else {}
+    if context.get('status') != 'available':
+        return events
+    reference = CITY['latitude'], CITY['longitude']
+    nearby = {c['id'] for c in cameras if c.get('city_observation') is True
+              and c.get('coordinates_lat_lon') and distance_km(c['coordinates_lat_lon'], reference) <= 1}
+    for event in events:
+        if (not event['is_demo'] and not event['ended_at'] and not event['evidence_stale']
+                and event['camera_id'] in nearby):
+            event['weather_context'] = context
+    return events
 
 @app.post('/api/alerts/{id}/acknowledge')
 def acknowledge(id: str):

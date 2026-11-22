@@ -1,4 +1,17 @@
 import { useEffect, useRef, useState } from "react";
+type WeatherContext = {
+  status: string;
+  precipitation?: "none" | "rain" | "sleet" | "snow" | "hail";
+  temperature_c?: number | null;
+  observed_at?: number;
+};
+const precipitationLabels = {
+  none: "без осадков",
+  rain: "дождь",
+  sleet: "дождь со снегом",
+  snow: "снег",
+  hail: "град",
+};
 type Alert = {
   id: string;
   camera_id: string;
@@ -16,6 +29,7 @@ type Alert = {
   confirmed_at?: number;
   conflict?: boolean;
   method?: string;
+  weather_context?: WeatherContext;
   delivery?: {stage:string; status:string; attempts:number}[];
 };
 export function AlertPanel() {
@@ -25,6 +39,9 @@ export function AlertPanel() {
     onset_online: number;
     real_cameras: number;
     webhook_configured?: boolean;
+    delivery_cameras?: number;
+    delivery_cameras_ready?: number;
+    yandex_weather?: WeatherContext;
   } | null>(null);
   const [error, setError] = useState("");
   const [demo, setDemo] = useState(false);
@@ -150,6 +167,7 @@ export function AlertPanel() {
   const fresh = live.filter(
     (row) => !row.evidence_stale && !row.acknowledged_at,
   );
+  const weather = coverage?.yandex_weather;
   return (
     <section className="alert-panel" aria-label="Оперативные сигналы">
       <div className="alert-title">
@@ -180,7 +198,20 @@ export function AlertPanel() {
           </p>
         </div>
       )}
-      <p className="note">{coverage?.webhook_configured ? "Серверная доставка настроена. Результат каждой попытки хранится в журнале." : "Серверный канал доставки не настроен. Браузерные уведомления требуют открытой вкладки."}</p>
+      <p className="note">
+        {coverage?.webhook_configured
+          ? `Серверный канал настроен. Готовы к отправке ${coverage.delivery_cameras_ready ?? 0} из ${coverage.delivery_cameras ?? 0} разрешённых городских камер.`
+          : "Серверный канал доставки не настроен. Браузерные уведомления требуют открытой вкладки."}
+      </p>
+      {weather && weather.status !== "disabled" && (
+        <p className="note">
+          <a href="https://yandex.ru/pogoda/" target="_blank" rel="noreferrer">Яндекс Погода</a>
+          {" · район Чехова · "}
+          {weather.status === "available" && weather.precipitation && weather.observed_at
+            ? `${precipitationLabels[weather.precipitation]}${weather.temperature_c == null ? "" : ` · ${weather.temperature_c} °C`} · ${new Date(weather.observed_at * 1000).toLocaleTimeString("ru-RU", { timeZone: "Asia/Kamchatka", hour: "2-digit", minute: "2-digit" })}`
+            : "свежих данных об осадках нет"}
+        </p>
+      )}
       <div className="alert-guide">
         <span>
           <b>1</b> Первые признаки
@@ -256,6 +287,15 @@ export function AlertPanel() {
               {row.conflict && (
                 <p className="conflict-note">
                   Методы расходятся. Проверьте кадр перед решением.
+                </p>
+              )}
+              {!row.evidence_stale && row.weather_context?.precipitation && (
+                <p className="note">
+                  {row.weather_context.precipitation === "snow"
+                    ? "В районе Чехова Яндекс также показывает снег."
+                    : row.weather_context.precipitation === "sleet"
+                      ? "В районе Чехова Яндекс показывает смешанные осадки. Проверьте их тип по кадру."
+                      : `В районе Чехова Яндекс показывает: ${precipitationLabels[row.weather_context.precipitation]}. Проверьте признаки снега по кадру.`}
                 </p>
               )}
               <div className="alert-actions">

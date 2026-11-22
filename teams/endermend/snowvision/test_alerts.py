@@ -50,6 +50,16 @@ class AlertTests(unittest.TestCase):
             self.journal.observe(self.camera,dict(frame_version=version,snow_probability=.3,confidence=.7,
                 source_status='online',features={'temporal_persistence':.8,'spatial_coverage':.8}))
         self.assertEqual(self.journal.events()[0]['stage'],'early')
+
+    def test_confirmation_survives_unknown_and_subsequent_weak_evidence(self):
+        for version in ('a', 'b', 'c'):
+            self.sample(version)
+        confirmed_at = self.journal.events()[0]['confirmed_at']
+        self.sample('offline', None, 'offline')
+        self.journal.observe(self.camera, dict(frame_version='weak', snow_probability=.3, confidence=.7,
+            source_status='online', features={'temporal_persistence':.8,'spatial_coverage':.8}))
+        event = self.journal.events()[0]
+        self.assertEqual((event['stage'], event['confirmed_at'], event['confirmations']), ('confirmed', confirmed_at, 0))
     def test_model_evidence_without_fabricated_probability(self):
         for version in ('a','b','c'):
             self.journal.observe(self.camera,dict(frame_version=version,snow_probability=None,confidence=0,
