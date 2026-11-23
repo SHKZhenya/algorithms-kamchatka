@@ -17,6 +17,7 @@ import numpy as np
 
 from snowvision.adapters.alerts import AlertJournal
 from snowvision.adapters.scene_model import analyze_scene
+from snowvision.cli.heldout_dataset import validate as validate_heldout
 from snowvision.domain.onset_forecast import evaluate, score_order
 from snowvision.domain.pilot_vision import detect, unknown
 from snowvision.domain.vision import SNAPSHOT_METHOD, analyze_frames, analyze_snapshot
@@ -211,7 +212,7 @@ def score_alerts(alerts, annotations):
 
 
 def expected_visual_snow(label):
-    if not label:
+    if not label or label.get('air_view') == 'unusable':
         return None
     precipitation = label['precipitation']
     if precipitation == 'snow':
@@ -227,16 +228,30 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('archive', type=Path)
     parser.add_argument('--labels', type=Path)
+    parser.add_argument('--heldout', type=Path, help='Validated rights and split manifest; score test samples only')
     parser.add_argument('--masks', type=Path)
     parser.add_argument('--scene-url', help='Send labelled images to an authorized Weather VLM v2 endpoint')
     parser.add_argument('--manifest', action='store_true', help='Export sample IDs and capture metadata')
     parser.add_argument('--export-media', type=Path, help='Write archived PNGs locally for annotation')
     args = parser.parse_args()
     labels = json.loads(args.labels.read_text()) if args.labels else {}
+    heldout = json.loads(args.heldout.read_text()) if args.heldout else None
+    if heldout is not None:
+        if args.labels:
+            parser.error('--heldout and --labels are mutually exclusive')
+        audit = validate_heldout(args.archive, heldout)
+        selected = {entry['sample_id']: entry for entry in heldout['samples'] if entry['split'] == 'test'}
+        labels = {'frames': {str(sample): {'precipitation': entry['precipitation'],
+                                          'air_view': entry['air_view'],
+                                          'condition': entry.get('condition', 'unspecified'),
+                                          **({'snow_present': entry['snow_present']} if 'snow_present' in entry else {})}
+                             for sample, entry in selected.items()}}
     masks = json.loads(args.masks.read_text()) if args.masks else {}
     with closing(sqlite3.connect(args.archive.resolve().as_uri() + '?mode=ro', uri=True)) as db:
         samples = [(sample, ts, camera, json.loads(payload)) for sample, ts, camera, payload
                    in db.execute('SELECT id, available_at, camera, payload FROM samples ORDER BY available_at, id')]
+        if heldout is not None:
+            samples = [row for row in samples if row[0] in selected]
         if not set(labels.get('frames', {})).issubset(str(sample[0]) for sample in samples):
             parser.error('Frame labels include IDs absent from the archive')
         if args.export_media:
@@ -267,6 +282,8 @@ def main():
                                       journal, shadow_journal, labels.get('intervals', []), args.scene_url)
     result['forecast_releases'] = len(releases)
     result['onset_forecast'] = evaluate(labels.get('forecast_windows', []), samples, releases)
+    if heldout is not None:
+        result['heldout'] = audit
     print(json.dumps(result, indent=2, ensure_ascii=False, allow_nan=False))
 
 

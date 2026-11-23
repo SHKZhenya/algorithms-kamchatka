@@ -13,12 +13,55 @@ import cv2
 from snowvision.adapters.quality_archive import QualityArchive
 from snowvision.adapters.local_weather import fit_centroids, transient_images
 from snowvision.cli.evaluate_quality import classify_scene, score_alerts
+from snowvision.cli.heldout_dataset import validate as validate_heldout
 from snowvision.domain.onset_forecast import evaluate, onset_targets, weather_features
 from snowvision.domain.pilot_vision import detect
 from snowvision.services.runtime import demo
 
 
 class QualityArchiveTests(unittest.TestCase):
+    def test_heldout_requires_rights_media_and_separated_episodes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            archive = QualityArchive(Path(directory) / 'pilot.db', media_limit_bytes=1_000_000)
+            camera = {'id': 'pilot', 'type': 'jpeg', 'view_revision': 'fixed-1'}
+            for timestamp, version in ((100, 'a'), (6000, 'b')):
+                archive.record_sample(camera, {'timestamp': timestamp, 'frame_version': version}, [demo(timestamp)])
+            with closing(archive.connect()) as db:
+                stored = [json.loads(row[0])['media'][0] for row in db.execute('SELECT payload FROM samples')]
+            entries = [dict(sample_id=i + 1, camera_id='pilot', episode_id=f'event-{i}',
+                            split=split, view_revision='fixed-1', received_at=timestamp,
+                            captured_at=None, captured_at_basis='unknown', frame_sha256=stored[i],
+                            precipitation='snow', air_view='good', lane_view='good',
+                            lane_coverage='partial', lane_polygon=[[0, 0], [1, 0], [0, 1]],
+                            annotators=['one', 'two'], adjudication='agreed')
+                       for i, (timestamp, split) in enumerate(((100, 'tune'), (6000, 'test')))]
+            manifest = {'provenance': dict(source='operator archive', rights_document='grant-1',
+                                          permitted_uses=['offline_evaluation'], retention_until='2027-01-01',
+                                          access='private'), 'samples': entries}
+            self.assertEqual(validate_heldout(archive.path, manifest)['samples']['test'], 1)
+            manifest_path = Path(directory) / 'heldout.json'
+            manifest_path.write_text(json.dumps(manifest))
+            report = json.loads(subprocess.check_output([
+                sys.executable, '-m', 'snowvision.cli.evaluate_quality', str(archive.path),
+                '--heldout', str(manifest_path),
+            ]))
+            self.assertEqual(report['labelled_samples'], 1)
+            self.assertEqual(report['heldout']['samples'], {'tune': 1, 'test': 1})
+            with patch('snowvision.cli.heldout_dataset.GAP_SECONDS', 6000):
+                with self.assertRaisesRegex(ValueError, 'Adjacent camera frames'):
+                    validate_heldout(archive.path, manifest)
+            entries[1]['received_at'] = 100 + 5400
+            with self.assertRaisesRegex(ValueError, 'Receive time mismatch'):
+                validate_heldout(archive.path, manifest)
+            entries[1]['received_at'] = 6000
+            entries[1]['episode_id'] = 'event-0'
+            with self.assertRaisesRegex(ValueError, 'Episode shared'):
+                validate_heldout(archive.path, manifest)
+            entries[1]['episode_id'] = 'event-1'
+            manifest['provenance']['permitted_uses'] = []
+            with self.assertRaisesRegex(ValueError, 'required|permitted'):
+                validate_heldout(archive.path, manifest)
+
     def test_clip_benchmark_decodes_video_and_reports_both_detectors(self):
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)

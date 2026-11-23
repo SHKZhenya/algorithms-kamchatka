@@ -1,0 +1,30 @@
+{
+  "provenance": {
+    "source": "operator archive identifier",
+    "rights_document": "local agreement identifier",
+    "permitted_uses": ["offline_evaluation"],
+    "retention_until": "2027-01-01",
+    "access": "private",
+    "redistribution": false
+  },
+  "samples": [
+    {
+      "sample_id": 1,
+      "camera_id": "verified-camera-id",
+      "episode_id": "weather-event-001",
+      "split": "tune",
+      "view_revision": "fixed-view-001",
+      "frame_sha256": "replace-with-archive-png-sha256",
+      "captured_at": null,
+      "captured_at_basis": "unknown",
+      "received_at": 0,
+      "precipitation": "unknown",
+      "air_view": "unusable",
+      "lane_view": "unusable",
+      "lane_coverage": "unknown",
+      "lane_polygon": null,
+      "annotators": ["annotator-a", "annotator-b"],
+      "adjudication": "agreed"
+    }
+  ]
+}
