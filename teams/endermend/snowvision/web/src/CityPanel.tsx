@@ -52,8 +52,9 @@ function WarningBulletin({ warnings, connectionError }: {
   const stale = connectionError || warnings?.status === "stale";
   const unavailable = !warnings || warnings.status === "unavailable";
   return (
-    <section aria-label="Штормовые предупреждения Камчатского края">
-      <h3>Штормовые предупреждения Камчатского края</h3>
+    <details className="warning-bulletin" open={current.length > 0 || stale || unavailable}>
+      <summary>Штормовые предупреждения Камчатского края</summary>
+      <section aria-label="Штормовые предупреждения Камчатского края">
       {unavailable ? (
         <p>Получить бюллетень пока не удалось.</p>
       ) : (
@@ -80,7 +81,9 @@ function WarningBulletin({ warnings, connectionError }: {
         </>
       )}
       {warnings && <a href={warnings.source_url} target="_blank" rel="noreferrer">{warnings.source}</a>}
-    </section>
+      </section>
+      <WarningSources showBulletinLink={!warnings} />
+    </details>
   );
 }
 
@@ -185,45 +188,48 @@ export function CityPanel() {
             {data.observations.independent_zones}
           </small>
         </div>
-        <div>
-          <small>Почасовой прогноз · район Чехова</small>
-          <p>
-            <a href="https://yandex.ru/pogoda/" target="_blank" rel="noreferrer">Яндекс Погода</a>
-          </p>
+        <div className="city-forecast">
+          <div className="forecast-heading">
+            <small>Почасовой прогноз · район Чехова</small>
+            <p>
+              <a href="https://yandex.ru/pogoda/" target="_blank" rel="noreferrer">Яндекс Погода</a>
+            </p>
+          </div>
           {data.forecast.status === "disabled" && <p>Ключ API Яндекс Погоды не настроен.</p>}
           {data.forecast.status === "unavailable" && <p>Почасовой прогноз пока недоступен.</p>}
           {data.forecast.fetched_at && (
             <small>Получен {new Date(data.forecast.fetched_at * 1000).toLocaleString("ru-RU", { timeZone: "Asia/Kamchatka" })}</small>
           )}
+          <div className="forecast-hours">
+            {data.forecast.hours.map((hour) => (
+              <div key={hour.timestamp}>
+                <strong>
+                  {new Date(hour.timestamp * 1000).toLocaleTimeString("ru-RU", {
+                    timeZone: "Asia/Kamchatka",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </strong>
+                <span>
+                  {hour.temperature_c ?? "—"} °C · {hour.precipitation ? precipitationNames[hour.precipitation] : "Тип осадков неизвестен"}
+                </span>
+                <span>
+                  {hour.precipitation_mm != null && `Осадки ${hour.precipitation_mm} мм`}
+                  {hour.snowfall_cm != null && ` · свежий снег ${hour.snowfall_cm} см`}
+                </span>
+                {hour.precipitation_probability != null && (
+                  <span>Вероятность осадков {hour.precipitation_probability}%</span>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="forecast-hours">
-        {data.forecast.hours.map((hour) => (
-          <div key={hour.timestamp}>
-            <strong>
-              {new Date(hour.timestamp * 1000).toLocaleTimeString("ru-RU", {
-                timeZone: "Asia/Kamchatka",
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </strong>
-            <span>
-              {hour.temperature_c ?? "—"} °C · {hour.precipitation ? precipitationNames[hour.precipitation] : "Тип осадков неизвестен"}
-            </span>
-            <span>
-              {hour.precipitation_mm != null && `Осадки ${hour.precipitation_mm} мм`}
-              {hour.snowfall_cm != null && ` · свежий снег ${hour.snowfall_cm} см`}
-            </span>
-            {hour.precipitation_probability != null && (
-              <span>Вероятность осадков {hour.precipitation_probability}%</span>
-            )}
-          </div>
-        ))}
-      </div>
-      <p className="note">
-        Камеры одной площадки учитываются как одна зона. Панорамы вулканов и
-        демонстрационные сцены исключены из городской оценки.
-      </p>
+      <details className="assessment-note">
+        <summary>Как считается городская оценка</summary>
+        <p className="note">Камеры одной площадки учитываются как одна зона. Панорамы вулканов и
+          демонстрационные сцены исключены из городской оценки.</p>
+      </details>
       {(error || data.forecast.status === "stale") && (
         <p role="status">
           {error ||
@@ -233,7 +239,6 @@ export function CityPanel() {
         </p>
       )}
       <WarningBulletin warnings={data.warnings} connectionError={Boolean(error)} />
-      <WarningSources showBulletinLink={!data.warnings} />
     </section>
   );
 }

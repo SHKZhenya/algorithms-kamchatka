@@ -57,8 +57,8 @@ const reasons: Record<string, string> = {
   insufficient_frames: "Накапливается последовательность кадров",
   invalid_frames: "Ошибка формата последовательности",
 };
-const percent = (value?: number | null) =>
-  value == null ? "—" : `${Math.round(value * 100)}%`;
+const score = (value?: number | null) =>
+  value == null ? "—" : `${Math.round(value * 100)}/100`;
 function state(c: Camera) {
   const o = c.observation;
   if (o?.source_status === "offline" || o?.source_status === "degraded")
@@ -114,9 +114,9 @@ function History({ id }: { id: string }) {
         aria-label={`История оценки снегопада. ${known.length} наблюдений с оценкой из ${rows.length}`}
       >
         <div className="axis">
-          <span>100%</span>
-          <span>50%</span>
-          <span>0%</span>
+          <span>100</span>
+          <span>50</span>
+          <span>0</span>
         </div>
         <svg viewBox="0 0 600 150" preserveAspectRatio="none">
           <path
@@ -192,12 +192,12 @@ function Detail({
         <Snapshot camera={camera} auto={auto} large />
         <div className="detail-metrics">
           <div>
-            <small>Предварительная оценка</small>
-            <strong>{percent(o?.snow_probability)}</strong>
+            <small>Балл признаков снега</small>
+            <strong>{score(o?.snow_probability)}</strong>
           </div>
           <div>
             <small>Уверенность алгоритма</small>
-            <strong>{percent(o?.confidence)}</strong>
+            <strong>{score(o?.confidence)}</strong>
           </div>
           <span className={`status ${s.tone}`}>{s.text}</span>
         </div>
@@ -237,42 +237,48 @@ function Detail({
         )}
         <h3>История наблюдений</h3>
         <History id={camera.id} />
-        <h3>О получении данных</h3>
-        <dl>
-          <dt>Источник</dt>
-          <dd>
-            {camera.type === "demo"
-              ? "Генератор тестовых кадров"
-              : camera.type === "hls"
-                ? "Публичная HLS-трансляция"
-                : "Публичные JPEG-снимки"}
-          </dd>
-          <dt>Последнее получение</dt>
-          <dd>{time(o?.frame_timestamp)}</dd>
-          {o?.source_timestamp != null && (
-            <>
-              <dt>Дата файла у оператора</dt>
-              <dd>
-                {new Date(o.source_timestamp * 1000).toLocaleString("ru-RU", {
-                  timeZone: "Asia/Kamchatka",
-                })}
-              </dd>
-            </>
+        <details className="source-details">
+          <summary>О получении данных</summary>
+          <dl>
+            <dt>Источник</dt>
+            <dd>
+              {camera.type === "demo"
+                ? "Генератор тестовых кадров"
+                : camera.type === "hls"
+                  ? "Публичная HLS-трансляция"
+                  : "Публичные JPEG-снимки"}
+            </dd>
+            <dt>Последнее получение</dt>
+            <dd>{time(o?.frame_timestamp)}</dd>
+            {o?.source_timestamp != null && (
+              <>
+                <dt>Дата файла у оператора</dt>
+                <dd>
+                  {new Date(o.source_timestamp * 1000).toLocaleString("ru-RU", {
+                    timeZone: "Asia/Kamchatka",
+                  })}
+                </dd>
+              </>
+            )}
+            <dt>Последняя попытка</dt>
+            <dd>{time(o?.last_attempt_at)}</dd>
+            <dt>Следующая попытка</dt>
+            <dd>{time(o?.next_attempt_at)}</dd>
+            <dt>Последний анализ</dt>
+            <dd>{time(o?.last_analysis_at)}</dd>
+            <dt>Метод</dt>
+            <dd>
+              {o?.analysis_method === "opencv_snapshot"
+                ? "Признаки на одном кадре"
+                : o?.analysis_method || "Ожидание анализа"}
+            </dd>
+          </dl>
+          {camera.url && (
+            <a href={camera.url} target="_blank" rel="noreferrer">
+              Открыть источник изображения
+            </a>
           )}
-          <dt>Последний анализ</dt>
-          <dd>{time(o?.last_analysis_at)}</dd>
-          <dt>Метод</dt>
-          <dd>
-            {o?.analysis_method === "opencv_snapshot"
-              ? "Признаки на одном кадре"
-              : o?.analysis_method || "Ожидание анализа"}
-          </dd>
-        </dl>
-        {camera.url && (
-          <a href={camera.url} target="_blank" rel="noreferrer">
-            Открыть источник изображения
-          </a>
-        )}
+        </details>
         {(o?.source_status === "offline" ||
           o?.source_status === "degraded") && (
           <p className="error" role="status">
@@ -488,7 +494,7 @@ export function App() {
             города.
           </p>
         </div>
-        <section>
+        <section className="cameras-section" aria-label="Камеры наблюдения">
           <div className="toolbar">
             <h2>
               Камеры <span>{cameras.length}</span>
@@ -503,33 +509,29 @@ export function App() {
               />
             </label>
           </div>
-          <label className="auto-toggle">
-            <input
-              type="checkbox"
-              checked={auto}
-              onChange={(e) => setAuto(e.target.checked)}
-            />
-            Автообновление изображений {auto ? "включено" : "выключено"}
-          </label>
-          <div className="filters" aria-label="Фильтр камер">
-            {[
-              ["all", "Все камеры"],
-              ["real", "Реальные"],
-              ["online", "В сети"],
-              ["stale", "Устаревшие"],
-              ["demo", "Демонстрационные"],
-              ["snow", "Признаки снега"],
-              ["offline", "Недоступные"],
-            ].map(([value, label]) => (
-              <button
-                key={value}
-                aria-pressed={filter === value}
-                className={filter === value ? "active" : ""}
-                onClick={() => setFilter(value)}
-              >
-                {label}
-              </button>
-            ))}
+          <div className="camera-controls">
+            <div className="filters" aria-label="Фильтр камер">
+              {[["all", "Все камеры"], ["online", "В сети"], ["snow", "Признаки снега"]].map(([value, label]) => (
+                <button key={value} aria-pressed={filter === value}
+                  className={filter === value ? "active" : ""}
+                  onClick={() => setFilter(value)}>{label}</button>
+              ))}
+              <label className="extra-filter">
+                <span className="sr-only">Другие камеры</span>
+                <select value={["real", "stale", "demo", "offline"].includes(filter) ? filter : ""}
+                  onChange={(e) => setFilter(e.target.value || "all")}>
+                  <option value="">Ещё фильтры</option>
+                  <option value="real">Реальные</option>
+                  <option value="stale">Устаревшие</option>
+                  <option value="demo">Демонстрационные</option>
+                  <option value="offline">Недоступные</option>
+                </select>
+              </label>
+            </div>
+            <label className="auto-toggle">
+              <input type="checkbox" checked={auto} onChange={(e) => setAuto(e.target.checked)} />
+              Автообновление изображений {auto ? "включено" : "выключено"}
+            </label>
           </div>
           {error && (
             <div className="error" role="alert">
@@ -657,37 +659,11 @@ const CameraCard = memo(function CameraCard({
           <i />
           {s.text}
         </span>
-        <div className="connection-label">
-          {o?.is_fetching
-            ? "Обновляется"
-            : o?.source_status === "online"
-              ? "В сети"
-              : ["offline", "degraded"].includes(o?.source_status || "")
-                ? "Нет связи"
-                : "Ожидание данных"}
+        <div className="card-score">
+          <span>Балл признаков снега</span>
+          <strong className={s.tone === "blue" ? "blue-text" : ""}>{score(o?.snow_probability)}</strong>
         </div>
-        <div className="card-values">
-          <div>
-            <small>Оценка снегопада</small>
-            <strong className={s.tone === "blue" ? "blue-text" : ""}>
-              {percent(o?.snow_probability)}
-            </strong>
-          </div>
-          <div>
-            <small>{o?.analysis_method === "opencv_snapshot" ? "Уверенность по кадру" : "Уверенность"}</small>
-            <strong>{percent(o?.confidence)}</strong>
-          </div>
-        </div>
-        <div className="freshness">
-          <span>Кадр на сервере {age(o?.frame_timestamp, now)}</span>
-          <span>Последняя попытка {age(o?.last_attempt_at, now)}</span>
-          <span>
-            Следующая попытка{" "}
-            {o?.next_attempt_at
-              ? `примерно через ${Math.max(0, Math.ceil(o.next_attempt_at - now))} сек`
-              : "ожидается"}
-          </span>
-        </div>
+        <p className="freshness">Кадр на сервере {age(o?.frame_timestamp, now)}</p>
         <div className="card-bottom">
           <button
             onClick={refreshOne}

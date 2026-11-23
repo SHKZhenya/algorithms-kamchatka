@@ -191,59 +191,16 @@ export function AlertPanel() {
             {coverage.onset_online} из {coverage.real_cameras} камер дают
             пригодные наблюдения для раннего обнаружения
           </strong>
-          <p>
-            {coverage.onset_online
-              ? "Ранние сигналы формируются по пригодным наблюдениям."
-              : "Покрытие ограничено. Снимки доступны для проверки, срочное обнаружение по всей территории города пока не обеспечено."}
-          </p>
+          {!coverage.onset_online && (
+            <p>Срочное обнаружение по всему городу пока не обеспечено. Проверяйте доступные снимки.</p>
+          )}
         </div>
       )}
-      <p className="note">
-        {coverage?.webhook_configured
-          ? `Серверный канал настроен. Готовы к отправке ${coverage.delivery_cameras_ready ?? 0} из ${coverage.delivery_cameras ?? 0} разрешённых городских камер.`
-          : "Серверный канал доставки не настроен. Браузерные уведомления требуют открытой вкладки."}
-      </p>
-      {weather && weather.status !== "disabled" && (
-        <p className="note">
-          <a href="https://yandex.ru/pogoda/" target="_blank" rel="noreferrer">Яндекс Погода</a>
-          {" · район Чехова · "}
-          {weather.status === "available" && weather.precipitation && weather.observed_at
-            ? `${precipitationLabels[weather.precipitation]}${weather.temperature_c == null ? "" : ` · ${weather.temperature_c} °C`} · ${new Date(weather.observed_at * 1000).toLocaleTimeString("ru-RU", { timeZone: "Asia/Kamchatka", hour: "2-digit", minute: "2-digit" })}`
-            : "свежих данных об осадках нет"}
-        </p>
-      )}
-      <div className="alert-guide">
-        <span>
-          <b>1</b> Первые признаки
-        </span>
-        <span>
-          <b>2</b> Повторная проверка
-        </span>
-        <span>
-          <b>3</b> Подтверждение
-        </span>
-      </div>
-      <p className="note">
-        Ранний сигнал появляется при первом пригодном положительном наблюдении.
-        Подтверждение требует трёх различных наблюдений. Открытая вкладка
-        получает сигналы автоматически.
-      </p>
-      <label className="demo-toggle">
-        <input
-          type="checkbox"
-          checked={demo}
-          onChange={(e) => setDemo(e.target.checked)}
-        />
-        Показать тренировочные сигналы
-      </label>
       {error && <p role="alert">{error}</p>}
       {!live.length ? (
         <div className="alert-empty">
           <strong>Активных сигналов в журнале нет</strong>
-          <p>
-            Это состояние журнала сигналов. Доступность камер и прогноз показаны
-            ниже.
-          </p>
+          <p>Камеры и прогноз — ниже.</p>
         </div>
       ) : (
         <div className="alert-list">
@@ -321,20 +278,63 @@ export function AlertPanel() {
           ))}
         </div>
       )}
-      <details className="alert-history">
-        <summary>История завершённых эпизодов</summary>
-        {rows
-          .filter((row) => (demo || !row.is_demo) && row.ended_at)
-          .slice(0, 10)
-          .map((row) => (
-            <p key={row.id}>
-              {row.name} · завершён{" "}
-              {new Date(row.ended_at! * 1000).toLocaleString("ru-RU", {
-                timeZone: "Asia/Kamchatka",
-              })}
+      <div className="alert-secondary">
+        <details className="alert-settings">
+          <summary>Как работают сигналы и доставка</summary>
+          <p className="note">
+            {coverage?.webhook_configured
+              ? `Серверный канал настроен. Готовы к отправке ${coverage.delivery_cameras_ready ?? 0} из ${coverage.delivery_cameras ?? 0} разрешённых городских камер.`
+              : "Серверный канал доставки не настроен. Браузерные уведомления требуют открытой вкладки."}
+          </p>
+          {weather && weather.status !== "disabled" && (
+            <p className="note">
+              <a href="https://yandex.ru/pogoda/" target="_blank" rel="noreferrer">Яндекс Погода</a>
+              {" · район Чехова · "}
+              {weather.status === "available" && weather.precipitation && weather.observed_at
+                ? `${precipitationLabels[weather.precipitation]}${weather.temperature_c == null ? "" : ` · ${weather.temperature_c} °C`} · ${new Date(weather.observed_at * 1000).toLocaleTimeString("ru-RU", { timeZone: "Asia/Kamchatka", hour: "2-digit", minute: "2-digit" })}`
+                : "свежих данных об осадках нет"}
             </p>
-          ))}
-      </details>
+          )}
+          <div className="alert-guide">
+            <span>
+              <b>1</b> Первые признаки
+            </span>
+            <span>
+              <b>2</b> Повторная проверка
+            </span>
+            <span>
+              <b>3</b> Подтверждение
+            </span>
+          </div>
+          <p className="note">
+            Ранний сигнал появляется при первом пригодном положительном наблюдении.
+            Подтверждение требует трёх различных наблюдений. Открытая вкладка
+            получает сигналы автоматически.
+          </p>
+          <label className="demo-toggle">
+            <input
+              type="checkbox"
+              checked={demo}
+              onChange={(e) => setDemo(e.target.checked)}
+            />
+            Показать тренировочные сигналы
+          </label>
+        </details>
+        <details className="alert-history">
+          <summary>История завершённых эпизодов</summary>
+          {rows
+            .filter((row) => (demo || !row.is_demo) && row.ended_at)
+            .slice(0, 10)
+            .map((row) => (
+              <p key={row.id}>
+                {row.name} · завершён{" "}
+                {new Date(row.ended_at! * 1000).toLocaleString("ru-RU", {
+                  timeZone: "Asia/Kamchatka",
+                })}
+              </p>
+            ))}
+        </details>
+      </div>
     </section>
   );
 }

@@ -36,6 +36,10 @@ it("separates training events and exposes zero coverage", async () => {
   render(<AlertPanel />);
   await screen.findByText(/0 из 22 камер/);
   expect(screen.queryByText("Синтетическая камера")).toBeNull();
+  const help = screen.getByText("Как работают сигналы и доставка");
+  expect(help.closest("details")?.open).toBe(false);
+  fireEvent.click(help);
+  expect(help.closest("details")?.open).toBe(true);
   fireEvent.click(
     screen.getByRole("checkbox", { name: "Показать тренировочные сигналы" }),
   );

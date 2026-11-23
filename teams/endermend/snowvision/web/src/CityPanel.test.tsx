@@ -72,7 +72,7 @@ it("shows the Yandex forecast and keeps past warnings separate", async () => {
   await screen.findByRole("link", { name: "Яндекс Погода" });
   expect(screen.getByText(/Дождь со снегом/)).toBeDefined();
   expect(screen.getByText("Вероятность осадков 90%")).toBeDefined();
-  expect(screen.getByText("Упомянут Петропавловск-Камчатский")).toBeDefined();
+  expect(screen.getByText("Упомянут Петропавловск-Камчатский").closest("details")?.open).toBe(true);
   expect(screen.getByText(/20 ноября/).closest("details")?.open).toBe(false);
 });
 
@@ -91,4 +91,20 @@ it("links to official warnings when the city API is unreachable", async () => {
     "https://meteoinfo.ru/hdmapsmeteoalarmdv",
     "https://41.mchs.gov.ru/deyatelnost/press-centr/operativnaya-informaciya/shtormovye-i-ekstrennye-preduprezhdeniya",
   ]);
+});
+
+it.each([
+  ["available", "past", false],
+  ["available", "unknown", true],
+  ["stale", "past", true],
+])("keeps warning visibility appropriate for %s bulletin and %s date", async (status, date_status, expanded) => {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({
+    observations: { snow_score: null, eligible_cameras: 0, independent_zones: 0, status: "insufficient_coverage" },
+    forecast: { status: "unavailable", hours: [] },
+    warnings: { status, source: "Росгидромет", source_url: "https://dfo.meteorf.gov.ru/ekstrennaya-informatsiya/",
+      items: [{ text: "Сообщение бюллетеня", date_status, city_mentioned: false, last_date: null }] },
+  }) }));
+  render(<CityPanel />);
+  const summary = await screen.findByText("Штормовые предупреждения Камчатского края");
+  expect(summary.closest("details")?.open).toBe(expanded);
 });

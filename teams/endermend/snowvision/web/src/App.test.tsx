@@ -8,6 +8,7 @@ import {
   screen,
 } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
+vi.mock("./Snapshot", () => ({ Snapshot: () => null }));
 vi.mock("./AlertPanel", () => ({ AlertPanel: () => null }));
 vi.mock("./CityPanel", () => ({ CityPanel: () => null }));
 import { App } from "./main";
@@ -57,4 +58,28 @@ it("uses one SSE connection and polling only after connection loss, cleans up on
   expect(events).toHaveBeenCalledTimes(1);
   view.unmount();
   expect(close).toHaveBeenCalledTimes(1);
+});
+
+it("keeps search, additional filters and reset available in the simplified toolbar", async () => {
+  vi.stubGlobal("EventSource", vi.fn(function () {
+    return { close: vi.fn(), addEventListener: vi.fn() };
+  }));
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => [
+    { id: "street", name: "Улица Чехова", location: "Город", type: "jpeg", observation: { source_status: "online" } },
+    { id: "hill", name: "Гора", location: "Край", type: "jpeg", observation: { source_status: "offline" } },
+    { id: "demo", name: "Тестовая сцена", location: "Демо", type: "demo" },
+  ] }));
+  render(<App />);
+  await screen.findByRole("heading", { name: "Улица Чехова" });
+  fireEvent.change(screen.getByRole("combobox", { name: "Другие камеры" }), { target: { value: "offline" } });
+  expect(screen.queryByRole("heading", { name: "Улица Чехова" })).toBeNull();
+  expect(screen.getByRole("heading", { name: "Гора" })).toBeDefined();
+  fireEvent.change(screen.getByRole("textbox", { name: "Поиск камеры" }), { target: { value: "Чехова" } });
+  expect(screen.getByText("Камеры не найдены")).toBeDefined();
+  fireEvent.click(screen.getByRole("button", { name: "Сбросить фильтры" }));
+  expect(screen.getByRole("heading", { name: "Улица Чехова" })).toBeDefined();
+  expect((screen.getByRole("combobox", { name: "Другие камеры" }) as HTMLSelectElement).value).toBe("");
+  fireEvent.click(screen.getByRole("button", { name: "В сети" }));
+  expect(screen.queryByRole("heading", { name: "Гора" })).toBeNull();
+  expect(screen.queryByRole("heading", { name: "Тестовая сцена" })).toBeNull();
 });
