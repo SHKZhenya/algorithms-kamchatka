@@ -98,6 +98,8 @@ class CityTests(unittest.TestCase):
         result=aggregate([camera],1000)
         self.assertEqual(result['snowfall_state'],'local_positive')
         self.assertTrue(result['local_evidence'][0]['model_only'])
+        self.assertEqual(result['local_evidence'][0]['frame_version'], 'model')
+        self.assertEqual(result['local_evidence'][0]['frame_timestamp'], 1000)
         self.assertEqual(result['contributors'],[])
 
     def test_confirmed_episode_in_one_zone_stays_local(self):

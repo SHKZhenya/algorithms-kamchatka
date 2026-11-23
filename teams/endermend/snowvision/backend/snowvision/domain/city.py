@@ -83,6 +83,7 @@ def aggregate(cameras, now=None, events=()):
                 stage=event.get('stage') if not event.get('evidence_stale') else None,
                 timestamp=evidence['timestamp'], method=evidence['method'],
                 model_only=evidence.get('model_only', False), frame_version=observation.get('frame_version'),
+                frame_timestamp=observation.get('frame_timestamp'),
             ))
 
         location = camera.get('coordinates_lat_lon')

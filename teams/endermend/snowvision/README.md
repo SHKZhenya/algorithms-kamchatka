@@ -2,7 +2,8 @@
 
 Оперативная панель наблюдений снегопада в Петропавловске-Камчатском.
 Показывает камеры, журнал сигналов, прогноз Яндекс Погоды и штормовой бюллетень.
-Текущая UI/UX-задача для пилота — [три приоритета диспетчера](../context/UI_UX_PILOT_TASK.md).
+Требования к [экрану пилота](../context/UI_UX_PILOT_TASK.md) и
+[открытые условия](../context/PILOT_NOTES.md) описаны в контексте.
 
 ## Запуск и настройки
 
@@ -127,9 +128,9 @@ docker compose -p snowvision exec -T snowvision python -m unittest -v
 docker compose -p snowvision exec -T web nginx -t
 ```
 
-Build web выполняет Vitest, TypeScript и production-сборку. Полный
-изолированный цикл — `python3 tools/endermend-context/context.py verify`
-из checkout. CI — `.github/workflows/endermend-ci.yml`.
+Build web выполняет Vitest, TypeScript и production-сборку. После изменения
+backend выполнить `docker compose -p snowvision build snowvision` перед
+backend-тестами. CI — `.github/workflows/endermend-ci.yml`.
 
 Профили `quality` и `quality-model` собирают отдельный архив и сравнивают
 офлайн-кандидатов. Протокол разметки, критерии допуска и команды — в

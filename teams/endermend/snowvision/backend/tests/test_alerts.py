@@ -18,6 +18,19 @@ class AlertTests(unittest.TestCase):
         ))
         self.assertEqual(self.journal.events(), [])
 
+    def test_city_index_confidence_floor_does_not_lower_onset_floor(self):
+        for version, confidence in (('city-only', .20), ('below-onset', .24)):
+            self.journal.observe(self.camera, dict(
+                frame_version=version, snow_probability=.9, confidence=confidence,
+                source_status='online', analysis_method='opencv_motion',
+            ))
+        self.assertEqual(self.journal.events(), [])
+        self.journal.observe(self.camera, dict(
+            frame_version='onset', snow_probability=.9, confidence=.25,
+            source_status='online', analysis_method='opencv_motion',
+        ))
+        self.assertEqual(self.journal.events()[0]['stage'], 'early')
+
     def test_first_evidence_is_immediate_and_distinct_frames_confirm(self):
         self.sample('a')
         self.assertEqual(self.journal.events()[0]['stage'],'early')

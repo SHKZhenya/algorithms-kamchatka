@@ -3,7 +3,7 @@ import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 import { CityPanel } from "./CityPanel";
-vi.mock("../cameras/Snapshot", () => ({ Snapshot: () => null }));
+vi.mock("../cameras/Snapshot", () => ({ Snapshot: ({ camera }: { camera: { observation?: { frame_version?: string | null; frame_timestamp?: number | null } } }) => <div data-testid="snapshot" data-version={camera.observation?.frame_version} data-timestamp={camera.observation?.frame_timestamp} /> }));
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
@@ -27,6 +27,7 @@ it("shows unknown when city coverage and weather are unavailable", async () => {
   render(<CityPanel />);
   await screen.findByText("Недостаточно свежих данных");
   expect(screen.getByText(/нужно минимум 2 для городского балла/)).toBeDefined();
+  expect(screen.getByText(/0 пригодных камер · 0 представителей в индексе/)).toBeDefined();
   expect(screen.queryByText("0%")).toBeNull();
 });
 
@@ -156,13 +157,15 @@ it("shows a valid local model signal without inventing an index contribution", a
     observations: {
       snowfall_state: "local_positive", snow_score: null, independent_zones: 1, eligible_cameras: 0,
       calculated_at: 2000000000, last_evidence_at: 2000000000,
-      local_evidence: [{ camera_id: "vlm", name: "Чехова", location: "Петропавловск-Камчатский", positive: true, negative: false, conflict: false, stage: "early", timestamp: 2000000000, method: "weather_vlm_v2", model_only: true }],
+      local_evidence: [{ camera_id: "vlm", name: "Чехова", location: "Петропавловск-Камчатский", positive: true, negative: false, conflict: false, stage: "early", timestamp: 2000000000, frame_timestamp: 1999999900, method: "weather_vlm_v2", model_only: true, frame_version: "vlm-evidence" }],
       contributors: [],
     }, forecast: { status: "disabled", hours: [] },
   }) }));
   render(<CityPanel cameras={cameras} />);
   expect(await screen.findByText("Локальное свидетельство")).toBeDefined();
   expect(screen.getByText("Без численного вклада")).toBeDefined();
+  expect(screen.getByTestId("snapshot").getAttribute("data-version")).toBe("vlm-evidence");
+  expect(screen.getByTestId("snapshot").getAttribute("data-timestamp")).toBe("1999999900");
   expect(screen.getByText(/не входит в формулу городского индекса/)).toBeDefined();
   expect(screen.queryByText(/\+\d+\/100 к индексу/)).toBeNull();
 });

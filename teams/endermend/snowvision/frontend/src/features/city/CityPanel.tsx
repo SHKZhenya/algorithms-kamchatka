@@ -22,7 +22,8 @@ type CityOutlook = {
     calculated_at?: number;
     last_evidence_at?: number | null;
     evidence_count?: number;
-    local_evidence?: { camera_id: string; name: string; location: string; positive: boolean; negative: boolean; conflict: boolean; stage: string | null; timestamp: number; method: string; model_only?: boolean }[];
+    representatives?: { id: string }[];
+    local_evidence?: { camera_id: string; name: string; location: string; positive: boolean; negative: boolean; conflict: boolean; stage: string | null; timestamp: number; method: string; model_only?: boolean; frame_version?: string | null; frame_timestamp?: number | null }[];
     last_known?: { camera_id: string; name?: string; location?: string; stage?: string; timestamp?: number }[];
     contributors?: { id: string; name: string; location: string; score: number; contribution: number; timestamp: number; frame_timestamp?: number | null; age_seconds: number; frame_version: string; method: string; reason: string; positive: boolean }[];
     excluded_cameras?: { id: string; name?: string; reason: string; reason_label: string; frame_version?: string | null; analysis_at?: number | null }[];
@@ -174,7 +175,7 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
     for (const item of local) {
       if (selected.length >= 3) break;
       const camera = cameras.find((row) => row.id === item.camera_id);
-      if (camera) selected.push({ id: item.camera_id, name: camera.name, location: camera.location, score: 0, contribution: 0, timestamp: item.timestamp, age_seconds: Math.max(0, clock - item.timestamp), frame_version: "", method: item.method, reason: "Локальный сигнал модели · не входит в формулу городского индекса", positive: true, localOnly: true });
+      if (camera) selected.push({ id: item.camera_id, name: camera.name, location: camera.location, score: 0, contribution: 0, timestamp: item.timestamp, frame_timestamp: item.frame_timestamp, age_seconds: Math.max(0, clock - item.timestamp), frame_version: item.frame_version ?? "", method: item.method, reason: "Локальный сигнал модели · не входит в формулу городского индекса", positive: true, localOnly: true });
     }
     return selected;
   }, [observations, cameras, clock, error]);
@@ -207,7 +208,7 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
         const camera = cameras.find((row) => row.id === item.id);
         if (!camera) return null;
         const age = Math.max(0, Math.floor(clock - item.timestamp));
-        const pinnedCamera = { ...camera, observation: { ...camera.observation, source_status: camera.observation?.source_status ?? "unknown", frame_version: item.frame_version, frame_timestamp: item.frame_timestamp ?? item.timestamp } };
+        const pinnedCamera = { ...camera, observation: { ...camera.observation, source_status: camera.observation?.source_status ?? "unknown", frame_version: item.frame_version, frame_timestamp: item.frame_timestamp ?? null } };
         return <article className="priority-camera" key={`${item.id}:${item.frame_version}`}>
           <Snapshot camera={pinnedCamera} auto={auto} now={clock} />
           <div className="priority-camera-body"><small>{item.location}</small><h3>{item.name}</h3>
@@ -218,7 +219,7 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
           </div>
         </article>;
       })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Недостаточно свежих пригодных данных из городских камер. Случайные и региональные кадры не подставляются."}</p></div>}
-      <p className="coverage-note">{observations?.independent_zones ?? 0} независимых зон · {observations?.eligible_cameras ?? 0} представителей в индексе. Камеры одной площадки, демо, вулканы и одиночные JPEG в городскую формулу не входят. <button className="text-button" onClick={() => window.dispatchEvent(new CustomEvent("snowvision-show-cameras"))}>Все камеры</button></p>
+      <p className="coverage-note">{observations?.independent_zones ?? 0} независимых зон · {observations?.eligible_cameras ?? 0} пригодных камер · {observations?.representatives?.length ?? 0} представителей в индексе. Камеры одной площадки, демо, вулканы и одиночные JPEG в городскую формулу не входят. <button className="text-button" onClick={() => window.dispatchEvent(new CustomEvent("snowvision-show-cameras"))}>Все камеры</button></p>
       {!!observations?.excluded_cameras?.length && <details className="excluded-camera-details"><summary>Почему источники не участвуют в индексе ({observations.excluded_cameras.length})</summary><ul>{observations.excluded_cameras.map((camera) => <li key={camera.id}><strong>{camera.name ?? camera.id}</strong> · {camera.reason_label}</li>)}</ul></details>}
     </section>
   </div>;
