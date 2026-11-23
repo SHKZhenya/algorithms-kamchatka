@@ -25,6 +25,14 @@ Vitest, TypeScript и Vite. После изменения backend пересоб
 
 ## Установка на vm-betta
 
+Для доступа к интерфейсу открыть туннель и держать SSH-соединение открытым:
+
+```sh
+ssh -F ~/.ssh/config -L 5173:127.0.0.1:5173 vm-betta
+```
+
+В браузере открыть `http://localhost:5173`.
+
 На `vm-betta` (SSH-пользователь `student`) приложение установлено в
 `/home/student/snowvision-deploy/releases/8089509` из отслеживаемых исходников
 коммита `8089509`. Существующий Compose-проект — `release-q47f5hj9`;
