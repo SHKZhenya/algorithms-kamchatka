@@ -189,7 +189,7 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
 
   return <div className="dispatcher-dashboard">
     <SnowfallSummary data={data} error={error} now={clock} />
-    <section className="weather-card" aria-label="Погода и штормовое предупреждение">
+    <section className="weather-card" id="weather" aria-label="Погода и штормовое предупреждение">
       <div className="weather-heading"><div><span className="eyebrow">ПОГОДА · ОПОРНЫЙ РАЙОН ЧЕХОВА</span><h2>Погода и предупреждения</h2></div><a href={data?.forecast.source_url ?? "https://yandex.ru/pogoda/"} target="_blank" rel="noreferrer">{data?.forecast.source ?? "Яндекс Погода"} ↗</a></div>
       <div className="weather-fact">
         <div><small>Текущее наблюдение</small>
@@ -207,7 +207,7 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
       </div>
       <WarningBulletin warnings={warning} connectionError={!!error} />
     </section>
-    <section className="priority-section" aria-label="Камеры, влияющие на оценку снегопада">
+    <section className="priority-section" id="cameras" aria-label="Камеры, влияющие на оценку снегопада">
       <div className="priority-heading"><div><span className="eyebrow">СВИДЕТЕЛЬСТВА</span><h2>Камеры, влияющие на оценку</h2><p>Выбраны по положительному вкладу представителей независимых зон</p></div><span className="camera-count">{displayCandidates.length} из 3</span></div>
       {displayCandidates.length ? <div className="priority-grid">{displayCandidates.map((item) => {
         const camera = cameras.find((row) => row.id === item.id);

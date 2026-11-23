@@ -169,7 +169,7 @@ export function AlertPanel() {
   );
   const weather = coverage?.yandex_weather;
   return (
-    <section className="alert-panel" aria-label="Оперативные сигналы">
+    <section className="alert-panel" id="signals" aria-label="Оперативные сигналы">
       <div className="alert-title">
         <div>
           <p className="eyebrow">ЖУРНАЛ СИГНАЛОВ</p>

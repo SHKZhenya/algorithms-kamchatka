@@ -464,13 +464,21 @@ export function App() {
           <span className="brand-mark">св</span>SnowVision
           <span className="brand-region">Камчатка</span>
         </a>
+        <nav className="dashboard-nav" aria-label="Навигация по дашборду">
+          <a href="#overview">Обзор</a>
+          <a href="#signals">Сигналы</a>
+          <a href="#weather">Погода</a>
+          <button onClick={() => window.dispatchEvent(new CustomEvent("snowvision-show-cameras"))}>
+            Камеры
+          </button>
+        </nav>
         <div className="connection">
           <i />
           {connection}
         </div>
       </header>
       <main>
-        <div className="heading compact-heading">
+        <div className="heading compact-heading" id="overview">
           <div><p className="eyebrow">КАМЧАТСКИЙ КРАЙ</p><h1>Оперативная обстановка</h1></div>
           <div className="updated">Обновление<strong>{time(updated)}</strong><small>{connection} · UTC+12</small></div>
         </div>
