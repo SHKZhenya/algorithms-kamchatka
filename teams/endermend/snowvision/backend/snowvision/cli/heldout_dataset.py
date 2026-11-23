@@ -6,6 +6,7 @@ import json
 import sqlite3
 from collections import Counter, defaultdict
 from contextlib import closing
+from datetime import date
 from pathlib import Path
 
 ALLOWED_SPLITS = {'tune', 'test'}
@@ -24,6 +25,10 @@ def validate(archive, manifest):
     rights = manifest.get('provenance', {})
     for field in ('source', 'rights_document', 'permitted_uses', 'retention_until', 'access'):
         require(rights.get(field), f'provenance.{field} is required')
+    try:
+        date.fromisoformat(rights['retention_until'])
+    except (TypeError, ValueError):
+        raise ValueError('provenance.retention_until must be an ISO date') from None
     require('offline_evaluation' in rights['permitted_uses'], 'Offline evaluation must be permitted')
     require(rights['access'] != 'public' or rights.get('redistribution') is True,
             'Public access requires explicit redistribution rights')
@@ -60,6 +65,9 @@ def validate(archive, manifest):
                     f'Invalid capture time for sample {sample}')
         require(entry['precipitation'] in PRECIPITATION and entry['air_view'] in AIR,
                 f'Invalid precipitation or air view for sample {sample}')
+        if 'snow_present' in entry:
+            require(entry['precipitation'] == 'mixed' and type(entry['snow_present']) is bool,
+                    f'snow_present is only a boolean annotation for mixed precipitation, sample {sample}')
         require(entry['lane_view'] in AIR and entry['lane_coverage'] in COVERAGE,
                 f'Invalid lane annotation for sample {sample}')
         require(entry['lane_coverage'] == 'unknown' or entry['lane_view'] != 'unusable',

@@ -15,10 +15,10 @@ class QualityArchive:
         self.media_limit_bytes = media_limit_bytes
         self.pipeline = pipeline or {}
         self.path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
-        if media_limit_bytes and self.path.parent.stat().st_mode & 0o077:
+        if self.path.parent.stat().st_mode & 0o077:
             raise PermissionError('The pilot media directory must be private (0700)')
         self.path.touch(mode=0o600, exist_ok=True)
-        if media_limit_bytes and self.path.stat().st_mode & 0o077:
+        if self.path.stat().st_mode & 0o077:
             raise PermissionError('The pilot media archive must be private (0600)')
         with closing(self.connect()) as db, db:
             db.executescript("""
