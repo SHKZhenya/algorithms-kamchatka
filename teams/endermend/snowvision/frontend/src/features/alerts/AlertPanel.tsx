@@ -172,19 +172,19 @@ export function AlertPanel() {
     <section className="alert-panel" aria-label="Оперативные сигналы">
       <div className="alert-title">
         <div>
-          <p className="eyebrow">Оперативный контроль</p>
+          <p className="eyebrow">ЖУРНАЛ СИГНАЛОВ</p>
           <h2>
             {fresh.length
-              ? `${fresh.length} сигналов требуют внимания`
-              : coverage?.onset_online === 0
-                ? "Раннее обнаружение ограничено"
-                : "Следим за первыми признаками"}
+              ? `${fresh.length} непринятых сигналов`
+              : "Непринятых сигналов нет"}
           </h2>
         </div>
         <button onClick={enable} disabled={notify}>
           {notify ? "Уведомления включены" : "Включить уведомления"}
         </button>
       </div>
+      <details className="alert-journal">
+      <summary>Открыть журнал сигналов и принятие</summary>
       {coverage && (
         <div className="coverage-banner">
           <strong>
@@ -335,6 +335,7 @@ export function AlertPanel() {
             ))}
         </details>
       </div>
+      </details>
     </section>
   );
 }

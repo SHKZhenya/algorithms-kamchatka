@@ -68,6 +68,19 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(monitor.state['frame_timestamp'],timestamp)
         self.assertEqual(len(monitor.frames),1)
 
+    async def test_recent_frame_versions_remain_available_for_dashboard_snapshot(self):
+        monitor=self.make()
+        with patch('snowvision.services.monitor.fetch_frame',AsyncMock(side_effect=[demo(0),demo(1)])):
+            await monitor.attempt()
+            first=monitor.state['frame_version']
+            monitor.state['next_attempt_at']=0
+            await monitor.attempt()
+        second=monitor.state['frame_version']
+        self.assertNotEqual(first,second)
+        self.assertIn(first,monitor.recent_images)
+        self.assertIn(second,monitor.recent_images)
+        self.assertEqual(monitor.recent_images[second],monitor.image)
+
     async def test_snapshot_only_uses_a_single_frame(self):
         monitor=self.make(motion=False)
         monitor.analyze=Mock(side_effect=AssertionError('must not analyze'))

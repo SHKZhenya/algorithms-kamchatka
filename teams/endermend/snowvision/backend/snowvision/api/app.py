@@ -49,13 +49,14 @@ async def snapshot(id: str, request: Request, v: str | None = None):
     monitor = monitors.get(id)
     if monitor is None or monitor.image is None:
         raise HTTPException(404, 'Кадр ещё не получен')
-    version = monitor.state['frame_version']
-    if v is not None and v != version:
-        raise HTTPException(409, 'Версия кадра изменилась, дождитесь метаданных')
+    version = v or monitor.state['frame_version']
+    image = monitor.recent_images.get(version) if version else monitor.image
+    if image is None:
+        raise HTTPException(409, 'Версия кадра больше не хранится в краткой истории')
     headers = {'ETag': f'"{version}"', 'Cache-Control': 'private, no-cache'}
     if request.headers.get('if-none-match') == headers['ETag']:
         return Response(status_code=304, headers=headers)
-    return Response(monitor.image, media_type='image/jpeg', headers=headers)
+    return Response(image, media_type='image/jpeg', headers=headers)
 
 @app.post('/api/cameras/{id}/refresh')
 async def refresh_camera(id: str):
@@ -75,7 +76,8 @@ def summary(): return {'total':len(cameras),'online':sum(s['source_status']=='on
 @app.get('/api/city/outlook')
 def city_outlook():
     return {
-        'observations': aggregate(listing()),
+        'observations': aggregate(listing(), events=journal.events() if journal else []),
+        'weather': (yandex_weather or YandexWeather('')).observation(),
         'forecast': (yandex_weather or YandexWeather('')).forecast(),
         'warnings': (storm_warnings or StormWarnings()).observation(),
     }

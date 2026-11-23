@@ -29,16 +29,18 @@ class PipelineTests(unittest.TestCase):
 
     def test_city_outlook_includes_yandex_forecast_and_independent_warning_status(self):
         forecast = {'status': 'available', 'source': 'Яндекс Погода', 'hours': [{'timestamp': 100000}]}
+        weather = {'status': 'available', 'precipitation': 'snow', 'observed_at': 100000}
         warnings = {'status': 'unavailable', 'items': []}
-        with patch('snowvision.api.app.yandex_weather', SimpleNamespace(forecast=lambda: forecast)), \
+        with patch('snowvision.api.app.yandex_weather', SimpleNamespace(forecast=lambda: forecast, observation=lambda: weather)), \
                 patch('snowvision.api.app.storm_warnings', SimpleNamespace(observation=lambda: warnings)):
             data = self.client.get('/api/city/outlook').json()
         self.assertEqual(data['forecast'], forecast)
+        self.assertEqual(data['weather'], weather)
         self.assertEqual(data['warnings'], warnings)
         self.assertEqual(data['observations']['status'], 'insufficient_coverage')
 
     def test_snapshot_etag_and_version(self):
-        cached = SimpleNamespace(image=b'jpeg', state={'frame_version': 'one'})
+        cached = SimpleNamespace(image=b'jpeg', state={'frame_version': 'one'}, recent_images={'one': b'jpeg'})
         with patch.dict(monitors, {'demo': cached}):
             response = self.client.get('/api/cameras/demo/snapshot?v=one')
             self.assertEqual(response.status_code, 200)
@@ -46,6 +48,14 @@ class PipelineTests(unittest.TestCase):
             conditional = self.client.get('/api/cameras/demo/snapshot', headers={'If-None-Match': '"one"'})
             self.assertEqual(conditional.status_code, 304)
             self.assertEqual(self.client.get('/api/cameras/demo/snapshot?v=old').status_code, 409)
+
+    def test_snapshot_can_serve_recent_version_from_city_calculation(self):
+        cached = SimpleNamespace(image=b'new', state={'frame_version': 'two'}, recent_images={'one': b'old', 'two': b'new'})
+        with patch.dict(monitors, {'demo': cached}):
+            response = self.client.get('/api/cameras/demo/snapshot?v=one')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, b'old')
+        self.assertEqual(response.headers['etag'], '"one"')
 
     def test_onset_coverage_requires_usable_current_evidence(self):
         config = dict(id='street', type='hls', interval_seconds=60)

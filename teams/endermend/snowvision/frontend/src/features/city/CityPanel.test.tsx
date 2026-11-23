@@ -1,8 +1,9 @@
 // @vitest-environment jsdom
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 import { CityPanel } from "./CityPanel";
+vi.mock("../cameras/Snapshot", () => ({ Snapshot: () => null }));
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
@@ -24,8 +25,8 @@ it("shows unknown when city coverage and weather are unavailable", async () => {
     }),
   );
   render(<CityPanel />);
-  await screen.findByText("Недостаточно независимых городских наблюдений");
-  expect(screen.getByText("—")).toBeDefined();
+  await screen.findByText("Недостаточно свежих данных");
+  expect(screen.getByText(/нужно минимум 2 для городского балла/)).toBeDefined();
   expect(screen.queryByText("0%")).toBeNull();
 });
 
@@ -69,10 +70,11 @@ it("shows the Yandex forecast and keeps past warnings separate", async () => {
       }),
   );
   render(<CityPanel />);
-  await screen.findByRole("link", { name: "Яндекс Погода" });
-  expect(screen.getByText(/Дождь со снегом/)).toBeDefined();
-  expect(screen.getByText("Вероятность осадков 90%")).toBeDefined();
-  expect(screen.getByText("Упомянут Петропавловск-Камчатский").closest("details")?.open).toBe(true);
+  await screen.findByRole("link", { name: /Яндекс Погода/ });
+  expect(screen.getByText(/дождь со снегом/i)).toBeDefined();
+  expect(screen.getByText(/вероятность осадков 90%/i)).toBeDefined();
+  expect(screen.getByText(/Петропавловск-Камчатский упомянут/)).toBeDefined();
+  screen.getByText("Подробнее").click();
   expect(screen.getByText(/20 ноября/).closest("details")?.open).toBe(false);
 });
 
@@ -81,11 +83,12 @@ it("links to official warnings when the city API is unreachable", async () => {
   render(<CityPanel />);
 
   await screen.findByText("Сбой API");
-  screen.getByText("Официальные штормовые предупреждения").click();
+  screen.getByText("Официальные источники предупреждений").click();
   const destinations = screen
     .getAllByRole("link")
     .map((link) => link.getAttribute("href"));
   expect(destinations).toEqual([
+    "https://yandex.ru/pogoda/",
     "https://kammeteo.ru/",
     "https://dfo.meteorf.gov.ru/ekstrennaya-informatsiya/",
     "https://meteoinfo.ru/hdmapsmeteoalarmdv",
@@ -105,6 +108,61 @@ it.each([
       items: [{ text: "Сообщение бюллетеня", date_status, city_mentioned: false, last_date: null }] },
   }) }));
   render(<CityPanel />);
-  const summary = await screen.findByText("Штормовые предупреждения Камчатского края");
-  expect(summary.closest("details")?.open).toBe(expanded);
+  const summary = await screen.findByRole("region", { name: "Штормовое предупреждение" });
+  expect(summary.textContent).toMatch(expanded ? /недоступен|устарел|не определён/i : /нет актуальных сообщений/i);
+});
+
+it("distinguishes local signs from city coverage and forecast", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({
+    observations: {
+      snowfall_state: "local_positive", snow_score: null, local_observation_score: 0.8,
+      independent_zones: 1, eligible_cameras: 1, status: "insufficient_coverage",
+      calculated_at: 2000000000, last_evidence_at: 2000000000, evidence_count: 1,
+      local_evidence: [{ camera_id: "one", name: "Улица", location: "Чехова", positive: true, negative: false, conflict: false, stage: "early", timestamp: 2000000000, method: "weather_vlm_v2" }],
+      contributors: [],
+    },
+    weather: { status: "available", precipitation: "snow", temperature_c: -1, observed_at: 2000000000 },
+    forecast: { status: "available", hours: [{ timestamp: 2000003600, precipitation: "snow", precipitation_probability: 80, temperature_c: -2 }] },
+    warnings: { status: "available", source: "Росгидромет", source_url: "https://example.com", region: "Камчатский край", items: [] },
+  }) }));
+  render(<CityPanel />);
+  await screen.findByText("Первые признаки снегопада");
+  expect(screen.getByText(/недостаточно независимых зон для городской оценки/)).toBeDefined();
+  expect(screen.getByText(/Текущее наблюдение/)).toBeDefined();
+  expect(screen.getByText(/Ближайшие часы/)).toBeDefined();
+});
+
+it("shows at most three positive contributors in backend order and opens camera details", async () => {
+  const open = vi.fn();
+  const cameras = ["a", "b", "c", "d"].map((id) => ({ id, name: `Камера ${id}`, location: "Город", type: "hls", observation: { frame_timestamp: 2000000000, source_status: "online" } }));
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({
+    observations: {
+      snowfall_state: "observed", snow_score: 0.7, independent_zones: 4, eligible_cameras: 4,
+      calculated_at: 2000000000, last_evidence_at: 2000000000, local_evidence: [],
+      contributors: ["a", "b", "c", "d"].map((id, index) => ({ id, name: `Камера ${id}`, location: "Город", score: 0.8, contribution: 0.4 - index * 0.05, timestamp: 2000000000, age_seconds: 0, frame_version: id, method: "opencv_motion", reason: "Свежее свидетельство из отдельной зоны", positive: true })),
+    }, forecast: { status: "unavailable", hours: [] },
+  }) }));
+  const { container } = render(<CityPanel cameras={cameras} onSelectCamera={open} />);
+  await screen.findByRole("heading", { name: "Камеры, влияющие на оценку" });
+  expect(container.querySelectorAll(".priority-camera")).toHaveLength(3);
+  expect(screen.queryByRole("heading", { name: "Камера d" })).toBeNull();
+  fireEvent.click(screen.getByRole("button", { name: "Открыть кадр и историю" }));
+  expect(open).toHaveBeenCalledWith("a");
+});
+
+it("shows a valid local model signal without inventing an index contribution", async () => {
+  const cameras = [{ id: "vlm", name: "Чехова", location: "Петропавловск-Камчатский", type: "jpeg", observation: { frame_timestamp: 2000000000, source_status: "online" } }];
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({
+    observations: {
+      snowfall_state: "local_positive", snow_score: null, independent_zones: 1, eligible_cameras: 0,
+      calculated_at: 2000000000, last_evidence_at: 2000000000,
+      local_evidence: [{ camera_id: "vlm", name: "Чехова", location: "Петропавловск-Камчатский", positive: true, negative: false, conflict: false, stage: "early", timestamp: 2000000000, method: "weather_vlm_v2", model_only: true }],
+      contributors: [],
+    }, forecast: { status: "disabled", hours: [] },
+  }) }));
+  render(<CityPanel cameras={cameras} />);
+  expect(await screen.findByText("Локальное свидетельство")).toBeDefined();
+  expect(screen.getByText("Без численного вклада")).toBeDefined();
+  expect(screen.getByText(/не входит в формулу городского индекса/)).toBeDefined();
+  expect(screen.queryByText(/\+\d+\/100 к индексу/)).toBeNull();
 });

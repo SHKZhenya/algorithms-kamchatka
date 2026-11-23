@@ -337,6 +337,7 @@ export function App() {
     () => localStorage.getItem("snowvision-auto") !== "off",
   );
   const [clock, setClock] = useState(Date.now() / 1000);
+  const catalogue = useRef<HTMLDetailsElement>(null);
   useEffect(() => {
     localStorage.setItem("snowvision-auto", auto ? "on" : "off");
   }, [auto]);
@@ -422,6 +423,16 @@ export function App() {
       clearInterval(clockTimer);
     };
   }, []);
+  useEffect(() => {
+    const openCatalogue = () => {
+      if (catalogue.current) {
+        catalogue.current.open = true;
+        catalogue.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    window.addEventListener("snowvision-show-cameras", openCatalogue);
+    return () => window.removeEventListener("snowvision-show-cameras", openCatalogue);
+  }, []);
   const updateObservation = useCallback(
     (id: string, observation: Observation) =>
       setCameras((rows) =>
@@ -431,15 +442,6 @@ export function App() {
       ),
     [],
   );
-  const real = cameras.filter((c) => c.type !== "demo");
-  const online = real.filter(
-    (c) => c.observation?.source_status === "online",
-  ).length;
-  const snow = real.filter(
-    (c) =>
-      c.observation?.status === "snowing" &&
-      c.observation.source_status === "online",
-  ).length;
   const visible = cameras.filter(
     (c) =>
       (c.name + " " + c.location).toLowerCase().includes(query.toLowerCase()) &&
@@ -468,53 +470,15 @@ export function App() {
         </div>
       </header>
       <main>
-        <div className="heading">
-          <div>
-            <p className="eyebrow">Камчатский край</p>
-            <h1>Снег начинается с сигнала</h1>
-            <p className="subtitle">
-              Ранние признаки, проверяемые кадры и прогноз в одном рабочем окне
-            </p>
-          </div>
-          <div className="updated">
-            Последнее обновление<strong>{time(updated)}</strong>
-            <small>Камчатское время · UTC+12</small>
-          </div>
+        <div className="heading compact-heading">
+          <div><p className="eyebrow">КАМЧАТСКИЙ КРАЙ</p><h1>Оперативная обстановка</h1></div>
+          <div className="updated">Обновление<strong>{time(updated)}</strong><small>{connection} · UTC+12</small></div>
         </div>
+        <CityPanel cameras={cameras} onSelectCamera={setSelected} auto={auto} now={clock} />
         <AlertPanel />
-        <CityPanel />
-        <section className="metrics" aria-label="Сводка по реальным камерам">
-          <div>
-            <span>Реальные камеры</span>
-            <strong>
-              {loading ? "—" : real.length}
-              <small> в мониторинге</small>
-            </strong>
-          </div>
-          <div>
-            <span>Доступны сейчас</span>
-            <strong>
-              {loading ? "—" : online}
-              <small> из {real.length}</small>
-            </strong>
-          </div>
-          <div className="snow-metric">
-            <span>С признаками снегопада</span>
-            <strong>
-              {loading ? "—" : snow}
-              <small> реальных камер</small>
-            </strong>
-          </div>
-        </section>
-        <div className="notice">
-          <span className="notice-icon">i</span>
-          <p>
-            Оценка предварительная. Анализируем движение в серии кадров.
-            Демонстрационные сцены отмечены отдельно и исключены из сводки
-            города.
-          </p>
-        </div>
-        <section className="cameras-section" aria-label="Камеры наблюдения">
+        <details className="camera-catalogue" ref={catalogue}>
+          <summary>Все камеры · {loading ? "загрузка" : `${cameras.length} источников`}</summary>
+          <section className="cameras-section" aria-label="Все камеры наблюдения">
           <div className="toolbar">
             <h2>
               Камеры <span>{cameras.length}</span>
@@ -605,7 +569,8 @@ export function App() {
               )}
             </div>
           )}
-        </section>
+          </section>
+        </details>
         <footer>
           <span>SnowVision Kamchatka</span>
           <span>OpenCV · частота получения зависит от источника</span>

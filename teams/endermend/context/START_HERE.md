@@ -20,8 +20,10 @@ Checkout: `/mnt/disk_d/Development/kam4atka/algorithms-kamchatka`.
 
 Диспетчеру на главном экране нужны факт снегопада в городе, погода со
 штормовым предупреждением и три камеры с наибольшим вкладом в оценку.
-Задание подготовлено в [PR #14](https://github.com/SHKZhenya/algorithms-kamchatka/pull/14),
-коммиты `b71de23` и `ca8e994`; редизайн ещё не реализован.
+Задание и реализация находятся в [PR #14](https://github.com/SHKZhenya/algorithms-kamchatka/pull/14).
+Экран выводит статус по пригодным наблюдениям, компактную погоду и бюллетень,
+а также до трёх камер из расчёта backend. Состояние UX-пилота и ограничения —
+в [PILOT_NOTES.md](PILOT_NOTES.md).
 Текущее состояние и проверки хранить в CURRENT, порядок публикации — в AGENTS.
 
 Локальный `.context-local/LATEST.md`, если доступен, содержит SHA снимка,

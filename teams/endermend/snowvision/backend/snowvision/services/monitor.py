@@ -5,12 +5,15 @@ import logging
 import random
 import sqlite3
 import time
+from collections import OrderedDict
 import cv2
 import numpy as np
 from snowvision.adapters.observation_store import HISTORY_DATABASE, load_frame, save_observation
 from snowvision.adapters.sources import fetch_frame, fetch_burst
 from snowvision.domain.vision import SNAPSHOT_METHOD, analyze_snapshot, frame_quality
 from snowvision.adapters.scene_model import analyze_scene
+
+RECENT_FRAME_LIMIT = 16
 
 
 def prepare(frame):
@@ -43,6 +46,7 @@ class CameraMonitor:
         self.source_lock = source_lock or asyncio.Lock()
         self.frames = []
         self.image = None
+        self.recent_images = OrderedDict()
         self.tick = 0
         self.changed_at = time.time()
         motion = camera.get('motion_analysis', True)
@@ -92,6 +96,8 @@ class CameraMonitor:
             source_status = 'degraded' if self.state.get('error') else 'stale' if stale else 'online'
             self.state.update(source_status=source_status, is_fetching=False,
                               snow_probability=None, confidence=0, status='unknown', is_stale=stale)
+            if self.image and self.state.get('frame_version'):
+                self.recent_images[self.state['frame_version']] = self.image
             if self.snapshot_analysis and source_status == 'online' and self.image:
                 frame = cv2.imdecode(np.frombuffer(self.image, dtype=np.uint8), cv2.IMREAD_COLOR)
                 if frame is not None:
@@ -148,6 +154,11 @@ class CameraMonitor:
                                   is_stale=stale, source_status='stale' if stale else 'online', error=None)
                 if changed:
                     self.state.update(frame_version=version, frame_timestamp=now)
+                if changed or version not in self.recent_images:
+                    self.recent_images[version] = encoded
+                    self.recent_images.move_to_end(version)
+                    while len(self.recent_images) > RECENT_FRAME_LIMIT:
+                        self.recent_images.popitem(last=False)
                 score, confidence, status = None, 0, 'unknown'
                 if not self.snapshot_analysis and self.camera.get('motion_analysis', True) and not stale:
                     cutoff = now-stale_after
