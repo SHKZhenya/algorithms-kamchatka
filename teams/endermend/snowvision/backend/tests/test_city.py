@@ -31,6 +31,21 @@ class CityTests(unittest.TestCase):
         self.assertAlmostEqual(result['snow_score'],.8)
         self.assertEqual(result['eligible_cameras'],2)
         self.assertIsNone(aggregate(rows,2000)['snow_score'])
+
+    def test_lower_confidence_floor_allows_camera_to_influence_city_index(self):
+        rows=[self.camera('a',[53.05,158.64],.8),self.camera('b',[53.09,158.67],.4)]
+        for row in rows: row['observation']['confidence']=.2
+        result=aggregate(rows,1000)
+        self.assertEqual(result['eligible_cameras'],2)
+        self.assertAlmostEqual(result['snow_score'],.6)
+
+    def test_confidence_below_city_floor_is_still_excluded(self):
+        rows=[self.camera('a',[53.05,158.64]),self.camera('b',[53.09,158.67])]
+        for row in rows: row['observation']['confidence']=.19
+        result=aggregate(rows,1000)
+        self.assertEqual(result['eligible_cameras'],0)
+        self.assertEqual(result['excluded']['insufficient_evidence'],2)
+        self.assertIsNone(result['snow_score'])
     def test_connected_nearby_cameras_form_one_zone(self):
         rows=[self.camera(str(i),[53.05+i*.006,158.64]) for i in range(3)]
         self.assertEqual(aggregate(rows,1000)['independent_zones'],1)

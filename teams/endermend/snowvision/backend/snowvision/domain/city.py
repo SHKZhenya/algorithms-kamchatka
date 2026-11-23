@@ -7,6 +7,7 @@ from snowvision.domain.vision import SNAPSHOT_METHOD
 CITY = {'name': 'Петропавловск-Камчатский', 'latitude': 53.0533533, 'longitude': 158.6449414,
         'location_note': 'Опорная точка в районе Чехова, 1А; прогноз модельной ячейки, не всей городской территории'}
 MAX_EVIDENCE_AGE = 120
+MIN_CITY_CONFIDENCE = .20
 EXCLUSION_LABELS = {
     'demo': 'Демонстрационный источник',
     'outside_city_or_unverified_view': 'Городское поле зрения не подтверждено',
@@ -34,7 +35,7 @@ def _evidence(camera, now):
                    and observation.get('scene_frame_version') == version
                    and scene.get('falling_snow') in ('yes', 'no'))
     cv_valid = (observation.get('analysis_method') != SNAPSHOT_METHOD
-                and score is not None and observation.get('confidence', 0) >= .25)
+                and score is not None and observation.get('confidence', 0) >= MIN_CITY_CONFIDENCE)
     timestamp = observation.get('last_analysis_at')
     fresh = (bool(version) and observation.get('source_status') == 'online'
              and not observation.get('is_stale') and timestamp is not None
@@ -90,7 +91,7 @@ def aggregate(cameras, now=None, events=()):
         elif not camera.get('city_observation') or not location: reason = 'outside_city_or_unverified_view'
         elif not camera.get('motion_analysis', True) or observation.get('analysis_method') == SNAPSHOT_METHOD: reason = 'snapshot_only'
         elif observation.get('source_status') != 'online' or observation.get('is_stale'): reason = 'unavailable_or_stale'
-        elif observation.get('snow_probability') is None or observation.get('confidence', 0) < 0.25: reason = 'insufficient_evidence'
+        elif observation.get('snow_probability') is None or observation.get('confidence', 0) < MIN_CITY_CONFIDENCE: reason = 'insufficient_evidence'
         elif observation.get('last_analysis_at') is None or now-observation['last_analysis_at'] > MAX_EVIDENCE_AGE: reason = 'expired_analysis'
         elif not evidence['fresh'] or evidence.get('score') is None: reason = 'not_in_index_method'
         if reason:
