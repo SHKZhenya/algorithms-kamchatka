@@ -1,8 +1,10 @@
 # Проверки и локальный контекст
 
-Рабочая ветка `endermend`; `origin` — `SHKZhenya/algorithms-kamchatka`,
-`fork` — `endermend/algorithms-kamchatka`. Для изменений обязателен цикл
-commit → push → PR → успешный CI. Правила — в [AGENTS](../AGENTS.md).
+Рабочая ветка `endermend`; единственная цель push — `fork`,
+`endermend/algorithms-kamchatka`. Не отправлять изменения в `origin`
+(`SHKZhenya/algorithms-kamchatka`) и не создавать там PR. Для изменений
+обязателен цикл commit → push в `fork` → проверка CI. PR создавать только
+по прямой просьбе пользователя. Правила — в [AGENTS](../AGENTS.md).
 
 ## Проверки
 
