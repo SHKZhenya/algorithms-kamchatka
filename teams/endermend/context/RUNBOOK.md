@@ -23,6 +23,30 @@ Vitest, TypeScript и Vite. После изменения backend пересоб
 `docker compose build snowvision` и затем повторить backend-тесты.
 Единственный CI — `.github/workflows/endermend-ci.yml`.
 
+## Установка на vm-betta
+
+На `vm-betta` (SSH-пользователь `student`) приложение установлено в
+`/home/student/snowvision-deploy/releases/8089509` из отслеживаемых исходников
+коммита `8089509`. Существующий Compose-проект — `release-q47f5hj9`;
+сохранять это имя при обновлении, чтобы использовать прежний том
+`release-q47f5hj9_history`. Секреты остаются в
+`/home/student/snowvision-deploy/.env`, их не копировать в Git.
+Локальный `compose.override.yaml` сохраняет публикацию web на порту 80;
+основной Compose также оставляет `127.0.0.1:5173`. Backend наружу не опубликован.
+
+```sh
+ssh -F ~/.ssh/config vm-betta
+cd /home/student/snowvision-deploy/releases/8089509
+docker compose --env-file ../../.env -p release-q47f5hj9 ps
+docker compose --env-file ../../.env -p release-q47f5hj9 exec -T web nginx -t
+curl --fail http://127.0.0.1/api/health
+```
+
+При следующем обновлении готовить отдельный каталог release из Git-исходников,
+сохранять override и имя Compose-проекта. Предыдущий каталог
+`releases/confidence-8Ketr1Uw` сохранён. Архивы качества и `.context-local`
+в установку не передавались.
+
 ## Пользовательские данные
 
 История и последний кадр находятся в Compose volume. Не применять
