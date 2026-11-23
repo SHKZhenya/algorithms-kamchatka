@@ -6,8 +6,10 @@ then follow their task-specific links. Communicate in Russian.
 
 Keep context focused on current behavior, active requirements and verification.
 Remove completed checklists, obsolete handoffs and duplicate instructions;
-Git history and ignored local checkpoints retain past work. Preserve technical
-source attribution, current product limitations and user runtime data.
+Git history and tracked context documents retain past work. Treat tracked
+documents as the handoff source of truth; do not read, write or rely on
+`.context-local`. Preserve technical source attribution, current product
+limitations and user runtime data.
 
 Complete authorized work through an appropriate check, commit and push to
 `fork/endermend`, including documentation and cleanup. Pushes for this work go
