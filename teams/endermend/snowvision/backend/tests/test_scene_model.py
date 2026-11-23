@@ -15,6 +15,13 @@ class ModelTests(unittest.IsolatedAsyncioTestCase):
             result = await analyze_scene(client, 'http://model.test', b'image')
             self.assertEqual(result['snow_on_ground'], 'yes')
             self.assertEqual(result['ground_view'], 'limited')
+            payload['road_coverage'] = 'partial'
+            result = await analyze_scene(client, 'http://model.test', b'image')
+            self.assertEqual(result['road_coverage'], 'partial')
+            payload['road_coverage'] = 'ice'
+            with self.assertRaises(ValidationError):
+                await analyze_scene(client, 'http://model.test', b'image')
+            payload['road_coverage'] = 'uncertain'
             payload['format_valid']='true'
             with self.assertRaises(ValidationError):
                 await analyze_scene(client,'http://model.test',b'image')

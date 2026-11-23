@@ -15,6 +15,7 @@ class SceneEvidence(BaseModel):
     air_view: Literal['good','limited','unusable']
     ground_view: Literal['good','limited','unusable'] | None = None
     snow_on_ground: Literal['yes','no','uncertain'] | None = None
+    road_coverage: Literal['clear','partial','mostly_covered','not_visible','uncertain'] | None = None
 
 async def analyze_scene(client, url, encoded):
     parsed=urlparse(url)
