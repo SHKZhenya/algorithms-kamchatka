@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from snowvision.domain.city import aggregate
 
 class CityTests(unittest.TestCase):
@@ -46,6 +47,29 @@ class CityTests(unittest.TestCase):
         self.assertEqual(result['eligible_cameras'],0)
         self.assertEqual(result['excluded']['insufficient_evidence'],2)
         self.assertIsNone(result['snow_score'])
+
+    def test_unverified_city_view_is_used_when_coordinates_exist(self):
+        camera = self.camera('unverified-view', [53.05, 158.64], .8)
+        camera['city_observation'] = False
+        result = aggregate([camera], 1000)
+        self.assertEqual(result['eligible_cameras'], 1)
+        self.assertEqual(result['local_evidence'][0]['camera_id'], 'unverified-view')
+        self.assertEqual(result['excluded_cameras'], [])
+
+    def test_verified_view_requirement_can_be_restored(self):
+        camera = self.camera('unverified-view', [53.05, 158.64], .8)
+        camera['city_observation'] = False
+        with patch('snowvision.domain.city.REQUIRE_VERIFIED_CITY_VIEW', True):
+            result = aggregate([camera], 1000)
+        self.assertEqual(result['eligible_cameras'], 0)
+        self.assertEqual(result['excluded_cameras'][0]['reason'], 'unverified_city_view')
+
+    def test_city_index_still_requires_coordinates(self):
+        camera = self.camera('no-location', [53.05, 158.64], .8)
+        camera.pop('coordinates_lat_lon')
+        result = aggregate([camera], 1000)
+        self.assertEqual(result['eligible_cameras'], 0)
+        self.assertEqual(result['excluded_cameras'][0]['reason'], 'missing_coordinates')
 
     def test_intermediate_evidence_is_not_a_clear_observation(self):
         camera = self.camera('a', [53.05, 158.64], .3)

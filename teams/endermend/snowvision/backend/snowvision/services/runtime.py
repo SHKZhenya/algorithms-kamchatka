@@ -38,7 +38,7 @@ async def run_services(cameras, monitors, delivery_ids):
     processing = asyncio.Semaphore(2)
     async with (
         httpx.AsyncClient(timeout=15, follow_redirects=True, limits=httpx.Limits(max_connections=4)) as client,
-        httpx.AsyncClient(timeout=20, limits=httpx.Limits(max_connections=1)) as scene_client,
+        httpx.AsyncClient(timeout=180, limits=httpx.Limits(max_connections=1)) as scene_client,
         httpx.AsyncClient(timeout=10, limits=httpx.Limits(max_connections=1)) as delivery_client,
     ):
         monitors.clear()

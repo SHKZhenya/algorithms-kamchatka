@@ -1,4 +1,5 @@
 import asyncio
+import os
 import sqlite3
 import tempfile
 import unittest
@@ -8,6 +9,9 @@ from snowvision.services.monitor import CameraMonitor
 
 class MonitorTests(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
+        provider = patch.dict(os.environ, {"SCENE_MODEL_PROVIDER": "weather_vlm"})
+        provider.start()
+        self.addCleanup(provider.stop)
         self.directory = tempfile.TemporaryDirectory()
         self.database = self.directory.name + '/history.db'
         with sqlite3.connect(self.database) as db:
@@ -197,3 +201,17 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(monitor.state['frame_timestamp'],original)
         self.assertEqual(monitor.observation()['freshness_reason'],'unchanged_frame')
         self.assertEqual(monitor.observation()['source_status'],'stale')
+
+    async def test_visual_mode_uses_model_for_non_city_camera_without_cv_score(self):
+        monitor = self.make()
+        monitor.scene_url = 'http://model.test'
+        scene = dict(format_valid=True, air_view='good', falling_snow='yes',
+                     snow_on_ground='yes', possible_icing='uncertain')
+        with patch.dict(os.environ, {'SCENE_MODEL_PROVIDER': 'ollama'}), \
+                patch('snowvision.services.monitor.fetch_frame', AsyncMock(return_value=demo(0))), \
+                patch('snowvision.services.monitor.analyze_scene', AsyncMock(return_value=scene)):
+            await monitor.attempt()
+        self.assertEqual(monitor.state['analysis_method'], 'weather_vlm_v2')
+        self.assertIsNone(monitor.state['snow_probability'])
+        self.assertEqual(monitor.state['status'], 'snowing')
+        self.assertEqual(monitor.state['scene_frame_version'], monitor.state['frame_version'])

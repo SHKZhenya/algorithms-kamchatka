@@ -23,37 +23,42 @@ Vitest, TypeScript и Vite. После изменения backend пересоб
 `docker compose build snowvision` и затем повторить backend-тесты.
 Единственный CI — `.github/workflows/endermend-ci.yml`.
 
-## Установка на vm-betta
+## Серверная установка
 
-Для доступа к интерфейсу открыть туннель и держать SSH-соединение открытым:
+Адрес, SSH-пользователь, серверные пути, имя Compose-проекта и тома хранятся
+только в локальном `deployment.local.env` рядом с этим документом. Файл исключён
+из Git. Для новой рабочей копии заполнить копию
+[deployment.example.env](deployment.example.env); существующий локальный файл
+не перезаписывать. Не добавлять реальные значения в документы, коммиты и PR.
+Это конфигурация подключения, а не журнал передачи контекста; состояние
+приложения по-прежнему хранить в отслеживаемых документах.
+
+Из каталога `teams/endermend/context` загрузить доверенную локальную конфигурацию:
 
 ```sh
-ssh -F ~/.ssh/config -L 5173:127.0.0.1:5173 vm-betta
+. ./deployment.local.env
+ssh -F ~/.ssh/config -L 5173:127.0.0.1:5173 "$DEPLOY_SSH_TARGET"
 ```
 
-В браузере открыть `http://localhost:5173`.
+Держать туннель открытым; интерфейс — http://localhost:5173.
+После входа использовать значения конфигурации для перехода в текущий release,
+проверки Compose и nginx. Локальные переменные автоматически на сервер не
+передаются; не копировать файл подключения в release-архив.
 
-На `vm-betta` (SSH-пользователь `student`) приложение установлено в
-`/home/student/snowvision-deploy/releases/8089509` из отслеживаемых исходников
-коммита `8089509`. Существующий Compose-проект — `release-q47f5hj9`;
-сохранять это имя при обновлении, чтобы использовать прежний том
-`release-q47f5hj9_history`. Секреты остаются в
-`/home/student/snowvision-deploy/.env`, их не копировать в Git.
-Локальный `compose.override.yaml` сохраняет публикацию web на порту 80;
-основной Compose также оставляет `127.0.0.1:5173`. Backend наружу не опубликован.
+При обновлении готовить отдельный release из отслеживаемых исходников.
+Сохранять существующие `.env`, override, имя Compose-проекта и том истории;
+их точные значения сверять с локальной конфигурацией. Публикацию портов
+сохранять по серверному override, backend наружу не публиковать.
+В текущем release выполнить команды, подставив существующее имя проекта
+и путь к серверному файлу окружения из локальной конфигурации:
 
 ```sh
-ssh -F ~/.ssh/config vm-betta
-cd /home/student/snowvision-deploy/releases/8089509
-docker compose --env-file ../../.env -p release-q47f5hj9 ps
-docker compose --env-file ../../.env -p release-q47f5hj9 exec -T web nginx -t
+docker compose --env-file <environment-file> -p <existing-project> ps
+docker compose --env-file <environment-file> -p <existing-project> exec -T web nginx -t
 curl --fail http://127.0.0.1/api/health
 ```
 
-При следующем обновлении готовить отдельный каталог release из Git-исходников,
-сохранять override и имя Compose-проекта. Предыдущий каталог
-`releases/confidence-8Ketr1Uw` сохранён. Архивы качества и `.context-local`
-в установку не передавались.
+Не удалять предыдущий release, историю или архивы качества при обновлении.
 
 ## Пользовательские данные
 

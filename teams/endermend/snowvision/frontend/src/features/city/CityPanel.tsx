@@ -13,6 +13,7 @@ type ForecastHour = {
 type WarningItem = { text: string; city_mentioned: boolean; date_status: "past" | "today" | "upcoming" | "unknown"; last_date: string | null };
 type CityOutlook = {
   observations: {
+    evidence_scope?: string;
     snow_score: number | null;
     local_observation_score: number | null;
     independent_zones: number;
@@ -115,7 +116,7 @@ function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: stri
   const score = observations?.snow_score;
   return <section className="snowfall-card" aria-label="Текущий снегопад">
     <div className="snowfall-main">
-      <div className="snowfall-title-row"><span className="eyebrow">СЕЙЧАС · ПЕТРОПАВЛОВСК-КАМЧАТСКИЙ</span><span className={`status-dot ${status[2]}`}>{status[0]}</span></div>
+      <div className="snowfall-title-row"><span className="eyebrow">{observations?.evidence_scope === "camera_views" ? "СЕЙЧАС · ВИДИМЫЕ УЧАСТКИ КАМЕР" : "СЕЙЧАС · ПЕТРОПАВЛОВСК-КАМЧАТСКИЙ"}</span><span className={`status-dot ${status[2]}`}>{status[0]}</span></div>
       <p className="snowfall-subtitle">{status[1]}</p>
       {(state === "local_positive" || state === "observed" || state === "confirmed") && <p className="snowfall-places">Место: {locations.join(", ") || "место наблюдения уточняется"} · {names.length} свидетельств</p>}
       {state === "local_positive" && positive.some((item) => item.stage === "early") && <p className="snowfall-places">Стадия сигнала: ранняя · требуется повторная проверка</p>}

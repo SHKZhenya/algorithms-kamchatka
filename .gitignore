@@ -12,3 +12,6 @@ out/
 # Local quality data and Codex context are not repository artifacts
 /teams/endermend/snowvision/.quality-local/
 /.context-local
+
+# Private server address and deployment paths
+/teams/endermend/context/deployment.local.env

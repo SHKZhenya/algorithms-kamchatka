@@ -1,5 +1,6 @@
 """Spatially conservative aggregation and auditable camera contributions."""
 import math
+import os
 import time
 
 from snowvision.domain.vision import SNAPSHOT_METHOD
@@ -8,9 +9,11 @@ CITY = {'name': 'Петропавловск-Камчатский', 'latitude': 5
         'location_note': 'Опорная точка в районе Чехова, 1А; прогноз модельной ячейки, не всей городской территории'}
 MAX_EVIDENCE_AGE = 120
 MIN_CITY_CONFIDENCE = .20
+REQUIRE_VERIFIED_CITY_VIEW = os.getenv('SNOWVISION_REQUIRE_VERIFIED_CITY_VIEW', '').lower() in ('1', 'true', 'yes', 'on')
 EXCLUSION_LABELS = {
     'demo': 'Демонстрационный источник',
-    'outside_city_or_unverified_view': 'Городское поле зрения не подтверждено',
+    'missing_coordinates': 'Не заданы координаты городской площадки',
+    'unverified_city_view': 'Городское поле зрения не подтверждено',
     'snapshot_only': 'Одиночный JPEG не входит в городской индекс',
     'unavailable_or_stale': 'Источник недоступен или устарел',
     'insufficient_evidence': 'Недостаточно пригодных признаков или уверенности',
@@ -74,8 +77,12 @@ def aggregate(cameras, now=None, events=()):
     local_evidence = []
     for camera in cameras:
         observation = camera.get('observation') or {}
+        location = camera.get('coordinates_lat_lon')
+        city_view_eligible = bool(location) and (
+            bool(camera.get('city_observation')) or not REQUIRE_VERIFIED_CITY_VIEW
+        )
         evidence = _evidence(camera, now)
-        if camera['type'] != 'demo' and camera.get('city_observation') and evidence['fresh']:
+        if camera['type'] != 'demo' and (city_view_eligible or os.getenv('SCENE_MODEL_PROVIDER') == 'ollama') and evidence['fresh']:
             event = events_by_camera.get(camera['id']) or {}
             local_evidence.append(dict(
                 camera_id=camera['id'], name=camera.get('name'), location=camera.get('location'),
@@ -85,11 +92,10 @@ def aggregate(cameras, now=None, events=()):
                 model_only=evidence.get('model_only', False), frame_version=observation.get('frame_version'),
                 frame_timestamp=observation.get('frame_timestamp'),
             ))
-
-        location = camera.get('coordinates_lat_lon')
         reason = None
         if camera['type'] == 'demo': reason = 'demo'
-        elif not camera.get('city_observation') or not location: reason = 'outside_city_or_unverified_view'
+        elif not location: reason = 'missing_coordinates'
+        elif REQUIRE_VERIFIED_CITY_VIEW and not camera.get('city_observation'): reason = 'unverified_city_view'
         elif not camera.get('motion_analysis', True) or observation.get('analysis_method') == SNAPSHOT_METHOD: reason = 'snapshot_only'
         elif observation.get('source_status') != 'online' or observation.get('is_stale'): reason = 'unavailable_or_stale'
         elif observation.get('snow_probability') is None or observation.get('confidence', 0) < MIN_CITY_CONFIDENCE: reason = 'insufficient_evidence'
@@ -157,7 +163,9 @@ def aggregate(cameras, now=None, events=()):
         snowfall_state = 'conflict'
     elif positive:
         confirmed = [item for item in positive if item['stage'] == 'confirmed']
-        if confirmed and len({item['camera_id'] for item in confirmed}) >= 2:
+        confirmed_ids = {item['camera_id'] for item in confirmed}
+        confirmed_zones = sum(any(p['id'] in confirmed_ids for p in group) for group in groups)
+        if confirmed_zones >= 2:
             snowfall_state = 'confirmed'
         else:
             snowfall_state = 'local_positive'
@@ -170,7 +178,7 @@ def aggregate(cameras, now=None, events=()):
 
     latest = max((item['timestamp'] for item in local_evidence if item['timestamp'] is not None), default=None)
     return dict(
-        city=CITY['name'], snow_score=local_score if enough else None,
+        city=CITY['name'], evidence_scope='camera_views' if os.getenv('SCENE_MODEL_PROVIDER') == 'ollama' else 'city', snow_score=local_score if enough else None,
         local_observation_score=local_score, status='available' if enough else 'insufficient_coverage',
         eligible_cameras=eligible, independent_zones=len(groups), minimum_zones=2,
         calibrated=False, excluded=excluded,

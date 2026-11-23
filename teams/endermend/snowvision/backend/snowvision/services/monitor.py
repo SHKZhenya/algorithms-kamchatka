@@ -2,6 +2,7 @@
 import asyncio
 import hashlib
 import logging
+import os
 import random
 import sqlite3
 import time
@@ -96,9 +97,11 @@ class CameraMonitor:
             source_status = 'degraded' if self.state.get('error') else 'stale' if stale else 'online'
             self.state.update(source_status=source_status, is_fetching=False,
                               snow_probability=None, confidence=0, status='unknown', is_stale=stale)
+            if os.getenv('SCENE_MODEL_PROVIDER') == 'ollama':
+                self.state['analysis_method'] = 'weather_vlm_v2'
             if self.image and self.state.get('frame_version'):
                 self.recent_images[self.state['frame_version']] = self.image
-            if self.snapshot_analysis and source_status == 'online' and self.image:
+            if os.getenv('SCENE_MODEL_PROVIDER') != 'ollama' and self.snapshot_analysis and source_status == 'online' and self.image:
                 frame = cv2.imdecode(np.frombuffer(self.image, dtype=np.uint8), cv2.IMREAD_COLOR)
                 if frame is not None:
                     self.state.update(analyze_snapshot(frame), last_analysis_at=time.time())
@@ -160,7 +163,7 @@ class CameraMonitor:
                     while len(self.recent_images) > RECENT_FRAME_LIMIT:
                         self.recent_images.popitem(last=False)
                 score, confidence, status = None, 0, 'unknown'
-                if not self.snapshot_analysis and self.camera.get('motion_analysis', True) and not stale:
+                if os.getenv('SCENE_MODEL_PROVIDER') != 'ollama' and not self.snapshot_analysis and self.camera.get('motion_analysis', True) and not stale:
                     cutoff = now-stale_after
                     self.frames = [(t, f) for t, f in self.frames if t >= cutoff]
                     if changed:
@@ -191,19 +194,26 @@ class CameraMonitor:
                         confidence = self.state['confidence']
                         status = self.state['status']
                 outlook = dict(snow_probability=score, confidence=confidence, status=status)
-                if self.snapshot_analysis and not stale:
+                if self.snapshot_analysis and not stale and os.getenv('SCENE_MODEL_PROVIDER') != 'ollama':
                     async with self.processing:
                         snapshot = await asyncio.to_thread(analyze_snapshot, frame, quality)
                     outlook.update(snapshot, last_analysis_at=time.time())
                     if changed and self.quality_archive:
                         pilot_frames = [frame]
                 self.state.update(outlook)
-                if changed and (score is None or self.snapshot_analysis) and self.scene_url and self.camera.get('city_observation') and self.camera['type']!='demo':
+                if os.getenv('SCENE_MODEL_PROVIDER') == 'ollama' and self.camera['type'] != 'demo':
+                    self.state.update(snow_probability=None, confidence=0, status='unknown',
+                                      analysis_method='weather_vlm_v2')
+                if changed and not stale and self.scene_url and self.camera['type']!='demo':
                     try:
                         scene = await analyze_scene(self.scene_client, self.scene_url, encoded)
-                        self.state.update(scene=scene, scene_frame_version=version, scene_error=None)
+                        self.state.update(scene=scene, scene_frame_version=version, scene_error=None,
+                                          last_analysis_at=time.time())
+                        if scene.get('format_valid') and scene.get('air_view') in ('good', 'limited'):
+                            label = scene.get('falling_snow')
+                            self.state['status'] = 'snowing' if label == 'yes' else 'clear' if label == 'no' else 'unknown'
                     except Exception as exc:
-                        self.state.update(scene=None, scene_frame_version=None, scene_error=type(exc).__name__)
+                        self.state.update(scene=None, scene_frame_version=None, scene_error=type(exc).__name__, status='unknown')
                 self.state['last_attempt_status'] = 'success'
             except asyncio.CancelledError:
                 raise

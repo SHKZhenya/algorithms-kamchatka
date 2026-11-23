@@ -21,6 +21,12 @@ type Observation = {
   scene?: {
     format_valid: boolean;
     ground_view?: "good" | "limited" | "unusable";
+    air_view?: "good" | "limited" | "unusable";
+    snowfall_intensity?: "none" | "light" | "moderate" | "heavy" | "uncertain";
+    road_coverage?: "clear" | "partial" | "mostly_covered" | "not_visible" | "uncertain";
+    possible_icing?: "yes" | "no" | "uncertain";
+    road_view?: "good" | "limited" | "unusable";
+    visual_evidence?: string;
     snow_on_ground?: "yes" | "no" | "uncertain";
   } | null;
   revision?: number;
@@ -75,12 +81,28 @@ function groundSnow(observation?: Observation) {
   return "неясно по кадру";
 }
 
+function visualIce(o?: Observation) {
+  const s = o?.scene;
+  if (!s?.format_valid || o?.is_stale || o?.source_status !== "online"
+      || !o.frame_version || o.scene_frame_version !== o.frame_version
+      || !["good", "limited"].includes(s.road_view ?? "")) return "нет пригодной визуальной оценки";
+  return s.possible_icing === "yes" ? "видимые признаки возможного обледенения"
+    : "по изображению не удалось надёжно определить наличие льда";
+}
+
 function state(c: Camera) {
   const o = c.observation;
   if (o?.source_status === "offline" || o?.source_status === "degraded")
     return { text: "Источник недоступен", tone: "red" };
   if (o?.source_status === "stale")
     return { text: "Данные устарели", tone: "amber" };
+  if (o?.analysis_method === "weather_vlm_v2" && o.scene?.format_valid
+      && o.scene_frame_version === o.frame_version && !o.is_stale
+      && ["good", "limited"].includes(o.scene.air_view ?? "")) {
+    return o.status === "snowing" ? { text: "Модель видит снегопад", tone: "blue" }
+      : o.status === "clear" ? { text: "Модель не видит снегопада", tone: "gray" }
+      : { text: "Визуальная оценка неопределённа", tone: "amber" };
+  }
   if (o?.snow_probability == null)
     return { text: "Недостаточно данных", tone: "amber" };
   return o.status === "snowing"
@@ -207,7 +229,7 @@ function Detail({
       <div className="dialog-content">
         <Snapshot camera={camera} auto={auto} large />
         <div className="detail-metrics">
-          <div>
+          {o?.analysis_method === "weather_vlm_v2" ? <div><small>Визуальная модель</small><strong>Анализ кадра</strong></div> : <><div>
             <small>Балл признаков снега</small>
             <strong>{score(o?.snow_probability)}</strong>
           </div>
@@ -215,12 +237,18 @@ function Detail({
             <small>Уверенность алгоритма</small>
             <strong>{score(o?.confidence)}</strong>
           </div>
+          </>}
           <span className={`status ${s.tone}`}>{s.text}</span>
         </div>
         <p className="note">
-          Снег на земле: {groundSnow(o)}. Обледенение: нет данных с датчиков покрытия.
-          Уверенность показывает силу признаков алгоритма.
+          Снег на земле: {groundSnow(o)}. Обледенение: {visualIce(o)}.
+          Оценка относится к видимой части изображения; скрытые поверхности могут быть неразличимы.
         </p>
+        {o?.scene?.format_valid && o.scene_frame_version === o.frame_version && !o.is_stale && o.source_status === "online" && <>
+          <p className="note">Интенсивность снегопада: {["good", "limited"].includes(o.scene.air_view ?? "") ? ({ none: "не виден", light: "слабый", moderate: "умеренный", heavy: "сильный", uncertain: "неопределённо" }[o.scene.snowfall_intensity ?? "uncertain"]) : "нет пригодного обзора"}.
+            Снег на видимой дороге: {["good", "limited"].includes(o.scene.road_view ?? "") ? ({ clear: "покрытие выглядит чистым", partial: "частичное покрытие снегом", mostly_covered: "преимущественно покрыта снегом", not_visible: "дорога не видна", uncertain: "неопределённо" }[o.scene.road_coverage ?? "uncertain"]) : "нет пригодного обзора"}.</p>
+          {o.scene.visual_evidence && <p className="note">Обоснование модели: {o.scene.visual_evidence}</p>}
+        </>}
         {o?.analysis_method === "opencv_snapshot" && (
           <p className="note">
             Оценка по одному JPEG-кадру. Блики и детали фона могут выглядеть как снег.
@@ -307,9 +335,8 @@ function Detail({
           </p>
         )}
         <p className="note">
-          Время получения снимка не подтверждает время съёмки. Оценка основана
-          на движении небольших объектов и требует калибровки. Дождь, шум и
-          движение камеры могут влиять на результат.
+          Время получения снимка не подтверждает время съёмки. Дождь, шум,
+          блики и движение камеры могут влиять на визуальный результат.
         </p>
       </div>
     </dialog>
