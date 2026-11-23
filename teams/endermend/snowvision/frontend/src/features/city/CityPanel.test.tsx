@@ -31,6 +31,23 @@ it("shows unknown when city coverage and weather are unavailable", async () => {
   expect(screen.queryByText("0%")).toBeNull();
 });
 
+it("explains inconclusive fresh evidence and the distinct city and journal thresholds", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({
+    observations: {
+      snowfall_state: "inconclusive", snow_score: null, independent_zones: 1,
+      eligible_cameras: 1, calculated_at: 2000000000, last_evidence_at: 2000000000,
+      negative_evidence_count: 0, inconclusive_evidence_count: 1,
+      signal_policy: "Городской индекс: от 0,20; журнал: от 0,25",
+    },
+    forecast: { status: "unavailable", hours: [] },
+  }) }));
+  render(<CityPanel now={2000000000} />);
+  await screen.findByText("Снегопад не удалось оценить");
+  expect(screen.getByText(/неопределённые свидетельства: 1/)).toBeDefined();
+  expect(screen.getByText(/Городской индекс: от 0,20; журнал: от 0,25/)).toBeDefined();
+  expect(screen.queryByText("Снегопад не обнаружен")).toBeNull();
+});
+
 it("shows the Yandex forecast and keeps past warnings separate", async () => {
   vi.stubGlobal(
     "fetch",

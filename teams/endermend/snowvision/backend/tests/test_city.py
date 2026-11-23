@@ -46,6 +46,32 @@ class CityTests(unittest.TestCase):
         self.assertEqual(result['eligible_cameras'],0)
         self.assertEqual(result['excluded']['insufficient_evidence'],2)
         self.assertIsNone(result['snow_score'])
+
+    def test_intermediate_evidence_is_not_a_clear_observation(self):
+        camera = self.camera('a', [53.05, 158.64], .3)
+        camera['observation']['confidence'] = .2
+        result = aggregate([camera], 1000)
+        self.assertEqual(result['snowfall_state'], 'inconclusive')
+        self.assertEqual(result['inconclusive_evidence_count'], 1)
+        self.assertEqual(result['negative_evidence_count'], 0)
+        self.assertEqual(result['eligible_cameras'], 1)
+
+    def test_clear_and_inconclusive_evidence_do_not_imply_all_clear(self):
+        clear = self.camera('clear', [53.05, 158.64], .05)
+        uncertain = self.camera('uncertain', [53.09, 158.67], .3)
+        self.assertEqual(aggregate([clear], 1000)['snowfall_state'], 'not_detected')
+        result = aggregate([clear, uncertain], 1000)
+        self.assertEqual(result['snowfall_state'], 'inconclusive')
+        self.assertEqual(result['negative_evidence_count'], 1)
+        self.assertEqual(result['inconclusive_evidence_count'], 1)
+
+    def test_alert_and_city_thresholds_have_distinct_contract(self):
+        camera = self.camera('a', [53.05, 158.64], .05)
+        camera['observation']['confidence'] = .2
+        result = aggregate([camera], 1000)
+        self.assertEqual(result['snowfall_state'], 'not_detected')
+        self.assertEqual(result['eligible_cameras'], 1)
+        self.assertIn('0,25', result['signal_policy'])
     def test_connected_nearby_cameras_form_one_zone(self):
         rows=[self.camera(str(i),[53.05+i*.006,158.64]) for i in range(3)]
         self.assertEqual(aggregate(rows,1000)['independent_zones'],1)

@@ -22,6 +22,9 @@ type CityOutlook = {
     calculated_at?: number;
     last_evidence_at?: number | null;
     evidence_count?: number;
+    negative_evidence_count?: number;
+    inconclusive_evidence_count?: number;
+    signal_policy?: string;
     representatives?: { id: string }[];
     local_evidence?: { camera_id: string; name: string; location: string; positive: boolean; negative: boolean; conflict: boolean; stage: string | null; timestamp: number; method: string; model_only?: boolean; frame_version?: string | null; frame_timestamp?: number | null }[];
     last_known?: { camera_id: string; name?: string; location?: string; stage?: string; timestamp?: number }[];
@@ -104,7 +107,8 @@ function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: stri
     local_positive: [localConfirmed ? "Повторно подтверждено локально" : "Первые признаки снегопада", cityCoverage ? "Есть свежие локальные признаки · городское повторное подтверждение не установлено" : "Локальное свидетельство · недостаточно независимых зон для городской оценки", "amber"],
     observed: ["Первые признаки снегопада", "Локальные сигналы требуют повторного подтверждения", "amber"],
     confirmed: ["Снегопад наблюдается", "Повторное подтверждение в нескольких независимых зонах", "blue"],
-    not_detected: ["Снегопад не обнаружен", `На наблюдаемых участках · зон ${observations?.independent_zones ?? 0}`, "gray"],
+    not_detected: ["Снегопад не обнаружен", `В свежих наблюдениях проверенных участков · зон ${observations?.independent_zones ?? 0}; вывод не распространяется на весь город`, "gray"],
+    inconclusive: ["Снегопад не удалось оценить", `Есть свежие, но неопределённые свидетельства: ${observations?.inconclusive_evidence_count ?? 0}. Отрицательных: ${observations?.negative_evidence_count ?? 0}`, "amber"],
     conflict: ["Методы расходятся", "Проверьте кадр · общий вывод не сделан", "amber"],
     unknown: ["Недостаточно свежих данных", error ? "Связь с сервисом потеряна · последнее состояние не считается текущим" : "Нет пригодных свежих свидетельств", "amber"],
   }[state] ?? ["Недостаточно свежих данных", "Нет пригодных свежих свидетельств", "amber"];
@@ -122,6 +126,7 @@ function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: stri
         <span>Последнее пригодное свидетельство <strong>{fullDate(observations?.last_evidence_at)}</strong></span>
         <span>Покрытие <strong>{observations?.independent_zones ?? 0} независимых зон</strong> · нужно минимум 2 для городского балла</span>
         {score != null && <span>Индекс <strong>{Math.round(score * 100)}/100</strong> · не вероятность</span>}
+        {observations?.signal_policy && <span>{observations.signal_policy}</span>}
       </div>
     </div>
     <div className="snowfall-stamp" aria-label="Актуальность данных">

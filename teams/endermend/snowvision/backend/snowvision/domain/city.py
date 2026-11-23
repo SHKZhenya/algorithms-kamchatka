@@ -151,7 +151,8 @@ def aggregate(cameras, now=None, events=()):
     )
     positive = [item for item in local_evidence if item['positive']]
     conflicts = [item for item in local_evidence if item['conflict']]
-    has_fresh = bool(local_evidence)
+    negative = [item for item in local_evidence if item['negative']]
+    inconclusive = [item for item in local_evidence if not item['positive'] and not item['negative'] and not item['conflict']]
     if conflicts:
         snowfall_state = 'conflict'
     elif positive:
@@ -160,7 +161,9 @@ def aggregate(cameras, now=None, events=()):
             snowfall_state = 'confirmed'
         else:
             snowfall_state = 'local_positive'
-    elif has_fresh:
+    elif inconclusive:
+        snowfall_state = 'inconclusive'
+    elif negative:
         snowfall_state = 'not_detected'
     else:
         snowfall_state = 'unknown'
@@ -174,7 +177,9 @@ def aggregate(cameras, now=None, events=()):
         reason='Минимум две независимые зоны наблюдения. Полнота покрытия города не подтверждена.',
         method='confidence_freshness_weighted_spatial_clusters',
         snowfall_state=snowfall_state, calculated_at=now, last_evidence_at=latest,
-        evidence_count=len(local_evidence), local_evidence=local_evidence,
+        evidence_count=len(local_evidence), negative_evidence_count=len(negative),
+        inconclusive_evidence_count=len(inconclusive), local_evidence=local_evidence,
+        signal_policy='Городской индекс учитывает видео при уверенности от 0,20; журнал начала снегопада требует от 0,25. Промежуточный балл без устойчивых признаков не означает отсутствие снега.',
         last_known=last_known,
         representatives=representatives, contributors=contributors,
         excluded_cameras=sorted(excluded_cameras, key=lambda item: item['id']),
