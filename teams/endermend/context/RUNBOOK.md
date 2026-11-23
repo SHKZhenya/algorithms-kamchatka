@@ -1,40 +1,50 @@
-# Рабочий цикл
+# Проверки и локальный контекст
 
-1. Читать CURRENT.md, DECISIONS.md, RUNBOOK.md и .context-local/LATEST.md, если есть.
-   Читать и обновлять BACKEND.md или FRONTEND.md по области изменений.
-2. Проверить git status. Определить критерии приёмки и ближайший воспроизводящий тест.
-3. Перед существенным решением: python3 tools/endermend-context/context.py record "решение и причина".
-4. Внести минимальное согласованное изменение и регрессионный тест при необходимости.
-5. Запустить focused checks. Для полного цикла: python3 tools/endermend-context/context.py verify.
-6. Обновить CURRENT.md по фактическому результату. Проверить diff и явно git add нужных файлов.
-7. python3 tools/endermend-context/context.py commit "сообщение" повторно проверит стек
-   и выполнит обычный commit только после успеха. Если проверки только что прошли
-   без новых изменений, можно обычный git commit без повторной полной проверки.
-8. post-commit автоматически сохранит checkpoint + manifest + событие, без рекурсии.
-9. При разрешённой публикации: git push fork endermend, дождаться CI, сообщить результат.
+Команды выполнять из checkout, если не указано иначе. Рабочая ветка —
+`endermend`; `origin` — `SHKZhenya/algorithms-kamchatka`, `fork` —
+`endermend/algorithms-kamchatka`. Процедура commit → push → PR → CI
+определена в [AGENTS.md](../AGENTS.md) и применяется ко всем завершённым задачам.
+Официальный CLI — `/home/User/.local/bin/gh`; не читать и не выводить токены.
 
-Установка hook для нового checkout:
-`git config --local core.hooksPath .githooks`
-Перед установкой проверить прежний core.hooksPath и реальные hook-файлы.
-Этот репозиторий не требует принудительного Git hook от других участников.
+## Проверка приложения
 
-Локальные данные (.context-local, исключены из Git):
-- events.jsonl: события, проверки, SHA, exit code; не каждое действие ОС/браузера.
-- checkpoints/<commit>.md.gz: компактный handoff, привязанный к SHA.
-- LATEST.md и latest.json: вход для возобновления и SHA-256 проверки.
-- checks/*.log.gz: вывод проверок с распознаваемыми секретами, заменёнными REDACTED.
-- chat/*.jsonl.gz: явно выбранный полный журнал Codex с тем же маскированием.
+Из `teams/endermend/snowvision`:
 
-Архив чата обновляется командой archive-chat <путь JSONL сессии>.
-Если владелец явно привязал текущий чат в .context-local/session-path, hook
-обновляет только этот архив после commit. Другие сессии не просматриваются. Для сохранности копировать .context-local
-на резервный диск: этот каталог сам по себе не является удалённой резервной копией.
-Маскирование шаблонов не гарантирует обнаружение произвольного секрета:
-сырые журналы никогда не публиковать даже после маскирования.
+```sh
+docker compose -p snowvision build web
+docker compose -p snowvision exec -T snowvision python -m unittest -v
+docker compose -p snowvision exec -T web nginx -t
+```
 
-Сбой capture не отменяет уже завершённый commit, hook выводит предупреждение.
-Нет бесконечного цикла, автоисправлений, скрытых push или автоматических новых коммитов.
+Полный изолированный цикл сборки и тестов из checkout:
 
-Если файловая система checkout игнорирует chmod (например NTFS), архивы
-автоматически перемещаются в ~/.local/state/snowvision-context/<checkout-id>,
-а .context-local становится игнорируемой ссылкой. Права проверяются фактически.
+```sh
+python3 tools/endermend-context/context.py verify
+```
+
+Если рабочий стек не запущен, использовать отдельный Compose project и
+`run --rm --no-deps snowvision python -m unittest -v`; не подменять недоступный Engine
+имитацией проверки. Для запуска рабочего сервиса и env-файла следовать
+[README приложения](../snowvision/README.md). Единственный CI workflow —
+`.github/workflows/endermend-ci.yml`.
+
+## Журнал и checkpoints
+
+Материальные решения и результаты записывать через `context.py record "событие"`.
+Локальный `core.hooksPath=.githooks`; перед настройкой проверить прежние hooks.
+Post-commit создаёт checkpoint, SHA-256 manifest и событие в игнорируемом
+`.context-local`, не меняя tracked files и не выполняя commit или сетевых запросов.
+Сбой checkpoint не отменяет commit: исправить причину и выполнить `context.py capture`.
+Сводка ограничена 16 КБ; сокращать повторы, а не увеличивать лимит.
+
+`LATEST.md/latest.json` — последний снимок; `checkpoints/` — история,
+`events.jsonl` — решения и результаты, `checks/` — сжатые логи проверок.
+Архивы `chat/` обновляются только для явно выбранной владельцем сессии через
+`archive-chat <JSONL>` или действующую привязку `session-path`. Не выбирать
+случайный последний чат. Маскирование секретов не разрешает публикацию сырых журналов.
+На файловой системе без рабочих chmod `.context-local` ссылается на приватный
+каталог в `~/.local/state/snowvision-context`; архивы должны сохранять закрытые права.
+
+При ошибке dubious ownership использовать `git -c safe.directory=<checkout>`,
+не устанавливать глобальный `safe.directory=*`. Не делать force push,
+не переписывать main и не применять `docker compose down -v`.

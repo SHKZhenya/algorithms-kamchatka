@@ -1,5 +1,5 @@
-# Source: shared/kamchatka-cam/monitoring/scene.py
-# Integration author: Eazyan. Reused under shared/README.md collaboration policy.
+# Adapted from kamchatka-cam/monitoring/scene.py by Eazyan.
+# This self-contained copy is maintained within SnowVision.
 """Versioned model contract and deterministic rules shared by live and replay."""
 
 from datetime import timedelta

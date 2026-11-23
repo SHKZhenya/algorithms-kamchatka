@@ -1,25 +1,14 @@
 __pycache__/
 *.py[cod]
 .venv/
+node_modules/
 .DS_Store
 .env
 .env.*
 !.env.example
 out/
 *.zip
-/weather_coverage/.state/
-/weather_coverage/coordinates.geojson
-/weather_coverage/observations.csv
-/weather_coverage/observations_demo.csv
-/weather_coverage/weather_coverage.html
-/weather_coverage/heatmaps/
-/winter_audit/evidence/
-/winter_audit/output/
-.ipynb_checkpoints/
 
-/city_sim/.state/
-
-/city_sim/data/building-location-checks.json.gz
-
-# Local context evidence and compressed chat archives
+# Local quality data and Codex context are not repository artifacts
+/teams/endermend/snowvision/.quality-local/
 /.context-local

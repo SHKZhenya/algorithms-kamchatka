@@ -1,1 +1,1 @@
-"""Components reused from the shared camera-monitoring project."""
+"""Self-contained integrations used by SnowVision."""

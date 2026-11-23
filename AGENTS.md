@@ -1,15 +1,16 @@
-# Repository guidance
+# SnowVision repository guidance
 
-For SnowVision / endermend work, first read `teams/endermend/AGENTS.md` and
-`teams/endermend/context/{START_HERE,CURRENT,DECISIONS,RUNBOOK}.md`.
-Compare the local checkpoint HEAD with Git and check the index and working tree.
-Use the working context alongside the checkpoint and preserve unrelated changes.
-Never commit `.context-local`, secrets or runtime databases.
+This repository contains SnowVision in `teams/endermend/snowvision`.
+Read `teams/endermend/AGENTS.md` and `teams/endermend/context/START_HERE.md`,
+then follow their task-specific links. Communicate in Russian.
 
-SnowVision gets the hourly forecast from Yandex Weather using the server-side
-`X-Yandex-Weather-Key`. It fetches the Kamchatka section of the official
-Roshydromet bulletin separately. Preserve source attribution and distinguish
-expired or unverified warning dates from current bulletin entries. Snowfall
-alerts and webhook delivery still depend on camera evidence.
+Keep context focused on current behavior, active requirements and verification.
+Remove completed checklists, obsolete handoffs and duplicate instructions;
+Git history and ignored local checkpoints retain past work. Preserve technical
+source attribution, current product limitations and user runtime data.
 
-Other teams retain their own applicable instructions and workflows.
+Complete authorized work through an appropriate check, commit, push to
+`fork/endermend`, upstream PR and CI, including documentation and cleanup.
+Preserve unrelated edits unless the user explicitly asks to include them.
+Never commit `.env`, credentials, databases, `.quality-local`, `.context-local`
+or raw conversation logs. Never use force push or `docker compose down -v`.

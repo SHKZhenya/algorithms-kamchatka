@@ -1,9 +1,0 @@
-backend/.venv/
-frontend/node_modules/
-frontend/dist/
-logs/
-backend/cache/
-backend/data/initial_plan.json
-backend/data/osm_drive.graphml
-*.backup.json
-__pycache__/

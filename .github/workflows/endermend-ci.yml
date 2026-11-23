@@ -2,9 +2,9 @@ name: Endermend CI
 on:
   push:
     branches: [endermend]
-    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml', 'tools/endermend-context/**', '.githooks/**']
+    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml', 'tools/endermend-context/**', '.githooks/**', 'AGENTS.md', 'README.md', 'task.md', '.gitignore']
   pull_request:
-    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml', 'tools/endermend-context/**', '.githooks/**']
+    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml', 'tools/endermend-context/**', '.githooks/**', 'AGENTS.md', 'README.md', 'task.md', '.gitignore']
   workflow_dispatch:
 permissions:
   contents: read
