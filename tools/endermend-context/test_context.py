@@ -16,8 +16,7 @@ class ContextTests(unittest.TestCase):
             shutil.copyfile(MODULE,root/'tools/endermend-context/context.py')
             shutil.copytree(context.ROOT/'.githooks',root/'.githooks')
             (root/'.githooks/post-commit').chmod(0o755)
-            (root/'teams/endermend/context').mkdir(parents=True)
-            (root/'teams/endermend/context/CURRENT.md').write_text('Known current context\n')
+            shutil.copytree(context.DOCS, root/'teams/endermend/context')
             (root/'.gitignore').write_text('/.context-local/\n')
             def git(*args):return subprocess.check_output(['git',*args],cwd=root,text=True,stderr=subprocess.STDOUT)
             git('init');git('config','user.name','Context Test');git('config','user.email','test@example.invalid')
@@ -28,6 +27,7 @@ class ContextTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(payload).hexdigest(),manifest['sha256'])
             self.assertEqual(git('rev-list','--count','HEAD').strip(),'1')
             self.assertEqual(git('status','--porcelain').strip(),'')
-            self.assertIn(b'Known current context',payload)
+            for name in ('CURRENT.md', 'BACKEND.md', 'FRONTEND.md'):
+                self.assertIn(f'## {name}\n'.encode(), payload)
 
 if __name__=='__main__':unittest.main()

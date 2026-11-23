@@ -8,7 +8,9 @@
 Открыть checkout `/mnt/disk_d/Development/kam4atka/algorithms-kamchatka`.
 Прочитать корневой AGENTS.md, teams/endermend/AGENTS.md и файлы этой папки:
 CURRENT.md — текущее состояние, DECISIONS.md — ограничения,
-RUNBOOK.md — цикл работы и журналирование. Проверить git status, HEAD и remote.
+RUNBOOK.md — цикл работы и журналирование. Затем прочитать контекст нужного
+слоя по ссылкам из CURRENT.md. Для изменений контракта API читать оба файла.
+Проверить git status, HEAD и remote.
 В локальном `.context-local/LATEST.md` заголовок HEAD указывает коммит снимка.
 Не считать старые пункты исторического документа активным поручением.
 После ознакомления ждать следующей задачи пользователя.
@@ -51,23 +53,8 @@ React/TypeScript/Vite обслуживается nginx, проксирует /ap
 Тома Docker хранят историю и последний корректный кадр. Production Compose
 project `snowvision`, веб http://localhost:5173, backend наружу не открыт.
 
-- sources.py: JPEG streaming с пределом размера, проверка декодирования,
-  cache busting, заголовки no-cache, одна повторная попытка временных сбоев.
-- monitor.py: отдельная задача и lock на камеру, ограничение приобретения/CPU,
-  кеш последнего хорошего кадра и проверки возраста/неизменности/источника.
-- vision.py: эвристика частиц и качества видеоряда. Это не обученная вероятность.
-- city.py: пространственная агрегация наблюдений камер.
-- yandex_weather.py и storm_warnings.py: почасовой прогноз Яндекс Погоды
-  и бюллетень Росгидромета по ДФО.
-- alerts.py: early/confirmed/ended, различие версий, сохранённые ack и outbox.
-- delivery.py: опциональный webhook, retries, idempotency key, срок годности,
-  подавление принятых/завершённых/демонстрационных сигналов.
-- scene_model.py: опциональный общий Weather VLM /v2/scene, строгая валидация.
-- integrations/team_scene.py: правила Eazyan из shared/kamchatka-cam.
-- web/src/Snapshot.tsx: lazy viewport, максимум 4 загрузки, отмена,
-  таймаут загрузки/декодирования, backoff, старый кадр до успешной замены.
-- AlertPanel.tsx: журнал, принятие, история, opt-in браузерные уведомления.
-- CityPanel.tsx: метеопрогноз отдельно от наблюдений камер.
+Границы модулей и детали проверок описаны в [BACKEND.md](BACKEND.md)
+и [FRONTEND.md](FRONTEND.md).
 
 ## Что реально проверено
 

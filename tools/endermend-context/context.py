@@ -49,13 +49,13 @@ def record(kind,detail):
 def capture():
     private_dir(); head=git('rev-parse','HEAD')
     contents=[]
-    for name in ('CURRENT.md','DECISIONS.md','RUNBOOK.md'):
+    for name in ('CURRENT.md','BACKEND.md','FRONTEND.md','DECISIONS.md','RUNBOOK.md'):
         p=DOCS/name
         if p.exists():contents.append(f'\n## {name}\n'+p.read_text())
     # Bounded handoff; long-term evidence stays in the archive, not in the prompt.
     text=redact('# Context checkpoint\nHEAD: '+head+'\nBranch: '+git('branch','--show-current')+
                 '\n\nRecent commits:\n'+git('log','-5','--format=%h %s')+'\n'+''.join(contents))
-    if len(text.encode())>16000:raise ValueError('Context exceeds 16 KB: update CURRENT/DECISIONS/RUNBOOK manually')
+    if len(text.encode())>16000:raise ValueError('Context exceeds 16 KB: shorten the handoff files manually')
     payload=text.encode();archive=STATE/'checkpoints'/f'{head}.md.gz'
     write(archive,gzip.compress(payload,mtime=0));write(STATE/'LATEST.md',payload)
     manifest={'head':head,'sha256':hashlib.sha256(payload).hexdigest(),'bytes':len(payload),

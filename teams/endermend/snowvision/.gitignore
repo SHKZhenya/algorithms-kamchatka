@@ -2,11 +2,11 @@
 __pycache__/
 .venv/
 *.db
-web/node_modules/
-web/dist/
+frontend/node_modules/
+frontend/dist/
 
 source_checks.local.json
-web/coverage/
+frontend/coverage/
 
 /alerts-replay.local.json
 
@@ -14,3 +14,4 @@ web/coverage/
 .env.*
 !.env.example
 camera-audit.local.json
+/.quality-local/
