@@ -82,7 +82,7 @@ it("links to official warnings when the city API is unreachable", async () => {
   vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("Сбой API")));
   render(<CityPanel />);
 
-  await screen.findByText("Сбой API");
+  await screen.findByText("Связь с сервисом потеряна");
   screen.getByText("Официальные источники предупреждений").click();
   const destinations = screen
     .getAllByRole("link")
@@ -146,7 +146,7 @@ it("shows at most three positive contributors in backend order and opens camera 
   await screen.findByRole("heading", { name: "Камеры, влияющие на оценку" });
   expect(container.querySelectorAll(".priority-camera")).toHaveLength(3);
   expect(screen.queryByRole("heading", { name: "Камера d" })).toBeNull();
-  fireEvent.click(screen.getByRole("button", { name: "Открыть кадр и историю" }));
+  fireEvent.click(screen.getByRole("button", { name: "Открыть кадр и историю: Камера a" }));
   expect(open).toHaveBeenCalledWith("a");
 });
 

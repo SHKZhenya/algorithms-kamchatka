@@ -207,14 +207,14 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
         const camera = cameras.find((row) => row.id === item.id);
         if (!camera) return null;
         const age = Math.max(0, Math.floor(clock - item.timestamp));
-        const pinnedCamera = { ...camera, observation: { ...camera.observation, frame_version: item.frame_version, frame_timestamp: item.frame_timestamp ?? item.timestamp } };
+        const pinnedCamera = { ...camera, observation: { ...camera.observation, source_status: camera.observation?.source_status ?? "unknown", frame_version: item.frame_version, frame_timestamp: item.frame_timestamp ?? item.timestamp } };
         return <article className="priority-camera" key={`${item.id}:${item.frame_version}`}>
           <Snapshot camera={pinnedCamera} auto={auto} now={clock} />
           <div className="priority-camera-body"><small>{item.location}</small><h3>{item.name}</h3>
             <div className="priority-evidence"><strong>{item.localOnly ? "Локальное свидетельство" : "Положительный вклад в индекс"}</strong><span>{item.localOnly ? "Без численного вклада" : `+${Math.round(item.contribution * 100)}/100 к индексу`}</span></div>
             <p>{item.reason}</p>
             <small>{item.method === "weather_vlm_v2" ? "Метод: Weather VLM" : item.method === "opencv_motion" ? "Метод: анализ видеоряда" : "Метод: оценка изображения"} · анализ {age < 60 ? `${age} сек назад` : `${Math.floor(age / 60)} мин назад`}</small>
-            <button onClick={() => onSelectCamera?.(item.id)}>Открыть кадр и историю</button>
+            <button aria-label={`Открыть кадр и историю: ${item.name}`} onClick={() => onSelectCamera?.(item.id)}>Открыть кадр и историю</button>
           </div>
         </article>;
       })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Недостаточно свежих пригодных данных из городских камер. Случайные и региональные кадры не подставляются."}</p></div>}
