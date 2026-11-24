@@ -244,18 +244,12 @@ function Detail({
         </div>
         <p className="note">
           Снег на земле: {groundSnow(o)}. Обледенение: {visualIce(o)}.
-          Оценка относится к видимой части изображения; скрытые поверхности могут быть неразличимы.
         </p>
         {o?.scene?.format_valid && o.scene_frame_version === o.frame_version && !o.is_stale && o.source_status === "online" && <>
           <p className="note">Интенсивность снегопада: {["good", "limited"].includes(o.scene.air_view ?? "") ? ({ none: "не виден", light: "слабый", moderate: "умеренный", heavy: "сильный", uncertain: "неопределённо" }[o.scene.snowfall_intensity ?? "uncertain"]) : "нет пригодного обзора"}.
             Снег на видимой дороге: {["good", "limited"].includes(o.scene.road_view ?? "") ? ({ clear: "покрытие выглядит чистым", partial: "частичное покрытие снегом", mostly_covered: "преимущественно покрыта снегом", not_visible: "дорога не видна", uncertain: "неопределённо" }[o.scene.road_coverage ?? "uncertain"]) : "нет пригодного обзора"}.</p>
           {o.scene.visual_evidence && <p className="note">Обоснование модели: {o.scene.visual_evidence}</p>}
         </>}
-        {o?.analysis_method === "opencv_snapshot" && (
-          <p className="note">
-            Оценка по одному JPEG-кадру. Блики и детали фона могут выглядеть как снег.
-          </p>
-        )}
         {o?.analysis_reason && (
           <p className="note">
             {reasons[o.analysis_reason] || o.analysis_reason}
@@ -336,10 +330,6 @@ function Detail({
               "Источник не ответил вовремя. Подключение будет повторено автоматически."}
           </p>
         )}
-        <p className="note">
-          Время получения снимка не подтверждает время съёмки. Дождь, шум,
-          блики и движение камеры могут влиять на визуальный результат.
-        </p>
       </div>
     </dialog>
   );
@@ -610,7 +600,6 @@ export function App() {
         </details>
         <footer>
           <span>SnowVision Kamchatka</span>
-          <span>OpenCV · частота получения зависит от источника</span>
         </footer>
       </main>
       {chosen && (

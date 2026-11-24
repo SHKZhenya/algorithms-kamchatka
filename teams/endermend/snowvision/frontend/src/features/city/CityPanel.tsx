@@ -121,14 +121,12 @@ function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: stri
       <p className="snowfall-subtitle">{status[1]}</p>
       {(state === "local_positive" || state === "observed" || state === "confirmed") && <p className="snowfall-places">Место: {locations.join(", ") || "место наблюдения уточняется"} · {names.length} свидетельств</p>}
       {state === "local_positive" && positive.some((item) => item.stage === "early") && <p className="snowfall-places">Стадия сигнала: ранняя · требуется повторная проверка</p>}
-      {state === "local_positive" && localConfirmed && <p className="snowfall-places">Стадия сигнала: confirmed в одной зоне · одна зона не подтверждает весь город</p>}
       {state === "unknown" && lastKnown && <p className="snowfall-places">Последнее известное: {lastKnown.name ?? lastKnown.camera_id} · {lastKnown.location ?? "городская камера"} · {fullDate(lastKnown.timestamp)} · сейчас свидетельство устарело</p>}
       {state === "conflict" && <p className="snowfall-places">Видеопризнаки и модельная оценка дают разные ответы. Откройте свидетельство и проверьте изображение.</p>}
       <div className="snowfall-meta">
         <span>Последнее пригодное свидетельство <strong>{fullDate(observations?.last_evidence_at)}</strong></span>
         <span>Покрытие <strong>{demo ? `${observations?.eligible_cameras ?? 0} камер` : `${observations?.independent_zones ?? 0} независимых зон`}</strong>{!demo && " · нужно минимум 2 для городского балла"}</span>
         {score != null && <span>Индекс <strong>{Math.round(score * 100)}/100</strong> · не вероятность</span>}
-        {observations?.signal_policy && <span>{observations.signal_policy}</span>}
       </div>
     </div>
     <div className="snowfall-stamp" aria-label="Актуальность данных">
@@ -210,7 +208,7 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
       <WarningBulletin warnings={warning} connectionError={!!error} />
     </section>
     <section className="priority-section" id="cameras" aria-label="Камеры, влияющие на оценку снегопада">
-      <div className="priority-heading"><div><span className="eyebrow">СВИДЕТЕЛЬСТВА</span><h2>Камеры, влияющие на оценку</h2><p>{observations?.evidence_scope === "demo_all_cameras" ? "Демонстрация по доступным камерам, в том числе вне города" : "Выбраны по положительному вкладу представителей независимых зон"}</p></div><span className="camera-count">{displayCandidates.length} из 3</span></div>
+      <div className="priority-heading"><div><span className="eyebrow">СВИДЕТЕЛЬСТВА</span><h2>Камеры, влияющие на оценку</h2></div><span className="camera-count">{displayCandidates.length} из 3</span></div>
       {displayCandidates.length ? <div className="priority-grid">{displayCandidates.map((item) => {
         const camera = cameras.find((row) => row.id === item.id);
         if (!camera) return null;
@@ -220,13 +218,12 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
           <Snapshot camera={pinnedCamera} auto={auto} now={clock} />
           <div className="priority-camera-body"><small>{item.location}</small><h3>{item.name}</h3>
             <div className="priority-evidence"><strong>{item.localOnly ? "Локальное свидетельство" : "Положительный вклад в индекс"}</strong><span>{item.localOnly ? "Без численного вклада" : `+${Math.round(item.contribution * 100)}/100 к индексу`}</span></div>
-            <p>{item.reason}</p>
-            <small>{item.method === "weather_vlm_v2" ? "Метод: Weather VLM" : item.method === "opencv_motion" ? "Метод: анализ видеоряда" : "Метод: оценка изображения"} · анализ {age < 60 ? `${age} сек назад` : `${Math.floor(age / 60)} мин назад`}</small>
+
+            <small>Обновлено {age < 60 ? `${age} сек назад` : `${Math.floor(age / 60)} мин назад`}</small>
             <button aria-label={`Открыть кадр и историю: ${item.name}`} onClick={() => onSelectCamera?.(item.id)}>Открыть кадр и историю</button>
           </div>
         </article>;
-      })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Нет положительных признаков на доступных кадрах; неизвестные оценки не считаются отрицательными."}</p></div>}
-      <p className="coverage-note">{observations?.evidence_scope === "demo_all_cameras" ? <>Демонстрационный режим: учтены все камеры с кадром не старше двух часов, кроме демо. Камеры могут быть вне города. </> : <>{observations?.independent_zones ?? 0} независимых зон · {observations?.eligible_cameras ?? 0} пригодных камер · {observations?.representatives?.length ?? 0} представителей в индексе. Камеры одной площадки, демо, вулканы и одиночные JPEG в городскую формулу не входят. </>}<button className="text-button" onClick={() => window.dispatchEvent(new CustomEvent("snowvision-show-cameras"))}>Все камеры</button></p>
+      })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Положительных признаков пока нет."}</p></div>}
       {!!observations?.excluded_cameras?.length && <details className="excluded-camera-details"><summary>Почему источники не участвуют в индексе ({observations.excluded_cameras.length})</summary><ul>{observations.excluded_cameras.map((camera) => <li key={camera.id}><strong>{camera.name ?? camera.id}</strong> · {camera.reason_label}</li>)}</ul></details>}
     </section>
   </div>;

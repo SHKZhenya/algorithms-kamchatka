@@ -42,15 +42,14 @@ export function Feedback({ cameraId, version }: { cameraId: string; version: str
       if (response.status === 409) throw Error("Кадр изменился. Закройте разметку и откройте её заново.");
       if (!response.ok) throw Error("Не удалось сохранить разметку");
       setCorrection(labels);
-      setMessage("Сохранено. Это уточнение относится только к показанному кадру.");
+      setMessage("Сохранено.");
     } catch (error) { setMessage(error instanceof Error ? error.message : "Ошибка сохранения"); }
     finally { setBusy(false); }
   }
-  if (!open) return <div>{correction && <p className="note">Уточнение оператора для этого кадра: {questions.map(([key, title]) => `${title}: ${{ yes: "да", no: "нет", uncertain: "неясно" }[correction[key]]}`).join("; ")}. Оценка модели показана отдельно.</p>}<button onClick={() => { setFrozen(version); setLabels(initial); setMessage(""); setOpen(true); }}>Разметить кадр</button></div>;
+  if (!open) return <div>{correction && <p className="note">Уточнение оператора для этого кадра: {questions.map(([key, title]) => `${title}: ${{ yes: "да", no: "нет", uncertain: "неясно" }[correction[key]]}`).join("; ")}.</p>}<button onClick={() => { setFrozen(version); setLabels(initial); setMessage(""); setOpen(true); }}>Разметить кадр</button></div>;
   return <section className="feedback-form">
     <h3>Разметка кадра</h3>
     <img src={`/api/cameras/${encodeURIComponent(cameraId)}/snapshot?v=${encodeURIComponent(frozen)}`} alt="Кадр для разметки" onError={() => setMessage("Кадр больше недоступен. Откройте разметку заново.")} />
-    <p className="note">Отметьте только то, что различимо на изображении. Прозрачный лёд может быть невидим.</p>
     {questions.map(([key, title]) => <label key={key}>{title} <select value={labels[key]} onChange={e => setLabels({ ...labels, [key]: e.target.value as Label })}>
       <option value="uncertain">Неясно</option><option value="yes">Да</option><option value="no">Нет</option>
     </select></label>)}

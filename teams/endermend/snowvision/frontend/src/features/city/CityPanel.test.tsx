@@ -27,11 +27,11 @@ it("shows unknown when city coverage and weather are unavailable", async () => {
   render(<CityPanel />);
   await screen.findByText("Недостаточно свежих данных");
   expect(screen.getByText(/нужно минимум 2 для городского балла/)).toBeDefined();
-  expect(screen.getByText(/0 пригодных камер · 0 представителей в индексе/)).toBeDefined();
+  expect(screen.queryByText(/0 пригодных камер · 0 представителей в индексе/)).toBeNull();
   expect(screen.queryByText("0%")).toBeNull();
 });
 
-it("explains inconclusive fresh evidence and the distinct city and journal thresholds", async () => {
+it("shows inconclusive evidence without technical threshold notes", async () => {
   vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({
     observations: {
       snowfall_state: "inconclusive", snow_score: null, independent_zones: 1,
@@ -44,7 +44,7 @@ it("explains inconclusive fresh evidence and the distinct city and journal thres
   render(<CityPanel now={2000000000} />);
   await screen.findByText("Снегопад не удалось оценить");
   expect(screen.getByText(/неопределённые свидетельства: 1/)).toBeDefined();
-  expect(screen.getByText(/Городской индекс: от 0,20; журнал: от 0,25/)).toBeDefined();
+  expect(screen.queryByText(/Городской индекс: от 0,20; журнал: от 0,25/)).toBeNull();
   expect(screen.queryByText("Снегопад не обнаружен")).toBeNull();
 });
 
@@ -183,6 +183,6 @@ it("shows a valid local model signal without inventing an index contribution", a
   expect(screen.getByText("Без численного вклада")).toBeDefined();
   expect(screen.getByTestId("snapshot").getAttribute("data-version")).toBe("vlm-evidence");
   expect(screen.getByTestId("snapshot").getAttribute("data-timestamp")).toBe("1999999900");
-  expect(screen.getByText(/не входит в формулу городского индекса/)).toBeDefined();
+  expect(screen.queryByText(/не входит в формулу городского индекса/)).toBeNull();
   expect(screen.queryByText(/\+\d+\/100 к индексу/)).toBeNull();
 });
