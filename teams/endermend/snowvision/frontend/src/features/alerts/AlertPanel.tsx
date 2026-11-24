@@ -230,16 +230,17 @@ export function AlertPanel() {
                   })}
                 </p>
                 <small>
-                  Индекс движения{" "}
+                  {row.method === "ollama_numeric_heuristic" ? "Оценка снегопада модели" : "Индекс движения"}{" "}
                   {row.score === null
                     ? "модельная классификация"
                     : Math.round(row.score * 100) + "/100"}{" "}
-                  · качество оценки{" "}
+                  · {row.method === "ollama_numeric_heuristic" ? "качество изображения" : "качество оценки"}{" "}
                   {row.confidence === null
                     ? "—"
                     : Math.round(row.confidence * 100) + "%"}
                 </small>
               </div>
+              {row.method === "ollama_numeric_heuristic" && <p className="note">Эвристические пороги модели не проверены по размеченным данным; сигнал требует проверки.</p>}
               {row.delivery?.some(item => item.status === "failed") && <p role="alert">Серверная доставка не удалась. Проверьте канал получателя.</p>}
               {row.conflict && (
                 <p className="conflict-note">

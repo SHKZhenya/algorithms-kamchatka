@@ -3,12 +3,29 @@
 Keeps first evidence separate from repeated confirmation and operator acknowledgement.
 """
 import json
+import math
 import sqlite3
 import time
 import uuid
 from snowvision.adapters.integrations.team_scene import event_signals
 from datetime import datetime, timezone
 from snowvision.domain.vision import SNAPSHOT_METHOD
+
+def numeric_snow_label(scene):
+    """Uncalibrated pilot thresholds; ambiguous and poor-quality views are unknown."""
+    if scene.get('schema_version') != 'numeric-1' or scene.get('format_valid') is not True:
+        return None
+    values = [scene.get(key) for key in ('snow_probability', 'snowing_probability',
+              'ice_confidence', 'image_confidence')]
+    if not all(type(v) in (int, float) and math.isfinite(v) and 0 <= v <= 1 for v in values):
+        return None
+    if scene['image_confidence'] < .6:
+        return None
+    if scene['snowing_probability'] >= .7:
+        return 'yes'
+    if scene['snowing_probability'] <= .3:
+        return 'no'
+    return None
 
 class AlertJournal:
     def __init__(self, database, delivery_camera_ids=()):
@@ -34,9 +51,10 @@ class AlertJournal:
             state = json.loads(row[0]) if row else dict(version=None, hits=0, clears=0, event_id=None, last_valid=0)
             score = observation.get('snow_probability')
             scene = observation.get('scene') or {}
-            scene_valid = (scene.get('format_valid') is True and scene.get('air_view') in ('good','limited')
-                           and observation.get('scene_frame_version') == version
-                           and scene.get('falling_snow') in ('yes','no'))
+            numeric_label = numeric_snow_label(scene)
+            scene_label = numeric_label or (scene.get('falling_snow') if scene.get('format_valid') is True
+                          and scene.get('air_view') in ('good','limited') else None)
+            scene_valid = (observation.get('scene_frame_version') == version and scene_label in ('yes','no'))
             cv_valid = (observation.get('analysis_method') != SNAPSHOT_METHOD
                         and score is not None and observation.get('confidence',0) >= .25)
             valid = (bool(version) and observation.get('source_status') == 'online' and not observation.get('is_stale')
@@ -51,7 +69,7 @@ class AlertJournal:
                 features = observation.get('features') or {}
                 weak_motion = features.get('temporal_persistence', 0) >= .6 and features.get('spatial_coverage', 0) >= .4
                 cv_yes = cv_valid and (score >= .5 or (score >= .2 and weak_motion))
-                scene_yes = scene_valid and scene['falling_snow']=='yes'
+                scene_yes = scene_valid and scene_label == 'yes'
                 conflict = scene_valid and cv_valid and ((scene_yes and score <= .1) or (not scene_yes and score >= .5))
                 positive = cv_yes or scene_yes
                 strong = not conflict and ((cv_valid and score >= .5) or scene_yes)
@@ -72,12 +90,12 @@ class AlertJournal:
                                      location=camera.get('location',''), is_demo=camera['type']=='demo',
                                      opened_at=now, acknowledged_at=None, stage='early', ended_at=None)
                         state['event_id'] = event['id']
-                    event.update(last_seen=now, score=score if cv_valid else None, confidence=observation.get('confidence') if cv_valid else None,
+                    event.update(last_seen=now, score=scene['snowing_probability'] if numeric_label else score if cv_valid else None, confidence=scene['image_confidence'] if numeric_label else observation.get('confidence') if cv_valid else None,
                                  conflict=conflict, scene=scene if scene_valid else None,
                                  frame_version=version, frame_timestamp=observation.get('frame_timestamp'),
                                  pipeline_delay_seconds=max(0,now-(observation.get('last_attempt_at') or observation.get('frame_timestamp') or now)),
                                  source_timestamp=observation.get('source_timestamp'),
-                                 method='weather_vlm_v2' if scene_valid else observation.get('analysis_method'), confirmations=state['hits'])
+                                 method='ollama_numeric_heuristic' if numeric_label else 'weather_vlm_v2' if scene_valid else observation.get('analysis_method'), confirmations=state['hits'])
                     if event.get('confirmed_at') is not None:
                         event['stage'] = 'confirmed'
                     scenes = [dict(observed_at=datetime.fromtimestamp(timestamp,timezone.utc),
@@ -89,7 +107,7 @@ class AlertJournal:
                         event.setdefault('confirmed_at',now)
                     db.execute('INSERT OR REPLACE INTO onset_events VALUES (?,?,?,?)',
                                (event['id'],camera['id'],event['opened_at'],json.dumps(event)))
-                    if (not event['is_demo'] and camera['id'] in self.delivery_camera_ids
+                    if (not numeric_label and not event['is_demo'] and camera['id'] in self.delivery_camera_ids
                             and (previous_stage is None or previous_stage != event['stage'])):
                         if event['stage'] == 'confirmed':
                             db.execute("UPDATE alert_outbox SET status='suppressed' WHERE event_id=? AND stage='early' AND status='pending'", (event['id'],))

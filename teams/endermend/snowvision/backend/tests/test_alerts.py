@@ -96,3 +96,41 @@ class AlertTests(unittest.TestCase):
                 scene={'format_valid':True,'air_view':'good','falling_snow':'yes'}))
         self.assertEqual(self.journal.events()[0]['stage'],'early')
         self.assertTrue(self.journal.events()[0]['conflict'])
+
+    def numeric(self, version, value=.7, quality=.6, **changes):
+        scene = dict(schema_version='numeric-1', format_valid=True, snow_probability=.9,
+                     snowing_probability=value, ice_confidence=.1, image_confidence=quality)
+        observation = dict(frame_version=version, scene_frame_version=version, scene=scene,
+                           source_status='online', snow_probability=None, confidence=0,
+                           analysis_method='weather_vlm_v2')
+        observation.update(changes)
+        self.journal.observe(self.camera, observation)
+
+    def test_numeric_thresholds_confirm_distinct_frames_and_end(self):
+        self.numeric('a'); self.numeric('a'); self.numeric('b')
+        self.assertEqual(self.journal.events()[0]['stage'], 'early')
+        self.numeric('c')
+        event = self.journal.events()[0]
+        self.assertEqual((event['stage'], event['method'], event['score']),
+                         ('confirmed', 'ollama_numeric_heuristic', .7))
+        for version in ('d', 'e', 'f'): self.numeric(version, value=.3)
+        self.assertEqual(self.journal.events()[0]['stage'], 'ended')
+
+    def test_numeric_unknown_breaks_confirmation_and_version_freshness_is_required(self):
+        self.numeric('a'); self.numeric('b')
+        self.numeric('bad-quality', quality=.59)
+        self.numeric('c')
+        self.assertEqual(self.journal.events()[0]['stage'], 'early')
+        self.numeric('mismatch', scene_frame_version='other')
+        self.numeric('stale', is_stale=True)
+        self.numeric('offline', source_status='offline')
+        self.numeric('uncertain', value=.5)
+        self.numeric('invalid', value=float('nan'))
+        self.numeric('d')
+        self.assertEqual(self.journal.events()[0]['stage'], 'early')
+
+    def test_numeric_events_do_not_enqueue_external_delivery(self):
+        self.journal = AlertJournal(self.tmp.name+'/delivery.sqlite', {'street'})
+        for version in ('a', 'b', 'c'): self.numeric(version)
+        self.assertEqual(self.journal.events()[0]['stage'], 'confirmed')
+        self.assertIsNone(self.journal.next_delivery())
