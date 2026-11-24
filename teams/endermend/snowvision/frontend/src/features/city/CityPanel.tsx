@@ -95,20 +95,21 @@ function WarningBulletin({ warnings, connectionError }: { warnings?: CityOutlook
 
 function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: string; now: number }) {
   const observations = data?.observations;
-  const expired = observations?.last_evidence_at != null && now - observations.last_evidence_at > 120;
+  const expired = observations?.last_evidence_at != null && now - observations.last_evidence_at > 7200;
   const state = error || expired ? "unknown" : observations?.snowfall_state ?? "unknown";
   const evidence = observations?.local_evidence ?? [];
   const positive = evidence.filter((item) => item.positive);
   const localConfirmed = positive.some((item) => item.stage === "confirmed");
+  const demo = observations?.evidence_scope === "demo_all_cameras";
   const cityCoverage = (observations?.independent_zones ?? 0) >= 2;
   const names = positive.map((item) => item.camera_id);
   const locations = [...new Set(positive.map((item) => item.location))];
   const lastKnown = observations?.last_known?.[0];
   const status = {
-    local_positive: [localConfirmed ? "Повторно подтверждено локально" : "Первые признаки снегопада", cityCoverage ? "Есть свежие локальные признаки · городское повторное подтверждение не установлено" : "Локальное свидетельство · недостаточно независимых зон для городской оценки", "amber"],
+    local_positive: [localConfirmed ? "Повторно подтверждено локально" : "Первые признаки снегопада", demo ? "Демонстрация по доступным камерам, в том числе вне города" : cityCoverage ? "Есть свежие локальные признаки · городское повторное подтверждение не установлено" : "Локальное свидетельство · недостаточно независимых зон для городской оценки", "amber"],
     observed: ["Первые признаки снегопада", "Локальные сигналы требуют повторного подтверждения", "amber"],
     confirmed: ["Снегопад наблюдается", "Повторное подтверждение в нескольких независимых зонах", "blue"],
-    not_detected: ["Снегопад не обнаружен", `В свежих наблюдениях проверенных участков · зон ${observations?.independent_zones ?? 0}; вывод не распространяется на весь город`, "gray"],
+    not_detected: ["Снегопад не обнаружен", demo ? "По доступным кадрам; вывод не распространяется на весь город" : `В свежих наблюдениях проверенных участков · зон ${observations?.independent_zones ?? 0}; вывод не распространяется на весь город`, "gray"],
     inconclusive: ["Снегопад не удалось оценить", `Есть свежие, но неопределённые свидетельства: ${observations?.inconclusive_evidence_count ?? 0}. Отрицательных: ${observations?.negative_evidence_count ?? 0}`, "amber"],
     conflict: ["Методы расходятся", "Проверьте кадр · общий вывод не сделан", "amber"],
     unknown: ["Недостаточно свежих данных", error ? "Связь с сервисом потеряна · последнее состояние не считается текущим" : "Нет пригодных свежих свидетельств", "amber"],
@@ -125,7 +126,7 @@ function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: stri
       {state === "conflict" && <p className="snowfall-places">Видеопризнаки и модельная оценка дают разные ответы. Откройте свидетельство и проверьте изображение.</p>}
       <div className="snowfall-meta">
         <span>Последнее пригодное свидетельство <strong>{fullDate(observations?.last_evidence_at)}</strong></span>
-        <span>Покрытие <strong>{observations?.independent_zones ?? 0} независимых зон</strong> · нужно минимум 2 для городского балла</span>
+        <span>Покрытие <strong>{demo ? `${observations?.eligible_cameras ?? 0} камер` : `${observations?.independent_zones ?? 0} независимых зон`}</strong>{!demo && " · нужно минимум 2 для городского балла"}</span>
         {score != null && <span>Индекс <strong>{Math.round(score * 100)}/100</strong> · не вероятность</span>}
         {observations?.signal_policy && <span>{observations.signal_policy}</span>}
       </div>
@@ -175,13 +176,13 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
   const displayCandidates = useMemo(() => {
     if (error) return [];
     const calculationAge = Math.max(0, clock - (observations?.calculated_at ?? clock));
-    const selected = (observations?.contributors ?? []).filter((item) => item.age_seconds + calculationAge <= 120).slice(0, 3).map((item) => ({ ...item, localOnly: false }));
+    const selected = (observations?.contributors ?? []).filter((item) => item.age_seconds + calculationAge <= 7200).slice(0, 3).map((item) => ({ ...item, localOnly: false }));
     const ids = new Set(selected.map((item) => item.id));
-    const local = (observations?.local_evidence ?? []).filter((item) => item.positive && item.model_only && !ids.has(item.camera_id) && clock - item.timestamp <= 120);
+    const local = (observations?.local_evidence ?? []).filter((item) => item.positive && item.model_only && !ids.has(item.camera_id) && clock - item.timestamp <= 7200);
     for (const item of local) {
       if (selected.length >= 3) break;
       const camera = cameras.find((row) => row.id === item.camera_id);
-      if (camera) selected.push({ id: item.camera_id, name: camera.name, location: camera.location, score: 0, contribution: 0, timestamp: item.timestamp, frame_timestamp: item.frame_timestamp, age_seconds: Math.max(0, clock - item.timestamp), frame_version: item.frame_version ?? "", method: item.method, reason: "Локальный сигнал модели · не входит в формулу городского индекса", positive: true, localOnly: true });
+      if (camera) selected.push({ id: item.camera_id, name: camera.name, location: camera.location, score: 0, contribution: 0, timestamp: item.timestamp, frame_timestamp: item.frame_timestamp, age_seconds: Math.max(0, clock - item.timestamp), frame_version: item.frame_version ?? "", method: item.method, reason: observations?.evidence_scope === "demo_all_cameras" ? "Визуальное свидетельство по этому кадру" : "Локальный сигнал модели · не входит в формулу городского индекса", positive: true, localOnly: true });
     }
     return selected;
   }, [observations, cameras, clock, error]);
@@ -209,7 +210,7 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
       <WarningBulletin warnings={warning} connectionError={!!error} />
     </section>
     <section className="priority-section" id="cameras" aria-label="Камеры, влияющие на оценку снегопада">
-      <div className="priority-heading"><div><span className="eyebrow">СВИДЕТЕЛЬСТВА</span><h2>Камеры, влияющие на оценку</h2><p>Выбраны по положительному вкладу представителей независимых зон</p></div><span className="camera-count">{displayCandidates.length} из 3</span></div>
+      <div className="priority-heading"><div><span className="eyebrow">СВИДЕТЕЛЬСТВА</span><h2>Камеры, влияющие на оценку</h2><p>{observations?.evidence_scope === "demo_all_cameras" ? "Демонстрация по доступным камерам, в том числе вне города" : "Выбраны по положительному вкладу представителей независимых зон"}</p></div><span className="camera-count">{displayCandidates.length} из 3</span></div>
       {displayCandidates.length ? <div className="priority-grid">{displayCandidates.map((item) => {
         const camera = cameras.find((row) => row.id === item.id);
         if (!camera) return null;
@@ -224,8 +225,8 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
             <button aria-label={`Открыть кадр и историю: ${item.name}`} onClick={() => onSelectCamera?.(item.id)}>Открыть кадр и историю</button>
           </div>
         </article>;
-      })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Недостаточно свежих пригодных данных из городских камер. Случайные и региональные кадры не подставляются."}</p></div>}
-      <p className="coverage-note">{observations?.independent_zones ?? 0} независимых зон · {observations?.eligible_cameras ?? 0} пригодных камер · {observations?.representatives?.length ?? 0} представителей в индексе. Камеры одной площадки, демо, вулканы и одиночные JPEG в городскую формулу не входят. <button className="text-button" onClick={() => window.dispatchEvent(new CustomEvent("snowvision-show-cameras"))}>Все камеры</button></p>
+      })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Нет положительных признаков на доступных кадрах; неизвестные оценки не считаются отрицательными."}</p></div>}
+      <p className="coverage-note">{observations?.evidence_scope === "demo_all_cameras" ? <>Демонстрационный режим: учтены все камеры с кадром не старше двух часов, кроме демо. Камеры могут быть вне города. </> : <>{observations?.independent_zones ?? 0} независимых зон · {observations?.eligible_cameras ?? 0} пригодных камер · {observations?.representatives?.length ?? 0} представителей в индексе. Камеры одной площадки, демо, вулканы и одиночные JPEG в городскую формулу не входят. </>}<button className="text-button" onClick={() => window.dispatchEvent(new CustomEvent("snowvision-show-cameras"))}>Все камеры</button></p>
       {!!observations?.excluded_cameras?.length && <details className="excluded-camera-details"><summary>Почему источники не участвуют в индексе ({observations.excluded_cameras.length})</summary><ul>{observations.excluded_cameras.map((camera) => <li key={camera.id}><strong>{camera.name ?? camera.id}</strong> · {camera.reason_label}</li>)}</ul></details>}
     </section>
   </div>;

@@ -4,7 +4,8 @@ from pathlib import Path
 from snowvision.adapters.observation_store import HISTORY_DATABASE, load_history
 from snowvision.domain.vision import SNAPSHOT_METHOD, analyze
 from snowvision.services.runtime import demo, run_services
-from snowvision.domain.city import aggregate, CITY, distance_km
+from snowvision.domain.city import CITY, distance_km
+from snowvision.domain.demo_city import aggregate
 from snowvision.adapters.yandex_weather import YandexWeather
 from snowvision.adapters.storm_warnings import StormWarnings
 from fastapi import FastAPI, HTTPException, Request
@@ -104,8 +105,15 @@ def history(id:str):
 def summary(): return {'total':len(cameras),'online':sum(s['source_status']=='online' for s in (m.observation() for m in monitors.values())),'snowing_real':sum(s['status']=='snowing' and not s['is_demo'] for s in (m.observation() for m in monitors.values()))}
 @app.get('/api/city/outlook')
 def city_outlook():
+    items = listing()
+    for item in items:
+        observation = item.get('observation') or {}
+        if observation.get('frame_version'):
+            saved = feedback.load(HISTORY_DATABASE, item['id'], observation['frame_version'])
+            if saved:
+                observation['feedback'] = saved['labels']
     return {
-        'observations': aggregate(listing(), events=journal.events() if journal else []),
+        'observations': aggregate(items, events=journal.events() if journal else []),
         'weather': (yandex_weather or YandexWeather('')).observation(),
         'forecast': (yandex_weather or YandexWeather('')).forecast(),
         'warnings': (storm_warnings or StormWarnings()).observation(),
