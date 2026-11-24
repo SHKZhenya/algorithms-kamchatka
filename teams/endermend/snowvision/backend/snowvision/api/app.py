@@ -8,6 +8,9 @@ from snowvision.domain.city import aggregate, CITY, distance_km
 from snowvision.adapters.yandex_weather import YandexWeather
 from snowvision.adapters.storm_warnings import StormWarnings
 from fastapi import FastAPI, HTTPException, Request
+from pydantic import BaseModel
+from typing import Literal
+from snowvision.adapters import feedback
 from fastapi.responses import Response, FileResponse, StreamingResponse
 
 ROOT=Path(__file__).resolve().parents[1] / "resources"
@@ -57,6 +60,32 @@ async def snapshot(id: str, request: Request, v: str | None = None):
     if request.headers.get('if-none-match') == headers['ETag']:
         return Response(status_code=304, headers=headers)
     return Response(image, media_type='image/jpeg', headers=headers)
+
+class FrameFeedback(BaseModel):
+    version: str
+    snow_on_ground: Literal['yes', 'no', 'uncertain']
+    possible_icing: Literal['yes', 'no', 'uncertain']
+    falling_snow: Literal['yes', 'no', 'uncertain']
+
+
+@app.get('/api/cameras/{id}/feedback')
+def get_feedback(id: str, version: str):
+    camera(id)
+    return feedback.load(HISTORY_DATABASE, id, version)
+
+
+@app.post('/api/cameras/{id}/feedback')
+def post_feedback(id: str, body: FrameFeedback):
+    config = camera(id)
+    monitor = monitors.get(id)
+    if config['type'] == 'demo':
+        raise HTTPException(400, 'Демо-кадры не принимаются для разметки')
+    if monitor is None or body.version != monitor.state.get('frame_version') or body.version not in monitor.recent_images:
+        raise HTTPException(409, 'Кадр изменился. Откройте разметку заново')
+    observation = monitor.observation()
+    labels = body.model_dump(exclude={'version'})
+    feedback.save(HISTORY_DATABASE, id, body.version, labels, observation)
+    return feedback.load(HISTORY_DATABASE, id, body.version)
 
 @app.post('/api/cameras/{id}/refresh')
 async def refresh_camera(id: str):

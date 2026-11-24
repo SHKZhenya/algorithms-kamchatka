@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import { Feedback } from "../features/cameras/Feedback";
 import { Snapshot } from "../features/cameras/Snapshot";
 import { CityPanel } from "../features/city/CityPanel";
 import { AlertPanel } from "../features/alerts/AlertPanel";
@@ -228,6 +229,7 @@ function Detail({
       </div>
       <div className="dialog-content">
         <Snapshot camera={camera} auto={auto} large />
+        {camera.type !== "demo" && o?.frame_version && <Feedback cameraId={camera.id} version={o.frame_version} />}
         <div className="detail-metrics">
           {o?.analysis_method === "weather_vlm_v2" ? <div><small>Визуальная модель</small><strong>Анализ кадра</strong></div> : <><div>
             <small>Балл признаков снега</small>
