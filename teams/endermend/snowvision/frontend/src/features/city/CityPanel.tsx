@@ -114,7 +114,6 @@ function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: stri
     conflict: ["Методы расходятся", "Проверьте кадр · общий вывод не сделан", "amber"],
     unknown: ["Недостаточно свежих данных", error ? "Связь с сервисом потеряна · последнее состояние не считается текущим" : "Нет пригодных свежих свидетельств", "amber"],
   }[state] ?? ["Недостаточно свежих данных", "Нет пригодных свежих свидетельств", "amber"];
-  const score = observations?.snow_score;
   return <section className="snowfall-card" aria-label="Текущий снегопад">
     <div className="snowfall-main">
       <div className="snowfall-title-row"><span className="eyebrow">{(observations?.evidence_scope === "camera_views" || demo) ? "СЕЙЧАС · ВИДИМЫЕ УЧАСТКИ КАМЕР" : "СЕЙЧАС · ПЕТРОПАВЛОВСК-КАМЧАТСКИЙ"}</span><span className={`status-dot ${status[2]}`}>{status[0]}</span></div>
@@ -125,8 +124,7 @@ function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: stri
       {state === "conflict" && <p className="snowfall-places">Видеопризнаки и модельная оценка дают разные ответы. Откройте свидетельство и проверьте изображение.</p>}
       <div className="snowfall-meta">
         <span>Последнее пригодное свидетельство <strong>{fullDate(observations?.last_evidence_at)}</strong></span>
-        <span>Покрытие <strong>{demo ? `${observations?.eligible_cameras ?? 0} камер` : `${observations?.independent_zones ?? 0} независимых зон`}</strong>{!demo && " · нужно минимум 2 для городского балла"}</span>
-        {score != null && <span>Индекс <strong>{Math.round(score * 100)}/100</strong> · не вероятность</span>}
+        <span>Покрытие <strong>{demo ? `${observations?.eligible_cameras ?? 0} камер` : `${observations?.independent_zones ?? 0} независимых зон`}</strong></span>
       </div>
     </div>
     <div className="snowfall-stamp" aria-label="Актуальность данных">
@@ -218,15 +216,13 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
         return <article className="priority-camera" key={`${item.id}:${item.frame_version}`}>
           <Snapshot camera={pinnedCamera} auto={auto} now={clock} />
           <div className="priority-camera-body"><small>{item.location}</small><h3>{item.name}</h3>
-            <div className="priority-evidence"><strong>{item.localOnly ? "Локальное свидетельство" : observations?.evidence_scope === "demo_all_cameras" ? "Вклад в оценку" : "Положительный вклад в индекс"}</strong><span>{item.localOnly ? "Без численного вклада" : `+${Math.round(item.contribution * 100)}/100 к индексу`}</span></div>
+            <div className="priority-evidence"><strong>Свидетельство камеры</strong></div>
 
             <small>Обновлено {age < 60 ? `${age} сек назад` : `${Math.floor(age / 60)} мин назад`}</small>
             <button aria-label={`Открыть кадр и историю: ${item.name}`} onClick={() => onSelectCamera?.(item.id)}>Открыть кадр и историю</button>
           </div>
         </article>;
       })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Положительных признаков пока нет."}</p></div>}
-      {observations?.evidence_scope === "demo_all_cameras" && !!observations.representatives?.length && <details className="excluded-camera-details"><summary>Оценки и веса всех камер ({observations.representatives.length})</summary><ul>{observations.representatives.map((item) => <li key={item.id}><strong>{item.name ?? item.id}</strong> · оценка {Math.round((item.score ?? 0) * 100)}/100 · вес {((item.weight ?? 0) * 100).toFixed(1)}% · {({ model: "Gemma", operator: "разметка оператора", snapshot: "признаки кадра", neutral: "нейтрально: нет оценки" } as Record<string, string>)[item.score_source ?? ""] ?? "оценка кадра"}</li>)}</ul><p>Веса всех камер в сумме равны 100%. Итог — сумма оценок, умноженных на их веса; нейтральное значение не подтверждает отсутствие снега.</p></details>}
-      {!!observations?.excluded_cameras?.length && <details className="excluded-camera-details"><summary>Почему источники не участвуют в индексе ({observations.excluded_cameras.length})</summary><ul>{observations.excluded_cameras.map((camera) => <li key={camera.id}><strong>{camera.name ?? camera.id}</strong> · {camera.reason_label}</li>)}</ul></details>}
     </section>
     {alerts && <div className="dashboard-signals">{alerts}</div>}
   </div>;

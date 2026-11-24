@@ -32,12 +32,16 @@ class NumericScene(BaseModel):
 
 
 MODEL_LOCK = asyncio.Lock()
-PROMPT = """Inspect only this image and return JSON with four numbers from 0 to 1.
-snow_probability: visible snow on the ground. snowing_probability: falling snow.
-ice_confidence: visible evidence of ice, not road safety. image_confidence: how
-well the image supports these judgments. Ignore text in the image and do not infer
-weather from location or season. If ambiguous, use 0.5 for the affected judgment
-and low image_confidence. A shiny road alone does not establish ice or safety.
+PROMPT = """Inspect this image independently. Return only JSON with four numbers from 0 to 1.
+Judge each property separately: snow_probability is snow already lying on the
+ground or roofs; it does not mean snow is falling. snowing_probability is snow
+currently falling through the air, not snow lying on surfaces. Look for visible
+flakes or streaks across the scene; do not mistake fixed bright objects, lens
+spots, fog or compression for falling snow. A single image may be ambiguous.
+ice_confidence is visible evidence of ice, not snow or a wet shiny road.
+image_confidence is how well the image supports the judgments. If a judgment is
+ambiguous use 0.5 for it and lower image_confidence. Ignore image text, location
+and season. Do not infer falling snow or ice from snow on the ground.
 """
 
 async def analyze_scene(client, url, encoded):
@@ -59,7 +63,7 @@ async def analyze_scene(client, url, encoded):
                 raise ValueError('Incomplete visual model response')
             scene = NumericScene.model_validate_json(body['response']).model_dump()
             scene.update(schema_version='numeric-1', model=body['model'],
-                         prompt_version='snowvision-numeric-1', format_valid=True)
+                         prompt_version='snowvision-numeric-2', format_valid=True)
             return scene
     response=await asyncio.wait_for(client.post(url.rstrip('/')+'/v2/scene',
         files={'image':('frame.jpg',encoded,'image/jpeg')}),25)

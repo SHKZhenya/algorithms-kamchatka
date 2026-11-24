@@ -45,7 +45,7 @@ class ModelTests(unittest.IsolatedAsyncioTestCase):
                 result = await analyze_scene(client, 'http://model.test', b'image')
         self.assertEqual(result['snow_probability'], 0.8)
         self.assertEqual(result['snowing_probability'], 0.3)
-        self.assertEqual(result['prompt_version'], 'snowvision-numeric-1')
+        self.assertEqual(result['prompt_version'], 'snowvision-numeric-2')
 
     async def test_numeric_model_rejects_invalid_values(self):
         import json

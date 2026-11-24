@@ -26,7 +26,7 @@ it("shows unknown when city coverage and weather are unavailable", async () => {
   );
   render(<CityPanel />);
   await screen.findByText("Недостаточно свежих данных");
-  expect(screen.getByText(/нужно минимум 2 для городского балла/)).toBeDefined();
+  expect(screen.queryByText(/нужно минимум 2 для городского балла/)).toBeNull();
   expect(screen.queryByText(/0 пригодных камер · 0 представителей в индексе/)).toBeNull();
   expect(screen.queryByText("0%")).toBeNull();
 });
@@ -179,15 +179,15 @@ it("shows a valid local model signal without inventing an index contribution", a
     }, forecast: { status: "disabled", hours: [] },
   }) }));
   render(<CityPanel cameras={cameras} />);
-  expect(await screen.findByText("Локальное свидетельство")).toBeDefined();
-  expect(screen.getByText("Без численного вклада")).toBeDefined();
+  expect(await screen.findByText("Свидетельство камеры")).toBeDefined();
+  expect(screen.queryByText("Без численного вклада")).toBeNull();
   expect(screen.getByTestId("snapshot").getAttribute("data-version")).toBe("vlm-evidence");
   expect(screen.getByTestId("snapshot").getAttribute("data-timestamp")).toBe("1999999900");
   expect(screen.queryByText(/не входит в формулу городского индекса/)).toBeNull();
   expect(screen.queryByText(/\+\d+\/100 к индексу/)).toBeNull();
 });
 
-it("shows every recent camera's score, normalized weight and source", async () => {
+it("hides the aggregate index and camera weights", async () => {
   vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({
     observations: { evidence_scope: "demo_all_cameras", snowfall_state: "inconclusive", snow_score: .75,
       independent_zones: 0, eligible_cameras: 2, status: "available", calculated_at: 2000000000,
@@ -197,7 +197,7 @@ it("shows every recent camera's score, normalized weight and source", async () =
       ] }, forecast: { status: "unavailable", hours: [] },
   }) }));
   render(<CityPanel />);
-  await screen.findByText("Оценки и веса всех камер (2)");
-  expect(screen.getByText(/Камера A/).parentElement?.textContent).toContain("100/100 · вес 50.0% · Gemma");
-  expect(screen.getByText(/Камера B/).parentElement?.textContent).toContain("50/100 · вес 50.0% · нейтрально");
+  await screen.findByText("Снегопад не удалось оценить");
+  expect(screen.queryByText(/Оценки и веса всех камер/)).toBeNull();
+  expect(screen.queryByText(/Индекс/)).toBeNull();
 });

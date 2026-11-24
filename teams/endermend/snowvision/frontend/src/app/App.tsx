@@ -214,7 +214,7 @@ export function History({ id }: { id: string }) {
         </span>
         <span>{time(rows[rows.length - 1].timestamp)}</span>
       </div>
-      <p className="note">Новые точки — оценка снегопада моделью; старые — балл прежнего алгоритма. Оценки не являются калиброванными вероятностями.</p>
+      <p className="note">Новые точки — оценка снегопада моделью; старые — балл прежнего алгоритма.</p>
     </>
   );
 }
@@ -267,7 +267,7 @@ function Detail({
           </div>}
           <span className={`status ${s.tone}`}>{s.text}</span>
         </div>
-        {numbers ? <p className="note">Оценка модели{(o?.is_stale || o?.source_status !== "online") ? " для последнего кадра (неактуальна)" : ""}: снег на земле — {score(numbers.snow_probability)}, снегопад — {score(numbers.snowing_probability)}, признаки льда — {score(numbers.ice_confidence)}, качество изображения — {score(numbers.image_confidence)}. Эти оценки не калиброваны и не подтверждают безопасность дороги.</p> : o?.analysis_method === "weather_vlm_v2" && !o.scene ? <p className="note">Модель ещё не вернула оценку для этого кадра.</p> : <p className="note">
+        {numbers ? <p className="note">Оценка модели{(o?.is_stale || o?.source_status !== "online") ? " для последнего кадра (неактуальна)" : ""}: снег на земле — {score(numbers.snow_probability)}, снегопад — {score(numbers.snowing_probability)}, признаки льда — {score(numbers.ice_confidence)}, качество изображения — {score(numbers.image_confidence)}.</p> : o?.analysis_method === "weather_vlm_v2" && !o.scene ? <p className="note">Модель ещё не вернула оценку для этого кадра.</p> : <p className="note">
           Снег на земле: {groundSnow(o)}. Обледенение: {visualIce(o)}.
         </p>}
         {o?.scene?.format_valid && o.scene_frame_version === o.frame_version && !o.is_stale && o.source_status === "online" && <>
