@@ -215,3 +215,21 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
         self.assertIsNone(monitor.state['snow_probability'])
         self.assertEqual(monitor.state['status'], 'snowing')
         self.assertEqual(monitor.state['scene_frame_version'], monitor.state['frame_version'])
+
+    async def test_failed_model_retries_same_fresh_frame(self):
+        monitor = self.make()
+        monitor.scene_url = 'http://model.test'
+        scene = dict(format_valid=True, air_view='good', falling_snow='yes')
+        model = AsyncMock(side_effect=[RuntimeError('temporary outage'), scene])
+        with patch.dict(os.environ, {'SCENE_MODEL_PROVIDER': 'ollama'}), \
+                patch('snowvision.services.monitor.fetch_frame', AsyncMock(return_value=demo(0))), \
+                patch('snowvision.services.monitor.analyze_scene', model):
+            await monitor.attempt()
+            self.assertEqual(monitor.state['scene_error'], 'RuntimeError')
+            version = monitor.state['frame_version']
+            monitor.state['next_attempt_at'] = 0
+            await monitor.attempt()
+        self.assertEqual(model.await_count, 2)
+        self.assertEqual(monitor.state['scene_frame_version'], version)
+        self.assertEqual(monitor.state['status'], 'snowing')
+        self.assertIsNone(monitor.state['scene_error'])

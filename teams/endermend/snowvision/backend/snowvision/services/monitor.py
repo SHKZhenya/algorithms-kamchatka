@@ -204,7 +204,7 @@ class CameraMonitor:
                 if os.getenv('SCENE_MODEL_PROVIDER') == 'ollama' and self.camera['type'] != 'demo':
                     self.state.update(snow_probability=None, confidence=0, status='unknown',
                                       analysis_method='weather_vlm_v2')
-                if changed and not stale and self.scene_url and self.camera['type']!='demo':
+                if (changed or self.state.get('scene_error')) and not stale and self.scene_url and self.camera['type']!='demo':
                     try:
                         scene = await analyze_scene(self.scene_client, self.scene_url, encoded)
                         self.state.update(scene=scene, scene_frame_version=version, scene_error=None,
