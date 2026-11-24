@@ -233,3 +233,33 @@ class MonitorTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(monitor.state['scene_frame_version'], version)
         self.assertEqual(monitor.state['status'], 'snowing')
         self.assertIsNone(monitor.state['scene_error'])
+
+    async def test_unchanged_fresh_frame_keeps_model_status(self):
+        monitor = self.make()
+        monitor.scene_url = 'http://model.test'
+        scene = dict(format_valid=True, air_view='good', falling_snow='yes')
+        model = AsyncMock(return_value=scene)
+        with patch.dict(os.environ, {'SCENE_MODEL_PROVIDER': 'ollama'}), \
+                patch('snowvision.services.monitor.fetch_frame', AsyncMock(return_value=demo(0))), \
+                patch('snowvision.services.monitor.analyze_scene', model):
+            await monitor.attempt()
+            monitor.state['next_attempt_at'] = 0
+            await monitor.attempt()
+        self.assertEqual(model.await_count, 1)
+        self.assertEqual(monitor.state['status'], 'snowing')
+
+    async def test_expired_frame_cancels_queued_or_slow_model(self):
+        import asyncio
+        monitor = self.make()
+        monitor.camera['stale_after_seconds'] = 0.05
+        monitor.scene_url = 'http://model.test'
+        async def slow(*args):
+            await asyncio.sleep(1)
+            return dict(format_valid=True, air_view='good', falling_snow='yes')
+        with patch.dict(os.environ, {'SCENE_MODEL_PROVIDER': 'ollama'}), \
+                patch('snowvision.services.monitor.fetch_frame', AsyncMock(return_value=demo(0))), \
+                patch('snowvision.services.monitor.analyze_scene', slow):
+            await monitor.attempt()
+        self.assertEqual(monitor.state['scene_error'], 'TimeoutError')
+        self.assertIsNone(monitor.state['scene'])
+        self.assertEqual(monitor.observation()['status'], 'unknown')

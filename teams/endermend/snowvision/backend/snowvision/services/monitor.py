@@ -156,7 +156,8 @@ class CameraMonitor:
                                   source_timestamp=source_time, download_attempts=self.camera.get('download_attempts'), http_cache_age=self.camera.get('http_cache_age'), consecutive_failures=0, features=quality,
                                   is_stale=stale, source_status='stale' if stale else 'online', error=None)
                 if changed:
-                    self.state.update(frame_version=version, frame_timestamp=now)
+                    self.state.update(frame_version=version, frame_timestamp=now,
+                                      scene=None, scene_frame_version=None)
                 if changed or version not in self.recent_images:
                     self.recent_images[version] = encoded
                     self.recent_images.move_to_end(version)
@@ -206,7 +207,13 @@ class CameraMonitor:
                                       analysis_method='weather_vlm_v2')
                 if (changed or self.state.get('scene_error')) and not stale and self.scene_url and self.camera['type']!='demo':
                     try:
-                        scene = await analyze_scene(self.scene_client, self.scene_url, encoded)
+                        deadline = min(self.changed_at + stale_after,
+                                       (source_time + stale_after) if source_time is not None else float('inf'))
+                        scene = await asyncio.wait_for(
+                            analyze_scene(self.scene_client, self.scene_url, encoded),
+                            timeout=max(0, deadline-time.time()))
+                        if time.time() >= deadline:
+                            raise TimeoutError('Frame expired during visual analysis')
                         self.state.update(scene=scene, scene_frame_version=version, scene_error=None,
                                           last_analysis_at=time.time())
                         if scene.get('format_valid') and scene.get('air_view') in ('good', 'limited'):
@@ -214,6 +221,11 @@ class CameraMonitor:
                             self.state['status'] = 'snowing' if label == 'yes' else 'clear' if label == 'no' else 'unknown'
                     except Exception as exc:
                         self.state.update(scene=None, scene_frame_version=None, scene_error=type(exc).__name__, status='unknown')
+                elif (not stale and self.state.get('scene_frame_version') == version
+                      and self.state.get('scene') and self.state['scene'].get('format_valid')
+                      and self.state['scene'].get('air_view') in ('good', 'limited')):
+                    label = self.state['scene'].get('falling_snow')
+                    self.state['status'] = 'snowing' if label == 'yes' else 'clear' if label == 'no' else 'unknown'
                 self.state['last_attempt_status'] = 'success'
             except asyncio.CancelledError:
                 raise
