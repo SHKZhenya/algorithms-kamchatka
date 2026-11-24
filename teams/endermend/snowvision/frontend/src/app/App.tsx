@@ -80,6 +80,14 @@ function modelNumbers(o?: Observation) {
   const values = [s.snow_probability, s.snowing_probability, s.ice_confidence, s.image_confidence];
   return values.every((v) => typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 1) ? s : null;
 }
+function cameraScore(o?: Observation) {
+  const numeric = modelNumbers(o);
+  if (numeric && !o?.is_stale && o?.source_status === "online")
+    return { label: "Оценка снегопада модели", value: numeric.snowing_probability };
+  if (o?.analysis_method !== "weather_vlm_v2" && o?.snow_probability != null)
+    return { label: "Балл признаков снега", value: o.snow_probability };
+  return { label: "Оценка снегопада модели", value: null };
+}
 function historyScore(o: Observation) {
   return modelNumbers(o)?.snowing_probability ?? o.snow_probability;
 }
@@ -117,6 +125,8 @@ function state(c: Camera) {
       : o.status === "clear" ? { text: "Модель не видит снегопада", tone: "gray" }
       : { text: "Визуальная оценка неопределённа", tone: "amber" };
   }
+  if (!o?.is_stale && o?.source_status === "online" && modelNumbers(o))
+    return { text: "Оценка модели доступна", tone: "gray" };
   if (o?.snow_probability == null)
     return { text: "Недостаточно данных", tone: "amber" };
   return o.status === "snowing"
@@ -224,7 +234,7 @@ function Detail({
     return () => dialog.close();
   }, []);
   const s = state(camera),
-    o = camera.observation, numbers = modelNumbers(o);
+    o = camera.observation, numbers = modelNumbers(o), metric = cameraScore(o);
   return (
     <dialog
       ref={ref}
@@ -250,15 +260,11 @@ function Detail({
         <Snapshot camera={camera} auto={auto} large />
         {camera.type !== "demo" && o?.frame_version && <Feedback cameraId={camera.id} version={o.frame_version} />}
         <div className="detail-metrics">
-          {o?.analysis_method === "weather_vlm_v2" ? <div><small>Визуальная модель</small><strong>Анализ кадра</strong></div> : <><div>
-            <small>Балл признаков снега</small>
-            <strong>{score(o?.snow_probability)}</strong>
-          </div>
-          <div>
+          <div><small>{metric.label}</small><strong>{score(metric.value)}</strong></div>
+          {o?.analysis_method !== "weather_vlm_v2" && <div>
             <small>Уверенность алгоритма</small>
             <strong>{score(o?.confidence)}</strong>
-          </div>
-          </>}
+          </div>}
           <span className={`status ${s.tone}`}>{s.text}</span>
         </div>
         {numbers ? <p className="note">Оценка модели{(o?.is_stale || o?.source_status !== "online") ? " для последнего кадра (неактуальна)" : ""}: снег на земле — {score(numbers.snow_probability)}, снегопад — {score(numbers.snowing_probability)}, признаки льда — {score(numbers.ice_confidence)}, качество изображения — {score(numbers.image_confidence)}. Эти оценки не калиброваны и не подтверждают безопасность дороги.</p> : o?.analysis_method === "weather_vlm_v2" && !o.scene ? <p className="note">Модель ещё не вернула оценку для этого кадра.</p> : <p className="note">
@@ -678,6 +684,7 @@ const CameraCard = memo(function CameraCard({
       setBusy(false);
     }
   }
+  const metric = cameraScore(o);
   return (
     <article>
       <Snapshot camera={c} auto={auto} manual={manual} now={now} />
@@ -689,8 +696,8 @@ const CameraCard = memo(function CameraCard({
           {s.text}
         </span>
         <div className="card-score">
-          <span>Балл признаков снега</span>
-          <strong className={s.tone === "blue" ? "blue-text" : ""}>{score(o?.snow_probability)}</strong>
+          <span>{metric.label}</span>
+          <strong className={s.tone === "blue" ? "blue-text" : ""}>{score(metric.value)}</strong>
         </div>
         <p className="freshness">Кадр на сервере {age(o?.frame_timestamp, now)}</p>
         <div className="card-bottom">
