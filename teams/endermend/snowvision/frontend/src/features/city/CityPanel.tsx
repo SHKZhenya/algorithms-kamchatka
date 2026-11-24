@@ -26,7 +26,7 @@ type CityOutlook = {
     negative_evidence_count?: number;
     inconclusive_evidence_count?: number;
     signal_policy?: string;
-    representatives?: { id: string }[];
+    representatives?: { id: string; name?: string; score?: number; weight?: number; score_source?: string }[];
     local_evidence?: { camera_id: string; name: string; location: string; positive: boolean; negative: boolean; conflict: boolean; stage: string | null; timestamp: number; method: string; model_only?: boolean; frame_version?: string | null; frame_timestamp?: number | null }[];
     last_known?: { camera_id: string; name?: string; location?: string; stage?: string; timestamp?: number }[];
     contributors?: { id: string; name: string; location: string; score: number; contribution: number; timestamp: number; frame_timestamp?: number | null; age_seconds: number; frame_version: string; method: string; reason: string; positive: boolean }[];
@@ -218,13 +218,14 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
         return <article className="priority-camera" key={`${item.id}:${item.frame_version}`}>
           <Snapshot camera={pinnedCamera} auto={auto} now={clock} />
           <div className="priority-camera-body"><small>{item.location}</small><h3>{item.name}</h3>
-            <div className="priority-evidence"><strong>{item.localOnly ? "Локальное свидетельство" : "Положительный вклад в индекс"}</strong><span>{item.localOnly ? "Без численного вклада" : `+${Math.round(item.contribution * 100)}/100 к индексу`}</span></div>
+            <div className="priority-evidence"><strong>{item.localOnly ? "Локальное свидетельство" : observations?.evidence_scope === "demo_all_cameras" ? "Вклад в оценку" : "Положительный вклад в индекс"}</strong><span>{item.localOnly ? "Без численного вклада" : `+${Math.round(item.contribution * 100)}/100 к индексу`}</span></div>
 
             <small>Обновлено {age < 60 ? `${age} сек назад` : `${Math.floor(age / 60)} мин назад`}</small>
             <button aria-label={`Открыть кадр и историю: ${item.name}`} onClick={() => onSelectCamera?.(item.id)}>Открыть кадр и историю</button>
           </div>
         </article>;
       })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Положительных признаков пока нет."}</p></div>}
+      {observations?.evidence_scope === "demo_all_cameras" && !!observations.representatives?.length && <details className="excluded-camera-details"><summary>Оценки и веса всех камер ({observations.representatives.length})</summary><ul>{observations.representatives.map((item) => <li key={item.id}><strong>{item.name ?? item.id}</strong> · оценка {Math.round((item.score ?? 0) * 100)}/100 · вес {((item.weight ?? 0) * 100).toFixed(1)}% · {({ model: "Gemma", operator: "разметка оператора", snapshot: "признаки кадра", neutral: "нейтрально: нет оценки" } as Record<string, string>)[item.score_source ?? ""] ?? "оценка кадра"}</li>)}</ul><p>Веса всех камер в сумме равны 100%. Итог — сумма оценок, умноженных на их веса; нейтральное значение не подтверждает отсутствие снега.</p></details>}
       {!!observations?.excluded_cameras?.length && <details className="excluded-camera-details"><summary>Почему источники не участвуют в индексе ({observations.excluded_cameras.length})</summary><ul>{observations.excluded_cameras.map((camera) => <li key={camera.id}><strong>{camera.name ?? camera.id}</strong> · {camera.reason_label}</li>)}</ul></details>}
     </section>
     {alerts && <div className="dashboard-signals">{alerts}</div>}

@@ -101,6 +101,11 @@ class CameraMonitor:
                 self.state['analysis_method'] = 'weather_vlm_v2'
             if self.image and self.state.get('frame_version'):
                 self.recent_images[self.state['frame_version']] = self.image
+            if self.camera['type'] != 'demo' and self.image:
+                frame = cv2.imdecode(np.frombuffer(self.image, dtype=np.uint8), cv2.IMREAD_COLOR)
+                if frame is not None:
+                    snapshot = analyze_snapshot(frame)
+                    self.state['demo_snapshot'] = dict(score=snapshot['snow_probability'], frame_version=self.state.get('frame_version'), reason=snapshot['analysis_reason'])
             if os.getenv('SCENE_MODEL_PROVIDER') != 'ollama' and self.snapshot_analysis and source_status == 'online' and self.image:
                 frame = cv2.imdecode(np.frombuffer(self.image, dtype=np.uint8), cv2.IMREAD_COLOR)
                 if frame is not None:
@@ -157,7 +162,11 @@ class CameraMonitor:
                                   is_stale=stale, source_status='stale' if stale else 'online', error=None)
                 if changed:
                     self.state.update(frame_version=version, frame_timestamp=now,
-                                      scene=None, scene_frame_version=None)
+                                      scene=None, scene_frame_version=None, demo_snapshot=None)
+                if self.camera['type'] != 'demo' and (changed or not self.state.get('demo_snapshot')):
+                    async with self.processing:
+                        snapshot = await asyncio.to_thread(analyze_snapshot, frame, quality)
+                    self.state['demo_snapshot'] = dict(score=snapshot['snow_probability'], frame_version=version, reason=snapshot['analysis_reason'])
                 if changed or version not in self.recent_images:
                     self.recent_images[version] = encoded
                     self.recent_images.move_to_end(version)

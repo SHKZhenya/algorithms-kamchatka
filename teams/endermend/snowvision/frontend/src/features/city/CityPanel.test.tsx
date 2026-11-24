@@ -186,3 +186,18 @@ it("shows a valid local model signal without inventing an index contribution", a
   expect(screen.queryByText(/не входит в формулу городского индекса/)).toBeNull();
   expect(screen.queryByText(/\+\d+\/100 к индексу/)).toBeNull();
 });
+
+it("shows every recent camera's score, normalized weight and source", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => ({
+    observations: { evidence_scope: "demo_all_cameras", snowfall_state: "inconclusive", snow_score: .75,
+      independent_zones: 0, eligible_cameras: 2, status: "available", calculated_at: 2000000000,
+      last_evidence_at: 2000000000, local_evidence: [], contributors: [], representatives: [
+        { id: "a", name: "Камера A", score: 1, weight: .5, score_source: "model" },
+        { id: "b", name: "Камера B", score: .5, weight: .5, score_source: "neutral" },
+      ] }, forecast: { status: "unavailable", hours: [] },
+  }) }));
+  render(<CityPanel />);
+  await screen.findByText("Оценки и веса всех камер (2)");
+  expect(screen.getByText(/Камера A/).parentElement?.textContent).toContain("100/100 · вес 50.0% · Gemma");
+  expect(screen.getByText(/Камера B/).parentElement?.textContent).toContain("50/100 · вес 50.0% · нейтрально");
+});
