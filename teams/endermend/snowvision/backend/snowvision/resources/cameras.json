@@ -6,6 +6,22 @@
     "location": "Синтетический источник"
   },
   {
+    "id": "leninskaya",
+    "name": "Петропавловск-Камчатский, улица Ленинская",
+    "location": "Петропавловск-Камчатский",
+    "type": "hls",
+    "url": "https://cam-stream.pkgo.ru/live/cam3/playlist.m3u8",
+    "interval_seconds": 60
+  },
+  {
+    "id": "zavoyko",
+    "name": "Елизово, улица Завойко",
+    "location": "Елизово",
+    "type": "hls",
+    "url": "https://streamer.camera.rt.ru/public/master.m3u8?sid=df33ed60-4399-43fe-8069-2e42652b6fa1",
+    "interval_seconds": 60
+  },
+  {
     "id": "chekhova",
     "name": "Чехова · уличная камера",
     "location": "Петропавловск-Камчатский",
@@ -36,6 +52,25 @@
     "coordinates_source": "https://www.shors.ru/kamery/kamera-shchors",
     "city_observation": false,
     "scene_role": "distant_panorama"
+  },
+  {
+    "id": "moroznaya",
+    "name": "Елизово, горнолыжная база «Гора Морозная»",
+    "location": "Елизово",
+    "type": "hls",
+    "url": "https://streamer.camera.rt.ru/public/master.m3u8?sid=064f49d8-e198-42c6-b74a-16a903df4542",
+    "interval_seconds": 60
+  },
+  {
+    "id": "ran-nlc-avh",
+    "name": "Авачинская сопка с мыса Налычево",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/NLC-AVH/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
   },
   {
     "id": "ran-sma",
@@ -203,6 +238,17 @@
     "source_page": "https://kam.emsd.ru/visual-observations/"
   },
   {
+    "id": "ran-asa",
+    "name": "Мутновский со стороны Асачи",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/ASA/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
     "id": "ran-mutnovsky-kldg",
     "name": "Мутновский с борта кальдеры Горелого",
     "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
@@ -214,11 +260,33 @@
     "source_page": "https://kam.emsd.ru/visual-observations/"
   },
   {
+    "id": "ran-mutnovsky-grl",
+    "name": "Мутновский с вулкана Горелый",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/Mutnovsky-grl/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
     "id": "ran-tolbachik",
     "name": "Толбачик из Козыревска",
     "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
     "type": "jpeg",
     "url": "https://kam.emsd.ru/video/Tolbachik/img_1.jpg",
+    "interval_seconds": 1800,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false,
+    "source_page": "https://kam.emsd.ru/visual-observations/"
+  },
+  {
+    "id": "ran-ptolbachik",
+    "name": "Толбачик с Высокой сопки",
+    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "type": "jpeg",
+    "url": "https://kam.emsd.ru/video/PTolbachik/img_1.jpg",
     "interval_seconds": 1800,
     "stale_after_seconds": 5400,
     "motion_analysis": false,
@@ -247,14 +315,161 @@
     "source_page": "https://kam.emsd.ru/visual-observations/"
   },
   {
-    "id": "ran-ptolbachik",
-    "name": "Толбачик с Высокой сопки",
-    "location": "Камчатский край · КФ ФИЦ ЕГС РАН",
+    "id": "noyabrsk",
+    "name": "Ноябрьск, Ленина — Советская",
+    "location": "Ноябрьск",
+    "type": "hls",
+    "url": "https://camera.global-x.ru/CAM_Sovetskaya-86/index.m3u8",
+    "interval_seconds": 60
+  },
+  {
+    "id": "kirovsk-k6-bottom",
+    "name": "Кировск, Большой Вудъявр — нижняя станция К6",
+    "location": "Кировск",
     "type": "jpeg",
-    "url": "https://kam.emsd.ru/video/PTolbachik/img_1.jpg",
-    "interval_seconds": 1800,
+    "url": "https://123streaming.ru/thumbnails/358/677/thumb_675d4d8d2011f675d4d8d20140/1.jpg",
+    "interval_seconds": 300,
     "stale_after_seconds": 5400,
-    "motion_analysis": false,
-    "source_page": "https://kam.emsd.ru/visual-observations/"
+    "motion_analysis": false
+  },
+  {
+    "id": "kirovsk-north",
+    "name": "Кировск, Большой Вудъявр — северная парковка",
+    "location": "Кировск",
+    "type": "jpeg",
+    "url": "https://123streaming.ru/thumbnails/358/2067/thumb_677034570ba15677034570ba4d/1.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "kirovsk-k6-slopes",
+    "name": "Кировск, Большой Вудъявр — верх К6, трассы 15 и 17",
+    "location": "Кировск",
+    "type": "jpeg",
+    "url": "https://123streaming.ru/thumbnails/358/1795/thumb_675d4dc534f0a675d4dc534f45/1.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "kirovsk-k6-top",
+    "name": "Кировск, Большой Вудъявр — верхняя станция К6",
+    "location": "Кировск",
+    "type": "jpeg",
+    "url": "https://123streaming.ru/thumbnails/358/1765/thumb_678fbbc6ecc45678fbbc6ecc83/1.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "kirovsk-k10-top",
+    "name": "Кировск, Большой Вудъявр — верхняя станция К10",
+    "location": "Кировск",
+    "type": "jpeg",
+    "url": "https://123streaming.ru/thumbnails/358/676/thumb_67601eb8b27c667601eb8b2800/1.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "kirovsk-k10-bottom",
+    "name": "Кировск, Большой Вудъявр — нижняя станция К10",
+    "location": "Кировск",
+    "type": "jpeg",
+    "url": "https://123streaming.ru/thumbnails/358/672/thumb_6763c5ad1d63b6763c5ad1d649/1.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "kirovsk-south",
+    "name": "Кировск, Большой Вудъявр — южная парковка",
+    "location": "Кировск",
+    "type": "jpeg",
+    "url": "https://123streaming.ru/thumbnails/358/670/thumb_675d4d69712ac675d4d69712e3/1.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "kirovsk-k4-bottom",
+    "name": "Кировск, Большой Вудъявр — нижняя станция К4",
+    "location": "Кировск",
+    "type": "jpeg",
+    "url": "https://123streaming.ru/thumbnails/358/687/thumb_675d4da20242e675d4da202469/1.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "rovaniemi",
+    "name": "Рованиеми, трасса 4, район Полярного круга",
+    "location": "Рованиеми",
+    "type": "jpeg",
+    "url": "https://weathercam.digitraffic.fi/C1452601.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "oulu",
+    "name": "Оулу, трасса 4, Лаанила",
+    "location": "Оулу",
+    "type": "jpeg",
+    "url": "https://weathercam.digitraffic.fi/C1250401.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "kuusamo",
+    "name": "Куусамо, трасса 5, Петяйялампи",
+    "location": "Куусамо",
+    "type": "jpeg",
+    "url": "https://weathercam.digitraffic.fi/C1257301.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "sodankyla",
+    "name": "Соданкюля, дорога 962, Луосто",
+    "location": "Соданкюля",
+    "type": "jpeg",
+    "url": "https://weathercam.digitraffic.fi/C1453601.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "revelstoke",
+    "name": "Ревелсток, мост через Колумбию",
+    "location": "Ревелсток",
+    "type": "jpeg",
+    "url": "https://www.drivebc.ca/images/11.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "rogers-pass",
+    "name": "Перевал Роджерс, шоссе 1",
+    "location": "Перевал Роджерс",
+    "type": "jpeg",
+    "url": "https://www.drivebc.ca/images/101.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
+  },
+  {
+    "id": "pine-pass",
+    "name": "Перевал Пайн, шоссе 97 у съезда к Powder King",
+    "location": "Перевал Пайн",
+    "type": "jpeg",
+    "url": "https://www.drivebc.ca/images/165.jpg",
+    "interval_seconds": 300,
+    "stale_after_seconds": 5400,
+    "motion_analysis": false
   }
 ]
