@@ -501,8 +501,7 @@ export function App() {
           <div><p className="eyebrow">КАМЧАТСКИЙ КРАЙ</p><h1>Оперативная обстановка</h1></div>
           <div className="updated">Обновление<strong>{time(updated)}</strong><small>{connection} · UTC+12</small></div>
         </div>
-        <CityPanel cameras={cameras} onSelectCamera={setSelected} auto={auto} now={clock} />
-        <AlertPanel />
+        <CityPanel cameras={cameras} onSelectCamera={setSelected} auto={auto} now={clock} alerts={<AlertPanel />} />
         <details className="camera-catalogue" ref={catalogue}>
           <summary>Все камеры · {loading ? "загрузка" : `${cameras.length} источников`}</summary>
           <section className="cameras-section" aria-label="Все камеры наблюдения">

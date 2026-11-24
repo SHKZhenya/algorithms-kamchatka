@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Snapshot } from "../cameras/Snapshot";
 
 type Camera = { id: string; name: string; location: string; type: string; observation?: { frame_version?: string | null; frame_timestamp: number | null; source_status: string; is_fetching?: boolean; freshness_reason?: string | null } };
@@ -138,11 +138,12 @@ function SnowfallSummary({ data, error, now }: { data?: CityOutlook; error: stri
   </section>;
 }
 
-export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Date.now() / 1000 }: {
+export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Date.now() / 1000, alerts }: {
   cameras?: Camera[];
   onSelectCamera?: (id: string) => void;
   auto?: boolean;
   now?: number;
+  alerts?: ReactNode;
 }) {
   const [data, setData] = useState<CityOutlook>();
   const [error, setError] = useState("");
@@ -226,5 +227,6 @@ export function CityPanel({ cameras = [], onSelectCamera, auto = true, now = Dat
       })}</div> : <div className="no-priority"><strong>{error ? "Не удалось обновить свидетельства" : "Нет камер с текущим положительным вкладом"}</strong><p>{error ? "Последнее состояние сохранено; оно может быть устаревшим." : observations?.independent_zones ? "Наблюдаемые зоны не показывают пригодных положительных свидетельств." : "Положительных признаков пока нет."}</p></div>}
       {!!observations?.excluded_cameras?.length && <details className="excluded-camera-details"><summary>Почему источники не участвуют в индексе ({observations.excluded_cameras.length})</summary><ul>{observations.excluded_cameras.map((camera) => <li key={camera.id}><strong>{camera.name ?? camera.id}</strong> · {camera.reason_label}</li>)}</ul></details>}
     </section>
+    {alerts && <div className="dashboard-signals">{alerts}</div>}
   </div>;
 }

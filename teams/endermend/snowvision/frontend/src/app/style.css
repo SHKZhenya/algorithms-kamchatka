@@ -1265,3 +1265,46 @@ details[open] > summary { margin-bottom: 16px; }
 .feedback-form img { width: 100%; max-width: 640px; border-radius: 8px; }
 .feedback-form label { display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
 .feedback-form select { padding: 0.4rem; }
+
+/* Dispatcher overview: independent grid regions for the current situation. */
+.dispatcher-dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-areas: "status weather" "cameras signals";
+  align-items: stretch;
+  gap: 16px;
+}
+.dispatcher-dashboard > * { min-width: 0; }
+.dispatcher-dashboard > .snowfall-card { grid-area: status; }
+.dispatcher-dashboard > .weather-card { grid-area: weather; }
+.dispatcher-dashboard > .priority-section { grid-area: cameras; }
+.dashboard-signals { grid-area: signals; min-width: 0; align-self: start; }
+.dashboard-signals .alert-panel { margin: 0; }
+.snowfall-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: center; }
+.snowfall-title-row { display: grid; grid-template-columns: 1fr; justify-items: start; }
+.snowfall-meta { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); }
+.weather-heading, .priority-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+.weather-fact { grid-template-columns: 1fr; gap: 8px; }
+.weather-fact > div:first-child { display: grid; }
+.priority-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.priority-camera { display: grid; grid-template-rows: auto 1fr; }
+.priority-camera .snapshot { width: 100%; min-height: 0; aspect-ratio: 16 / 10; }
+.priority-camera-body { display: grid; grid-template-rows: auto auto auto auto 1fr; gap: 4px; }
+.priority-camera-body button { align-self: end; justify-self: start; margin-top: 8px; }
+.priority-evidence { display: grid; }
+@media (max-width: 1100px) {
+  .dispatcher-dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .priority-grid { grid-template-columns: 1fr; }
+  .priority-camera { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); grid-template-rows: auto; }
+  .priority-camera .snapshot { width: 100%; height: 100%; min-height: 140px; }
+}
+@media (max-width: 700px) {
+  .dispatcher-dashboard { grid-template-columns: minmax(0, 1fr); grid-template-areas: "status" "weather" "signals" "cameras"; gap: 12px; }
+  .snowfall-card { grid-template-columns: minmax(0, 1fr) auto; }
+  .snowfall-meta { grid-template-columns: 1fr; }
+  .priority-camera .snapshot { min-height: 115px; }
+}
+@media (max-width: 400px) {
+  .priority-camera { grid-template-columns: 1fr; }
+  .priority-camera .snapshot { height: auto; aspect-ratio: 16 / 9; }
+}
