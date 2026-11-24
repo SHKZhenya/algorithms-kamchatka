@@ -1,39 +1,75 @@
-# Рабочий цикл
+# Проверки и локальный контекст
 
-1. Читать CURRENT.md, DECISIONS.md, RUNBOOK.md и .context-local/LATEST.md, если есть.
-2. Проверить git status. Определить критерии приёмки и ближайший воспроизводящий тест.
-3. Перед существенным решением: python3 tools/endermend-context/context.py record "решение и причина".
-4. Внести минимальное согласованное изменение и регрессионный тест при необходимости.
-5. Запустить focused checks. Для полного цикла: python3 tools/endermend-context/context.py verify.
-6. Обновить CURRENT.md по фактическому результату. Проверить diff и явно git add нужных файлов.
-7. python3 tools/endermend-context/context.py commit "сообщение" повторно проверит стек
-   и выполнит обычный commit только после успеха. Если проверки только что прошли
-   без новых изменений, можно обычный git commit без повторной полной проверки.
-8. post-commit автоматически сохранит checkpoint + manifest + событие, без рекурсии.
-9. При разрешённой публикации: git push fork endermend, дождаться CI, сообщить результат.
+Рабочая ветка `endermend`; единственная цель push — `fork`,
+`endermend/algorithms-kamchatka`. Не отправлять изменения в `origin`
+(`SHKZhenya/algorithms-kamchatka`) и не создавать там PR. Для изменений
+обязателен цикл commit → push в `fork` → проверка CI. PR создавать только
+по прямой просьбе пользователя. Правила — в [AGENTS](../AGENTS.md).
 
-Установка hook для нового checkout:
-`git config --local core.hooksPath .githooks`
-Перед установкой проверить прежний core.hooksPath и реальные hook-файлы.
-Этот репозиторий не требует принудительного Git hook от других участников.
+## Проверки
 
-Локальные данные (.context-local, исключены из Git):
-- events.jsonl: события, проверки, SHA, exit code; не каждое действие ОС/браузера.
-- checkpoints/<commit>.md.gz: компактный handoff, привязанный к SHA.
-- LATEST.md и latest.json: вход для возобновления и SHA-256 проверки.
-- checks/*.log.gz: вывод проверок с распознаваемыми секретами, заменёнными REDACTED.
-- chat/*.jsonl.gz: явно выбранный полный журнал Codex с тем же маскированием.
+Из `teams/endermend/snowvision`:
 
-Архив чата обновляется командой archive-chat <путь JSONL сессии>.
-Если владелец явно привязал текущий чат в .context-local/session-path, hook
-обновляет только этот архив после commit. Другие сессии не просматриваются. Для сохранности копировать .context-local
-на резервный диск: этот каталог сам по себе не является удалённой резервной копией.
-Маскирование шаблонов не гарантирует обнаружение произвольного секрета:
-сырые журналы никогда не публиковать даже после маскирования.
+```sh
+docker compose build
+docker compose up -d --wait
+docker compose exec -T snowvision python -m unittest -v
+docker compose exec -T web nginx -t
+curl --fail http://localhost:5173/api/health
+```
 
-Сбой capture не отменяет уже завершённый commit, hook выводит предупреждение.
-Нет бесконечного цикла, автоисправлений, скрытых push или автоматических новых коммитов.
+Для frontend запустить `docker compose build web`: Dockerfile выполняет
+Vitest, TypeScript и Vite. После изменения backend пересобрать сервис
+`docker compose build snowvision` и затем повторить backend-тесты.
+Единственный CI — `.github/workflows/endermend-ci.yml`.
 
-Если файловая система checkout игнорирует chmod (например NTFS), архивы
-автоматически перемещаются в ~/.local/state/snowvision-context/<checkout-id>,
-а .context-local становится игнорируемой ссылкой. Права проверяются фактически.
+## Локальный ключ прогноза
+
+После добавления или изменения ключа в локальном `.env` пересоздать контейнеры, чтобы применить конфигурацию: `docker compose up -d --wait --force-recreate snowvision web`. Команду выполнять из каталога `snowvision`; том истории сохраняется. Наличие ключа проверять без вывода значения. Сообщение о недоступности прогноза при настроенном ключе может означать сетевую ошибку, а не отсутствие ключа.
+
+## Серверная установка
+
+Адрес, SSH-пользователь, серверные пути, имя Compose-проекта и тома хранятся
+только в локальном `deployment.local.env` рядом с этим документом. Файл исключён
+из Git. Для новой рабочей копии заполнить копию
+[deployment.example.env](deployment.example.env); существующий локальный файл
+не перезаписывать. Не добавлять реальные значения в документы, коммиты и PR.
+Это конфигурация подключения, а не журнал передачи контекста; состояние
+приложения по-прежнему хранить в отслеживаемых документах.
+
+Из каталога `teams/endermend/context` загрузить доверенную локальную конфигурацию:
+
+```sh
+. ./deployment.local.env
+ssh -F ~/.ssh/config -L 5173:127.0.0.1:5173 "$DEPLOY_SSH_TARGET"
+```
+
+Держать туннель открытым; интерфейс — http://localhost:5173.
+После входа использовать значения конфигурации для перехода в текущий release,
+проверки Compose и nginx. Локальные переменные автоматически на сервер не
+передаются; не копировать файл подключения в release-архив.
+
+При обновлении готовить отдельный release из отслеживаемых исходников.
+Сохранять существующие `.env`, override, имя Compose-проекта и том истории;
+их точные значения сверять с локальной конфигурацией. Публикацию портов
+сохранять по серверному override, backend наружу не публиковать.
+В текущем release выполнить команды, подставив существующее имя проекта
+и путь к серверному файлу окружения из локальной конфигурации:
+
+```sh
+docker compose --env-file <environment-file> -p <existing-project> ps
+docker compose --env-file <environment-file> -p <existing-project> exec -T web nginx -t
+curl --fail http://127.0.0.1/api/health
+```
+
+Не удалять предыдущий release, историю или архивы качества при обновлении.
+
+## Пользовательские данные
+
+История и последний кадр находятся в Compose volume. Не применять
+`docker compose down -v`, не удалять БД, архивы, ключи или оригиналы.
+Quality-данные хранятся в `teams/endermend/snowvision/.quality-local/`.
+Секреты и сырые журналы не публиковать.
+
+При `dubious ownership` использовать `git -c safe.directory=<checkout>`;
+не менять global safe.directory. Не делать force push и не переписывать `main`.

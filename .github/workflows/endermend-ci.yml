@@ -2,9 +2,9 @@ name: Endermend CI
 on:
   push:
     branches: [endermend]
-    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml', 'tools/endermend-context/**', '.githooks/**']
+    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml', 'AGENTS.md', 'README.md', 'task.md', '.gitignore']
   pull_request:
-    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml', 'tools/endermend-context/**', '.githooks/**']
+    paths: ['teams/endermend/**', '.github/workflows/endermend-ci.yml', 'AGENTS.md', 'README.md', 'task.md', '.gitignore']
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,9 +19,6 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           persist-credentials: false
-      - name: Verify context hooks
-        working-directory: .
-        run: python3 -m unittest discover -s tools/endermend-context -v
       - run: docker compose up --build -d --wait
       - run: docker compose exec -T snowvision python -m unittest -v
       - run: docker compose exec -T web nginx -t

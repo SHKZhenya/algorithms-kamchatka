@@ -1,0 +1,13 @@
+.env
+__pycache__/
+.venv/
+*.db
+
+source_checks.local.json
+
+/alerts-replay.local.json
+
+# Provider credentials and local freshness audits
+.env.*
+!.env.example
+camera-audit.local.json

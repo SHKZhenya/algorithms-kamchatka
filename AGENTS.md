@@ -1,7 +1,21 @@
-# Repository guidance
+# SnowVision repository guidance
 
-For SnowVision / endermend work, first read `teams/endermend/AGENTS.md` and
-`teams/endermend/context/{CURRENT,DECISIONS,RUNBOOK}.md`.
-Use the local checkpoint as a handoff, verify its HEAD against Git, and preserve
-unrelated changes. Never commit `.context-local`, secrets or runtime databases.
-Other teams retain their own applicable instructions and workflows.
+This repository contains SnowVision in `teams/endermend/snowvision`.
+Read `teams/endermend/AGENTS.md` and `teams/endermend/context/START_HERE.md`,
+then follow their task-specific links. Communicate in Russian.
+
+Keep context focused on current behavior, active requirements and verification.
+Remove completed checklists, obsolete handoffs and duplicate instructions;
+Git history and tracked context documents retain past work. Treat tracked
+documents as the handoff source of truth; do not read, write or rely on
+`.context-local`. Preserve technical source attribution, current product
+limitations and user runtime data.
+
+Complete authorized work through an appropriate check, commit and push to
+`fork/endermend`, including documentation and cleanup. Pushes for this work go
+only to `https://github.com/endermend/algorithms-kamchatka` on the `endermend`
+branch. Do not push to `origin` or create/update PRs in another repository.
+Create a PR only when the user explicitly requests one.
+Preserve unrelated edits unless the user explicitly asks to include them.
+Never commit `.env`, credentials, databases, `.quality-local`, `.context-local`
+or raw conversation logs. Never use force push or `docker compose down -v`.
