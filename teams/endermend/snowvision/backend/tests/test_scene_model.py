@@ -29,11 +29,9 @@ class ModelTests(unittest.IsolatedAsyncioTestCase):
             with self.assertRaises(ValidationError):
                 await analyze_scene(client,'http://model.test',b'image')
 
-    async def test_local_visual_model_contract_and_icing_uncertainty(self):
-        payload = dict(schema_version='2',model='test',prompt_version='test',format_valid=True,
-                       falling_snow='uncertain',snowfall_intensity='uncertain',air_view='limited',
-                       ground_view='good',snow_on_ground='yes',road_view='limited',
-                       possible_icing='uncertain',visual_evidence='Блеск не позволяет отличить воду от льда')
+    async def test_local_visual_model_numeric_contract(self):
+        payload = dict(snow_probability=0.8, snowing_probability=0.3,
+                       ice_confidence=0.5, image_confidence=0.7)
         def reply(request):
             import json
             sent = json.loads(request.content)
@@ -45,6 +43,22 @@ class ModelTests(unittest.IsolatedAsyncioTestCase):
         with patch.dict(os.environ, {'SCENE_MODEL_PROVIDER': 'ollama'}):
             async with httpx.AsyncClient(transport=httpx.MockTransport(reply)) as client:
                 result = await analyze_scene(client, 'http://model.test', b'image')
-        self.assertEqual(result['possible_icing'], 'uncertain')
-        self.assertEqual(result['snow_on_ground'], 'yes')
-        self.assertEqual(result['prompt_version'], 'snowvision-visual-1')
+        self.assertEqual(result['snow_probability'], 0.8)
+        self.assertEqual(result['snowing_probability'], 0.3)
+        self.assertEqual(result['prompt_version'], 'snowvision-numeric-1')
+
+    async def test_numeric_model_rejects_invalid_values(self):
+        import json
+        payload = dict(snow_probability=0.8, snowing_probability=0.3,
+                       ice_confidence=0.5, image_confidence=0.7)
+        def reply(request):
+            return httpx.Response(200, json={'done': True, 'model': 'test', 'response': json.dumps(payload)})
+        with patch.dict(os.environ, {'SCENE_MODEL_PROVIDER': 'ollama'}):
+            async with httpx.AsyncClient(transport=httpx.MockTransport(reply)) as client:
+                for bad in (-0.1, 1.1, '0.5', True, float('nan')):
+                    payload['ice_confidence'] = bad
+                    with self.subTest(bad=bad), self.assertRaises(ValidationError):
+                        await analyze_scene(client, 'http://model.test', b'image')
+                del payload['ice_confidence']
+                with self.assertRaises(ValidationError):
+                    await analyze_scene(client, 'http://model.test', b'image')

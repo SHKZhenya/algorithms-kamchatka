@@ -21,6 +21,10 @@ type Observation = {
   scene_frame_version?: string | null;
   scene?: {
     format_valid: boolean;
+    snow_probability?: number;
+    snowing_probability?: number;
+    ice_confidence?: number;
+    image_confidence?: number;
     ground_view?: "good" | "limited" | "unusable";
     air_view?: "good" | "limited" | "unusable";
     snowfall_intensity?: "none" | "light" | "moderate" | "heavy" | "uncertain";
@@ -70,6 +74,15 @@ const reasons: Record<string, string> = {
 };
 const score = (value?: number | null) =>
   value == null ? "—" : `${Math.round(value * 100)}/100`;
+function modelNumbers(o?: Observation) {
+  const s = o?.scene;
+  if (!o || !s?.format_valid || !o.frame_version || o.scene_frame_version !== o.frame_version) return null;
+  const values = [s.snow_probability, s.snowing_probability, s.ice_confidence, s.image_confidence];
+  return values.every((v) => typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 1) ? s : null;
+}
+function historyScore(o: Observation) {
+  return modelNumbers(o)?.snowing_probability ?? o.snow_probability;
+}
 function groundSnow(observation?: Observation) {
   const scene = observation?.scene;
   if (!observation?.frame_version || observation.is_stale || observation.source_status !== "online"
@@ -115,7 +128,7 @@ async function get<T>(url: string, signal?: AbortSignal): Promise<T> {
   if (!r.ok) throw Error(`Ошибка сервера · ${r.status}`);
   return r.json();
 }
-function History({ id }: { id: string }) {
+export function History({ id }: { id: string }) {
   const [rows, setRows] = useState<Observation[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -144,7 +157,7 @@ function History({ id }: { id: string }) {
   if (loading) return <p>Загрузка истории…</p>;
   if (error) return <p role="alert">{error}</p>;
   if (!rows.length) return <p>Наблюдения ещё не накоплены.</p>;
-  const known = rows.filter((r) => r.snow_probability != null);
+  const known = rows.filter((r) => historyScore(r) != null);
   return (
     <>
       <div
@@ -165,17 +178,22 @@ function History({ id }: { id: string }) {
           />
           {rows.slice(1).map((r, i) => {
             const p = rows[i];
-            return r.snow_probability != null && p.snow_probability != null ? (
+            const current = historyScore(r), previous = historyScore(p);
+            return current != null && previous != null && Boolean(modelNumbers(r)) === Boolean(modelNumbers(p)) ? (
               <line
                 key={i}
                 x1={(i * 600) / Math.max(rows.length - 1, 1)}
-                y1={145 - p.snow_probability * 140}
+                y1={145 - previous * 140}
                 x2={((i + 1) * 600) / Math.max(rows.length - 1, 1)}
-                y2={145 - r.snow_probability * 140}
+                y2={145 - current * 140}
                 stroke="#3478ee"
                 strokeWidth="2.5"
               />
             ) : null;
+          })}
+          {rows.map((r, i) => {
+            const value = historyScore(r);
+            return value == null ? null : <circle key={`point-${i}`} cx={(i * 600) / Math.max(rows.length - 1, 1)} cy={145 - value * 140} r="3" fill="#3478ee" />;
           })}
         </svg>
       </div>
@@ -186,6 +204,7 @@ function History({ id }: { id: string }) {
         </span>
         <span>{time(rows[rows.length - 1].timestamp)}</span>
       </div>
+      <p className="note">Новые точки — оценка снегопада моделью; старые — балл прежнего алгоритма. Оценки не являются калиброванными вероятностями.</p>
     </>
   );
 }
@@ -205,7 +224,7 @@ function Detail({
     return () => dialog.close();
   }, []);
   const s = state(camera),
-    o = camera.observation;
+    o = camera.observation, numbers = modelNumbers(o);
   return (
     <dialog
       ref={ref}
@@ -242,9 +261,9 @@ function Detail({
           </>}
           <span className={`status ${s.tone}`}>{s.text}</span>
         </div>
-        <p className="note">
+        {numbers ? <p className="note">Оценка модели{(o?.is_stale || o?.source_status !== "online") ? " для последнего кадра (неактуальна)" : ""}: снег на земле — {score(numbers.snow_probability)}, снегопад — {score(numbers.snowing_probability)}, признаки льда — {score(numbers.ice_confidence)}, качество изображения — {score(numbers.image_confidence)}. Эти оценки не калиброваны и не подтверждают безопасность дороги.</p> : o?.analysis_method === "weather_vlm_v2" && !o.scene ? <p className="note">Модель ещё не вернула оценку для этого кадра.</p> : <p className="note">
           Снег на земле: {groundSnow(o)}. Обледенение: {visualIce(o)}.
-        </p>
+        </p>}
         {o?.scene?.format_valid && o.scene_frame_version === o.frame_version && !o.is_stale && o.source_status === "online" && <>
           <p className="note">Интенсивность снегопада: {["good", "limited"].includes(o.scene.air_view ?? "") ? ({ none: "не виден", light: "слабый", moderate: "умеренный", heavy: "сильный", uncertain: "неопределённо" }[o.scene.snowfall_intensity ?? "uncertain"]) : "нет пригодного обзора"}.
             Снег на видимой дороге: {["good", "limited"].includes(o.scene.road_view ?? "") ? ({ clear: "покрытие выглядит чистым", partial: "частичное покрытие снегом", mostly_covered: "преимущественно покрыта снегом", not_visible: "дорога не видна", uncertain: "неопределённо" }[o.scene.road_coverage ?? "uncertain"]) : "нет пригодного обзора"}.</p>
